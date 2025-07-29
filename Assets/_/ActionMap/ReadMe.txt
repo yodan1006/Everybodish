@@ -1,0 +1,1 @@
+create un InputPlayerManager in scene for the multiplayer
