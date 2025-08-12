@@ -14,6 +14,13 @@ namespace MovePlayer.Runtime
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            foreach (var map in playerInput.actions.actionMaps)
+            {
+                if (map.name != "lobby")
+                    map.Disable();
+            }
+            playerInput.actions.FindActionMap("lobby").Enable();
         }
 
         private void Update()
