@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace LobbyInstantiate.Runtime
 {
@@ -7,11 +8,12 @@ namespace LobbyInstantiate.Runtime
         [SerializeField] private Transform[] spawnPoint;
         private int _playerCount;
 
-        public void OnPlayerSpawned()
+        public void OnPlayerSpawned(PlayerInput playerInput)
         {
             Transform spawn = spawnPoint[_playerCount % spawnPoint.Length];
-            
-            Instantiate(Resources.Load<GameObject>("Player"), spawn.position, spawn.rotation);
+
+            playerInput.transform.position = spawn.transform.position;
+            playerInput.transform.rotation = spawn.transform.rotation;
             
             _playerCount++;
         }

@@ -158,6 +158,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "lobby",
+            "id": "ef98e54f-46ec-47ff-9723-8d025472d088",
+            "actions": [
+                {
+                    "name": "selectSkin",
+                    "type": "Value",
+                    "id": "eea4fabd-f486-4716-a5a7-6e77bd174684",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ebfd162c-418a-46e3-8be8-09129d677f8a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "selectSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
