@@ -1,11 +1,7 @@
 {
-    "name": "Grab.Runtime",
-    "rootNamespace": "Grab.Runtime",
-    "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:e6193ee509bb2d841bdf086b908397a8",
-        "GUID:4a03ca78fbbf223419e5a3f628bbab87"
-    ],
+    "name": "Debug.Runtime",
+    "rootNamespace": "",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -4,7 +4,7 @@
     {
         protected IGrabber Grabber();
         void Release();
-        bool TryGrab(IGrabber newGrabber);
+        bool TryGrab(Grabber newGrabber);
         bool IsGrabbed();
     }
 }
