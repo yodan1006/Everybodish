@@ -1,36 +1,48 @@
-using Toolbox.Rigidbody.Runtime;
 using UnityEngine;
-
-public class Grabber : MonoBehaviour, IGrabber
+namespace Grab.Runtime
 {
-    public Grabable grabable;
-    public bool TryGrab(Grabable newGrabable)
+    public class Grabber : MonoBehaviour, IGrabber
     {
-        if (newGrabable.TryGrab(this))
-        {
-            grabable = newGrabable;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public void Release()
-    {
-        if (grabable != null)
-        {
-            grabable.Release();
-        }
-    }
+        private Grabable grabable;
 
-    public bool IsGrabbing()
-    {
-        return grabable != null;
-    }
+        public Grabable GetGrabable()
+        {
+            return grabable;
+        }
 
-    private void OnDisable()
-    {
-        Release();
+        protected void SetGrabable(Grabable grabable)
+        {
+            this.grabable = grabable;
+        }
+
+        public bool TryGrab(Grabable newGrabable)
+        {
+            if (newGrabable.TryGrab(this))
+            {
+                SetGrabable(newGrabable);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void Release()
+        {
+            if (IsGrabbing())
+            {
+                GetGrabable().Release();
+            }
+        }
+
+        public bool IsGrabbing()
+        {
+            return grabable != null;
+        }
+
+        private void OnDisable()
+        {
+            Release();
+        }
     }
 }

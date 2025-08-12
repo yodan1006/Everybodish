@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Toolbox.Rigidbody.Runtime
+namespace Grab.Runtime
 {
     public class Grabable : MonoBehaviour, IGrabable
     {
