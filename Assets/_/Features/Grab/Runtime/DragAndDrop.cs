@@ -6,12 +6,12 @@ namespace Grab.Runtime
     public class DragAndDrop : RigidbodyGrabber
     {
         #region Publics
-
-        public Texture2D cursorTextureDefault;
-        public Vector2 hotSpotDefault = Vector2.zero;
-        public Texture2D cursorTextureEnabled;
-        public Vector2 hotSpotEnabled = Vector2.zero;
-        public CursorStates currentState = CursorStates.Default;
+        [SerializeField] protected float holdRange = 2.0f;
+        [SerializeField] protected Texture2D cursorTextureDefault;
+        [SerializeField] protected Vector2 hotSpotDefault = Vector2.zero;
+        [SerializeField] protected Texture2D cursorTextureEnabled;
+        [SerializeField] protected Vector2 hotSpotEnabled = Vector2.zero;
+        [SerializeField] protected CursorStates currentState = CursorStates.Default;
         public enum CursorStates
         {
             Default,
@@ -28,10 +28,11 @@ namespace Grab.Runtime
             Cursor.SetCursor(cursorTextureDefault, hotSpotDefault, cursorMode);
         }
 
-        private void Update()
+        private new void Update()
         {
+            base.Update();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+            if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 GameObject go = hit.collider.gameObject;
                 SetOutLine(go);
@@ -107,12 +108,14 @@ namespace Grab.Runtime
         public void StartGrab()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+            if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 if (hit.rigidbody.gameObject.TryGetComponent<Grabable>(out Grabable grab))
                 {
-                    base.TryGrab(grab);
-                    PickupObject(hit.transform.gameObject);
+                    if (base.TryGrab(grab))
+                    {
+                        Debug.Log("Cursor Drag failure");
+                    }
                 }
             }
         }

@@ -6,23 +6,27 @@ namespace Grab.Runtime
 
         protected Rigidbody heldRigidbody;
         protected float tempDamping;
-        protected Transform targetPosition;
+        [SerializeField] protected Transform targetPosition;
 
         [Header("Physics Parameters")]
-        [SerializeField] protected float holdRange = 2.0f;
-        [SerializeField] protected float pickupRange = 5.0f;
+
         [SerializeField] protected float pickupForce = 1f;
         [SerializeField] protected float heldLinearDamping = 10f;
 
         [Header("Area constraints settings")]
         public RigidbodyConstraints holdAreaConstraints;
         public RigidbodyConstraints releaseAreaConstraints;
-        protected void PickupObject(GameObject pickedObject)
+        protected void Update()
         {
-            Rigidbody rb = pickedObject.GetComponentInChildren<Rigidbody>();
+            if (heldRigidbody != null)
+            {
+                MoveObject();
+            }
+        }
+        private void PickupRb(Rigidbody rb)
+        {
             if (rb != null)
             {
-
                 heldRigidbody = rb;
                 rb.useGravity = false;
                 tempDamping = heldRigidbody.linearDamping;
@@ -52,11 +56,12 @@ namespace Grab.Runtime
         public bool TryGrab(GameObject gameObject)
         {
             bool successfulGrab = false;
-            if (TryGetComponent<Grabable>(out Grabable grabable) && TryGetComponent<Rigidbody>(out Rigidbody rb))
+            if (gameObject.TryGetComponent<Grabable>(out Grabable grabable) && gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
+                Debug.Log("Grabable Rigidbody found", this);
                 if (TryGrab(grabable))
                 {
-                    heldRigidbody = rb;
+                    PickupRb(rb);
                     successfulGrab = true;
                 }
             }
@@ -66,6 +71,23 @@ namespace Grab.Runtime
         private new bool TryGrab(Grabable newGrabable)
         {
             return base.TryGrab(newGrabable);
+        }
+
+        public new void Release()
+        {
+            DropObject();
+            base.Release();
+        }
+
+        protected void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            // Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+            if (Application.isPlaying)
+            {
+                // Draw a sphere where the OverlapSphere is (positioned where your GameObject is as well as a size)
+                Gizmos.DrawSphere(targetPosition.position, 0.05f);
+            }
         }
     }
 }

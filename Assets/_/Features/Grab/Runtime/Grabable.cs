@@ -4,7 +4,7 @@ namespace Grab.Runtime
 {
     public class Grabable : MonoBehaviour, IGrabable
     {
-        private IGrabber grabber = null;
+        private Grabber grabber = null;
 
         public bool IsGrabbed()
         {
@@ -16,17 +16,19 @@ namespace Grab.Runtime
             grabber = null;
         }
 
-        public bool TryGrab(IGrabber newGrabber)
+        public bool TryGrab(Grabber newGrabber)
         {
+            bool success = false;
             if (grabber == null)
             {
                 grabber = newGrabber;
-                return true;
+                success = true;
             }
-            else
+            else if (newGrabber.gameObject == transform.gameObject)
             {
-                return false;
+                Debug.LogError("STOP GRABBING YOURSELF!", this);
             }
+            return success;
         }
 
         IGrabber IGrabable.Grabber()

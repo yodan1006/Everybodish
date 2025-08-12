@@ -18,8 +18,8 @@ namespace MovePlayer.Runtime
 
         private void Update()
         {
-            Vector3 move = new Vector3(_move.x, 0f, _move.y);
-            _rb.MovePosition(transform.position + move * _speed * Time.deltaTime);
+            Vector3 move = new(_move.x, 0f, _move.y);
+            _rb.MovePosition(transform.position + _speed * Time.deltaTime * move);
         }
 
         public void MovePlayer(InputAction.CallbackContext context)
