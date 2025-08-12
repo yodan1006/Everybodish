@@ -1,6 +1,8 @@
 using UnityEngine;
-
-public interface IRigidbodyGrabber : IGrabber
+namespace Grab.Runtime
 {
-    bool TryGrab(GameObject gameObject);
+    public interface IRigidbodyGrabber : IGrabber
+    {
+        bool TryGrab(GameObject gameObject);
+    }
 }

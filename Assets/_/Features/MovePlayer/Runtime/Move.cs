@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,8 +8,8 @@ namespace MovePlayer.Runtime
     {
         private Vector2 _move;
         private Rigidbody _rb;
-        
-        [SerializeField]private float _speed;
+
+        [SerializeField] private float _speed;
 
         private void Awake()
         {

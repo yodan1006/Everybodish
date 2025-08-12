@@ -1,8 +1,8 @@
-﻿namespace Toolbox.Rigidbody.Runtime
+﻿namespace Grab.Runtime
 {
     internal interface IGrabable
     {
-        IGrabber Grabber();
+        protected IGrabber Grabber();
         void Release();
         bool TryGrab(IGrabber newGrabber);
         bool IsGrabbed();
