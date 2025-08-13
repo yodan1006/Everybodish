@@ -27,6 +27,8 @@ namespace MovePlayer.Runtime
         [SerializeField]private float _timeResetAttack;
         private bool _onFrameAttack;
         private float _timeToAttackFrame;
+
+        [SerializeField]private Animator animator;
         
         
         private void Awake()
@@ -103,6 +105,7 @@ namespace MovePlayer.Runtime
         public void MovePlayer(InputAction.CallbackContext context)
         {
             _move = context.ReadValue<Vector2>();
+            animator.SetFloat("speedMove", _move.magnitude);
         }
         
         public void Attack(InputAction.CallbackContext context)
