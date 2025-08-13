@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Outline.Data
 {
     public interface IOutlineContainer

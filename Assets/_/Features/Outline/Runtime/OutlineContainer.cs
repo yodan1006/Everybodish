@@ -10,7 +10,7 @@ public class OutlineContainer : MonoBehaviour, IOutlineContainer
     #region Main Methods
     public void EnableOutline(bool enabled)
     {
-            outline.SetActive(enabled);
+        outline.SetActive(enabled);
     }
     #endregion
 }

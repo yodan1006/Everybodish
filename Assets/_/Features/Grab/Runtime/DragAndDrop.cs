@@ -58,7 +58,7 @@ namespace Grab.Runtime
         {
             if (go.TryGetComponent<OutlineContainer>(out OutlineContainer OLcontainer))
             {
-               OLcontainer.EnableOutline(enable);
+                OLcontainer.EnableOutline(enable);
             }
         }
 
