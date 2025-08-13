@@ -36,9 +36,15 @@
                     "name": "Release",
                     "type": "Button",
                     "id": "2cdb3feb-1b9b-46b4-bb67-2ce58e23e3b8",
-                    "name": "headbutt",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "headButt",
                     "type": "Button",
-                    "id": "35dcba11-31cc-43b5-b20c-69265c59721b",
+                    "id": "ea5da2ab-e055-4e47-99e4-54c8791296e4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -181,7 +187,6 @@
                 {
                     "name": "",
                     "id": "9a9dec5d-46aa-4bff-89e8-4f2818e735ee",
-                    "id": "b2f72ca4-eb17-4100-a0df-9917531b8b5d",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
@@ -231,7 +236,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Release",
-                    "action": "headbutt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cf6614d-6c65-48a9-adc2-dec3e9758287",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "headButt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
