@@ -3,57 +3,7 @@ guid: 9c7be2bc1ebb6d4428c423e88ad1e3ca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 4ae439aaa7dde984cac43f8fc5f5f687, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: f5e092e2d7ce91e47a8441eed654da1b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 0ac6822429c6f5544bd9b316b4b8556f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: d79f0cfe7b7ef7d49aa96c39fb4390c3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: 88dd0de5db773404d8527a1f3cda425e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.005
-    second: {fileID: 2100000, guid: 61c1a8a9d9275314a90d03ac2a67a596, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.006
-    second: {fileID: 2100000, guid: 8e28e0af7e80e7048bbeef18145b7ff6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.007
-    second: {fileID: 2100000, guid: cf2c451095e411e4ba6d1ce3d5e2426d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.012
-    second: {fileID: 2100000, guid: 9dc24539cc78ee54fb12e540ea95223e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.018
-    second: {fileID: 2100000, guid: 33c67f8f8c943b841948016aeca86e08, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
