@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: 62488c4ab110f7f44a01e91f22d35a40
+guid: d0e0306e574824242a02e7a22a80f26f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.1
+    second: {fileID: 2100000, guid: 117825425818fe44f8087698ce523a30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.2
+    second: {fileID: 2100000, guid: 4b534fbe3073b8940aa71d468a1f696f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.3
+    second: {fileID: 2100000, guid: a75eeaccff616d14e84dacde5b189219, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Chrome
+    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_ingredient
+    second: {fileID: 2100000, guid: 250f9a3b5e1560a4397ea127a06776bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_sign
+    second: {fileID: 2100000, guid: 54797a9b2c7cb9b449afaac85fb0fdde, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

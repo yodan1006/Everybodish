@@ -4780,7 +4780,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: -876546973899608171, guid: 59782c011a4756442936edae75f6f7d4, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48872,7 +48872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5327813072543719734, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.213
       objectReference: {fileID: 0}
     - target: {fileID: 5327813072543719734, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48911,8 +48911,24 @@ PrefabInstance:
       value: VFX_HeatDistortion
       objectReference: {fileID: 0}
     - target: {fileID: 8174957982572414023, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 8.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174957982572414023, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174957982572414023, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174957982572414023, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174957982572414023, guid: aaeab80a9ecc36f4baec1a2fe817585b, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
