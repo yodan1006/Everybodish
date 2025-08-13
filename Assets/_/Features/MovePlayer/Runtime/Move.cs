@@ -10,11 +10,14 @@ namespace MovePlayer.Runtime
         private Rigidbody _rb;
 
         [SerializeField] private float speed;
+        [SerializeField] private float rotationSpeed;
         [SerializeField] private Collider zoneAttack;
 
+        [SerializeField]private float _timeResetAttack;
         private bool _onFrameAttack;
         private float _timeToAttackFrame;
-        private float _time;
+        
+        
         private void Awake()
         {
             zoneAttack.enabled = false;
@@ -22,27 +25,38 @@ namespace MovePlayer.Runtime
             PlayerInput playerInput = GetComponent<PlayerInput>();
             foreach (var map in playerInput.actions.actionMaps)
             {
-                if (map.name != "lobby")
+                if (map.name != "Player")
                     map.Disable();
             }
-            playerInput.actions.FindActionMap("lobby").Enable();
+            playerInput.actions.FindActionMap("Player").Enable();
         }
 
         private void Update()
         {
             Vector3 move = new(_move.x, 0f, _move.y);
+            Vector3 input = new Vector3(_move.x, 0f, _move.y);
+
+            if (input.sqrMagnitude > 0.0001f)
+            {
+                Vector3 dir = input.normalized;
+                Quaternion targetRot = Quaternion.LookRotation(dir, Vector3.up);
+                Quaternion newRot = Quaternion.Slerp(_rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
+                _rb.MoveRotation(newRot);
+            }
+
+            
             _rb.MovePosition(transform.position + speed * Time.deltaTime * move);
             
             if(_onFrameAttack)_timeToAttackFrame += Time.deltaTime;
             
-            if(_timeToAttackFrame >= _time) AttackDisable();
+            if(_timeToAttackFrame >= _timeResetAttack) AttackDisable();
         }
 
         public void MovePlayer(InputAction.CallbackContext context)
         {
             _move = context.ReadValue<Vector2>();
         }
-
+        
         public void Attack(InputAction.CallbackContext context)
         {
             //animation coup de tete
