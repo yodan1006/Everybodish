@@ -1,8 +1,9 @@
 {
-    "name": "Outline.Runtime",
-    "rootNamespace": "Outline.Runtime",
+    "name": "ActionMapManager.Runtime",
+    "rootNamespace": "ActionMapManager.Runtime",
     "references": [
-        "GUID:2d2fe6816d63b7e4ab0f50be9aeda5f4"
+        "GUID:cfa844f3741a3fb4880e35c3f2ec4484",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

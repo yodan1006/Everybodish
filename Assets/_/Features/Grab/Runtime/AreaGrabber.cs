@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
 {
@@ -19,9 +20,9 @@ namespace Grab.Runtime
             return Physics.OverlapSphere(grabAreaCenter.position, grabAreaRadius, layerMask);
         }
 
-        public List<Grabable> GetGrabables(Collider[] colliders)
+        public List<IGrabable> GetGrabables(Collider[] colliders)
         {
-            List<Grabable> grabables = new();
+            List<IGrabable> grabables = new();
             foreach (Collider collider in colliders)
             {
                 Log($"{collider.name}");
@@ -42,9 +43,9 @@ namespace Grab.Runtime
             return grabables;
         }
 
-        public bool TryGrabClosestAvailable(List<Grabable> grabables)
+        public bool TryGrabClosestAvailable(List<IGrabable> grabables)
         {
-            Grabable closestAvailableGrabable = null;
+            IGrabable closestAvailableGrabable = null;
             float closestGrabableDistance = 0;
             int i = 0;
             bool success = false;
@@ -96,7 +97,7 @@ namespace Grab.Runtime
             Log("Grab");
             Collider[] colliders = GetCollidersInArea();
             Log($"Found {colliders.Length} colliders", this);
-            List<Grabable> grabables = GetGrabables(colliders);
+            List<IGrabable> grabables = GetGrabables(colliders);
             Log($"Found {grabables.Count} grabables", this);
             if (TryGrabClosestAvailable(grabables))
             {

@@ -1,3 +1,4 @@
+using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
 {
@@ -12,10 +13,6 @@ namespace Grab.Runtime
 
         [SerializeField] protected float pickupForce = 1f;
         [SerializeField] protected float heldLinearDamping = 10f;
-
-        [Header("Area constraints settings")]
-        public RigidbodyConstraints holdAreaConstraints;
-        public RigidbodyConstraints releaseAreaConstraints;
         protected void Update()
         {
             if (heldRigidbody != null)
@@ -23,25 +20,25 @@ namespace Grab.Runtime
                 MoveObject();
             }
         }
-        private void PickupRb(Rigidbody rb)
+        private void PickupRb(Rigidbody rb, RigidbodyConstraints constraints)
         {
             if (rb != null)
             {
-                heldRigidbody = rb;
+
                 rb.useGravity = false;
-                tempDamping = heldRigidbody.linearDamping;
-                heldRigidbody.linearDamping = heldLinearDamping;
-                heldRigidbody.constraints = holdAreaConstraints;
+                tempDamping = rb.linearDamping;
+                rb.linearDamping = heldLinearDamping;
+                rb.constraints = constraints;
+                heldRigidbody = rb;
             }
         }
 
-        protected void DropObject()
+        protected void DropObject(Rigidbody rb, RigidbodyConstraints constraints)
         {
-            heldRigidbody.useGravity = true;
-            heldRigidbody.linearDamping = tempDamping;
-            heldRigidbody.constraints = releaseAreaConstraints;
-
-            heldRigidbody.transform.parent = null;
+            rb.useGravity = true;
+            rb.linearDamping = tempDamping;
+            rb.constraints = constraints;
+            heldRigidbody = null;
         }
 
         protected void MoveObject()
@@ -61,21 +58,21 @@ namespace Grab.Runtime
                 Debug.Log("Grabable Rigidbody found", this);
                 if (TryGrab(grabable))
                 {
-                    PickupRb(rb);
+                    PickupRb(rb, grabable.holdAreaConstraints);
                     successfulGrab = true;
                 }
             }
             return successfulGrab;
         }
 
-        private new bool TryGrab(Grabable newGrabable)
+        private new bool TryGrab(IGrabable newGrabable)
         {
             return base.TryGrab(newGrabable);
         }
 
         public new void Release()
         {
-            DropObject();
+            DropObject(heldRigidbody, grabable.releaseAreaConstraints);
             base.Release();
         }
 

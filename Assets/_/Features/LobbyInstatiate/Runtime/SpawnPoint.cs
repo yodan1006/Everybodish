@@ -14,7 +14,7 @@ namespace LobbyInstantiate.Runtime
 
             playerInput.transform.position = spawn.transform.position;
             playerInput.transform.rotation = spawn.transform.rotation;
-            
+
             _playerCount++;
         }
     }

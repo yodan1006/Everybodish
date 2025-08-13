@@ -1,22 +1,23 @@
 using DebugBehaviour.Runtime;
+using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
 {
     public class Grabber : VerboseMonoBehaviour, IGrabber
     {
-        private Grabable grabable;
+        protected IGrabable grabable;
         [SerializeField] protected float maxGrabRange = 5.0f;
-        public Grabable GetGrabable()
+        public IGrabable GetGrabable()
         {
             return grabable;
         }
 
-        protected void SetGrabable(Grabable grabable)
+        protected void SetGrabable(IGrabable grabable)
         {
             this.grabable = grabable;
         }
 
-        public bool TryGrab(Grabable newGrabable)
+        public bool TryGrab(IGrabable newGrabable)
         {
             bool result = false;
             if (newGrabable.gameObject != transform.gameObject)

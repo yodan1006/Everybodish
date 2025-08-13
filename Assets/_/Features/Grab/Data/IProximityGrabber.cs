@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Grab.Runtime;
 using UnityEngine;
-namespace Grab.Runtime
+namespace Grab.Data
 {
     public interface IProximityGrabber : IRigidbodyGrabber
     {
         Collider[] GetCollidersInArea();
-        bool TryGrabClosestAvailable(List<Grabable> grabables);
+        bool TryGrabClosestAvailable(List<IGrabable> grabables);
     }
 }
