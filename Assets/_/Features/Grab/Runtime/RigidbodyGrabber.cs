@@ -38,8 +38,7 @@ namespace Grab.Runtime
             rb.useGravity = true;
             rb.linearDamping = tempDamping;
             rb.constraints = constraints;
-
-            rb.transform.parent = null;
+            heldRigidbody = null;
         }
 
         protected void MoveObject()
