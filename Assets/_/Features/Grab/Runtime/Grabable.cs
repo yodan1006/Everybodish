@@ -1,10 +1,16 @@
+using Grab.Data;
 using UnityEngine;
 
 namespace Grab.Runtime
 {
     public class Grabable : MonoBehaviour, IGrabable
     {
-        private Grabber grabber = null;
+        private IGrabber grabber = null;
+        public RigidbodyConstraints holdAreaConstraints;
+        public RigidbodyConstraints releaseAreaConstraints;
+        public GrabableBehaviourEnum grabbedBehaviour;
+
+        RigidbodyConstraints IGrabable.releaseAreaConstraints => releaseAreaConstraints;
 
         public bool IsGrabbed()
         {
@@ -16,7 +22,7 @@ namespace Grab.Runtime
             grabber = null;
         }
 
-        public bool TryGrab(Grabber newGrabber)
+        public bool TryGrab(IGrabber newGrabber)
         {
             bool success = false;
             if (grabber == null)

@@ -35,7 +35,9 @@ namespace Grab.Runtime
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 GameObject go = hit.collider.gameObject;
-                SetOutLine(go);
+                //TODO: Replace this system by a OnMouseOver/OnMouseExit system
+                //Currently only sets the outline and never disables it
+                SetOutLine(go, true);
 
                 if (go.TryGetComponent<Grabable>(out Grabable grab))
                 {
@@ -52,11 +54,11 @@ namespace Grab.Runtime
             }
         }
 
-        private void SetOutLine(GameObject go)
+        private void SetOutLine(GameObject go, bool enable)
         {
             if (go.TryGetComponent<OutlineContainer>(out OutlineContainer OLcontainer))
             {
-                OLcontainer.EnableOutlineWithTimer();
+               OLcontainer.EnableOutline(enable);
             }
         }
 
@@ -123,11 +125,6 @@ namespace Grab.Runtime
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             targetPosition.position = ray.GetPoint(holdRange);
-        }
-        public new void Release()
-        {
-            base.Release();
-            DropObject();
         }
         #endregion
 
