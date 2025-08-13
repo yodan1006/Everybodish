@@ -9,7 +9,8 @@ namespace Grab.Runtime
         public RigidbodyConstraints holdAreaConstraints;
         public RigidbodyConstraints releaseAreaConstraints;
         public GrabableBehaviourEnum grabbedBehaviour;
-
+        public MovementStrategyEnum movementStrategy;
+        MovementStrategyEnum IGrabable.movementStrategy => movementStrategy;
         RigidbodyConstraints IGrabable.releaseAreaConstraints => releaseAreaConstraints;
 
         public bool IsGrabbed()

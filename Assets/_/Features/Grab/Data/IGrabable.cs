@@ -8,7 +8,7 @@ namespace Grab.Data
         Transform transform { get; }
         GameObject gameObject { get; }
         RigidbodyConstraints releaseAreaConstraints { get; }
-
+        MovementStrategyEnum movementStrategy { get; }
         protected IGrabber Grabber();
         void Release();
         bool TryGrab(IGrabber newGrabber);

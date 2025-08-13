@@ -3,7 +3,7 @@ using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
 {
-    public class AreaGrabber : RigidbodyGrabber, IProximityGrabber
+    public class ProximityGrabber : RigidbodyGrabber, IProximityGrabber
     {
         [SerializeField] protected Transform grabAreaCenter;
         public float grabAreaRadius;

@@ -1,3 +1,4 @@
+using System;
 using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
@@ -15,11 +16,44 @@ namespace Grab.Runtime
         [SerializeField] protected float heldLinearDamping = 10f;
         protected void Update()
         {
-            if (heldRigidbody != null)
+            if (heldRigidbody != null && grabable != null)
             {
-                MoveObject();
+                ApplyMovementStrategy();
             }
         }
+
+        private void ApplyMovementStrategy()
+        {
+            switch (grabable.movementStrategy)
+            {
+                case MovementStrategyEnum.Hold:
+                    //hold item in front of player and adjust rotation to face the player
+                    MoveObject();
+                    AdjustObjectRotation();
+                    break;
+                case MovementStrategyEnum.Drag:
+                    //Player rotates around item, item must be dragged behind the player
+                    AdjustPlayerRotation();
+                    break;
+                default:
+                    //do nothing
+                    break;
+            }
+        }
+
+        private void AdjustObjectRotation()
+        {
+           Quaternion targetRotation = Quaternion.Inverse(transform.rotation);
+            grabable.transform.rotation = targetRotation;
+           
+        }
+
+        private void AdjustPlayerRotation()
+        {
+            Quaternion targetRotation = Quaternion.Inverse(grabable.transform.rotation);
+            transform.rotation = targetRotation;
+        }
+
         private void PickupRb(Rigidbody rb, RigidbodyConstraints constraints)
         {
             if (rb != null)
@@ -72,8 +106,11 @@ namespace Grab.Runtime
 
         public new void Release()
         {
+            if (IsGrabbing())
+            {
             DropObject(heldRigidbody, grabable.releaseAreaConstraints);
             base.Release();
+            }
         }
 
         protected void OnDrawGizmos()

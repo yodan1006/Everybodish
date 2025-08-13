@@ -1,4 +1,3 @@
-using System;
 using ActionMapManager.Data;
 using UnityEngine.InputSystem;
 
@@ -8,7 +7,7 @@ namespace ActionMapManager.Runtime
     {
         public static void SetActionMap(PlayerInput playerInput, ActionMapTypeEnum actionMapType)
         {
-          switch (actionMapType)
+            switch (actionMapType)
             {
                 case ActionMapTypeEnum.Lobby:
                     SetLobbyActionMap(playerInput);
