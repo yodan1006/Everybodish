@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace Interactions.Runtime
 {
-    public class ProximityInteractor : Interactor, IProximityInteractor
+    public class ProximityInteractor : TimedInteractor, IProximityInteractor
     {
-        [SerializeField] protected Transform InteractAreaCenter;
+        [SerializeField]
+        protected Transform InteractAreaCenter;
         public float InteractAreaRadius;
         public LayerMask layerMask;
 
@@ -22,16 +23,16 @@ namespace Interactions.Runtime
             return Physics.OverlapSphere(InteractAreaCenter.position, InteractAreaRadius, layerMask);
         }
 
-        public List<IInteractible> GetInteractibles(Collider[] colliders)
+        public List<IInteractable> GetInteractibles(Collider[] colliders)
         {
-            List<IInteractible> Interactibles = new();
+            List<IInteractable> Interactibles = new();
             foreach (Collider collider in colliders)
             {
                 Log($"{collider.name}");
                 //self check
                 if (collider.gameObject != transform.gameObject)
                 {
-                    Interactible Interactible = collider.gameObject.GetComponentInChildren<Interactible>();
+                    Interactable Interactible = collider.gameObject.GetComponentInChildren<Interactable>();
                     if (Interactible != null)
                     {
                         Interactibles.Add(Interactible);
@@ -45,9 +46,9 @@ namespace Interactions.Runtime
             return Interactibles;
         }
 
-        public bool TryInteractClosestAvailable(List<IInteractible> Interactibles)
+        public bool TryInteractClosestAvailable(List<IInteractable> Interactibles)
         {
-            IInteractible closestAvailableInteractible = null;
+            IInteractable closestAvailableInteractible = null;
             float closestInteractibleDistance = 0;
             int i = 0;
             bool success = false;
@@ -104,7 +105,7 @@ namespace Interactions.Runtime
             Log("Interact");
             Collider[] colliders = GetCollidersInArea();
             Log($"Found {colliders.Length} colliders", this);
-            List<IInteractible> Interactibles = GetInteractibles(colliders);
+            List<IInteractable> Interactibles = GetInteractibles(colliders);
             Log($"Found {Interactibles.Count} Interactibles", this);
             if (TryInteractClosestAvailable(Interactibles))
             {

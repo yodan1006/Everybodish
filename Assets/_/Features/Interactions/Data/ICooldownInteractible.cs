@@ -1,8 +1,12 @@
+using UnityEngine.Events;
+
 namespace Interactions.Data
 {
-    public interface ICooldownInteractible : IInteractible
+    public interface ICooldownInteractible : IInteractable
     {
-        void OnCooldownStart();
-        void OnCooldownEnd();
+        UnityEvent onCooldownStart { get; }
+        UnityEvent onCooldownEnd { get; }
+        new void Release();
+        new bool TryInteract(IInteractor newGrabber);
     }
 }

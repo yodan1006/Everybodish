@@ -5,8 +5,9 @@ namespace Grab.Runtime
 {
     public class DragAndDrop : RigidbodyGrabber
     {
-        #region Publics
-        [SerializeField] protected float holdRange = 2.0f;
+        [SerializeField] protected LayerMask dragToAreaLayers;
+        [SerializeField] protected float maxDragDistance = 10f;
+        [SerializeField] protected float targetDistanceFromFloor = 1.0f;
         [SerializeField] protected Texture2D cursorTextureDefault;
         [SerializeField] protected Vector2 hotSpotDefault = Vector2.zero;
         [SerializeField] protected Texture2D cursorTextureEnabled;
@@ -19,10 +20,10 @@ namespace Grab.Runtime
         }
 
         public CursorMode cursorMode = CursorMode.Auto;
-        #endregion
+
+        private OutlineContainer lastHoveredContainer = null;
 
 
-        #region Unity Api
         private void OnEnable()
         {
             Cursor.SetCursor(cursorTextureDefault, hotSpotDefault, cursorMode);
@@ -31,12 +32,14 @@ namespace Grab.Runtime
         private new void Update()
         {
             base.Update();
+        }
+
+        private void OnMouseOver()
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 GameObject go = hit.collider.gameObject;
-                //TODO: Replace this system by a OnMouseOver/OnMouseExit system
-                //Currently only sets the outline and never disables it
                 SetOutLine(go, true);
 
                 if (go.TryGetComponent<Grabable>(out Grabable grab))
@@ -54,11 +57,18 @@ namespace Grab.Runtime
             }
         }
 
+        private void OnMouseExit()
+        {
+            lastHoveredContainer.EnableOutline(false);
+            lastHoveredContainer = null;
+        }
+
         private void SetOutLine(GameObject go, bool enable)
         {
             if (go.TryGetComponent<OutlineContainer>(out OutlineContainer OLcontainer))
             {
                 OLcontainer.EnableOutline(enable);
+                lastHoveredContainer = OLcontainer;
             }
         }
 
@@ -89,17 +99,13 @@ namespace Grab.Runtime
             }
         }
 
-        #endregion
-
-
-        #region Main Methods
         public void OnGrab(CallbackContext context)
         {
 
             if (context.performed == true)
             {
-                Debug.Log("Grabbed object");
-                StartGrab();
+                Log("Starting Drag & Drop", this);
+                StartDrag();
             }
             else if (context.canceled == true)
             {
@@ -107,27 +113,76 @@ namespace Grab.Runtime
             }
         }
 
-        public void StartGrab()
+        public void StartDrag()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
-                if (hit.rigidbody.gameObject.TryGetComponent<Grabable>(out Grabable grab))
+                Rigidbody rb = hit.rigidbody;
+                if (hit.rigidbody != null)
                 {
-                    if (base.TryGrab(grab))
+                    if (rb.gameObject.TryGetComponent<Grabable>(out Grabable grab))
                     {
-                        Debug.Log("Cursor Drag failure");
+                        if (TryGrab(grab))
+                        {
+                            Log("Cursor Drag success", this);
+                            UpdateTargetPosition();
+                        }
+                        else
+                        {
+                            Log("Cursor Drag failure", this);
+                        }
                     }
+                    else
+                    {
+                        Log("Grabable not found", this);
+                    }
+                }
+                else
+                {
+                    Log("Hit on non grabbable object detected", this);
                 }
             }
         }
         protected void UpdateTargetPosition()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            targetPosition.position = ray.GetPoint(holdRange);
-        }
-        #endregion
+            RaycastHit[] hits = Physics.RaycastAll(ray, maxDragDistance, dragToAreaLayers);
 
+            if (Physics.Raycast(ray, out RaycastHit hit, maxDragDistance, dragToAreaLayers))
+            {
+                Debug.Log("Hit: " + hit.collider.name);
+            }
+            else
+            {
+                Debug.Log("No hit.");
+            }
+
+
+            if (hits.Length > 0)
+            {
+                float closestHitDistance = Vector3.Distance(hits[0].point, transform.position);
+                RaycastHit closestHit = hits[0];
+                foreach (RaycastHit hit2 in hits)
+                {
+                    if (Grabable.gameObject != hit.rigidbody.gameObject)
+                    {
+                        float hitDistance = Vector3.Distance(hit.point, transform.position);
+                        if (hitDistance < closestHitDistance)
+                        {
+                            closestHitDistance = hitDistance;
+                            closestHit = hit;
+                        }
+                    }
+                }
+                Vector3 targetPosition = closestHit.point;
+                targetPosition.y += targetDistanceFromFloor;
+                target.transform.position = targetPosition;
+            } else
+            {
+                Log("No hit found for drag to target", this);
+            }
+        }
     }
 
 }

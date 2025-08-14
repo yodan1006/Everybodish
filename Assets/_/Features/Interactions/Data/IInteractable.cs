@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Interactions.Data
 {
-    public interface IInteractible
+    public interface IInteractable
     {
         string name { get; }
         Transform transform { get; }

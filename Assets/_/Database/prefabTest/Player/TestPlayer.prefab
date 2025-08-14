@@ -496,8 +496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdAreaConstraints: 0
-  releaseAreaConstraints: 0
+  releaseAreaConstraints: 112
   grabbedBehaviour: 0
+  movementStrategy: 1
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 0}
 --- !u!4 &3903569351158031135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4533576156556037111, guid: cc873c6fdceffd24991be68a224222a8, type: 3}

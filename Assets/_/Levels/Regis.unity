@@ -152,10 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVerbose: 1
   holdAreaConstraints: 0
-  releaseAreaConstraints: 0
+  releaseAreaConstraints: 112
   grabbedBehaviour: 0
-  movementStrategy: 0
+  movementStrategy: 1
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 0}
 --- !u!54 &45825321
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -510,9 +512,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 696590407625763976, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 696590407625763976, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 997536623898003668, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
       propertyPath: m_Name
       value: TestPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 997536623898003668, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 22a92548-fa2d-414d-8ace-e19dae02b17b
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: 'Player/Click[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1439212242}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Grab.Runtime.DragAndDrop, Grab.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643551992216079643, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3903569351158031135, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
       propertyPath: m_LocalPosition.x
@@ -520,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3903569351158031135, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3903569351158031135, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
       propertyPath: m_LocalPosition.z
@@ -679,6 +733,7 @@ GameObject:
   - component: {fileID: 1439212239}
   - component: {fileID: 1439212238}
   - component: {fileID: 1439212241}
+  - component: {fileID: 1439212242}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -804,6 +859,33 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1439212242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439212237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2df461366ac7645aa173e6da7e061c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  maxGrabRange: 10
+  pickupForce: 10
+  heldLinearDamping: 10
+  dragToAreaLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxDragDistance: 10
+  targetDistanceFromFloor: 2
+  cursorTextureDefault: {fileID: 0}
+  hotSpotDefault: {x: 0, y: 0}
+  cursorTextureEnabled: {fileID: 0}
+  hotSpotEnabled: {x: 0, y: 0}
+  currentState: 0
+  cursorMode: 0
 --- !u!1 &1619411509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 997536623898003668, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
@@ -831,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4126788833456346761, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.594
+      value: 2.036
       objectReference: {fileID: 0}
     - target: {fileID: 4126788833456346761, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
       propertyPath: m_LocalPosition.z

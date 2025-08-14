@@ -1,4 +1,3 @@
-using System;
 using DebugBehaviour.Runtime;
 using Interactions.Data;
 
@@ -6,29 +5,30 @@ namespace Interactions.Runtime
 {
     public class Interactor : VerboseMonoBehaviour, IInteractor
     {
+        private IInteractable interactible;
         public bool IsInteracting()
         {
-            throw new System.NotImplementedException();
+            return interactible != null;
         }
 
         public void StopInteraction()
         {
-            throw new System.NotImplementedException();
+            interactible.Release();
+            interactible = null;
         }
 
-        public bool TryGrab(IInteractible newInteractible)
+        public bool TryGrab(IInteractable newInteractible)
         {
-            throw new System.NotImplementedException();
-        }
-
-        internal void OnDrawGizmos()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Update()
-        {
-            throw new NotImplementedException();
+            bool success = false;
+            if (!IsInteracting() && !newInteractible.IsInteracted())
+            {
+                if (interactible.TryInteract(this))
+                {
+                    interactible = newInteractible;
+                    success = true;
+                }
+            }
+            return success;
         }
     }
 }

@@ -7,8 +7,11 @@ namespace Grab.Data
         string name { get; }
         Transform transform { get; }
         GameObject gameObject { get; }
-        RigidbodyConstraints releaseAreaConstraints { get; }
-        MovementStrategyEnum movementStrategy { get; }
+        RigidbodyConstraints HoldAreaConstraints { get; }
+        RigidbodyConstraints ReleaseAreaConstraints { get; }
+        MovementStrategyEnum MovementStrategy { get; }
+        GrabableBehaviourEnum GrabbedBehaviour { get; }
+        Vector3 HoldDistanceFromPlayerCenter { get; }
         protected IGrabber Grabber();
         void Release();
         bool TryGrab(IGrabber newGrabber);

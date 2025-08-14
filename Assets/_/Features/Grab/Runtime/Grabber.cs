@@ -5,48 +5,49 @@ namespace Grab.Runtime
 {
     public class Grabber : VerboseMonoBehaviour, IGrabber
     {
-        protected IGrabable grabable;
+        private IGrabable grabable;
         [SerializeField] protected float maxGrabRange = 5.0f;
-        public IGrabable GetGrabable()
-        {
-            return grabable;
-        }
 
-        protected void SetGrabable(IGrabable grabable)
-        {
-            this.grabable = grabable;
-        }
+        protected IGrabable Grabable { get => grabable; }
 
         public bool TryGrab(IGrabable newGrabable)
         {
-            bool result = false;
+            Debug.Log("Grabber.TryGrab");
+            bool success = false;
             if (newGrabable.gameObject != transform.gameObject)
             {
-                if (Vector3.Distance(transform.position, newGrabable.transform.position) < maxGrabRange)
+                Vector3 grabberPosition = transform.position;
+                Vector3 grabablePosition = newGrabable.transform.position;
+                float distance = Vector3.Distance(grabberPosition, grabablePosition);
+                if (distance < maxGrabRange)
                 {
                     if (newGrabable.TryGrab(this))
                     {
-                        SetGrabable(newGrabable);
-                        result = true;
+                        grabable = newGrabable;
+                        success = true;
+                    }
+                    else
+                    {
+                        Debug.Log("Grab failed. Is something already holding the grabable?");
                     }
                 }
                 else
                 {
-                    Debug.LogError("Grabbed item was over grab range. Is something wrong?", this);
+                    Debug.LogError($"Grabbed item was over grab range. Is something wrong? Distance:{distance} Grab Range:{maxGrabRange}", this);
                 }
             }
             else
             {
                 Debug.LogError("STOP GRABBING YOURSELF.", this);
             }
-            return result;
+            return success;
         }
 
         public void Release()
         {
             if (IsGrabbing())
             {
-                GetGrabable().Release();
+                grabable.Release();
             }
         }
 

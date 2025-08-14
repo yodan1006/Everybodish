@@ -7,7 +7,7 @@ namespace Interactions.Data
         GameObject gameObject { get; }
 
         bool IsInteracting();
-        bool TryGrab(IInteractible newInteractible);
+        bool TryGrab(IInteractable newInteractible);
         void StopInteraction();
     }
 }

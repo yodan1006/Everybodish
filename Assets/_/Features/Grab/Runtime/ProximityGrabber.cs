@@ -74,7 +74,7 @@ namespace Grab.Runtime
                     i++;
                 } while (i < grabables.Count);
                 Log("AreaGrabber grab attempt", this);
-                success = TryGrab(closestAvailableGrabable.gameObject);
+                success = TryGrab(closestAvailableGrabable);
             }
             return success;
         }

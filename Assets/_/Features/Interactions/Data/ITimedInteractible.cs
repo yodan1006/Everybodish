@@ -1,10 +1,15 @@
+using UnityEngine.Events;
+
 namespace Interactions.Data
 {
     public interface ITimedInteractible : ICooldownInteractible
     {
-        void OnInteractStart();
-        void OnInteractEnd();
-        void OnInteractCanceled();
+        UnityEvent onInteractionStart { get; }
+        UnityEvent onInteractionEnd { get; }
+        UnityEvent onInteractionCanceled { get; }
+        new void Release();
+        new bool TryInteract(IInteractor newGrabber);
+        new void Update();
 
     }
 }
