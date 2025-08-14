@@ -90,9 +90,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4838466803030597192}
     m_Modifications:
+    - target: {fileID: 43699213427378201, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 43699213427378201, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1153230909933375608, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.715
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108025553262285543, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4594592617726049340, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
       propertyPath: m_LocalPosition.x

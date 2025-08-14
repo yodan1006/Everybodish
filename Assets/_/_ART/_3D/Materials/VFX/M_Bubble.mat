@@ -48,11 +48,13 @@ Material:
     m_Floats:
     - _Distortion: 0.62
     - _DistortionSpeed: 0.02
+    - _Fresnel_Intensity: 1
     - _NoiseScale: 50
     - _NoiseSubtract: 0.25
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _Color: {r: 0.6415094, g: 0.4740895, b: 0.26931292, a: 0}
     - _DistortionTilling: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
