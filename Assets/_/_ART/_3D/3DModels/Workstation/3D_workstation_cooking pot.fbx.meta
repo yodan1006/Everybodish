@@ -63,7 +63,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MAT_Workstation_vert.F
-    second: {fileID: 2100000, guid: 7751163fe1071c84d87ffc83eb74b2bd, type: 2}
+    second: {fileID: 2100000, guid: 0744a1512f2375644ab81f876d76a056, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
