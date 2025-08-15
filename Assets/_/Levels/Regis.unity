@@ -1199,33 +1199,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1
---- !u!54 &1216915364
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216915359}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1678366295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5195870107145905566, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
@@ -1681,6 +1654,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195346875070786361, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195346875070786361, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403421674895415269, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3854d083288af584a96ced87bf78d1be, type: 2}
+    - target: {fileID: 403421674895415269, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1136902260747182108, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Constraints
       value: 14
@@ -1745,12 +1734,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegisTestScene
       objectReference: {fileID: 0}
+    - target: {fileID: 2174575688565286190, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174575688565286190, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174575688565286190, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2390823513115302188, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2538466466752528743, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579136063489753660, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579136063489753660, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596592297269830622, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596592297269830622, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596592297269830622, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640249689929718581, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640249689929718581, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2785765289243785539, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
@@ -1763,6 +1792,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4870498641157359919, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900056887098189927, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900056887098189927, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900056887098189927, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4973924334879866244, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
@@ -1791,7 +1832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6852121643316998347, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7411462660133081578, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Height
@@ -1805,13 +1846,33 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.09
       objectReference: {fileID: 0}
+    - target: {fileID: 7640605411126612303, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_Radius
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672788469969001095, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672788469969001095, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7799636198445512212, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7799636198445512212, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970363617259431884, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970363617259431884, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SwingAxis.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8232963892331702170, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Enabled
@@ -1831,9 +1892,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5221531694832024875, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1216915362}
-    - targetCorrespondingSourceObject: {fileID: 5221531694832024875, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1216915364}
     - targetCorrespondingSourceObject: {fileID: 5028765874465463385, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 470336897}
