@@ -12,8 +12,8 @@ namespace Interactions.Runtime
         private float cooldownTime = 0.1f;
         private float cooldownDeltaTime = 0;
         private bool isOnCooldown = false;
-        private UnityEvent cooldownStartEvent = new();
-        private UnityEvent cooldownEndEvent = new();
+        private readonly UnityEvent cooldownStartEvent = new();
+        private readonly UnityEvent cooldownEndEvent = new();
 
         public UnityEvent onCooldownStart => cooldownStartEvent;
 

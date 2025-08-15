@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,19 +17,19 @@ namespace MovePlayer.Runtime
         private Quaternion _endRot;
 
         #endregion
-        
-        
+
+
         [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private Collider zoneAttack;
 
-        [SerializeField]private float _timeResetAttack;
+        [SerializeField] private float _timeResetAttack;
         private bool _onFrameAttack;
         private float _timeToAttackFrame;
 
-        [SerializeField]private Animator animator;
-        
-        
+        [SerializeField] private Animator animator;
+
+
         private void Awake()
         {
             zoneAttack.enabled = false;
@@ -47,17 +46,17 @@ namespace MovePlayer.Runtime
         private void Start()
         {
             //proto
-            
+
             _startRot = transform.rotation;
             _endRot = _startRot * Quaternion.Euler(angleHeadButt, 0f, 0f);
-            
+
             //proto
         }
 
         private void Update()
         {
             Vector3 move = new(_move.x, 0f, _move.y);
-            Vector3 input = new Vector3(_move.x, 0f, _move.y);
+            Vector3 input = new(_move.x, 0f, _move.y);
 
             if (input.sqrMagnitude > 0.0001f)
             {
@@ -67,7 +66,7 @@ namespace MovePlayer.Runtime
                 _rb.MoveRotation(newRot);
             }
 
-            
+
             _rb.MovePosition(transform.position + speed * Time.deltaTime * move);
 
             if (_onFrameAttack)
@@ -98,8 +97,8 @@ namespace MovePlayer.Runtime
                     AttackDisable();
                 }
             }
-            
-            if(_timeToAttackFrame >= _timeResetAttack) AttackDisable();
+
+            if (_timeToAttackFrame >= _timeResetAttack) AttackDisable();
         }
 
         public void MovePlayer(InputAction.CallbackContext context)
@@ -107,7 +106,7 @@ namespace MovePlayer.Runtime
             _move = context.ReadValue<Vector2>();
             animator.SetFloat("speedMove", _move.magnitude);
         }
-        
+
         public void Attack(InputAction.CallbackContext context)
         {
             //animation coup de tete
@@ -120,8 +119,9 @@ namespace MovePlayer.Runtime
 
                 // Ajoute une inclinaison vers l'avant selon l'orientation actuelle
                 _endRot = _startRot * Quaternion.Euler(angleHeadButt, 0f, 0f);
-            };
-            
+            }
+            ;
+
         }
 
         public void AttackEnable()

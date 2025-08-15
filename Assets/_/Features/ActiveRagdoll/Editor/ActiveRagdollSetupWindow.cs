@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using ActiveRagdoll.Runtime;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -70,7 +70,7 @@ namespace ActiveRagdoll.Editor
         private bool ValidateInput()
         {
             bool isValid = false;
-            if (animatedRig == null && physicsRig == null && playerRootRb)
+            if (animatedRig != null && physicsRig != null && playerRootRb != null)
             {
                 isValid = true;
             }

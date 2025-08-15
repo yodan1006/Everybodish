@@ -6,14 +6,14 @@ namespace MovePlayer.Runtime
     public class SelectSkin : MonoBehaviour
     {
         public ApparenceSet[] appearances;
-        
+
         [SerializeField] private float changeCooldown = 0.2f;
         private float lastModelChangeTime = 0f;
         private float lastColorChangeTime = 0f;
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
-        private bool isInitialized = false;
-        
+        private readonly bool isInitialized = false;
+
         public void OnChangeModel(InputAction.CallbackContext context)
         {
             if (!context.performed) return;

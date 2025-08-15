@@ -168,7 +168,8 @@ namespace Grab.Runtime
                 Vector3 targetPosition = closestHit.point;
                 targetPosition.y += targetDistanceFromFloor;
                 target.transform.position = targetPosition;
-            } else
+            }
+            else
             {
                 Log("No hit found for drag to target", this);
             }

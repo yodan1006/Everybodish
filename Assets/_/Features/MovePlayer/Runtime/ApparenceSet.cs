@@ -5,6 +5,6 @@ namespace MovePlayer.Runtime
     [System.Serializable]
     public class ApparenceSet
     {
-      public GameObject[] colorAppaerences;
+        public GameObject[] colorAppaerences;
     }
 }

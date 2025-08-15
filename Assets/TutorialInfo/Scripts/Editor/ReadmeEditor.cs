@@ -7,9 +7,9 @@ using UnityEngine;
 [InitializeOnLoad]
 public class ReadmeEditor : Editor
 {
-    private static string s_ShowedReadmeSessionStateName = "ReadmeEditor.showedReadme";
+    private static readonly string s_ShowedReadmeSessionStateName = "ReadmeEditor.showedReadme";
 
-    private static string s_ReadmeSourceDirectory = "Assets/TutorialInfo";
+    private static readonly string s_ReadmeSourceDirectory = "Assets/TutorialInfo";
 
     private const float k_Space = 16f;
 
