@@ -154,10 +154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVerbose: 1
   holdAreaConstraints: 0
-  releaseAreaConstraints: 112
+  releaseAreaConstraints: 0
   grabbedBehaviour: 0
   movementStrategy: 1
-  holdDistanceFromPlayer: {x: 0, y: 1, z: 0}
+  holdDistanceFromPlayer: {x: 0, y: 0, z: 2}
 --- !u!54 &45825321
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -608,6 +608,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4516749433706965308, guid: 9882643c43192c847a1f3b96a6657447, type: 3}
+      propertyPath: holdAreaConstraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -985,7 +989,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
