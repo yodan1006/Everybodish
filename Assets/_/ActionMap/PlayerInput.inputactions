@@ -42,9 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Click",
+                    "name": "headButt",
                     "type": "Button",
-                    "id": "22a92548-fa2d-414d-8ace-e19dae02b17b",
+                    "id": "ea5da2ab-e055-4e47-99e4-54c8791296e4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -187,6 +187,17 @@
                 {
                     "name": "",
                     "id": "9a9dec5d-46aa-4bff-89e8-4f2818e735ee",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "headbutt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "933803d6-51cd-466b-8422-c2eb4ad9693c",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -230,23 +241,12 @@
                 },
                 {
                     "name": "",
-                    "id": "fd9d2657-822c-40c4-946d-6579a0c9576a",
-                    "path": "",
+                    "id": "2cf6614d-6c65-48a9-adc2-dec3e9758287",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "06cc1a7e-b07f-4b55-9af7-ad384194d1a7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
+                    "action": "headButt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
