@@ -149,23 +149,13 @@ namespace Grab.Runtime
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray, maxDragDistance, dragToAreaLayers);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, maxDragDistance, dragToAreaLayers))
-            {
-                Debug.Log("Hit: " + hit.collider.name);
-            }
-            else
-            {
-                Debug.Log("No hit.");
-            }
-
-
             if (hits.Length > 0)
             {
                 float closestHitDistance = Vector3.Distance(hits[0].point, transform.position);
                 RaycastHit closestHit = hits[0];
-                foreach (RaycastHit hit2 in hits)
+                foreach (RaycastHit hit in hits)
                 {
-                    if (Grabable.gameObject != hit.rigidbody.gameObject)
+                    if (Grabable.gameObject != hit.collider.gameObject)
                     {
                         float hitDistance = Vector3.Distance(hit.point, transform.position);
                         if (hitDistance < closestHitDistance)

@@ -48,6 +48,7 @@ namespace Grab.Runtime
             if (IsGrabbing())
             {
                 grabable.Release();
+                grabable = null;
             }
         }
 
