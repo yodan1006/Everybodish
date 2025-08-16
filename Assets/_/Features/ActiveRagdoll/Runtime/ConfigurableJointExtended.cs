@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(ConfigurableJoint))]
     public class ConfigurableJointExtended : MonoBehaviour

@@ -153,15 +153,22 @@ namespace ActiveRagdoll.Editor
 
                         if (matchedBones.TryGetValue(child, out Transform animatedBone))
                         {
-                            ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
-
-                            if (lastRb == playerRootRb)
+                            if (child.gameObject.TryGetComponent<ConfigurableJointExtended>(out ConfigurableJointExtended configurableJointExtended))
                             {
-                                rb.constraints = RigidbodyConstraints.FreezeAll;
+                                Debug.Log("Skipping bone as there is already a joint");
                             }
+                            else
+                            {
+                                ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
 
-                            jointExt.Initialize(animatedBone.gameObject, lastRb);
-                            jointsAdded++;
+                                if (lastRb == playerRootRb)
+                                {
+                                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                                }
+
+                                jointExt.Initialize(animatedBone.gameObject, lastRb);
+                                jointsAdded++;
+                            }
                         }
                         RecursiveJointSetup(child.gameObject, rb);
                     }
