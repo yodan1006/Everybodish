@@ -1025,7 +1025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3830174763414992538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4059598969133284799, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SwingAxis.y
@@ -1962,7 +1962,6 @@ MonoBehaviour:
   cameraTransform: {fileID: 7431904316898550393}
   gravity: -9.81
   jumpHeight: 2
-  groundedCheckDistance: 0.1
 --- !u!4 &5517040017103673493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8534571537489776147, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
