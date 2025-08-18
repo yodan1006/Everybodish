@@ -12,8 +12,6 @@ namespace ActiveRagdoll.Runtime
         public GameObject animatedBody;
         public GameObject physicsBody;
         public Rigidbody playerRootRb;
-        public bool autoConfigureJointDriveOnUpdate = false;
-        public bool autoConfigureJointLimitOnUpdate = false;
         private readonly Dictionary<String, Transform> animatedTransformsDictionary = new();
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
@@ -78,12 +76,12 @@ namespace ActiveRagdoll.Runtime
                             joint = child.gameObject.AddComponent<ConfigurableJointExtended>();
                             if (lastRb != null)
                             {
-                                joint.Initialize(animatedTransformsDictionary[child.gameObject.name].gameObject, lastRb, autoConfigureJointDriveOnUpdate, autoConfigureJointLimitOnUpdate);
+                                joint.Initialize(animatedTransformsDictionary[child.gameObject.name].gameObject, lastRb);
                             }
                             else
                             {
                                 rb.constraints = RigidbodyConstraints.FreezeAll;
-                                joint.Initialize(animatedTransformsDictionary[child.gameObject.name].gameObject, playerRootRb, autoConfigureJointDriveOnUpdate, autoConfigureJointLimitOnUpdate);
+                                joint.Initialize(animatedTransformsDictionary[child.gameObject.name].gameObject, playerRootRb);
                             }
                             Debug.Log("Configurable Join Added");
 

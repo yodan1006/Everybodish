@@ -18,9 +18,6 @@ namespace ActiveRagdoll.Editor
         private float maxAngularVelocity = 20f;
         private float defaultMass = 1f;
 
-        private bool autoConfigureJointDriveOnUpdate = false;
-        private bool autoConfigureJointLimitOnUpdate = false;
-
         private Dictionary<Transform, Transform> matchedBones = new();
         private readonly Dictionary<Transform, Rigidbody> parentRbMap = new();
 
@@ -49,8 +46,6 @@ namespace ActiveRagdoll.Editor
             drawJointAxes = EditorGUILayout.Toggle("Draw Joint Axes in Scene View", drawJointAxes);
 
             GUILayout.Space(10);
-            autoConfigureJointDriveOnUpdate = EditorGUILayout.Toggle("Auto Configure Joint Drive On Update", autoConfigureJointDriveOnUpdate);
-            autoConfigureJointLimitOnUpdate = EditorGUILayout.Toggle("Auto Configure Joint Limit On Update", autoConfigureJointLimitOnUpdate);
 
             GUILayout.Space(10);
             if (GUILayout.Button("Run Full Setup"))
@@ -177,7 +172,7 @@ namespace ActiveRagdoll.Editor
                             }
 
 
-                            jointExt.Initialize(animatedBone.gameObject, lastRb, autoConfigureJointDriveOnUpdate, autoConfigureJointLimitOnUpdate);
+                            jointExt.Initialize(animatedBone.gameObject, lastRb);
                             jointsAdded++;
                         }
 
