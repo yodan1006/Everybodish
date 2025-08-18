@@ -408,6 +408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVerbose: 1
   maxGrabRange: 10
+  forceMode: 2
   pickupForce: 10
   heldLinearDamping: 10
   dragToAreaLayers:
@@ -571,9 +572,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVerbose: 1
-  holdAreaConstraints: 0
+  holdAreaConstraints: 112
   releaseAreaConstraints: 0
-  grabbedBehaviour: 0
+  grabbedBehaviour: 1
   movementStrategy: 1
   holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
   isGrabable: 1
@@ -959,6 +960,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2026375608425927734, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.914
+      objectReference: {fileID: 0}
     - target: {fileID: 2038322995458846661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -1113,7 +1118,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5952869944054340689, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlopeLimit
-      value: 10
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952869944054340689, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6088020387736236362, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SwingAxis.y
@@ -1165,7 +1174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778129815649823967, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7851729044819673867, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
@@ -1273,31 +1282,31 @@ PrefabInstance:
       addedObject: {fileID: 8717981919941779139}
     - targetCorrespondingSourceObject: {fileID: 1232784239846313405, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8171851227729645529}
+      addedObject: {fileID: 5647887029878881566}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8992745831876642476}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 712172259992503461}
+      addedObject: {fileID: 2251164137860287337}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2765690378219377272}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2242252895941219741}
+      addedObject: {fileID: 8394082735692106202}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9199397897927440058}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7491460429213608806}
+      addedObject: {fileID: 5623721471360957386}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5344919010576256284}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5473172991269093128}
+      addedObject: {fileID: 8249821558931137395}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8823863157378634549}
@@ -1306,7 +1315,7 @@ PrefabInstance:
       addedObject: {fileID: 5015456599050873559}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4426848535901452441}
+      addedObject: {fileID: 948725617871801384}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3863999861853486747}
@@ -1315,31 +1324,31 @@ PrefabInstance:
       addedObject: {fileID: 7331281471456422293}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1704630571578187515}
+      addedObject: {fileID: 6551899897787113131}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7600198559407862848}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7746953524554649910}
+      addedObject: {fileID: 184776069713368621}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9038494173195507593}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3275996844926171413}
+      addedObject: {fileID: 913169890815298965}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 314561734170717926}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9028063124965683946}
+      addedObject: {fileID: 8077023236107979399}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3798656521111198612}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5575875380143387381}
+      addedObject: {fileID: 3734318761149810858}
   m_SourcePrefab: {fileID: 100100000, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
 --- !u!1 &174869237269433194 stripped
 GameObject:
@@ -1428,22 +1437,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -46.579536
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 46.579536
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 46.579536
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 46.579536
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1483,9 +1492,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1680.5087
-    positionDamper: 16.805086
-    maximumForce: 59.396805
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -1498,7 +1507,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8171851227729645529
+--- !u!114 &5647887029878881566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1513,6 +1522,7 @@ MonoBehaviour:
   joint: {fileID: 8717981919941779139}
   initialLocalRotation: {x: 0.74405926, y: 0.000000050441148, z: 0.000000056174898, w: 0.6681136}
   target: {fileID: 7809152418911718408}
+  boneLength: 0.19605675
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -1566,22 +1576,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -59.835934
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 59.835934
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 59.835934
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 59.835934
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1621,9 +1631,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1521.1641
-    positionDamper: 15.21164
-    maximumForce: 64.08341
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -1636,7 +1646,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2242252895941219741
+--- !u!114 &8394082735692106202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1651,6 +1661,7 @@ MonoBehaviour:
   joint: {fileID: 2765690378219377272}
   initialLocalRotation: {x: 0.038063906, y: -3.618351e-15, z: -0.00000000907515, w: 0.9992753}
   target: {fileID: 7561876345008214913}
+  boneLength: 0.28885153
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -1714,22 +1725,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -61.064777
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 61.064777
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 61.064777
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 61.064777
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -1769,9 +1780,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1506.3931
-    positionDamper: 15.0639305
-    maximumForce: 64.51785
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -1784,7 +1795,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &712172259992503461
+--- !u!114 &2251164137860287337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1799,6 +1810,7 @@ MonoBehaviour:
   joint: {fileID: 8992745831876642476}
   initialLocalRotation: {x: -0.051861834, y: 0.00000011904893, z: 0.0000000061824164, w: 0.9986543}
   target: {fileID: 174869237269433194}
+  boneLength: 0.29745346
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2032,7 +2044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVerbose: 1
   maxGrabRange: 5
-  pickupForce: 1
+  forceMode: 2
+  pickupForce: 25
   heldLinearDamping: 10
   grabAreaCenter: {fileID: 6488757880390036185}
   grabAreaRadius: 0.5
@@ -2103,22 +2116,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -35.802513
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 35.802513
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 35.802513
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 35.802513
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2158,9 +2171,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1810.0507
-    positionDamper: 18.100506
-    maximumForce: 55.58675
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -2275,7 +2288,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1704630571578187515
+--- !u!114 &6551899897787113131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2290,6 +2303,7 @@ MonoBehaviour:
   joint: {fileID: 3863999861853486747}
   initialLocalRotation: {x: -0.015554183, y: 0.013055668, z: 0.07187969, w: 0.99720657}
   target: {fileID: 1660248256590816608}
+  boneLength: 0.12061791
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2338,22 +2352,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -38.588192
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 38.588192
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 38.588192
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 38.588192
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2393,9 +2407,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1776.5662
-    positionDamper: 17.765661
-    maximumForce: 56.571587
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -2408,7 +2422,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5575875380143387381
+--- !u!114 &3734318761149810858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2423,6 +2437,7 @@ MonoBehaviour:
   joint: {fileID: 3798656521111198612}
   initialLocalRotation: {x: -0.010868809, y: 0.01140632, z: 0.0757185, w: 0.99700475}
   target: {fileID: 1675547681426515492}
+  boneLength: 0.14011736
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2471,22 +2486,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -42.579556
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2526,9 +2541,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1728.5892
-    positionDamper: 17.285892
-    maximumForce: 57.98267
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -2541,7 +2556,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7746953524554649910
+--- !u!114 &184776069713368621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2556,6 +2571,7 @@ MonoBehaviour:
   joint: {fileID: 7600198559407862848}
   initialLocalRotation: {x: 0.91472787, y: 0.0027804472, z: -0.3936829, w: 0.09098894}
   target: {fileID: 1360914893665608725}
+  boneLength: 0.1680569
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2609,22 +2625,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -35.802525
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 35.802525
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 35.802525
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 35.802525
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2664,9 +2680,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1810.0505
-    positionDamper: 18.100506
-    maximumForce: 55.58675
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -2679,7 +2695,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5473172991269093128
+--- !u!114 &8249821558931137395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2694,6 +2710,7 @@ MonoBehaviour:
   joint: {fileID: 5344919010576256284}
   initialLocalRotation: {x: -0.015554202, y: -0.013055671, z: -0.07187969, w: 0.99720657}
   target: {fileID: 2121983578140390876}
+  boneLength: 0.120617926
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2773,22 +2790,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -60.277496
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 60.277496
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 60.277496
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 60.277496
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2828,9 +2845,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1515.8564
-    positionDamper: 15.158564
-    maximumForce: 64.23952
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -2945,7 +2962,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4426848535901452441
+--- !u!114 &948725617871801384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2960,6 +2977,7 @@ MonoBehaviour:
   joint: {fileID: 8823863157378634549}
   initialLocalRotation: {x: 0.12062999, y: 0.97000057, z: -0.21066813, w: -0.012893915}
   target: {fileID: 2729296809981684862}
+  boneLength: 0.29194248
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -3013,22 +3031,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -33.31134
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 33.31134
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 33.31134
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 33.31134
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3068,9 +3086,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1839.995
-    positionDamper: 18.39995
-    maximumForce: 54.70603
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -3083,7 +3101,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3275996844926171413
+--- !u!114 &913169890815298965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3098,6 +3116,7 @@ MonoBehaviour:
   joint: {fileID: 9038494173195507593}
   initialLocalRotation: {x: -0.010868876, y: -0.011406364, z: -0.07571748, w: 0.9970048}
   target: {fileID: 3280191356057821215}
+  boneLength: 0.10317937
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -3156,22 +3175,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -60.277527
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 60.277527
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 60.277527
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 60.277527
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3211,9 +3230,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1515.8561
-    positionDamper: 15.15856
-    maximumForce: 64.23953
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -3226,7 +3245,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7491460429213608806
+--- !u!114 &5623721471360957386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3241,6 +3260,7 @@ MonoBehaviour:
   joint: {fileID: 9199397897927440058}
   initialLocalRotation: {x: -0.120629884, y: 0.97000057, z: -0.21066815, w: 0.012894018}
   target: {fileID: 4546414257831534651}
+  boneLength: 0.2919427
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -3289,22 +3309,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -42.579556
+    limit: -90
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 42.579556
+    limit: 90
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3344,9 +3364,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1728.5892
-    positionDamper: 17.285892
-    maximumForce: 57.98267
+    positionSpring: 1158.5859
+    positionDamper: 11.585859
+    maximumForce: 74.747475
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -3359,7 +3379,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &9028063124965683946
+--- !u!114 &8077023236107979399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3374,6 +3394,7 @@ MonoBehaviour:
   joint: {fileID: 314561734170717926}
   initialLocalRotation: {x: 0.9147276, y: -0.002779976, z: 0.39368343, w: 0.090989195}
   target: {fileID: 4428592155327983123}
+  boneLength: 0.1680569
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50

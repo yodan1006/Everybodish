@@ -10,6 +10,7 @@ namespace ActiveRagdoll.Runtime
         public ConfigurableJoint joint;
         public Quaternion initialLocalRotation;
         public GameObject target;
+        public float boneLength = 0.5f;
 
         [Header("Joint Drive Settings")]
         public float positionSpring = 1000f;
@@ -44,7 +45,7 @@ namespace ActiveRagdoll.Runtime
             joint.connectedBody = connectedBody;
             AutoConfigureJointDrive();
             AutoConfigureJointLimits();
-
+            boneLength = GetBoneLength();
         }
 
         private void FixedUpdate()
@@ -63,13 +64,11 @@ namespace ActiveRagdoll.Runtime
 
         private void AutoConfigureJointDrive()
         {
-            float boneLength = GetBoneLength();
             ConfigurableJointUtility.ApplyScaledDrive(joint, boneLength, positionSpring, positionDamper, maximumForce);
         }
 
         private void AutoConfigureJointLimits()
         {
-            float boneLength = GetBoneLength();
             Vector3 angleDiff = ConfigurableJointUtility.GetRotationDifference(joint, joint.connectedBody, transform);
             ConfigurableJointUtility.ApplyAdaptiveLimits(joint, angleDiff, boneLength, jointBounciness, baseLimitRange, maxExtraLimitRange);
         }

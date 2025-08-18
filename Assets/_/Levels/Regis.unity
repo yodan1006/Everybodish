@@ -235,10 +235,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1702313143199582676, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
-      propertyPath: holdDistanceFromPlayer.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1754744783511082064, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.294049
@@ -282,6 +278,26 @@ PrefabInstance:
     - target: {fileID: 2133246377222900652, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Name
       value: RegisTestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810163512655397552, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.914
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841699683030153817, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528965927528680151, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528965927528680151, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528965927528680151, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

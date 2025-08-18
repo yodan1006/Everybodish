@@ -8,6 +8,8 @@ namespace Grab.Runtime
         [SerializeField] protected ForceMode forceMode = ForceMode.VelocityChange;
         [SerializeField] protected float pickupForce = 25f;
         [SerializeField] protected float heldLinearDamping = 10f;
+        //TODO: item rotation over time
+        //[SerializeField] protected float rotationSpeed = 10f;
 
         protected Rigidbody heldRigidbody;
         private float storedDamping;
@@ -24,25 +26,25 @@ namespace Grab.Runtime
         {
             if (IsGrabbing())
             {
-                ApplyMovementStrategy();
-                ApplyHeldBehaviourStrategy();
+                FixedUpdateHeldBehaviourStrategy();
             }
         }
 
-        private void ApplyHeldBehaviourStrategy()
+        private void FixedUpdateHeldBehaviourStrategy()
         {
             switch (Grabable.GrabbedBehaviour)
             {
                 case GrabableBehaviourEnum.FaceGrabber:
-                    AdjustObjectRotation();
+                    FixedUpdateMovementStrategy();
+                    FixedUpdateRotateTowardsPlayer();
                     break;
                 default:
-                    //do nothing
+                    FixedUpdateMovementStrategy();
                     break;
             }
         }
 
-        private void ApplyMovementStrategy()
+        private void FixedUpdateMovementStrategy()
         {
             switch (Grabable.MovementStrategy)
             {
@@ -61,17 +63,15 @@ namespace Grab.Runtime
             }
         }
 
-        private void AdjustObjectRotation()
+        private void FixedUpdateRotateTowardsPlayer()
         {
-            Quaternion targetRotation = Quaternion.Inverse(transform.rotation);
+            Quaternion targetRotation = Quaternion.LookRotation(-transform.forward);
             Grabable.transform.rotation = targetRotation;
-
         }
 
         private void AdjustPlayerRotation()
         {
-            Quaternion targetRotation = Quaternion.Inverse(Grabable.transform.rotation);
-            transform.rotation = targetRotation;
+          //Let higher level components handle that
         }
 
         private void PickupRbAndApplyConstraints(Rigidbody rb, RigidbodyConstraints constraints)
