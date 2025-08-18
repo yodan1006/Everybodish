@@ -10,7 +10,6 @@ namespace ActiveRagdoll.Runtime
         public ConfigurableJoint joint;
         public Quaternion initialLocalRotation;
         public GameObject target;
-        public Transform parentTransform;
 
         [Header("Joint Drive Settings")]
         public float positionSpring = 1000f;
@@ -31,16 +30,21 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
+        public void Awake()
+        {
+
+        }
+
         public void Initialize(GameObject targetObject, Rigidbody connectedBody)
         {
             target = targetObject;
-            parentTransform = transform.parent;
             initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();
             ConfigurableJointUtility.SetupAsCharacterJoint(joint);
             joint.connectedBody = connectedBody;
             AutoConfigureJointDrive();
             AutoConfigureJointLimits();
+
         }
 
         private void FixedUpdate()
@@ -72,23 +76,31 @@ namespace ActiveRagdoll.Runtime
 
         private float GetBoneLength()
         {
-            if (parentTransform == null)
-                parentTransform = transform.parent;
-
-            return parentTransform != null ? Vector3.Distance(transform.position, parentTransform.position) : 0.1f;
+            float lenght = 0.1f;
+            if (joint.connectedBody == null)
+            {
+                Debug.Log("Couldn't determine bone lenght : No connected body.", this);
+            }
+            else
+            {
+                lenght = Vector3.Distance(transform.position, joint.connectedBody.position);
+            }
+            return lenght;
         }
 
         private void OnDrawGizmos()
         {
-            if (!drawDebug) return;
-
-            Gizmos.color = boneColor;
-            if (transform.parent != null)
-                Gizmos.DrawLine(transform.position, transform.parent.position);
-
-            Gizmos.color = jointAxisColor;
-            Vector3 jointAxis = transform.forward * 0.2f;
-            Gizmos.DrawRay(transform.position, jointAxis);
+            if (drawDebug)
+            {
+                Gizmos.color = boneColor;
+                if (joint.connectedBody != null)
+                {
+                    Gizmos.DrawLine(transform.position, joint.connectedBody.position);
+                }
+                Gizmos.color = jointAxisColor;
+                Vector3 jointAxis = transform.forward * 0.2f;
+                Gizmos.DrawRay(transform.position, jointAxis);
+            }
         }
 
         public static class ConfigurableJointUtility

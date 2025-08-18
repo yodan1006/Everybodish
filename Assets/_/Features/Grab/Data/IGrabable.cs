@@ -16,6 +16,6 @@ namespace Grab.Data
         void Release();
         bool TryGrab(IGrabber newGrabber);
         bool IsGrabbed();
-        protected bool IsGrabable { get; set; }
+        bool IsGrabable { get; set; }
     }
 }

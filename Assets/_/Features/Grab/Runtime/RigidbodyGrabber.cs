@@ -5,7 +5,7 @@ namespace Grab.Runtime
     public class RigidbodyGrabber : Grabber, IRigidbodyGrabber
     {
         [Header("Physics Parameters")]
-        [SerializeField] protected float pickupForce = 1f;
+        [SerializeField] protected float pickupForce = 25f;
         [SerializeField] protected float heldLinearDamping = 10f;
 
         protected Rigidbody heldRigidbody;
@@ -14,9 +14,8 @@ namespace Grab.Runtime
 
         private void Awake()
         {
-            target = new();
+            target = new("Grabber target point");
             target.transform.parent = this.transform;
-            target.name = "Grabber target point";
             target.SetActive(false);
         }
 
@@ -118,8 +117,7 @@ namespace Grab.Runtime
                 {
                     PickupRbAndApplyConstraints(rb, newGrabable.HoldAreaConstraints);
                     successfulGrab = true;
-
-                    target.transform.position = newGrabable.HoldDistanceFromPlayerCenter + transform.position;
+                    target.transform.position = transform.rotation * newGrabable.HoldDistanceFromPlayerCenter + transform.position;
                 }
                 else
                 {

@@ -12,7 +12,7 @@ namespace Grab.Runtime
         [SerializeField] private RigidbodyConstraints releaseAreaConstraints = RigidbodyConstraints.FreezeRotation;
         [SerializeField] private GrabableBehaviourEnum grabbedBehaviour = GrabableBehaviourEnum.None;
         [SerializeField] private MovementStrategyEnum movementStrategy = MovementStrategyEnum.Hold;
-        [SerializeField] private Vector3 holdDistanceFromPlayer = new(0, 1, 0);
+        [SerializeField] private Vector3 holdDistanceFromPlayer = new(0, 1, 1);
         [SerializeField] private bool isGrabable = true;
 
         public Vector3 HoldDistanceFromPlayerCenter { get => holdDistanceFromPlayer; }

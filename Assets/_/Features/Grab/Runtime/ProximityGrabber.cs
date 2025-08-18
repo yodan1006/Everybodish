@@ -1,8 +1,9 @@
-using Grab.Data;
 using System.Collections.Generic;
+using Grab.Data;
 using UnityEngine;
 namespace Grab.Runtime
 {
+    [DisallowMultipleComponent]
     public class ProximityGrabber : RigidbodyGrabber, IProximityGrabber
     {
         [SerializeField] protected Transform grabAreaCenter;
@@ -15,8 +16,6 @@ namespace Grab.Runtime
         }
         public Collider[] GetCollidersInArea()
         {
-            // Use the OverlapBox to detect if there are any other colliders within this box area.
-            // Use the GameObject's center, half the size (as a radius), and rotation. This creates an invisible box around your GameObject.
             return Physics.OverlapSphere(grabAreaCenter.position, grabAreaRadius, layerMask);
         }
 
@@ -56,7 +55,7 @@ namespace Grab.Runtime
                     Log($"{grabables[i].name}");
                     if (closestAvailableGrabable != null)
                     {
-                        if (!grabables[i].IsGrabbed())
+                        if (!grabables[i].IsGrabbed() && grabables[i].IsGrabable)
                         {
                             if (Vector3.Distance(grabAreaCenter.position, grabables[i].transform.position) < closestGrabableDistance)
                             {
@@ -79,15 +78,12 @@ namespace Grab.Runtime
             return success;
         }
 
-        // Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this.
         private new void OnDrawGizmos()
         {
             base.OnDrawGizmos();
             Gizmos.color = Color.red;
-            // Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
             if (Application.isPlaying)
             {
-                // Draw a sphere where the OverlapSphere is (positioned where your GameObject is as well as a size)
                 Gizmos.DrawWireSphere(grabAreaCenter.position, grabAreaRadius);
             }
         }
