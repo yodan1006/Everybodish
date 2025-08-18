@@ -28,7 +28,7 @@ namespace Grab.Runtime
                     }
                     else
                     {
-                        Debug.Log("Grab failed. Is something already holding the grabable?");
+                        Debug.Log("Grab failed. Is something already holding the grabable or is is not available?");
                     }
                 }
                 else

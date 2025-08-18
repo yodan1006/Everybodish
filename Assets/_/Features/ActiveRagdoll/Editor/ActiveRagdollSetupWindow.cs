@@ -1,5 +1,6 @@
-using ActiveRagdoll.Runtime;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
+using ActiveRagdoll.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -153,23 +154,21 @@ namespace ActiveRagdoll.Editor
 
                         if (matchedBones.TryGetValue(child, out Transform animatedBone))
                         {
+                            if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
+                            {
+                                Destroy(characterJoint);
+                            }
                             if (child.gameObject.TryGetComponent<ConfigurableJointExtended>(out ConfigurableJointExtended configurableJointExtended))
                             {
-                                Debug.Log("Skipping bone as there is already a joint");
+                                Destroy(characterJoint);
                             }
-                            else
-                            {
-                                ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
 
-                                if (lastRb == playerRootRb)
-                                {
-                                    rb.constraints = RigidbodyConstraints.FreezeAll;
-                                }
+                                ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
 
                                 jointExt.Initialize(animatedBone.gameObject, lastRb);
                                 jointsAdded++;
                             }
-                        }
+                        
                         RecursiveJointSetup(child.gameObject, rb);
                     }
                     else

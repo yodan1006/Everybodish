@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace ActiveRagdoll.Runtime
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(CharacterController))]
     public class CameraRelativeMovement : MonoBehaviour
     {
