@@ -151,11 +151,14 @@ namespace ActiveRagdoll.Editor
                         rb.solverIterations = solverIterations;
                         rb.solverVelocityIterations = solverVelocityIterations;
                         rb.maxAngularVelocity = maxAngularVelocity;
+                        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
                         if (matchedBones.TryGetValue(child, out Transform animatedBone))
                         {
                             if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
                             {
+                                //Todo: migrate joint setup
                                 DestroyImmediate(characterJoint);
                             }
                             if (child.gameObject.TryGetComponent<ConfigurableJointExtended>(out ConfigurableJointExtended configurableJointExtended))

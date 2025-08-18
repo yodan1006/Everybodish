@@ -5,6 +5,7 @@ namespace Grab.Runtime
     public class RigidbodyGrabber : Grabber, IRigidbodyGrabber
     {
         [Header("Physics Parameters")]
+        [SerializeField] protected ForceMode forceMode = ForceMode.VelocityChange;
         [SerializeField] protected float pickupForce = 25f;
         [SerializeField] protected float heldLinearDamping = 10f;
 
@@ -19,7 +20,7 @@ namespace Grab.Runtime
             target.SetActive(false);
         }
 
-        protected void Update()
+        protected void FixedUpdate()
         {
             if (IsGrabbing())
             {
@@ -102,7 +103,7 @@ namespace Grab.Runtime
             if (Vector3.Distance(rBPosition, targetPosition) > 0.1f)
             {
                 Vector3 moveDirection = targetPosition - rBPosition;
-                heldRigidbody.AddForce(moveDirection * pickupForce);
+                heldRigidbody.AddForce(moveDirection * pickupForce, forceMode);
             }
         }
         protected new bool TryGrab(IGrabable newGrabable)

@@ -10,10 +10,7 @@ namespace Grab.Runtime
         public float grabAreaRadius;
         public LayerMask layerMask;
 
-        private new void Update()
-        {
-            base.Update();
-        }
+
         public Collider[] GetCollidersInArea()
         {
             return Physics.OverlapSphere(grabAreaCenter.position, grabAreaRadius, layerMask);

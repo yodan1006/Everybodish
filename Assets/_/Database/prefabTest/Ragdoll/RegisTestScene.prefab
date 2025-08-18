@@ -919,6 +919,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1158986520673348494, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158986520673348494, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1813397761028805818, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SwingAxis.x
       value: 1
@@ -931,12 +939,36 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1863053179809044449, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863053179809044449, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2003394174812622762, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2003394174812622762, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003394174812622762, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2038322995458846661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038322995458846661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038322995458846661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2171762986735822646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
@@ -1019,6 +1051,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 3195288491060456208, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195288491060456208, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3830174763414992538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Constraints
       value: 14
@@ -1045,6 +1085,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4779439272132902417, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779439272132902417, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779439272132902417, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5233684386538647836, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
@@ -1079,6 +1127,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6259241511976165522, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259241511976165522, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6605232613909327425, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Name
       value: EjectableCapsule
@@ -1099,6 +1155,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7347400032611755597, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347400032611755597, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7778129815649823967, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1111,12 +1175,28 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 7851729044819673867, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851729044819673867, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8256802750848789421, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8752721170406416297, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752721170406416297, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752721170406416297, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8945566436196186814, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
@@ -1145,6 +1225,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9216186617722039042, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216186617722039042, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216186617722039042, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1185,31 +1273,31 @@ PrefabInstance:
       addedObject: {fileID: 8717981919941779139}
     - targetCorrespondingSourceObject: {fileID: 1232784239846313405, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5328446964783759098}
+      addedObject: {fileID: 8171851227729645529}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8992745831876642476}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7480852132503937399}
+      addedObject: {fileID: 712172259992503461}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2765690378219377272}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5558763479001944286}
+      addedObject: {fileID: 2242252895941219741}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9199397897927440058}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5869411245647528046}
+      addedObject: {fileID: 7491460429213608806}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5344919010576256284}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6431822452567904807}
+      addedObject: {fileID: 5473172991269093128}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8823863157378634549}
@@ -1218,7 +1306,7 @@ PrefabInstance:
       addedObject: {fileID: 5015456599050873559}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 866376238300532487}
+      addedObject: {fileID: 4426848535901452441}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3863999861853486747}
@@ -1227,31 +1315,31 @@ PrefabInstance:
       addedObject: {fileID: 7331281471456422293}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9211493074423957970}
+      addedObject: {fileID: 1704630571578187515}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7600198559407862848}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3152534580129687863}
+      addedObject: {fileID: 7746953524554649910}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9038494173195507593}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4586551380746221137}
+      addedObject: {fileID: 3275996844926171413}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 314561734170717926}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 753487578909320925}
+      addedObject: {fileID: 9028063124965683946}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3798656521111198612}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8143346258908548105}
+      addedObject: {fileID: 5575875380143387381}
   m_SourcePrefab: {fileID: 100100000, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
 --- !u!1 &174869237269433194 stripped
 GameObject:
@@ -1410,7 +1498,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5328446964783759098
+--- !u!114 &8171851227729645529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1548,7 +1636,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5558763479001944286
+--- !u!114 &2242252895941219741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1696,7 +1784,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7480852132503937399
+--- !u!114 &712172259992503461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2187,7 +2275,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &9211493074423957970
+--- !u!114 &1704630571578187515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2320,7 +2408,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8143346258908548105
+--- !u!114 &5575875380143387381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2453,7 +2541,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3152534580129687863
+--- !u!114 &7746953524554649910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2591,7 +2679,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6431822452567904807
+--- !u!114 &5473172991269093128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2857,7 +2945,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &866376238300532487
+--- !u!114 &4426848535901452441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2995,7 +3083,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4586551380746221137
+--- !u!114 &3275996844926171413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3138,7 +3226,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5869411245647528046
+--- !u!114 &7491460429213608806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3271,7 +3359,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &753487578909320925
+--- !u!114 &9028063124965683946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

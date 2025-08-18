@@ -29,11 +29,6 @@ namespace Grab.Runtime
             Cursor.SetCursor(cursorTextureDefault, hotSpotDefault, cursorMode);
         }
 
-        private new void Update()
-        {
-            base.Update();
-        }
-
         private void OnMouseOver()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -90,7 +85,7 @@ namespace Grab.Runtime
 
         }
 
-        private void FixedUpdate()
+        private new void FixedUpdate()
         {
             if (IsGrabbing())
             {
