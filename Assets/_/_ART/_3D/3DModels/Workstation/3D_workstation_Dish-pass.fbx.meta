@@ -1,9 +1,44 @@
 fileFormatVersion: 2
-guid: bacf6edfab5ceea4fa25abae065b33b0
+guid: 5c3984fbff2849f4b8931a4755f56470
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Bronze
+    second: {fileID: 2100000, guid: 6eed16f66a0721444a423be89994e897, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.2
+    second: {fileID: 2100000, guid: 4b534fbe3073b8940aa71d468a1f696f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Chrome
+    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Gris
+    second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Noir
+    second: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_bleu
+    second: {fileID: 2100000, guid: 75d311c73b8fae449b05ee27ee2fe68e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_rouge
+    second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
