@@ -575,7 +575,7 @@ MonoBehaviour:
   releaseAreaConstraints: 0
   grabbedBehaviour: 0
   movementStrategy: 1
-  holdDistanceFromPlayer: {x: 0, y: 1, z: 0}
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
   isGrabable: 1
 --- !u!1 &5600719860107072376
 GameObject:
@@ -1157,6 +1157,8 @@ PrefabInstance:
     - {fileID: 6088020387736236362, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     - {fileID: 8288117796887992815, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     - {fileID: 2490430499741330265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    - {fileID: 2651828684134740904, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    - {fileID: 5897456722385196430, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2171762986735822646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
@@ -1183,31 +1185,31 @@ PrefabInstance:
       addedObject: {fileID: 8717981919941779139}
     - targetCorrespondingSourceObject: {fileID: 1232784239846313405, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4456551130403252782}
+      addedObject: {fileID: 5328446964783759098}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8992745831876642476}
     - targetCorrespondingSourceObject: {fileID: 9162950407057984223, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7263137967530869803}
+      addedObject: {fileID: 7480852132503937399}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2765690378219377272}
     - targetCorrespondingSourceObject: {fileID: 1564220237539447348, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6636232356852400223}
+      addedObject: {fileID: 5558763479001944286}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9199397897927440058}
     - targetCorrespondingSourceObject: {fileID: 4781714298666819982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7429679780003861537}
+      addedObject: {fileID: 5869411245647528046}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5344919010576256284}
     - targetCorrespondingSourceObject: {fileID: 6932966919442396265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8495888893116059182}
+      addedObject: {fileID: 6431822452567904807}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8823863157378634549}
@@ -1216,7 +1218,7 @@ PrefabInstance:
       addedObject: {fileID: 5015456599050873559}
     - targetCorrespondingSourceObject: {fileID: 6387367064594574795, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7122067533412726565}
+      addedObject: {fileID: 866376238300532487}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3863999861853486747}
@@ -1225,31 +1227,31 @@ PrefabInstance:
       addedObject: {fileID: 7331281471456422293}
     - targetCorrespondingSourceObject: {fileID: 7660190317721576661, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1856715850965707896}
+      addedObject: {fileID: 9211493074423957970}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7600198559407862848}
     - targetCorrespondingSourceObject: {fileID: 8045369154768397728, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2530741663455533397}
+      addedObject: {fileID: 3152534580129687863}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9038494173195507593}
     - targetCorrespondingSourceObject: {fileID: 5819073844371186090, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6231618832658319572}
+      addedObject: {fileID: 4586551380746221137}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 314561734170717926}
     - targetCorrespondingSourceObject: {fileID: 4625638160024940454, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 864371037523307066}
+      addedObject: {fileID: 753487578909320925}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3798656521111198612}
     - targetCorrespondingSourceObject: {fileID: 7639417515277870993, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 720579872496486255}
+      addedObject: {fileID: 8143346258908548105}
   m_SourcePrefab: {fileID: 100100000, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
 --- !u!1 &174869237269433194 stripped
 GameObject:
@@ -1408,7 +1410,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4456551130403252782
+--- !u!114 &5328446964783759098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1546,7 +1548,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6636232356852400223
+--- !u!114 &5558763479001944286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1694,7 +1696,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7263137967530869803
+--- !u!114 &7480852132503937399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2185,7 +2187,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1856715850965707896
+--- !u!114 &9211493074423957970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2248,22 +2250,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -38.588196
+    limit: -38.588192
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 38.588196
+    limit: 38.588192
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 38.588196
+    limit: 38.588192
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 38.588196
+    limit: 38.588192
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2318,7 +2320,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &720579872496486255
+--- !u!114 &8143346258908548105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2381,22 +2383,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -42.57956
+    limit: -42.579556
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2451,7 +2453,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2530741663455533397
+--- !u!114 &3152534580129687863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2589,7 +2591,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8495888893116059182
+--- !u!114 &6431822452567904807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2855,7 +2857,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7122067533412726565
+--- !u!114 &866376238300532487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2993,7 +2995,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6231618832658319572
+--- !u!114 &4586551380746221137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3136,7 +3138,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7429679780003861537
+--- !u!114 &5869411245647528046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3199,22 +3201,22 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
-    limit: -42.57956
+    limit: -42.579556
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
     damper: 0
   m_AngularYLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 42.57956
+    limit: 42.579556
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3269,7 +3271,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &864371037523307066
+--- !u!114 &753487578909320925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
