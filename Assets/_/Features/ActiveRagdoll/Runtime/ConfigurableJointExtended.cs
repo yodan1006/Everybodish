@@ -31,21 +31,23 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
-        public void Awake()
+        public void Start()
         {
 
+            initialLocalRotation = transform.localRotation;
         }
 
-        public void Initialize(GameObject targetObject, Rigidbody connectedBody)
+        public void Initialize(GameObject targetObject, Rigidbody connectedBody, bool autoConfigureJointDriveOnUpdate, bool autoConfigureJointLimitsOnUpdate)
         {
             target = targetObject;
-            initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();
             ConfigurableJointUtility.SetupAsCharacterJoint(joint);
             joint.connectedBody = connectedBody;
             AutoConfigureJointDrive();
             AutoConfigureJointLimits();
             boneLength = GetBoneLength();
+            autoUpdateLimits = autoConfigureJointLimitsOnUpdate;
+            autoUpdateDrive = autoConfigureJointDriveOnUpdate;
         }
 
         private void FixedUpdate()
@@ -55,11 +57,15 @@ namespace ActiveRagdoll.Runtime
                 ConfigurableJointExtensions.SetTargetRotationLocal(joint, target.transform.localRotation, initialLocalRotation);
             }
 
-            if (autoUpdateDrive)
+            if (autoUpdateDrive == true)
+            {
                 AutoConfigureJointDrive();
-
-            if (autoUpdateLimits)
+            }
+            if (autoUpdateLimits == true)
+            {
                 AutoConfigureJointLimits();
+            }
+
         }
 
         private void AutoConfigureJointDrive()
@@ -75,7 +81,7 @@ namespace ActiveRagdoll.Runtime
 
         private float GetBoneLength()
         {
-            float lenght = 0.1f;
+            float lenght = 0.5f;
             if (joint.connectedBody == null)
             {
                 Debug.Log("Couldn't determine bone lenght : No connected body.", this);
@@ -92,10 +98,14 @@ namespace ActiveRagdoll.Runtime
             if (drawDebug)
             {
                 Gizmos.color = boneColor;
+                if(joint != null)
+                {
                 if (joint.connectedBody != null)
                 {
                     Gizmos.DrawLine(transform.position, joint.connectedBody.position);
                 }
+                }
+
                 Gizmos.color = jointAxisColor;
                 Vector3 jointAxis = transform.forward * 0.2f;
                 Gizmos.DrawRay(transform.position, jointAxis);
@@ -106,20 +116,21 @@ namespace ActiveRagdoll.Runtime
         {
             public static void SetupAsCharacterJoint(ConfigurableJoint joint)
             {
-                joint.rotationDriveMode = RotationDriveMode.Slerp;
-                joint.angularXMotion = ConfigurableJointMotion.Limited;
-                joint.angularYMotion = ConfigurableJointMotion.Limited;
-                joint.angularZMotion = ConfigurableJointMotion.Limited;
+                joint.rotationDriveMode = RotationDriveMode.Slerp;  
                 joint.xMotion = ConfigurableJointMotion.Locked;
                 joint.yMotion = ConfigurableJointMotion.Locked;
                 joint.zMotion = ConfigurableJointMotion.Locked;
+                joint.angularXMotion = ConfigurableJointMotion.Limited;
+                joint.angularYMotion = ConfigurableJointMotion.Limited;
+                joint.angularZMotion = ConfigurableJointMotion.Limited;
+
             }
 
             public static void ApplyScaledDrive(ConfigurableJoint joint, float boneLength, float spring, float damper, float force)
             {
                 float normalized = Mathf.InverseLerp(0.01f, 1f, boneLength);
 
-                float springScale = Mathf.Lerp(2f, 0.3f, normalized);
+                float springScale = Mathf.Lerp(0.3f, 2f, normalized);
                 float damperScale = Mathf.Lerp(2f, 0.3f, normalized);
                 float forceScale = Mathf.Lerp(1f, 2f, normalized);
 

@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System.Runtime.Remoting.Contexts;
 using ActiveRagdoll.Runtime;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,6 +17,9 @@ namespace ActiveRagdoll.Editor
         private int solverVelocityIterations = 8;
         private float maxAngularVelocity = 20f;
         private float defaultMass = 1f;
+
+        private bool autoConfigureJointDriveOnUpdate = false;
+        private bool autoConfigureJointLimitOnUpdate = false;
 
         private Dictionary<Transform, Transform> matchedBones = new();
         private readonly Dictionary<Transform, Rigidbody> parentRbMap = new();
@@ -43,9 +45,12 @@ namespace ActiveRagdoll.Editor
             maxAngularVelocity = EditorGUILayout.FloatField("Max Angular Velocity", maxAngularVelocity);
             defaultMass = EditorGUILayout.FloatField("Default Mass", defaultMass);
 
-            GUILayout.Space(10);
             showBonePreview = EditorGUILayout.Toggle("Show Bone Preview", showBonePreview);
             drawJointAxes = EditorGUILayout.Toggle("Draw Joint Axes in Scene View", drawJointAxes);
+
+            GUILayout.Space(10);
+            autoConfigureJointDriveOnUpdate = EditorGUILayout.Toggle("Auto Configure Joint Drive On Update", autoConfigureJointDriveOnUpdate);
+            autoConfigureJointLimitOnUpdate = EditorGUILayout.Toggle("Auto Configure Joint Limit On Update", autoConfigureJointLimitOnUpdate);
 
             GUILayout.Space(10);
             if (GUILayout.Button("Run Full Setup"))
@@ -156,6 +161,7 @@ namespace ActiveRagdoll.Editor
 
                         if (matchedBones.TryGetValue(child, out Transform animatedBone))
                         {
+                            ConfigurableJointExtended jointExt;
                             if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
                             {
                                 //Todo: migrate joint setup
@@ -163,15 +169,18 @@ namespace ActiveRagdoll.Editor
                             }
                             if (child.gameObject.TryGetComponent<ConfigurableJointExtended>(out ConfigurableJointExtended configurableJointExtended))
                             {
-                                DestroyImmediate(configurableJointExtended);
+                                jointExt = configurableJointExtended;
+                            }
+                            else
+                            {
+                                jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
                             }
 
-                                ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
 
-                                jointExt.Initialize(animatedBone.gameObject, lastRb);
-                                jointsAdded++;
-                            }
-                        
+                            jointExt.Initialize(animatedBone.gameObject, lastRb, autoConfigureJointDriveOnUpdate, autoConfigureJointLimitOnUpdate);
+                            jointsAdded++;
+                        }
+
                         RecursiveJointSetup(child.gameObject, rb);
                     }
                     else

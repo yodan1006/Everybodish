@@ -71,7 +71,7 @@ namespace Grab.Runtime
 
         private void AdjustPlayerRotation()
         {
-          //Let higher level components handle that
+            //Let higher level components handle that
         }
 
         private void PickupRbAndApplyConstraints(Rigidbody rb, RigidbodyConstraints constraints)
