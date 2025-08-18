@@ -109,19 +109,12 @@ namespace MovePlayer.Runtime
 
         public void Attack(InputAction.CallbackContext context)
         {
-            //animation coup de tete
             if (context.started)
             {
                 AttackEnable();
                 _onFrameAttack = true;
-                // Sauvegarde la rotation actuelle
-                _startRot = transform.rotation;
-
-                // Ajoute une inclinaison vers l'avant selon l'orientation actuelle
-                _endRot = _startRot * Quaternion.Euler(angleHeadButt, 0f, 0f);
+                animator.SetBool("Attack", true);
             }
-            ;
-
         }
 
         public void AttackEnable()
@@ -132,6 +125,7 @@ namespace MovePlayer.Runtime
         public void AttackDisable()
         {
             zoneAttack.enabled = false;
+            animator.SetBool("Attack", false);
         }
     }
 }
