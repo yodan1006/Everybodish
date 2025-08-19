@@ -9,24 +9,11 @@ namespace MovePlayer.Runtime
         private Vector2 _move;
         private Rigidbody _rb;
 
-        #region proto
-
-        public float angleHeadButt = 20f;   // Inclinaison max vers l'avant
-        public float speedHeatButt = 5f;    // Vitesse du mouvement
-        private Quaternion _startRot;
-        private Quaternion _endRot;
-
-        #endregion
-
-
         [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed;
         [SerializeField] private Collider zoneAttack;
 
         [SerializeField] private float _timeResetAttack;
-        private bool _onFrameAttack;
-        private float _timeToAttackFrame;
-
         [SerializeField] private Animator animator;
 
 
@@ -42,16 +29,7 @@ namespace MovePlayer.Runtime
             }
             playerInput.actions.FindActionMap("Player").Enable();
         }
-
-        private void Start()
-        {
-            //proto
-
-            _startRot = transform.rotation;
-            _endRot = _startRot * Quaternion.Euler(angleHeadButt, 0f, 0f);
-
-            //proto
-        }
+        
 
         private void Update()
         {
@@ -68,38 +46,9 @@ namespace MovePlayer.Runtime
 
 
             _rb.MovePosition(transform.position + speed * Time.deltaTime * move);
-
-            if (_onFrameAttack)
-            {
-                _timeToAttackFrame += Time.deltaTime;
-
-                float halfDuration = _timeResetAttack / 2f;
-                float t;
-
-                if (_timeToAttackFrame <= halfDuration)
-                {
-                    // Aller
-                    t = _timeToAttackFrame / halfDuration;
-                    transform.rotation = Quaternion.Lerp(_startRot, _endRot, t);
-                }
-                else
-                {
-                    // Retour
-                    t = (_timeToAttackFrame - halfDuration) / halfDuration;
-                    transform.rotation = Quaternion.Lerp(_endRot, _startRot, t);
-                }
-
-                if (_timeToAttackFrame >= _timeResetAttack)
-                {
-                    transform.rotation = _startRot;
-                    _onFrameAttack = false;
-                    _timeToAttackFrame = 0f;
-                    AttackDisable();
-                }
+            
             }
-
-            if (_timeToAttackFrame >= _timeResetAttack) AttackDisable();
-        }
+        
 
         public void MovePlayer(InputAction.CallbackContext context)
         {
@@ -112,7 +61,6 @@ namespace MovePlayer.Runtime
             if (context.started)
             {
                 AttackEnable();
-                _onFrameAttack = true;
                 animator.SetBool("Attack", true);
             }
         }
