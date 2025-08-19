@@ -9,17 +9,13 @@ namespace MovePlayer.Runtime
         private Vector2 _move;
         private Rigidbody _rb;
 
-        [SerializeField] private float speed;
+        [SerializeField] private float speedWalked;
         [SerializeField] private float rotationSpeed;
-        [SerializeField] private Collider zoneAttack;
-
-        [SerializeField] private float _timeResetAttack;
         [SerializeField] private Animator animator;
 
 
         private void Awake()
         {
-            zoneAttack.enabled = false;
             _rb = GetComponent<Rigidbody>();
             PlayerInput playerInput = GetComponent<PlayerInput>();
             foreach (var map in playerInput.actions.actionMaps)
@@ -43,9 +39,8 @@ namespace MovePlayer.Runtime
                 Quaternion newRot = Quaternion.Slerp(_rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
                 _rb.MoveRotation(newRot);
             }
-
-
-            _rb.MovePosition(transform.position + speed * Time.deltaTime * move);
+            
+            _rb.MovePosition(transform.position + speedWalked * Time.deltaTime * move);
             
             }
         
@@ -54,26 +49,6 @@ namespace MovePlayer.Runtime
         {
             _move = context.ReadValue<Vector2>();
             animator.SetFloat("speedMove", _move.magnitude);
-        }
-
-        public void Attack(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                AttackEnable();
-                animator.SetBool("Attack", true);
-            }
-        }
-
-        public void AttackEnable()
-        {
-            zoneAttack.enabled = true;
-        }
-
-        public void AttackDisable()
-        {
-            zoneAttack.enabled = false;
-            animator.SetBool("Attack", false);
         }
     }
 }
