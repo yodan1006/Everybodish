@@ -1,34 +1,49 @@
 using DebugBehaviour.Runtime;
 using Interactions.Data;
+using UnityEngine.Events;
 
 namespace Interactions.Runtime
 {
     public class Interactor : VerboseMonoBehaviour, IInteractor
     {
-        private IInteractable interactible;
+        private IInteractable interactable;
+        public UnityEvent onInteractionSuccess = new();
+
+        public UnityEvent onInteractionFail = new();
+
+        public UnityEvent OnInteractionSuccess { get => onInteractionSuccess; }
+
+        public UnityEvent OnInteractionFail { get => OnInteractionFail; }
+
         public bool IsInteracting()
         {
-            return interactible != null;
+            return interactable != null;
         }
+
 
         public void StopInteraction()
         {
-            interactible.Release();
-            interactible = null;
+            interactable.Release();
+            interactable = null;
         }
 
-        public bool TryGrab(IInteractable newInteractible)
+        public bool TryInteract(IInteractable newInteractable)
         {
             bool success = false;
-            if (!IsInteracting() && !newInteractible.IsInteracted())
+            if (!IsInteracting() && !newInteractable.IsInteracted())
             {
-                if (interactible.TryInteract(this))
+                if (interactable.TryInteract(this))
                 {
-                    interactible = newInteractible;
+                    interactable = newInteractable;
                     success = true;
                 }
             }
             return success;
+        }
+
+        public bool CanInteract()
+        {
+            return !IsInteracting();
         }
     }
 }

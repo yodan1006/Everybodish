@@ -7,10 +7,12 @@ namespace Interactions.Data
         string name { get; }
         Transform transform { get; }
         GameObject gameObject { get; }
+        bool CanInteract { get; }
 
         protected IInteractor Interactor();
         void Release();
         bool TryInteract(IInteractor newGrabber);
         bool IsInteracted();
+        void StartInteraction();
     }
 }

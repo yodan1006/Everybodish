@@ -1,5 +1,5 @@
-using ActiveRagdoll.Runtime;
 using System.Collections.Generic;
+using ActiveRagdoll.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -142,7 +142,7 @@ namespace ActiveRagdoll.Editor
                     Undo.RecordObject(rb, "Configure Rigidbody");
 
                     // Mass distribution based on depth
-                    float calculatedMass = rootMass * Mathf.Pow(1-massFalloff, depth);
+                    float calculatedMass = rootMass * Mathf.Pow(1 - massFalloff, depth);
                     rb.mass = calculatedMass;
                     rb.useGravity = true;
                     rb.solverIterations = solverIterations;
