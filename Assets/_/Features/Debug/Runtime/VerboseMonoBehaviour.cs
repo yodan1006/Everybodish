@@ -55,6 +55,22 @@ namespace DebugBehaviour.Runtime
             }
         }
 
+        protected void LogWarning(UnityEngine.Object message)
+        {
+            if (isVerbose)
+            {
+                Debug.LogWarning(message);
+            }
+        }
+
+        protected void LogWarning(UnityEngine.Object message, UnityEngine.Object context)
+        {
+            if (isVerbose)
+            {
+                Debug.LogWarning(message, context);
+            }
+        }
+
         protected void LogError(UnityEngine.Object message)
         {
             if (isVerbose)

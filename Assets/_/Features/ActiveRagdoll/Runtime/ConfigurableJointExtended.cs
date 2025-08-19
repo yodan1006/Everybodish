@@ -1,3 +1,4 @@
+using DebugBehaviour.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -5,7 +6,7 @@ namespace ActiveRagdoll.Runtime
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(ConfigurableJoint))]
-    public class ConfigurableJointExtended : MonoBehaviour
+    public class ConfigurableJointExtended : VerboseMonoBehaviour
     {
         public ConfigurableJoint joint;
         public Quaternion initialLocalRotation;
@@ -88,7 +89,7 @@ namespace ActiveRagdoll.Runtime
 
             if (currentBoneLength > boneLength * 1.5f)
             {
-                Debug.LogWarning($"{name} overextended (distance = {currentBoneLength:F3}), performing hard reset.");
+                LogWarning($"{name} overextended (distance = {currentBoneLength:F3}), performing hard reset.");
 
                 // Snap position to connectedBody plus initial offset along bone axis
                 Vector3 direction = (transform.position - joint.connectedBody.position).normalized;
