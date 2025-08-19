@@ -1,3 +1,4 @@
+using Interactions.Data;
 using UnityEngine;
 
 namespace Interactions.Runtime
