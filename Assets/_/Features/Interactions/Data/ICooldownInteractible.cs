@@ -4,8 +4,8 @@ namespace Interactions.Data
 {
     public interface ICooldownInteractible : IInteractable
     {
-        UnityEvent onCooldownStart { get; }
-        UnityEvent onCooldownEnd { get; }
+        UnityEvent OnCooldownStart { get; }
+        UnityEvent OnCooldownEnd { get; }
         new void Release();
         new bool TryInteract(IInteractor newGrabber);
     }

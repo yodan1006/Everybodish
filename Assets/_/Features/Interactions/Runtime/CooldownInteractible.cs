@@ -12,12 +12,12 @@ namespace Interactions.Runtime
         private float cooldownTime = 0.1f;
         private float cooldownDeltaTime = 0;
         private bool isOnCooldown = false;
-        private readonly UnityEvent cooldownStartEvent = new();
+        private readonly UnityEvent onCooldownStart = new();
         private readonly UnityEvent cooldownEndEvent = new();
 
-        public UnityEvent onCooldownStart => cooldownStartEvent;
+        public UnityEvent OnCooldownStart => onCooldownStart;
 
-        public UnityEvent onCooldownEnd => cooldownEndEvent;
+        public UnityEvent OnCooldownEnd => cooldownEndEvent;
 
         public bool IsOnCooldown { get => isOnCooldown; }
 
@@ -26,7 +26,7 @@ namespace Interactions.Runtime
             base.Release();
             isOnCooldown = true;
             cooldownDeltaTime = cooldownTime;
-            cooldownStartEvent.Invoke();
+            onCooldownStart.Invoke();
         }
         private new bool TryInteract(IInteractor newGrabber)
         {

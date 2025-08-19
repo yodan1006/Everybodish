@@ -1,6 +1,6 @@
-using Interactions.Data;
 using System;
 using System.Collections.Generic;
+using Interactions.Data;
 using UnityEngine;
 
 namespace Interactions.Runtime
@@ -12,10 +12,6 @@ namespace Interactions.Runtime
         public float InteractAreaRadius;
         public LayerMask layerMask;
 
-        private new void Update()
-        {
-            base.Update();
-        }
         public Collider[] GetCollidersInArea()
         {
             // Use the OverlapBox to detect if there are any other colliders within this box area.
@@ -23,7 +19,7 @@ namespace Interactions.Runtime
             return Physics.OverlapSphere(InteractAreaCenter.position, InteractAreaRadius, layerMask);
         }
 
-        public List<IInteractable> GetInteractibles(Collider[] colliders)
+        public List<IInteractable> GetInteractables(Collider[] colliders)
         {
             List<IInteractable> Interactibles = new();
             foreach (Collider collider in colliders)
@@ -88,9 +84,9 @@ namespace Interactions.Runtime
         }
 
         // Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this.
-        private new void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
-            base.OnDrawGizmos();
+            //base.OnDrawGizmos();
             Gizmos.color = Color.red;
             // Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
             if (Application.isPlaying)
@@ -105,7 +101,7 @@ namespace Interactions.Runtime
             Log("Interact");
             Collider[] colliders = GetCollidersInArea();
             Log($"Found {colliders.Length} colliders", this);
-            List<IInteractable> Interactibles = GetInteractibles(colliders);
+            List<IInteractable> Interactibles = GetInteractables(colliders);
             Log($"Found {Interactibles.Count} Interactibles", this);
             if (TryInteractClosestAvailable(Interactibles))
             {

@@ -2,8 +2,8 @@
     "name": "Interactions.Runtime",
     "rootNamespace": "Interactions.Runtime",
     "references": [
-        "GUID:f2c94053aa7c680479f9554ee179f43d",
-        "GUID:4a03ca78fbbf223419e5a3f628bbab87"
+        "GUID:4a03ca78fbbf223419e5a3f628bbab87",
+        "GUID:f2c94053aa7c680479f9554ee179f43d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

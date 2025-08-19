@@ -5,11 +5,12 @@ namespace Interactions.Runtime
 {
     public class TimedInteractible : CooldownInteractible, ITimedInteractible
     {
-        public UnityEvent onInteractionStart => throw new System.NotImplementedException();
+        public UnityEvent onInteractionAvailable = new();
 
-        public UnityEvent onInteractionEnd => throw new System.NotImplementedException();
+        public UnityEvent onInteractionUnavailable = new();
+        public UnityEvent OnInteractionAvailable { get; }
 
-        public UnityEvent onInteractionCanceled => throw new System.NotImplementedException();
+        public UnityEvent OnInteractionUnavailable { get; }
 
         public void OnInteractionCanceled()
         {

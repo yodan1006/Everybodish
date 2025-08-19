@@ -69,14 +69,14 @@ namespace ActiveRagdoll.Runtime
             ApplyAdaptiveConfig();
         }
 
-        void Start()
+        private void Start()
         {
             initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();
             ConfigurableJointUtility.SetupAsCharacterJoint(joint);
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (target != null)
             {
@@ -100,8 +100,7 @@ namespace ActiveRagdoll.Runtime
                 transform.rotation = joint.connectedBody.rotation * initialLocalRotation;
 
                 // Reset Rigidbody velocity and angular velocity to stabilize
-                Rigidbody rb = GetComponent<Rigidbody>();
-                if (rb != null)
+                if (TryGetComponent<Rigidbody>(out var rb))
                 {
                     rb.linearVelocity = Vector3.zero;
                     rb.angularVelocity = Vector3.zero;

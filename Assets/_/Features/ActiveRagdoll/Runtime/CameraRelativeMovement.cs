@@ -29,6 +29,11 @@ namespace ActiveRagdoll.Runtime
             animator = GetComponentInChildren<Animator>();
         }
 
+        private void OnDisable()
+        {
+            animator.SetFloat("Move", 0);
+        }
+
         public void OnMovement(InputAction.CallbackContext context)
         {
             inputMovement = context.ReadValue<Vector2>();
@@ -41,6 +46,8 @@ namespace ActiveRagdoll.Runtime
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
+
+
 
         private void Update()
         {
