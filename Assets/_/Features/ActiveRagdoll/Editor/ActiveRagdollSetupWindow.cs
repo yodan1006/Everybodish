@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System.Runtime.Remoting.Contexts;
 using ActiveRagdoll.Runtime;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +16,9 @@ namespace ActiveRagdoll.Editor
         private int solverIterations = 8;
         private int solverVelocityIterations = 8;
         private float maxAngularVelocity = 20f;
-        private float defaultMass = 1f;
+
+        private float rootMass = 10f;
+        private float massFalloff = 0.5f;
 
         private Dictionary<Transform, Transform> matchedBones = new();
         private readonly Dictionary<Transform, Rigidbody> parentRbMap = new();
@@ -41,9 +42,13 @@ namespace ActiveRagdoll.Editor
             solverIterations = EditorGUILayout.IntField("Solver Iterations", solverIterations);
             solverVelocityIterations = EditorGUILayout.IntField("Solver Velocity Iterations", solverVelocityIterations);
             maxAngularVelocity = EditorGUILayout.FloatField("Max Angular Velocity", maxAngularVelocity);
-            defaultMass = EditorGUILayout.FloatField("Default Mass", defaultMass);
 
-            GUILayout.Space(10);
+            GUILayout.Space(5);
+            GUILayout.Label("Mass Distribution Settings", EditorStyles.boldLabel);
+            rootMass = EditorGUILayout.FloatField("Root Mass", rootMass);
+            massFalloff = EditorGUILayout.Slider("Mass Falloff per Level", massFalloff, 0.1f, 1f);
+
+            GUILayout.Space(5);
             showBonePreview = EditorGUILayout.Toggle("Show Bone Preview", showBonePreview);
             drawJointAxes = EditorGUILayout.Toggle("Draw Joint Axes in Scene View", drawJointAxes);
 
@@ -70,17 +75,11 @@ namespace ActiveRagdoll.Editor
 
         private bool ValidateInput()
         {
-            bool isValid = false;
             if (animatedRig != null && physicsRig != null && playerRootRb != null)
-            {
-                isValid = true;
-            }
-            else
-            {
-                EditorUtility.DisplayDialog("Missing Reference", "Please assign both animated and physics rigs + the root rigidbody.", "OK");
-            }
+                return true;
 
-            return isValid;
+            EditorUtility.DisplayDialog("Missing Reference", "Please assign both animated and physics rigs + the root rigidbody.", "OK");
+            return false;
         }
 
         private void SetupRagdoll()
@@ -89,7 +88,6 @@ namespace ActiveRagdoll.Editor
             matchedBones.Clear();
             parentRbMap.Clear();
 
-            // Setup animator
             Animator animator = animatedRig.GetComponentInChildren<Animator>();
             if (animator != null)
             {
@@ -101,7 +99,6 @@ namespace ActiveRagdoll.Editor
                 mr.enabled = false;
             }
 
-            // Map animated bones by name
             Dictionary<string, Transform> animatedDict = new();
             foreach (Transform t in animatedRig.GetComponentsInChildren<Transform>())
             {
@@ -125,7 +122,7 @@ namespace ActiveRagdoll.Editor
             }
 
             jointsAdded = 0;
-            RecursiveJointSetup(physicsRig, playerRootRb);
+            RecursiveJointSetup(physicsRig, playerRootRb, 1);
 
             Debug.Log($"Setup complete. {jointsAdded} joints configured.");
             EditorUtility.DisplayDialog("Ragdoll Setup Complete", $"Configured {jointsAdded} joints with correct connections.", "OK");
@@ -135,46 +132,46 @@ namespace ActiveRagdoll.Editor
 
         private int jointsAdded = 0;
 
-        private void RecursiveJointSetup(GameObject parent, Rigidbody lastRb)
+        private void RecursiveJointSetup(GameObject parent, Rigidbody lastRb, int depth)
         {
-            if (parent.transform.childCount > 0)
+            for (int i = 0; i < parent.transform.childCount; i++)
             {
-                for (int i = 0; i < parent.transform.childCount; i++)
+                Transform child = parent.transform.GetChild(i);
+                if (child.TryGetComponent<Rigidbody>(out Rigidbody rb))
                 {
-                    Transform child = parent.transform.GetChild(i);
-                    if (child.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                    Undo.RecordObject(rb, "Configure Rigidbody");
 
+                    // Mass distribution based on depth
+                    float calculatedMass = rootMass * Mathf.Pow(1-massFalloff, depth);
+                    rb.mass = calculatedMass;
+                    rb.useGravity = true;
+                    rb.solverIterations = solverIterations;
+                    rb.solverVelocityIterations = solverVelocityIterations;
+                    rb.maxAngularVelocity = maxAngularVelocity;
+                    rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                    rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+                    if (matchedBones.TryGetValue(child, out Transform animatedBone))
                     {
-                        Undo.RecordObject(rb, "Configure Rigidbody");
-                        rb.useGravity = true;
-                        rb.mass = defaultMass;
-                        rb.solverIterations = solverIterations;
-                        rb.solverVelocityIterations = solverVelocityIterations;
-                        rb.maxAngularVelocity = maxAngularVelocity;
-
-                        if (matchedBones.TryGetValue(child, out Transform animatedBone))
+                        ConfigurableJointExtended jointExt;
+                        if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
                         {
-                            if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
-                            {
-                                Destroy(characterJoint);
-                            }
-                            if (child.gameObject.TryGetComponent<ConfigurableJointExtended>(out ConfigurableJointExtended configurableJointExtended))
-                            {
-                                Destroy(characterJoint);
-                            }
+                            DestroyImmediate(characterJoint);
+                        }
+                        if (!child.gameObject.TryGetComponent<ConfigurableJointExtended>(out jointExt))
+                        {
+                            jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
+                        }
 
-                                ConfigurableJointExtended jointExt = child.gameObject.AddComponent<ConfigurableJointExtended>();
-
-                                jointExt.Initialize(animatedBone.gameObject, lastRb);
-                                jointsAdded++;
-                            }
-                        
-                        RecursiveJointSetup(child.gameObject, rb);
+                        jointExt.Initialize(animatedBone.gameObject, lastRb);
+                        jointsAdded++;
                     }
-                    else
-                    {
-                        RecursiveJointSetup(child.gameObject, lastRb);
-                    }
+                    depth++;
+                    RecursiveJointSetup(child.gameObject, rb, depth);
+                }
+                else
+                {
+                    RecursiveJointSetup(child.gameObject, lastRb, depth);
                 }
             }
         }
