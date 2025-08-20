@@ -7,6 +7,21 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.004
+    second: {fileID: 2100000, guid: 117825425818fe44f8087698ce523a30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.005
+    second: {fileID: 2100000, guid: 4b534fbe3073b8940aa71d468a1f696f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Brun.006
+    second: {fileID: 2100000, guid: a75eeaccff616d14e84dacde5b189219, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MAT_Workstation_Brun.1
     second: {fileID: 2100000, guid: 117825425818fe44f8087698ce523a30, type: 2}
   - first:
@@ -27,7 +42,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Chrome.001
+    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MAT_Workstation_Gris
+    second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Gris.001
     second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
   - first:
       type: UnityEngine:Material
@@ -37,12 +62,27 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Noir.001
+    second: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MAT_Workstation_Orange
     second: {fileID: 2100000, guid: 5772048386a29f242a258297cc322159, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_Orange.001
+    second: {fileID: 2100000, guid: 5772048386a29f242a258297cc322159, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MAT_Workstation_rouge
+    second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Workstation_rouge.001
     second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
   materials:
     materialImportMode: 2

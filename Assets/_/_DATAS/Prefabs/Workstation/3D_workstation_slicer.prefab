@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3D_workstation_slicer
       objectReference: {fileID: 0}
+    - target: {fileID: 1519635906981924659, guid: fe0a15696964c0a4498cd355510ad843, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519635906981924659, guid: fe0a15696964c0a4498cd355510ad843, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -79,7 +87,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6868753658550617202, guid: a07f76c880ab86144a7de3ca2b052c40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.303
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6868753658550617202, guid: a07f76c880ab86144a7de3ca2b052c40, type: 3}
       propertyPath: m_LocalPosition.y
@@ -87,7 +95,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6868753658550617202, guid: a07f76c880ab86144a7de3ca2b052c40, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.918
+      value: 1.437
       objectReference: {fileID: 0}
     - target: {fileID: 6868753658550617202, guid: a07f76c880ab86144a7de3ca2b052c40, type: 3}
       propertyPath: m_LocalRotation.w

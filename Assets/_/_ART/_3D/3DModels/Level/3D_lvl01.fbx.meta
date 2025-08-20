@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62488c4ab110f7f44a01e91f22d35a40
+guid: eb827f16d7c791043aee0ba9158f5588
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,78 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Brun.007
-    second: {fileID: 2100000, guid: a75eeaccff616d14e84dacde5b189219, type: 2}
+      name: "MAT-D\xE9core-pav\xE9"
+    second: {fileID: 2100000, guid: 024514d0adc8f5e409ec067defd9e96d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Brun.008
-    second: {fileID: 2100000, guid: 4b534fbe3073b8940aa71d468a1f696f, type: 2}
+      name: MAT-decire-emission
+    second: {fileID: 2100000, guid: 41a027b550a4a7947acd342b1bd4fa06, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Brun.2
-    second: {fileID: 2100000, guid: 4b534fbe3073b8940aa71d468a1f696f, type: 2}
+      name: MAT-decore-cuisine
+    second: {fileID: 2100000, guid: 7cab99dc792e34e40ad0a97d9db4152c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Brun.3
-    second: {fileID: 2100000, guid: a75eeaccff616d14e84dacde5b189219, type: 2}
+      name: MAT.decore-Gradient
+    second: {fileID: 2100000, guid: 40f3554003787e6448c473d1d1c2e299, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Chrome
-    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Chrome.002
-    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Gris
-    second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Gris.002
-    second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Noir
-    second: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Noir.002
-    second: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_bleu
-    second: {fileID: 2100000, guid: 75d311c73b8fae449b05ee27ee2fe68e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_rouge
-    second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_rouge.002
-    second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_vert.F
-    second: {fileID: 2100000, guid: 7751163fe1071c84d87ffc83eb74b2bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_vert.F.001
-    second: {fileID: 2100000, guid: 7751163fe1071c84d87ffc83eb74b2bd, type: 2}
+      name: MAT_water
+    second: {fileID: 2100000, guid: c634d5d3ea5a2274eab4f146913409f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -126,7 +76,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
@@ -172,7 +122,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

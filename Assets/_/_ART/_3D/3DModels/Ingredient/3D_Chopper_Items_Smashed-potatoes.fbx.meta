@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bacf6edfab5ceea4fa25abae065b33b0
+guid: ba13eb3df1cd2df4889ea3762b475d58
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,53 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Bronze
-    second: {fileID: 2100000, guid: 6eed16f66a0721444a423be89994e897, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Brun.2
-    second: {fileID: 2100000, guid: 117825425818fe44f8087698ce523a30, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Chrome
-    second: {fileID: 2100000, guid: b331b3e304b7f1d4381c453a840421d2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Gris
-    second: {fileID: 2100000, guid: 163bd8c329add824db3fa57a5ac68fa5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Jaune
-    second: {fileID: 2100000, guid: 5fa0d473b9ec06a4780dec0384dfd9a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_Noir
-    second: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_bleu
-    second: {fileID: 2100000, guid: 75d311c73b8fae449b05ee27ee2fe68e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_rouge
-    second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_vert.C
-    second: {fileID: 2100000, guid: c18a733ddfd079640a23af7cda30ac6b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_Workstation_vert.F
-    second: {fileID: 2100000, guid: 7751163fe1071c84d87ffc83eb74b2bd, type: 2}
+      name: MAT_Items_ingredient
+    second: {fileID: 2100000, guid: 923743280c45e9144939332c2833451d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

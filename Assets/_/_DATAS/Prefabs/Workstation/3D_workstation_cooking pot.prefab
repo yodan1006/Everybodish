@@ -102,6 +102,34 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.715
       objectReference: {fileID: 0}
+    - target: {fileID: 2942140392647941640, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 191622337796155247, guid: b584f9d81dd1c4a44ac2318c082535bd, type: 3}
+    - target: {fileID: 2942140392647941640, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: m_Mesh1
+      value: 
+      objectReference: {fileID: -6083204291198537497, guid: db6c9bceec337d84f97272dd1028746e, type: 3}
+    - target: {fileID: 2942140392647941640, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: m_Mesh2
+      value: 
+      objectReference: {fileID: -1896811324836731339, guid: 2a5bf76dbdee93345919b44d3d911fab, type: 3}
+    - target: {fileID: 2942140392647941640, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: m_Mesh3
+      value: 
+      objectReference: {fileID: 7577382318192649902, guid: cfa24a0890ac3954e9b4b4f13eba87c0, type: 3}
+    - target: {fileID: 2942140392647941640, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 923743280c45e9144939332c2833451d, type: 2}
+    - target: {fileID: 3108025553262285543, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108025553262285543, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.59
+      objectReference: {fileID: 0}
     - target: {fileID: 3108025553262285543, guid: 9be862a3fdddd9b4ea8d4d691a4c797a, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 1

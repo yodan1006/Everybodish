@@ -4823,6 +4823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8748783833680464551}
     m_Modifications:
+    - target: {fileID: 1618996140743268578, guid: 7ae968e15fef548428ad60e916347f85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 1764698096844413206, guid: 7ae968e15fef548428ad60e916347f85, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
       value: 0.4716981
