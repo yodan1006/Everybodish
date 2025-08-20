@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 2617555818552856157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.313, z: 0.961}
+  m_LocalPosition: {x: 0, y: 0.373, z: 1.113}
   m_LocalScale: {x: 0.49795, y: 0.49795, z: 0.49795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -676,6 +676,9 @@ PrefabInstance:
       addedObject: {fileID: 2086502723197954633}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 365295817025019964, guid: cc873c6fdceffd24991be68a224222a8, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 5650419591749688850}
+    - targetCorrespondingSourceObject: {fileID: 365295817025019964, guid: cc873c6fdceffd24991be68a224222a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6667364937131770967}
     - targetCorrespondingSourceObject: {fileID: 365295817025019964, guid: cc873c6fdceffd24991be68a224222a8, type: 3}
@@ -696,6 +699,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 365295817025019964, guid: cc873c6fdceffd24991be68a224222a8, type: 3}
   m_PrefabInstance: {fileID: 1601217877022797067}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5650419591749688850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380742173003386167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d03e732e395a024099fcd7103361d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderToAttack: {fileID: 0}
+  damage: 0
+  animator: {fileID: 0}
 --- !u!114 &6667364937131770967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVerbose: 1
   maxGrabRange: 5
+  forceMode: 2
   pickupForce: 10
   heldLinearDamping: 10
   grabAreaCenter: {fileID: 2086502723197954633}
