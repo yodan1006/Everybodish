@@ -1535,7 +1535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469095255987379438, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_RenderingLayers
-      value: 128
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 6469095255987379438, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_UsePipelineSettings
@@ -1544,6 +1544,10 @@ PrefabInstance:
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_Range
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
+      propertyPath: m_Cookie
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_Color.b
@@ -1559,11 +1563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_SpotAngle
-      value: 112
+      value: 149.3504
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_InnerSpotAngle
-      value: 112
+      value: 112.70473
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_Shadows.m_Bias
@@ -1575,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_RenderingLayerMask
-      value: 128
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 8518574675365819359, guid: fb06738b714020e4b858b0b932009736, type: 3}
       propertyPath: m_Shadows.m_NearPlane

@@ -127,17 +127,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 212587297482590120, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_RenderingLayers
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1939195156276429865, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Name
       value: _____LVL01_____
-      objectReference: {fileID: 0}
-    - target: {fileID: 2249513669325969465, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2343491274161969472, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -179,29 +171,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6911839169327312014, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_Cookie
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6911839169327312014, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_SpotAngle
-      value: 149.3504
-      objectReference: {fileID: 0}
-    - target: {fileID: 6911839169327312014, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 112.70473
-      objectReference: {fileID: 0}
-    - target: {fileID: 6911839169327312014, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 129
-      objectReference: {fileID: 0}
     - target: {fileID: 7298077855445104249, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8076379435075961791, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_RenderingLayers
-      value: 129
+      propertyPath: m_Intensity
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
