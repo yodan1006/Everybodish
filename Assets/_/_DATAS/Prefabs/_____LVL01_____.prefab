@@ -763,7 +763,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -772,7 +772,7 @@ Light:
     m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.9
     m_Bias: 0
     m_NormalBias: 0
     m_NearPlane: 0.1
@@ -1611,6 +1611,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2343491274161969472}
     m_Modifications:
+    - target: {fileID: 2118887770925044974, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b232366051e397c40930777b3f2278d6, type: 2}
     - target: {fileID: 5473982590929696243, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5
@@ -1656,7 +1660,8 @@ PrefabInstance:
       value: lvl_1_Workshop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4534153794986049447, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
