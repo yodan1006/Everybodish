@@ -7,10 +7,25 @@ namespace Grab.Runtime
         [Header("Physics Parameters")]
         [SerializeField] protected ForceMode forceMode = ForceMode.VelocityChange;
         [SerializeField] protected float pickupForce = 25f;
+        [SerializeField] protected float maxPickupForce = 50f;
         [SerializeField] protected float heldLinearDamping = 10f;
-        [SerializeField] protected float snapbackDistance = 0.5f;
+        [SerializeField] protected float snapbackDistanceMultiplier = 1.5f;
+        [SerializeField] protected LayerMask snapbackLayer;
         //TODO: item rotation over time
         //[SerializeField] protected float rotationSpeed = 10f;
+
+        private Vector3 rBPosition;
+        private Vector3 targetPosition;
+        private Vector3 playerPosition;
+        private float distanceToTarget;
+        private float distanceToPlayer;
+        private float desiredDistance;
+        private float snapbackDistance;
+        private Vector3 directionToTarget;
+        private Vector3 directionToPlayer;
+        private bool isObstructedFromTarget;
+        private bool isObstructedFromPlayer;
+        private bool shouldSnapBack;
 
         protected Rigidbody heldRigidbody;
         private float storedDamping;
@@ -99,29 +114,57 @@ namespace Grab.Runtime
 
         protected void MoveObject()
         {
-            Vector3 rBPosition = heldRigidbody.transform.position;
-            Vector3 targetPosition = target.transform.position;
-            float distance = Vector3.Distance(rBPosition, targetPosition);
-            if (distance > snapbackDistance)
+            rBPosition = heldRigidbody.transform.position;
+            targetPosition = target.transform.position;
+            playerPosition = transform.position;
+
+            distanceToTarget = Vector3.Distance(rBPosition, targetPosition);
+
+            distanceToPlayer = Vector3.Distance(rBPosition, playerPosition);
+
+            desiredDistance = Vector3.Distance(target.transform.localPosition, Vector3.zero);
+
+            snapbackDistance = desiredDistance * snapbackDistanceMultiplier;
+
+            // Raycast directions
+            directionToTarget = (rBPosition - targetPosition).normalized;
+            directionToPlayer = (rBPosition - playerPosition).normalized;
+
+            isObstructedFromTarget = Physics.Raycast(targetPosition, directionToTarget, distanceToTarget, snapbackLayer);
+
+            isObstructedFromPlayer = Physics.Raycast(playerPosition, directionToPlayer, distanceToPlayer, snapbackLayer);
+
+            shouldSnapBack = distanceToPlayer > snapbackDistance && (isObstructedFromTarget || isObstructedFromPlayer ||
+                                     distanceToTarget > snapbackDistance);
+
+            if (shouldSnapBack == true)
             {
-
+                // Move the object closer within snapbackDistance
                 Vector3 moveDirection = targetPosition - rBPosition;
-                // Check for obstruction before teleporting
-                int layer = 1 << LayerMask.NameToLayer("Default");
-                if (!Physics.Raycast(rBPosition, moveDirection.normalized, distance, layer))
-                {
-                    // No obstruction — teleport just within 0.5f of the target
-                    heldRigidbody.position = targetPosition - moveDirection.normalized * snapbackDistance;
-                    LogWarning("Grabbable was too far from target, snapping back closer");
-                }
+                Vector3 normalizedDirection = moveDirection.normalized;
 
+                // Clamp distance to avoid overshooting
+                float snapDistance = Mathf.Min(distanceToTarget, snapbackDistanceMultiplier);
+
+                Vector3 teleportPosition = targetPosition;
+
+                heldRigidbody.position = teleportPosition;
+                heldRigidbody.linearVelocity = Vector3.zero;
+                heldRigidbody.angularVelocity = Vector3.zero;
+
+                LogWarning("Grabbable was too far from target or obstructed, snapping back closer");
             }
-            if (distance > 0.1f)
+            else if (distanceToTarget > 0.1f && distanceToTarget < snapbackDistance)
             {
                 Vector3 moveDirection = targetPosition - rBPosition;
-                heldRigidbody.AddForce(moveDirection * pickupForce, forceMode);
+
+                // Optionally clamp force for stability
+                Vector3 clampedForce = Vector3.ClampMagnitude(moveDirection * pickupForce, maxPickupForce);
+
+                heldRigidbody.AddForce(clampedForce, forceMode);
             }
         }
+
         protected new bool TryGrab(IGrabable newGrabable)
         {
             bool successfulGrab = false;
@@ -166,7 +209,27 @@ namespace Grab.Runtime
             {
                 if (IsGrabbing())
                 {
-                    Gizmos.DrawSphere(target.transform.position, 0.05f);
+                    Gizmos.DrawSphere(targetPosition, 0.05f);
+                    Gizmos.DrawSphere(playerPosition, 0.05f);
+                    Gizmos.DrawSphere(rBPosition, 0.05f);
+
+                    if (isObstructedFromPlayer == true)
+                    {
+                        DrawRay(playerPosition, directionToPlayer * distanceToPlayer, Color.red);
+                    }
+                    else
+                    {
+                        DrawRay(playerPosition, directionToPlayer * distanceToPlayer, Color.blue);
+                    }
+
+                    if (isObstructedFromTarget == true)
+                    {
+                        DrawRay(targetPosition, directionToTarget * distanceToTarget, Color.red);
+                    }
+                    else
+                    {
+                        DrawRay(targetPosition, directionToTarget * distanceToTarget, Color.blue);
+                    }
                 }
             }
         }

@@ -63,9 +63,11 @@ namespace Grab.Runtime
         }
         public void SetColliderExcludeLayers(LayerMask excludeLayers)
         {
-            if(TryGetComponent<Collider>(out Collider collider)){
+            if (TryGetComponent<Collider>(out Collider collider))
+            {
                 collider.excludeLayers = excludeLayers;
-            }else
+            }
+            else
             {
                 Debug.LogError("Grabable has no collider!");
             }
