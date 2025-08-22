@@ -8,6 +8,7 @@ namespace Grab.Runtime
         [SerializeField] protected ForceMode forceMode = ForceMode.VelocityChange;
         [SerializeField] protected float pickupForce = 25f;
         [SerializeField] protected float heldLinearDamping = 10f;
+        [SerializeField] protected float snapbackDistance = 0.5f;
         //TODO: item rotation over time
         //[SerializeField] protected float rotationSpeed = 10f;
 
@@ -100,7 +101,22 @@ namespace Grab.Runtime
         {
             Vector3 rBPosition = heldRigidbody.transform.position;
             Vector3 targetPosition = target.transform.position;
-            if (Vector3.Distance(rBPosition, targetPosition) > 0.1f)
+            float distance = Vector3.Distance(rBPosition, targetPosition);
+            if (distance > snapbackDistance)
+            {
+
+                Vector3 moveDirection = targetPosition - rBPosition;
+                // Check for obstruction before teleporting
+                int layer = 1 << LayerMask.NameToLayer("Default");
+                if (!Physics.Raycast(rBPosition, moveDirection.normalized, distance, layer))
+                {
+                    // No obstruction — teleport just within 0.5f of the target
+                    heldRigidbody.position = targetPosition - moveDirection.normalized * snapbackDistance;
+                    LogWarning("Grabbable was too far from target, snapping back closer");
+                }
+
+            }
+            if (distance > 0.1f)
             {
                 Vector3 moveDirection = targetPosition - rBPosition;
                 heldRigidbody.AddForce(moveDirection * pickupForce, forceMode);
