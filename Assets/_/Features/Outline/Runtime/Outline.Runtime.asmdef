@@ -1,0 +1,16 @@
+{
+    "name": "Outline.Runtime",
+    "rootNamespace": "Outline.Runtime",
+    "references": [
+        "GUID:2d2fe6816d63b7e4ab0f50be9aeda5f4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
