@@ -17,5 +17,6 @@ namespace Grab.Data
         bool TryGrab(IGrabber newGrabber);
         bool IsGrabbed();
         bool IsGrabable { get; set; }
+        void SetColliderExcludeLayers(LayerMask excludeLayers);
     }
 }

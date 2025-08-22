@@ -32,6 +32,8 @@ namespace Grab.Runtime
             grabber = null;
         }
 
+
+
         public bool TryGrab(IGrabber newGrabber)
         {
             bool success = false;
@@ -58,6 +60,17 @@ namespace Grab.Runtime
         IGrabber IGrabable.Grabber()
         {
             return grabber;
+        }
+        public void SetColliderExcludeLayers(LayerMask excludeLayers)
+        {
+            if (TryGetComponent<Collider>(out Collider collider))
+            {
+                collider.excludeLayers = excludeLayers;
+            }
+            else
+            {
+                Debug.LogError("Grabable has no collider!");
+            }
         }
     }
 }
