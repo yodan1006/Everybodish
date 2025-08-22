@@ -116,6 +116,8 @@ namespace Grab.Runtime
                 Log("Grabable component found", this);
                 if (base.TryGrab(newGrabable))
                 {
+                    int excludeLayers = 1 << LayerMask.NameToLayer("Player");
+                    Grabable.SetColliderExcludeLayers(excludeLayers);
                     PickupRbAndApplyConstraints(rb, newGrabable.HoldAreaConstraints);
                     successfulGrab = true;
                     target.transform.position = transform.rotation * newGrabable.HoldDistanceFromPlayerCenter + transform.position;
@@ -136,11 +138,11 @@ namespace Grab.Runtime
         {
             if (IsGrabbing())
             {
+                Grabable.SetColliderExcludeLayers(0);
                 DropObject(heldRigidbody, Grabable.ReleaseAreaConstraints);
                 base.Release();
             }
         }
-
         protected void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
