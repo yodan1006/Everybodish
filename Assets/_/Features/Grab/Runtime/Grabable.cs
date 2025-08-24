@@ -27,9 +27,15 @@ namespace Grab.Runtime
             return grabber != null;
         }
 
-        public void Release()
+        public bool Release()
         {
-            grabber = null;
+            bool success = false;
+            if (IsGrabbed())
+            {
+                grabber = null;
+                success = true;
+            }
+            return success;
         }
 
 

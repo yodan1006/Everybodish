@@ -1,8 +1,8 @@
-using Grab.Data;
 using static UnityEngine.InputSystem.InputAction;
-namespace Grab.Runtime
+
+namespace Grab.Data
 {
-    public interface IRigidbodyGrabber : IGrabber
+    public interface IAnimatedProximityGrabber : IProximityGrabber
     {
         new void OnGrabAction(CallbackContext callbackContext);
         new void OnRelease(CallbackContext callbackContext);
