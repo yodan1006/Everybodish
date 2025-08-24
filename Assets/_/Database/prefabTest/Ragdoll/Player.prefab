@@ -409,9 +409,14 @@ MonoBehaviour:
   maxGrabRange: 5
   forceMode: 2
   pickupForce: 25
+  maxPickupForce: 50
   heldLinearDamping: 10
+  snapbackDistanceMultiplier: 1.5
+  snapbackLayer:
+    serializedVersion: 2
+    m_Bits: 1
   grabAreaCenter: {fileID: 2836471827435154820}
-  grabAreaRadius: 0.5
+  grabAreaRadius: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 320
@@ -511,6 +516,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1874292481697590273}
   damage: 0
+  attackDuration: 1
+  movementLockDurationLeft: 0
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0

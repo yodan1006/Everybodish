@@ -903,10 +903,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1844829951833012219, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: snapbackLayer.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1844829951833012219, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: snapbackDistanceMultiplier
       value: 1
       objectReference: {fileID: 0}
