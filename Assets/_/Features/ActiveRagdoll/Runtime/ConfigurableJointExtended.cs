@@ -85,7 +85,6 @@ namespace ActiveRagdoll.Runtime
 
 
             float currentBoneLength = GetBoneLength();
-            ApplyAdaptiveConfig();
 
             if (currentBoneLength > boneLength * 1.5f)
             {
