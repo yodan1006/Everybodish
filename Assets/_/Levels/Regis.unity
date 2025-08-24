@@ -545,7 +545,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -557,11 +561,11 @@ PrefabInstance:
       objectReference: {fileID: 683024056}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: OnGrabAction
       objectReference: {fileID: 0}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: OnRelease
       objectReference: {fileID: 0}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -569,7 +573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
+      value: Grab.Runtime.AnimatedProximityGrabber, Grab.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764896663910783904, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Grab.Runtime.ProximityGrabber, Grab.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 7808195356282421220, guid: e3fcb73de6b090340a63b14d4c18427f, type: 3}
       propertyPath: m_Enabled
