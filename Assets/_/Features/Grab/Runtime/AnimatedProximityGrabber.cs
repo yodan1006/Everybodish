@@ -36,24 +36,29 @@ namespace Grab.Runtime
 
         public new void OnRelease(CallbackContext callbackContext)
         {
-            if (Release())
+            if (IsGrabbing())
             {
-                animator.SetLayerWeight(grabLayerIndex, 0);
+                if (Release())
+                {
+                    animator.SetLayerWeight(grabLayerIndex, 0);
+                }
             }
         }
 
         public new void OnGrabAction(CallbackContext callbackContext)
         {
-            Log("Grab");
-            Collider[] colliders = GetCollidersInArea();
-            Log($"Found {colliders.Length} colliders", this);
-            List<IGrabable> grabables = GetGrabables(colliders);
-            Log($"Found {grabables.Count} grabables", this);
-            if (TryGrabClosestAvailable(grabables))
+            if (!IsGrabbing())
             {
-                animator.SetLayerWeight(grabLayerIndex, 1);
+                Log("Grab");
+                Collider[] colliders = GetCollidersInArea();
+                Log($"Found {colliders.Length} colliders", this);
+                List<IGrabable> grabables = GetGrabables(colliders);
+                Log($"Found {grabables.Count} grabables", this);
+                if (TryGrabClosestAvailable(grabables))
+                {
+                    animator.SetLayerWeight(grabLayerIndex, 1);
+                }
             }
-
         }
 
         public void OnHoldGrabAction(CallbackContext callbackContext)

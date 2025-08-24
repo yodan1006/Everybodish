@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9f4fb40cc39744b876a3578e8fc40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   maxGrabRange: 5
   forceMode: 2
   pickupForce: 25

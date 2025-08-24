@@ -89,17 +89,23 @@ namespace Grab.Runtime
 
         public new void OnRelease(InputAction.CallbackContext callbackContext)
         {
+            if (IsGrabbing())
+            {
             base.OnRelease(callbackContext);
+            }
         }
 
         public override void OnGrabAction(InputAction.CallbackContext callbackContext)
         {
+            if (!IsGrabbing())
+            {
             Log("Grab");
             Collider[] colliders = GetCollidersInArea();
             Log($"Found {colliders.Length} colliders", this);
             List<IGrabable> grabables = GetGrabables(colliders);
             Log($"Found {grabables.Count} grabables", this);
             TryGrabClosestAvailable(grabables);
+            }
         }
 
         void IProximityGrabber.OnGrabAction(InputAction.CallbackContext callbackContext)
