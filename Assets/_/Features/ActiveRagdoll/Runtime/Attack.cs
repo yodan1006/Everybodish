@@ -1,4 +1,5 @@
 using ActiveRagdoll.Runtime;
+using MovePlayer.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class Attack : MonoBehaviour
     [SerializeField] private float attackDuration = 1;
     private CameraRelativeMovement _movement;
     private Animator _animator;
+    private AttackTrigger _attackTrigger;
     public float movementLockDurationLeft = 0;
     public float attackMoveSpeedMultiplier = 0.5f;
 
@@ -17,8 +19,10 @@ public class Attack : MonoBehaviour
     {
         _movement = GetComponent<CameraRelativeMovement>();
         _animator = GetComponentInChildren<Animator>();
+        _attackTrigger = GetComponentInChildren<AttackTrigger>();
+
         AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(attackCollider, _animator, _movement);
+        animationEventListener.Initialize(_attackTrigger, _animator, _movement);
     }
 
     public void PlayAttack(InputAction.CallbackContext context)

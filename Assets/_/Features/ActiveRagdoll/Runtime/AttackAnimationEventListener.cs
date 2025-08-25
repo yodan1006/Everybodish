@@ -1,3 +1,4 @@
+using MovePlayer.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -5,9 +6,9 @@ namespace ActiveRagdoll.Runtime
     public class AttackAnimationEventListener : MonoBehaviour
     {
         #region Publics
-        public void Initialize(Collider attackCollider, Animator animator, CameraRelativeMovement movement)
+        public void Initialize(AttackTrigger attackTrigger, Animator animator, CameraRelativeMovement movement)
         {
-            this.attackCollider = attackCollider;
+            this.attackTrigger = attackTrigger;
             this.animator = animator;
             this.movement = movement;
         }
@@ -22,15 +23,14 @@ namespace ActiveRagdoll.Runtime
         #region Main Methods
         public void AnimEventActiveHeadButt()
         {
-            attackCollider.enabled = true;
+            attackTrigger.enabled = true;
             Debug.Log("AnimEventActiveHeadButt");
         }
 
         public void AnimEventDisableHeadButt()
         {
             Debug.Log("AnimEventDisableHeadButt");
-            attackCollider.enabled = false;
-            animator.SetBool("Attack", false);
+            attackTrigger.enabled = false;
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace ActiveRagdoll.Runtime
 
 
         #region Private and Protected
-        private Collider attackCollider;
+        private AttackTrigger attackTrigger;
         private Animator animator;
         private CameraRelativeMovement movement;
         #endregion
