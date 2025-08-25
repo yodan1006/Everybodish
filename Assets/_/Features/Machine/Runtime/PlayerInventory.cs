@@ -1,21 +1,31 @@
-﻿namespace Machine.Runtime
+﻿using UnityEngine;
+
+namespace Machine.Runtime
 {
-    public class PlayerInventory
+    public class PlayerInventory : MonoBehaviour
     {
-        public Food currentFood;
+        
+        private Food carriedFood;
 
-        public bool HasFood => currentFood != null;
+        public bool HasFood => carriedFood != null;
+        public Food CarriedFood => carriedFood;
 
-        public Food TakeFood()
+        public void PickUp(Food food)
         {
-            Food food = currentFood;
-            currentFood = null;
-            return food;
+            if (HasFood) return;
+
+            carriedFood = food;
+            //food.gameObject.SetActive(false); // On cache l’objet ramassé
         }
 
-        public void GiveFood(Food food)
+        public Food Drop()
         {
-            currentFood = food;
+            if (!HasFood) return null;
+
+            Food temp = carriedFood;
+            //carriedFood.gameObject.SetActive(true); // On le réactive
+            carriedFood = null;
+            return temp;
         }
     }
 }

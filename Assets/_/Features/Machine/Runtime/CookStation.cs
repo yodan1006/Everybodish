@@ -5,46 +5,28 @@ namespace Machine.Runtime
 {
     public class CookStation : MonoBehaviour
     {
-        [SerializeField] private Animator animator;
-        [SerializeField] private List<FoodRecipe> recipes;
+        [SerializeField] private Recipe[] recipes;
+        [SerializeField] private Transform spawnPoint;
 
-        private bool isInUse = false;
-        private GameObject currentResultPrefab;
-
-        public void TryCook(PlayerInventory inventory)
+        public bool TryCook(Food food, out GameObject resultPrefab)
         {
-            if (isInUse) return;
-            if (!inventory.HasFood) return;
-
-            Food food = inventory.TakeFood();
-            Debug.Log($"La station reçoit : {food.FoodType}");
-
-            // Chercher une recette qui correspond à l’aliment
-            FoodRecipe recipe = recipes.Find(r => r.input == food.FoodType);
-
-            if (recipe != null)
+            foreach (var recipe in recipes)
             {
-                currentResultPrefab = recipe.result;
-                animator.SetTrigger("StartCooking");
-                StartCoroutine(CookRoutine(recipe.cookTime));
+                if (recipe.input == food.FoodType)
+                {
+                    resultPrefab = recipe.outputPrefab;
+                    Destroy(food.gameObject); // Supprime l’ancien aliment
+                    return true;
+                }
             }
 
-            Destroy(food.gameObject); // on enlève l’aliment brut
-            isInUse = true;
+            resultPrefab = null;
+            return false;
         }
 
-        private System.Collections.IEnumerator CookRoutine(float time)
+        public void SpawnCookedFood(GameObject prefab)
         {
-            yield return new WaitForSeconds(time);
-
-            // Spawn du prefab transformé
-            if (currentResultPrefab != null)
-            {
-                Instantiate(currentResultPrefab, transform.position + Vector3.up, Quaternion.identity);
-            }
-
-            animator.SetTrigger("EndCooking");
-            isInUse = false;
+            Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         }
     }
 }

@@ -3,44 +3,84 @@ using UnityEngine.InputSystem;
 
 namespace Machine.Runtime
 {
-    public class Playerinteract : MonoBehaviour
+    [RequireComponent(typeof(PlayerInventory))]
+    public class PlayerInteract : MonoBehaviour
     {
-        [SerializeField] private InputActionReference interactAction;
-        [SerializeField] private PlayerInventory inventory;
+        [SerializeField] private Transform holdPoint;
+        private GameObject heldObject;
 
-        private CookStation stationInRange;
-
-        private void OnEnable()
+        private void PickUp(GameObject obj)
         {
-            interactAction.action.performed += OnInteract;
+            if (heldObject != null) return;
+
+            heldObject = obj;
+            heldObject.transform.SetParent(holdPoint);
+            heldObject.transform.localPosition = Vector3.zero;
         }
 
-        private void OnDisable()
+        private void Drop()
         {
-            interactAction.action.performed -= OnInteract;
+            if (heldObject == null) return;
+
+            heldObject.transform.SetParent(null);
+            heldObject = null;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void TryUseCookStation()
         {
-            if (other.TryGetComponent(out CookStation station))
+            if (heldObject == null) return;
+
+            var food = heldObject.GetComponent<Food>();
+            if (food == null) return;
+
+            // Détection station
+            Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+            foreach (var hit in hits)
             {
-                stationInRange = station;
+                var station = hit.GetComponent<CookStation>();
+                if (station != null)
+                {
+                    if (station.TryCook(food, out var resultPrefab))
+                    {
+                        heldObject = null; // l’ancien est détruit
+                        station.SpawnCookedFood(resultPrefab);
+                    }
+                    return;
+                }
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        // ✅ Callbacks Input System
+        public void OnInteract(InputAction.CallbackContext context)
         {
-            if (other.TryGetComponent(out CookStation station) && station == stationInRange)
+            if (!context.performed) return;
+
+            if (heldObject == null)
             {
-                stationInRange = null;
+                // Essayer de ramasser un aliment
+                Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+                foreach (var hit in hits)
+                {
+                    var food = hit.GetComponent<Food>();
+                    if (food != null)
+                    {
+                        PickUp(food.gameObject);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // Déposer
+                Drop();
             }
         }
 
-        private void OnInteract(InputAction.CallbackContext ctx)
+        public void OnUse(InputAction.CallbackContext context)
         {
-            if (stationInRange != null)
+            if (context.performed)
             {
-                stationInRange.TryCook(inventory);
+                TryUseCookStation();
             }
         }
     }
