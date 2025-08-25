@@ -1,8 +1,10 @@
+using ActiveRagdoll.Runtime;
 using Grab.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Grab.Runtime
 {
+    [RequireComponent(typeof(CameraRelativeRotation))]
     public abstract class RigidbodyGrabber : Grabber, IRigidbodyGrabber
     {
         [Header("Physics Parameters")]
@@ -31,12 +33,14 @@ namespace Grab.Runtime
         protected Rigidbody heldRigidbody;
         private float storedDamping;
         protected GameObject target;
+        private CameraRelativeRotation rotationManager;
 
         protected void Awake()
         {
             target = new("Grabber target point");
             target.transform.parent = this.transform;
             target.SetActive(false);
+            rotationManager = GetComponent<CameraRelativeRotation>();
         }
 
         protected void FixedUpdate()
@@ -72,7 +76,6 @@ namespace Grab.Runtime
                 case MovementStrategyEnum.Drag:
                     //Player rotates around item, item must be dragged behind the player
                     MoveObject();
-                    AdjustPlayerRotation();
                     break;
                 default:
                     //do nothing
@@ -84,11 +87,6 @@ namespace Grab.Runtime
         {
             Quaternion targetRotation = Quaternion.LookRotation(-transform.forward);
             Grabable.transform.rotation = targetRotation;
-        }
-
-        private void AdjustPlayerRotation()
-        {
-            //Let higher level components handle that
         }
 
         private void PickupRbAndApplyConstraints(Rigidbody rb, RigidbodyConstraints constraints)
@@ -161,6 +159,24 @@ namespace Grab.Runtime
             }
         }
 
+        protected void SetRotationStrategy(MovementStrategyEnum stategy)
+        {
+            switch (stategy)
+            {
+                case MovementStrategyEnum.Hold:
+                    //hold item in front of player and adjust rotation to face the player
+                    rotationManager.inverted = false;
+                    break;
+                case MovementStrategyEnum.Drag:
+                    //Player rotates around item, item must be dragged behind the player
+                    rotationManager.inverted = true;
+                    break;
+                default:
+                    rotationManager.inverted = false;
+                    break;
+            }
+        }
+
         protected new bool TryGrab(IGrabable newGrabable)
         {
             bool successfulGrab = false;
@@ -176,6 +192,7 @@ namespace Grab.Runtime
                     PickupRbAndApplyConstraints(rb, newGrabable.HoldAreaConstraints);
                     successfulGrab = true;
                     target.transform.position = transform.rotation * newGrabable.HoldDistanceFromPlayerCenter + transform.position;
+                    SetRotationStrategy(newGrabable.MovementStrategy);
                 }
                 else
                 {
@@ -229,6 +246,7 @@ namespace Grab.Runtime
                 Grabable.SetColliderExcludeLayers(0);
                 DropObject(heldRigidbody, Grabable.ReleaseAreaConstraints);
                 success = base.Release();
+                SetRotationStrategy(MovementStrategyEnum.None);
             }
             return success;
         }
