@@ -6,7 +6,7 @@ namespace DebugBehaviour.Runtime
 {
     public class VerboseMonoBehaviour : MonoBehaviour
     {
-        public bool isVerbose = true;
+        public bool isVerbose = false;
 
         protected void Log(string msg)
         {
