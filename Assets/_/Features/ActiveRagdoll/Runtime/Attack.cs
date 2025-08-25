@@ -1,47 +1,46 @@
+using ActiveRagdoll.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ActiveRagdoll.Runtime
+[RequireComponent(typeof(CameraRelativeMovement))]
+public class Attack : MonoBehaviour
 {
-    [RequireComponent(typeof(CameraRelativeMovement))]
-    public class Attack : MonoBehaviour
+    [SerializeField] private Collider attackCollider;
+    [SerializeField] private int damage;
+    [SerializeField] private float attackDuration = 1;
+    private CameraRelativeMovement _movement;
+    private Animator _animator;
+    public float movementLockDurationLeft = 0;
+    public float attackMoveSpeedMultiplier = 0.5f;
+
+    private void Awake()
     {
-        [SerializeField] private Collider attackCollider;
-        [SerializeField] private int damage;
-        [SerializeField] private float attackDuration = 1;
-        private CameraRelativeMovement _movement;
-        private Animator _animator;
-        public float movementLockDurationLeft = 0;
+        _movement = GetComponent<CameraRelativeMovement>();
+        _animator = GetComponentInChildren<Animator>();
+        AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
+        animationEventListener.Initialize(attackCollider, _animator, _movement);
+    }
 
-        private void Awake()
+    public void PlayAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed && movementLockDurationLeft == 0)
         {
-            _movement = GetComponent<CameraRelativeMovement>();
-            _animator = GetComponentInChildren<Animator>();
-            AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-            animationEventListener.Initialize(attackCollider, _animator, _movement);
+            _animator.SetBool("Attack", true);
+            _movement.moveSpeedMultiplier = attackMoveSpeedMultiplier;
+            movementLockDurationLeft = attackDuration;
         }
+    }
 
-        public void PlayAttack(InputAction.CallbackContext context)
+    private void Update()
+    {
+        if (movementLockDurationLeft > 0)
         {
-            if (context.performed && movementLockDurationLeft == 0)
+            movementLockDurationLeft -= Time.deltaTime;
+            if (movementLockDurationLeft < 0)
             {
-                _animator.SetBool("Attack", true);
-                _movement.enabled = false;
-                movementLockDurationLeft = attackDuration;
-            }
-        }
-
-        private void Update()
-        {
-            if (movementLockDurationLeft > 0)
-            {
-                movementLockDurationLeft -= Time.deltaTime;
-                if (movementLockDurationLeft < 0)
-                {
-                    movementLockDurationLeft = 0;
-                    _animator.SetBool("Attack", false);
-                    _movement.enabled = true;
-                }
+                movementLockDurationLeft = 0;
+                _animator.SetBool("Attack", false);
+                _movement.moveSpeedMultiplier = 1f;
             }
         }
     }
