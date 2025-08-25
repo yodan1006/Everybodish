@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarotteSlice
   m_EditorClassIdentifier: 
   input: 0
-  output: 0
-  outputPrefab: {fileID: 0}
+  output: 2
+  outputPrefab: {fileID: 919132149155446097, guid: f5776520c4848be459f7e79a08ba325c, type: 3}
