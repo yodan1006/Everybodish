@@ -1,0 +1,17 @@
+{
+    "name": "Machine.Runtime",
+    "rootNamespace": "Machine.Runtime",
+    "references": [
+        "GUID:b5745f3fab93bf643825dbdf032a2b0f",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
