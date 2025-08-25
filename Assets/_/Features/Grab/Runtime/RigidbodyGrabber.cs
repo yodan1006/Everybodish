@@ -1,8 +1,9 @@
 using Grab.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Grab.Runtime
 {
-    public class RigidbodyGrabber : Grabber, IRigidbodyGrabber
+    public abstract class RigidbodyGrabber : Grabber, IRigidbodyGrabber
     {
         [Header("Physics Parameters")]
         [SerializeField] protected ForceMode forceMode = ForceMode.VelocityChange;
@@ -31,7 +32,7 @@ namespace Grab.Runtime
         private float storedDamping;
         protected GameObject target;
 
-        private void Awake()
+        protected void Awake()
         {
             target = new("Grabber target point");
             target.transform.parent = this.transform;
@@ -140,11 +141,6 @@ namespace Grab.Runtime
             if (shouldSnapBack == true)
             {
                 // Move the object closer within snapbackDistance
-                Vector3 moveDirection = targetPosition - rBPosition;
-                Vector3 normalizedDirection = moveDirection.normalized;
-
-                // Clamp distance to avoid overshooting
-                float snapDistance = Mathf.Min(distanceToTarget, snapbackDistanceMultiplier);
 
                 Vector3 teleportPosition = targetPosition;
 
@@ -193,15 +189,6 @@ namespace Grab.Runtime
             return successfulGrab;
         }
 
-        public new void Release()
-        {
-            if (IsGrabbing())
-            {
-                Grabable.SetColliderExcludeLayers(0);
-                DropObject(heldRigidbody, Grabable.ReleaseAreaConstraints);
-                base.Release();
-            }
-        }
         protected void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
@@ -232,6 +219,33 @@ namespace Grab.Runtime
                     }
                 }
             }
+        }
+
+        public new bool Release()
+        {
+            bool success = false;
+            if (IsGrabbing())
+            {
+                Grabable.SetColliderExcludeLayers(0);
+                DropObject(heldRigidbody, Grabable.ReleaseAreaConstraints);
+                success = base.Release();
+            }
+            return success;
+        }
+
+        public override void OnRelease(InputAction.CallbackContext callbackContext)
+        {
+            Release();
+        }
+
+        void IRigidbodyGrabber.OnGrabAction(InputAction.CallbackContext callbackContext)
+        {
+            OnGrabAction(callbackContext);
+        }
+
+        void IRigidbodyGrabber.OnRelease(InputAction.CallbackContext callbackContext)
+        {
+            OnRelease(callbackContext);
         }
     }
 }

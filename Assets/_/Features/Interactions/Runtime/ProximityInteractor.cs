@@ -1,6 +1,6 @@
+using Interactions.Data;
 using System;
 using System.Collections.Generic;
-using Interactions.Data;
 using UnityEngine;
 
 namespace Interactions.Runtime
