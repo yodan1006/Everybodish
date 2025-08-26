@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4975634278693844309}
+  - component: {fileID: 9216517357953483427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -64,6 +65,20 @@ Transform:
   - {fileID: 7802301707436799611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &9216517357953483427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb8062160312534f8adbdedb1e0c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerRoot: {fileID: 1700003924638526194}
+  m_ragdollRoot: {fileID: 7425460227140611265}
 --- !u!1 &1700003924638526194
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +92,7 @@ GameObject:
   - component: {fileID: 5516917930905865657}
   - component: {fileID: 138434063878791327}
   - component: {fileID: 2133843357310437445}
+  - component: {fileID: 8994340029208803606}
   - component: {fileID: 4895347299854833210}
   - component: {fileID: 2553695886737681587}
   - component: {fileID: 5263055543788218836}
@@ -84,6 +100,8 @@ GameObject:
   - component: {fileID: 7425233652408472726}
   - component: {fileID: 4961796328084089532}
   - component: {fileID: 3527468895308488571}
+  - component: {fileID: 8943239395027508255}
+  - component: {fileID: 7350386438472817992}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -152,7 +170,7 @@ CharacterController:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 1.6
   m_Radius: 0.25
@@ -232,10 +250,10 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/XInputControllerWindows1/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2553695886737681587}
-        m_TargetAssemblyTypeName: Interactions.Runtime.ProximityInteractor, Interactions.Runtime
-        m_MethodName: OnInteractAction
-        m_Mode: 1
+      - m_Target: {fileID: 7350386438472817992}
+        m_TargetAssemblyTypeName: Machine.Runtime.PlayerInteract, Machine.Runtime
+        m_MethodName: OnUse
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -249,9 +267,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3527468895308488571}
-        m_TargetAssemblyTypeName: Grab.Runtime.ProximityGrabber, Grab.Runtime
+        m_TargetAssemblyTypeName: Grab.Runtime.AnimatedProximityGrabber, Grab.Runtime
         m_MethodName: OnGrabAction
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -375,6 +393,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8994340029208803606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18baa7adfd88934496e341d4440d6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabables: []
+  physicsRig: {fileID: 7425460227140611265}
+  physicsHip: {fileID: 6008338345124722668}
 --- !u!114 &4895347299854833210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d171e36149bc444ebb6159bc96044411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_life: 100
+  m_life: 2
 --- !u!114 &4961796328084089532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +525,7 @@ MonoBehaviour:
   damage: 0
   attackDuration: 1
   movementLockDurationLeft: 0
+  attackMoveSpeedMultiplier: 0.5
 --- !u!114 &3527468895308488571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +553,31 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 320
+--- !u!114 &8943239395027508255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c374618d5664504bb5bf38a9ac8a8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7350386438472817992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376dc51cac498d0468ef13544741ee91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusDetector: 2
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +628,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -580,11 +639,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377396605695371676}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecba88f6a0d20f84a8f74a82017938c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degat: 1
+  _collider: {fileID: 1874292481697590273}
 --- !u!1001 &4087453605747946289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2238,32 +2299,32 @@ ConfigurableJoint:
   m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
-    spring: 2150.3489
-    damper: 161.27617
+    spring: 2148.722
+    damper: 161.15414
   m_LinearLimit:
-    limit: 0.052552335
+    limit: 0.05230831
     bounciness: 0
     contactDistance: 0.005
   m_AngularXLimitSpring:
-    spring: 3225.5234
-    damper: 215.0349
+    spring: 3223.083
+    damper: 214.8722
   m_LowAngularXLimit:
-    limit: -46.579536
+    limit: -46.291935
     bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
-    limit: 46.579536
+    limit: 46.291935
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 3225.5234
-    damper: 215.0349
+    spring: 3223.083
+    damper: 214.8722
   m_AngularYLimit:
-    limit: 46.579536
+    limit: 46.291935
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 46.579536
+    limit: 46.291935
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2303,9 +2364,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 2563.8083
-    positionDamper: 13.758722
-    maximumForce: 296.98404
+    positionSpring: 2557.7078
+    positionDamper: 13.718052
+    maximumForce: 296.47565
     useAcceleration: 0
   m_ProjectionMode: 1
   m_ProjectionDistance: 0.2
@@ -2334,7 +2395,7 @@ MonoBehaviour:
   joint: {fileID: 9128387914583051096}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 5191535644500875305}
-  boneLength: 0.19605675
+  boneLength: 0.19404355
   positionSpring: 1000
   positionDamper: 10
   maximumForce: 50
@@ -2664,6 +2725,11 @@ MonoBehaviour:
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!1 &7425460227140611265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3971960848111165293, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7802301707436799611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}

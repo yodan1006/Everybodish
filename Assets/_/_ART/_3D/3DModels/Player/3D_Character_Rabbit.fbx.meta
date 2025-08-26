@@ -3,7 +3,22 @@ guid: 138a4a723eaec5948bc7d071ca213e47
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold.003
+    second: {fileID: 2100000, guid: ed9618f93362b47448456094d1979d89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gradient.003
+    second: {fileID: 2100000, guid: 7b0fef2f6dd5bf545bb0f35936fa1f34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P-4
+    second: {fileID: 2100000, guid: 6c438fef593a1104996d4b57a7675103, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

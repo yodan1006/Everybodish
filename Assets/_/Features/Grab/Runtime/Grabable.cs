@@ -15,6 +15,7 @@ namespace Grab.Runtime
         [SerializeField] private Vector3 holdDistanceFromPlayer = new(0, 1, 1);
         [SerializeField] private bool isGrabable = true;
 
+        public IGrabber Grabber { get => grabber; }
         public Vector3 HoldDistanceFromPlayerCenter { get => holdDistanceFromPlayer; }
         public RigidbodyConstraints ReleaseAreaConstraints { get => releaseAreaConstraints; }
         public MovementStrategyEnum MovementStrategy { get => movementStrategy; }
@@ -27,6 +28,20 @@ namespace Grab.Runtime
             return grabber != null;
         }
 
+        private void OnDisable()
+        {
+            //Force Grabbers out
+            if (IsGrabbed())
+            {   //Upgrade to the highest available class to be sure
+                //TODO: Should be doable using only interfaces 
+                if (Grabber.gameObject.TryGetComponent<AnimatedProximityGrabber>(out AnimatedProximityGrabber grabber))
+                {
+                    grabber.Release();
+                }
+            }
+
+        }
+
         public bool Release()
         {
             bool success = false;
@@ -37,8 +52,6 @@ namespace Grab.Runtime
             }
             return success;
         }
-
-
 
         public bool TryGrab(IGrabber newGrabber)
         {
