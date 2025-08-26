@@ -1,3 +1,4 @@
+using ActiveRagdoll.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,26 @@ namespace LobbyInstantiate.Runtime
         {
             Transform spawn = spawnPoints[playerInput.playerIndex % spawnPoints.Length];
 
-            playerInput.transform.SetPositionAndRotation(spawn.transform.position, spawn.transform.rotation);
+            string deviceName = "Unknown Device";
+            if (playerInput.user != null && playerInput.user.pairedDevices.Count > 0)
+            {
+                InputDevice device = playerInput.user.pairedDevices[0];
+                deviceName = device.displayName ?? device.name;
+            }
+
+            if (playerInput.transform.parent != null)
+            {
+                if (playerInput.transform.parent.TryGetComponent<PlayerTeleporter>(out PlayerTeleporter teleporter))
+                {
+                    teleporter.TeleportTo(spawn);
+                }
+                playerInput.transform.parent.name = deviceName + " Player";
+            }
+            else
+            {
+                playerInput.transform.SetPositionAndRotation(spawn.transform.position, spawn.transform.rotation);
+                playerInput.transform.name = deviceName + " Player";
+            }
         }
     }
 }

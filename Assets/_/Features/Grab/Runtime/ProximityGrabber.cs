@@ -1,5 +1,5 @@
-using Grab.Data;
 using System.Collections.Generic;
+using Grab.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Grab.Runtime
@@ -91,7 +91,7 @@ namespace Grab.Runtime
         {
             if (IsGrabbing())
             {
-            base.OnRelease(callbackContext);
+                base.OnRelease(callbackContext);
             }
         }
 
@@ -99,12 +99,12 @@ namespace Grab.Runtime
         {
             if (!IsGrabbing())
             {
-            Log("Grab");
-            Collider[] colliders = GetCollidersInArea();
-            Log($"Found {colliders.Length} colliders", this);
-            List<IGrabable> grabables = GetGrabables(colliders);
-            Log($"Found {grabables.Count} grabables", this);
-            TryGrabClosestAvailable(grabables);
+                Log("Grab");
+                Collider[] colliders = GetCollidersInArea();
+                Log($"Found {colliders.Length} colliders", this);
+                List<IGrabable> grabables = GetGrabables(colliders);
+                Log($"Found {grabables.Count} grabables", this);
+                TryGrabClosestAvailable(grabables);
             }
         }
 
