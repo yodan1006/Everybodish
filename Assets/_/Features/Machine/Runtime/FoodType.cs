@@ -4,6 +4,8 @@
     {
         None,
         Apple,
+        AppleSlice,
+        AppleSauce,
         Carotte,
         Potato,
         Tomato,

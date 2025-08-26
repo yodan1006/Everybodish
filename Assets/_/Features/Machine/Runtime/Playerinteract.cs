@@ -53,8 +53,8 @@ namespace Machine.Runtime
                     if (simpleStation.TryCook(food, out var resultPrefab))
                     {
                         grabber.Release();
-                        food = null;
-                        simpleStation.SpawnCookedFood(resultPrefab);
+                        //food = null;
+                        //simpleStation.SpawnCookedFood(resultPrefab);
                     }
                     return;
                 }
@@ -64,7 +64,7 @@ namespace Machine.Runtime
                 {
                     multiStation.AddFood(food);
                     grabber.Release();
-                    food = null;
+                    //food = null;
                     return;
                 }
             }
