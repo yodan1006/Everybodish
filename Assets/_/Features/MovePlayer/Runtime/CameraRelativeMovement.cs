@@ -25,6 +25,7 @@ namespace ActiveRagdoll.Runtime
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            controller.enabled = true;
         }
 
         private void OnDisable()
