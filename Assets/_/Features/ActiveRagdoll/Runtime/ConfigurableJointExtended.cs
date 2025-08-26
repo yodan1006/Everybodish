@@ -1,3 +1,4 @@
+using System;
 using DebugBehaviour.Runtime;
 using UnityEngine;
 
@@ -5,7 +6,6 @@ namespace ActiveRagdoll.Runtime
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(ConfigurableJoint))]
     public class ConfigurableJointExtended : VerboseMonoBehaviour
     {
         public ConfigurableJoint joint;
@@ -215,6 +215,13 @@ namespace ActiveRagdoll.Runtime
 
             Gizmos.color = jointAxisColor;
             Gizmos.DrawRay(transform.position, transform.forward * 0.2f);
+        }
+
+        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint)
+        {
+            ConfigurableJointUtility.SetupAsCharacterJoint(configurableJoint);
+            joint = configurableJoint;
+            joint.connectedBody = rootRigidBody;
         }
 
         public static class ConfigurableJointUtility
