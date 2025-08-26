@@ -406,6 +406,7 @@ MonoBehaviour:
   grabables: []
   physicsRig: {fileID: 7425460227140611265}
   physicsHip: {fileID: 6008338345124722668}
+  playerTeleporter: {fileID: 9216517357953483427}
 --- !u!114 &4895347299854833210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 0
-  rotationSpeed: 10
+  rotationSpeed: 8
   cameraTransform: {fileID: 0}
 --- !u!114 &9193291211187720016
 MonoBehaviour:
@@ -550,7 +551,9 @@ MonoBehaviour:
   grabAreaRadius: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 448
+  root: {fileID: 433505672345845218}
+  selfColliders: []
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ namespace ActiveRagdoll.Runtime
     {
         public bool inverted;
         [Header("Movement Settings")]
-        public float rotationSpeed = 10f;
+        public float rotationSpeed = 8f;
         public Transform cameraTransform;
 
 
@@ -27,22 +27,24 @@ namespace ActiveRagdoll.Runtime
         }
         private void Update()
         {
-
-            // Camera-relative rotation
-            Vector3 camForward = GetGroundedVector(cameraTransform.forward);
-            Vector3 camRight = GetGroundedVector(cameraTransform.right);
-            Vector3 moveDir = camForward * inputMovement.y + camRight * inputMovement.x;
-            moveDir = moveDir.normalized;
-            if (inverted == true)
+            if (transform.gameObject != cameraTransform.gameObject)
             {
-                moveDir = moveDir * -1;
-            }
-            // Rotate character towards movement direction
-            if (moveDir.sqrMagnitude > 0.01f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+                // Camera-relative rotation
+                Vector3 camForward = GetGroundedVector(cameraTransform.forward);
+                Vector3 camRight = GetGroundedVector(cameraTransform.right);
+                Vector3 moveDir = camForward * inputMovement.y + camRight * inputMovement.x;
+                moveDir = moveDir.normalized;
+                if (inverted == true)
+                {
+                    moveDir *= -1;
+                }
+                // Rotate character towards movement direction
+                if (moveDir.sqrMagnitude > 0.01f)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(moveDir);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
             }
         }
 

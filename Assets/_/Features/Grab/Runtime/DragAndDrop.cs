@@ -13,6 +13,16 @@ namespace Grab.Runtime
         [SerializeField] protected Texture2D cursorTextureEnabled;
         [SerializeField] protected Vector2 hotSpotEnabled = Vector2.zero;
         [SerializeField] protected CursorStates currentState = CursorStates.Default;
+        [SerializeField] protected Camera _camera;
+
+        private new void Awake()
+        {
+            base.Awake();
+            if (_camera == null)
+            {
+                _camera = Camera.main;
+            }
+        }
         public enum CursorStates
         {
             Default,
@@ -97,7 +107,7 @@ namespace Grab.Runtime
         public bool StartDrag()
         {
             bool success = false;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 Rigidbody rb = hit.rigidbody;
@@ -170,6 +180,7 @@ namespace Grab.Runtime
             }
             else if (callbackContext.canceled == true)
             {
+                Log("Ending Drag & Drop", this);
                 Release();
             }
 

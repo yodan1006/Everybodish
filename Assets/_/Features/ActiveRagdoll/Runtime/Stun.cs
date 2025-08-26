@@ -16,7 +16,7 @@ namespace ActiveRagdoll.Runtime
         public Grabable[] grabables;
         public GameObject physicsRig;
         public GameObject physicsHip;
-        public PlayerTeleporter teleporter;
+        [SerializeField] protected PlayerTeleporter playerTeleporter;
         #endregion
 
 
@@ -102,7 +102,6 @@ namespace ActiveRagdoll.Runtime
             ConfigurableJoint configurableJoint = physicsHip.AddComponent<ConfigurableJoint>();
             ConfigurableJointExtended configurableJointExtended = physicsHip.GetComponent<ConfigurableJointExtended>();
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint);
-            physicsHip.AddComponent<ConfigurableJointExtended>().enabled = true;
         }
         #endregion
 
