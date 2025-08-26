@@ -1,59 +1,9 @@
 fileFormatVersion: 2
-guid: eb827f16d7c791043aee0ba9158f5588
+guid: 387052a2fc417f24c9c450b4a1c72718
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "MAT-D\xE9core-pav\xE9"
-    second: {fileID: 2100000, guid: 024514d0adc8f5e409ec067defd9e96d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decire-Glass
-    second: {fileID: 2100000, guid: 1d1982e108db27042bac7456fc2e721c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decire-emission
-    second: {fileID: 2100000, guid: 41a027b550a4a7947acd342b1bd4fa06, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decore-Glass
-    second: {fileID: 2100000, guid: 1d1982e108db27042bac7456fc2e721c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decore-Glass_Emission
-    second: {fileID: 2100000, guid: 4f6148b0b0338084fbfb3c9a90b73d37, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decore-cuisine
-    second: {fileID: 2100000, guid: 7cab99dc792e34e40ad0a97d9db4152c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT-decore-emission
-    second: {fileID: 2100000, guid: 4f6148b0b0338084fbfb3c9a90b73d37, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT.decore-Gradient
-    second: {fileID: 2100000, guid: 40f3554003787e6448c473d1d1c2e299, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT.decore-Metalness
-    second: {fileID: 2100000, guid: 32ad01e11eb93ef4386de9a56f312c7a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_water
-    second: {fileID: 2100000, guid: c634d5d3ea5a2274eab4f146913409f8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -101,7 +51,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 0
+    preserveHierarchy: 1
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
@@ -139,15 +89,15 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: ROOT
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 9c7be2bc1ebb6d4428c423e88ad1e3ca, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
