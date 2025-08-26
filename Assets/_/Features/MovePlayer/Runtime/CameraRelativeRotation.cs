@@ -28,7 +28,7 @@ namespace ActiveRagdoll.Runtime
         private void Update()
         {
 
-            // Camera-relative movement
+            // Camera-relative rotation
             Vector3 camForward = GetGroundedVector(cameraTransform.forward);
             Vector3 camRight = GetGroundedVector(cameraTransform.right);
             Vector3 moveDir = camForward * inputMovement.y + camRight * inputMovement.x;
