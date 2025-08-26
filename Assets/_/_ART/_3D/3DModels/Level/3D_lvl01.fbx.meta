@@ -22,8 +22,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MAT-decore-Glass
+    second: {fileID: 2100000, guid: 1d1982e108db27042bac7456fc2e721c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT-decore-Glass_Emission
+    second: {fileID: 2100000, guid: 4f6148b0b0338084fbfb3c9a90b73d37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MAT-decore-cuisine
     second: {fileID: 2100000, guid: 7cab99dc792e34e40ad0a97d9db4152c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT-decore-emission
+    second: {fileID: 2100000, guid: 4f6148b0b0338084fbfb3c9a90b73d37, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
