@@ -10,7 +10,7 @@ namespace Grab.Runtime
         private Animator animator;
         private int grabLayerIndex;
         // Grab Layer
-        private new void Awake()
+        protected new void Awake()
         {
             base.Awake();
             bool found = false;

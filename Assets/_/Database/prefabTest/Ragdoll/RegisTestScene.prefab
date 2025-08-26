@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVerbose: 1
-  maxGrabRange: 10
+  maxGrabRange: Infinity
   forceMode: 2
   pickupForce: 10
   maxPickupForce: 50
@@ -476,17 +476,18 @@ MonoBehaviour:
   snapbackDistanceMultiplier: 1.5
   snapbackLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   dragToAreaLayers:
     serializedVersion: 2
-    m_Bits: 384
-  maxDragDistance: 10
+    m_Bits: 449
+  maxDragDistance: Infinity
   targetDistanceFromFloor: 2
   cursorTextureDefault: {fileID: 0}
   hotSpotDefault: {x: 0, y: 0}
   cursorTextureEnabled: {fileID: 0}
   hotSpotEnabled: {x: 0, y: 0}
   currentState: 0
+  _camera: {fileID: 0}
   cursorMode: 0
 --- !u!114 &8192304870610984833
 MonoBehaviour:
