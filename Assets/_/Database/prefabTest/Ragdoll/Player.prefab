@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4975634278693844309}
+  - component: {fileID: 9216517357953483427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -64,6 +65,20 @@ Transform:
   - {fileID: 7802301707436799611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &9216517357953483427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb8062160312534f8adbdedb1e0c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerRoot: {fileID: 1700003924638526194}
+  m_ragdollRoot: {fileID: 7425460227140611265}
 --- !u!1 &1700003924638526194
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +100,8 @@ GameObject:
   - component: {fileID: 7425233652408472726}
   - component: {fileID: 4961796328084089532}
   - component: {fileID: 3527468895308488571}
+  - component: {fileID: 8943239395027508255}
+  - component: {fileID: 7350386438472817992}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -233,10 +250,10 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/XInputControllerWindows1/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2553695886737681587}
-        m_TargetAssemblyTypeName: Interactions.Runtime.ProximityInteractor, Interactions.Runtime
-        m_MethodName: OnInteractAction
-        m_Mode: 1
+      - m_Target: {fileID: 7350386438472817992}
+        m_TargetAssemblyTypeName: Machine.Runtime.PlayerInteract, Machine.Runtime
+        m_MethodName: OnUse
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -250,9 +267,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3527468895308488571}
-        m_TargetAssemblyTypeName: Grab.Runtime.ProximityGrabber, Grab.Runtime
+        m_TargetAssemblyTypeName: Grab.Runtime.AnimatedProximityGrabber, Grab.Runtime
         m_MethodName: OnGrabAction
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -536,6 +553,31 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 320
+--- !u!114 &8943239395027508255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c374618d5664504bb5bf38a9ac8a8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7350386438472817992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376dc51cac498d0468ef13544741ee91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusDetector: 2
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0

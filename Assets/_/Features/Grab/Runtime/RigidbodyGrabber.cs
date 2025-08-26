@@ -38,7 +38,7 @@ namespace Grab.Runtime
         protected void Awake()
         {
             target = new("Grabber target point");
-            target.transform.parent = this.transform;
+            target.transform.parent = transform;
             target.SetActive(false);
             rotationManager = GetComponent<CameraRelativeRotation>();
         }

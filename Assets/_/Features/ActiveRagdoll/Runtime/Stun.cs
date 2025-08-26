@@ -1,4 +1,3 @@
-using System;
 using Grab.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +16,7 @@ namespace ActiveRagdoll.Runtime
         public Grabable[] grabables;
         public GameObject physicsRig;
         public GameObject physicsHip;
+        public PlayerTeleporter teleporter;
         #endregion
 
 
@@ -66,21 +66,20 @@ namespace ActiveRagdoll.Runtime
             }
             _animator.SetBool("Stunned", false);
             TeleportCharacterController();
-   
+
         }
 
         private void TeleportCharacterController()
         {
             ConfigurableJointExtended configurableJointExtended = physicsHip.GetComponent<ConfigurableJointExtended>();
 
-           _characterController.transform.position = physicsHip.transform.position;
+            //teleport player to current position of ragdoll
+            _characterController.transform.position = physicsHip.transform.position;
             Vector3 position = physicsHip.transform.position;
             Quaternion rotation = physicsHip.transform.rotation;
-            physicsHip.transform.position = configurableJointExtended.target.transform.position;
-            physicsHip.transform.rotation = configurableJointExtended.target.transform.rotation;
+            physicsHip.transform.SetPositionAndRotation(configurableJointExtended.target.transform.position, configurableJointExtended.target.transform.rotation);
             ReconnectRoot();
-            physicsHip.transform.position = position;
-            physicsHip.transform.rotation = rotation;
+            physicsHip.transform.SetPositionAndRotation(position, rotation);
         }
         #endregion
 
@@ -94,7 +93,7 @@ namespace ActiveRagdoll.Runtime
         private void DisconnectRoot()
         {
             ConfigurableJoint configurableJoint = physicsHip.GetComponent<ConfigurableJoint>();
-            physicsHip.GetComponent<ConfigurableJointExtended>().enabled   = false;
+            physicsHip.GetComponent<ConfigurableJointExtended>().enabled = false;
             Destroy(configurableJoint);
         }
 

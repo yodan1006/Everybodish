@@ -11,8 +11,9 @@ namespace Machine.Runtime
        // [SerializeField] private Transform holdPoint;
        // private GameObject heldObject;
        AnimatedProximityGrabber grabber;
+       [SerializeField] private float radiusDetector;
 
-        // private void PickUp(GameObject obj)
+       // private void PickUp(GameObject obj)
         // {
         //     if (heldObject != null) return;
         //
@@ -32,38 +33,43 @@ namespace Machine.Runtime
             if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
             {
                 this.grabber = grabber;
-                
             }
         }
 
         private void TryUseCookStation()
         {
+            if (!grabber.IsGrabbing()) return;
 
-            if (grabber.IsGrabbing())
+            if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food) || food == null) 
+                return;
+
+            Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+
+            foreach (var hit in hits)
             {
-                if (grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
+                // Cas 1 : CookStation simple
+                if (hit.TryGetComponent<CookStation>(out var simpleStation))
                 {
-                    var ingredient = food;
-                    if (ingredient == null) return;
-                    Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
-                                foreach (var hit in hits)
-                                {
-                                    var station = hit.GetComponent<CookStation>();
-                                    if (station != null)
-                                    {
-                                        if (station.TryCook(food, out var resultPrefab))
-                                        {
-                                            //heldObject = null; // l’ancien est détruit
-                                            grabber.Release();
-                                            food = null;
-                                            station.SpawnCookedFood(resultPrefab);
-                                        }
-                                        return;
-                                    }
-                                }
+                    if (simpleStation.TryCook(food, out var resultPrefab))
+                    {
+                        grabber.Release();
+                        //food = null;
+                        //simpleStation.SpawnCookedFood(resultPrefab);
+                    }
+                    return;
+                }
+
+                // Cas 2 : CookStation multi
+                if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
+                {
+                    multiStation.AddFood(food);
+                    grabber.Release();
+                    //food = null;
+                    return;
                 }
             }
         }
+
 
         // ✅ Callbacks Input System
         // public void OnInteract(InputAction.CallbackContext context)
