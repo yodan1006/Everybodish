@@ -3,7 +3,27 @@ guid: 9d396a58f1279ca4fb0d3cce3cac63e1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ECRAN COMMANDE
+    second: {fileID: 2100000, guid: d88dc205aa253f3458c6ca8a5d0d37a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT-decore-cuisine
+    second: {fileID: 2100000, guid: 7cab99dc792e34e40ad0a97d9db4152c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT.decore-Gradient
+    second: {fileID: 2100000, guid: 40f3554003787e6448c473d1d1c2e299, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT.decore-Metalness
+    second: {fileID: 2100000, guid: 32ad01e11eb93ef4386de9a56f312c7a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
