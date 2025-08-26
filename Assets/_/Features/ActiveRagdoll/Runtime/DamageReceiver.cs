@@ -13,7 +13,7 @@ namespace MovePlayer.Runtime
         {
             Debug.Log("Took damage!");
             stat.m_life -= damage;
-            if(stat.m_life < 0)
+            if (stat.m_life < 0)
             {
                 stun.enabled = true;
                 stunDuration = stunDurationDelta;

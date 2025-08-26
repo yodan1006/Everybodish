@@ -5,7 +5,7 @@ namespace DebugBehaviour.Runtime
 {
     public class PlayerInputManagerFinder : MonoBehaviour
     {
-        void Start()
+        private void Start()
         {
             var managers = FindObjectsByType<PlayerInputManager>(FindObjectsSortMode.None);
             Debug.Log("PlayerInputManager count: " + managers.Length);
