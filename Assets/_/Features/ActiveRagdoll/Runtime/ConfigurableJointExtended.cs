@@ -56,7 +56,7 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
-        private bool isColliderDisabled = false;
+        // private readonly bool isColliderDisabled = false;
 
         public void Initialize(GameObject targetObject, Rigidbody connectedBody)
         {
@@ -85,7 +85,6 @@ namespace ActiveRagdoll.Runtime
 
 
             float currentBoneLength = GetBoneLength();
-            ApplyAdaptiveConfig();
 
             if (currentBoneLength > boneLength * 1.5f)
             {

@@ -78,12 +78,12 @@ GameObject:
   - component: {fileID: 138434063878791327}
   - component: {fileID: 2133843357310437445}
   - component: {fileID: 4895347299854833210}
-  - component: {fileID: 1844829951833012219}
   - component: {fileID: 2553695886737681587}
   - component: {fileID: 5263055543788218836}
   - component: {fileID: 9193291211187720016}
   - component: {fileID: 7425233652408472726}
   - component: {fileID: 4961796328084089532}
+  - component: {fileID: 3527468895308488571}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -174,7 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 0
-  moveSpeed: 5
+  baseMoveSpeed: 5
+  moveSpeedMultiplier: 1
   cameraTransform: {fileID: 0}
 --- !u!114 &2133843357310437445
 MonoBehaviour:
@@ -247,7 +248,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Interact[/XInputControllerWindows1/buttonSouth,/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1844829951833012219}
+      - m_Target: {fileID: 3527468895308488571}
         m_TargetAssemblyTypeName: Grab.Runtime.ProximityGrabber, Grab.Runtime
         m_MethodName: OnGrabAction
         m_Mode: 1
@@ -263,7 +264,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Grab[/Keyboard/e,/XInputControllerWindows1/rightShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1844829951833012219}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Grab.Runtime.RigidbodyGrabber, Grab.Runtime
         m_MethodName: Release
         m_Mode: 1
@@ -393,28 +394,6 @@ MonoBehaviour:
   onInteractionFail:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1844829951833012219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700003924638526194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda876db73c9360488067e2fe0e2f262, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVerbose: 1
-  maxGrabRange: 5
-  forceMode: 2
-  pickupForce: 25
-  heldLinearDamping: 10
-  grabAreaCenter: {fileID: 2836471827435154820}
-  grabAreaRadius: 0.5
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 320
 --- !u!114 &2553695886737681587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +490,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1874292481697590273}
   damage: 0
+  attackDuration: 1
+  movementLockDurationLeft: 0
+--- !u!114 &3527468895308488571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9f4fb40cc39744b876a3578e8fc40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 0
+  maxGrabRange: 5
+  forceMode: 2
+  pickupForce: 25
+  maxPickupForce: 50
+  heldLinearDamping: 10
+  snapbackDistanceMultiplier: 1.5
+  snapbackLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  grabAreaCenter: {fileID: 2836471827435154820}
+  grabAreaRadius: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 320
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,22 +94,9 @@ namespace Grab.Runtime
             }
         }
 
-        public void OnGrab(CallbackContext context)
+        public bool StartDrag()
         {
-
-            if (context.performed == true)
-            {
-                Log("Starting Drag & Drop", this);
-                StartDrag();
-            }
-            else if (context.canceled == true)
-            {
-                Release();
-            }
-        }
-
-        public void StartDrag()
-        {
+            bool success = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
@@ -122,6 +109,7 @@ namespace Grab.Runtime
                         {
                             Log("Cursor Drag success", this);
                             UpdateTargetPosition();
+                            success = true;
                         }
                         else
                         {
@@ -138,6 +126,7 @@ namespace Grab.Runtime
                     Log("Hit on non grabbable object detected", this);
                 }
             }
+            return success;
         }
         protected void UpdateTargetPosition()
         {
@@ -168,6 +157,27 @@ namespace Grab.Runtime
             {
                 Log("No hit found for drag to target", this);
             }
+        }
+
+
+        public override void OnGrabAction(CallbackContext callbackContext)
+        {
+
+            if (callbackContext.performed == true)
+            {
+                Log("Starting Drag & Drop", this);
+                StartDrag();
+            }
+            else if (callbackContext.canceled == true)
+            {
+                Release();
+            }
+
+        }
+
+        public void OnClick(CallbackContext callbackContext)
+        {
+            OnGrabAction(callbackContext);
         }
     }
 

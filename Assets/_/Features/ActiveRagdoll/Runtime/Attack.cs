@@ -1,4 +1,3 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,7 @@ namespace ActiveRagdoll.Runtime
     {
         [SerializeField] private Collider attackCollider;
         [SerializeField] private int damage;
-        [SerializeField] float attackDuration = 1;
+        [SerializeField] private float attackDuration = 1;
         private CameraRelativeMovement _movement;
         private Animator _animator;
         public float movementLockDurationLeft = 0;
@@ -37,7 +36,7 @@ namespace ActiveRagdoll.Runtime
             if (movementLockDurationLeft > 0)
             {
                 movementLockDurationLeft -= Time.deltaTime;
-                if(movementLockDurationLeft < 0)
+                if (movementLockDurationLeft < 0)
                 {
                     movementLockDurationLeft = 0;
                     _animator.SetBool("Attack", false);
