@@ -72,5 +72,10 @@ namespace Grab.Runtime
                 OnRelease(callbackContext);
             }
         }
+
+        public new bool TryGrab(IGrabable newGrabable)
+        {
+            return base.TryGrab(newGrabable);
+        }
     }
 }
