@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 namespace Grab.Data
 {
@@ -8,6 +9,7 @@ namespace Grab.Data
 
         bool IsGrabbing();
         bool TryGrab(IGrabable newGrabable);
-        void Release();
+        void OnGrabAction(CallbackContext callbackContext);
+        void OnRelease(CallbackContext callbackContext);
     }
 }

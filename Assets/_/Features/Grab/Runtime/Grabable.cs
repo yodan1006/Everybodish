@@ -27,10 +27,18 @@ namespace Grab.Runtime
             return grabber != null;
         }
 
-        public void Release()
+        public bool Release()
         {
-            grabber = null;
+            bool success = false;
+            if (IsGrabbed())
+            {
+                grabber = null;
+                success = true;
+            }
+            return success;
         }
+
+
 
         public bool TryGrab(IGrabber newGrabber)
         {
@@ -58,6 +66,17 @@ namespace Grab.Runtime
         IGrabber IGrabable.Grabber()
         {
             return grabber;
+        }
+        public void SetColliderExcludeLayers(LayerMask excludeLayers)
+        {
+            if (TryGetComponent<Collider>(out Collider collider))
+            {
+                collider.excludeLayers = excludeLayers;
+            }
+            else
+            {
+                Debug.LogError("Grabable has no collider!");
+            }
         }
     }
 }
