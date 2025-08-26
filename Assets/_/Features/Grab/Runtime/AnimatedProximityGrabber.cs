@@ -39,7 +39,7 @@ namespace Grab.Runtime
             bool success = false;
             if (IsGrabbing())
             {
-                if (Release())
+                if (base.Release())
                 {
                     animator.SetLayerWeight(grabLayerIndex, 0);
                     success = true;
