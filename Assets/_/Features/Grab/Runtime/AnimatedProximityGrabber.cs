@@ -34,15 +34,23 @@ namespace Grab.Runtime
             Release();
         }
 
-        public new void OnRelease(CallbackContext callbackContext)
+        public new bool Release()
         {
+            bool success = false;
             if (IsGrabbing())
             {
                 if (Release())
                 {
                     animator.SetLayerWeight(grabLayerIndex, 0);
+                    success = true;
                 }
             }
+            return success;
+        }
+
+        public new void OnRelease(CallbackContext callbackContext)
+        {
+            Release();
         }
 
         public new void OnGrabAction(CallbackContext callbackContext)
