@@ -184,9 +184,9 @@ namespace Grab.Runtime
             if (newGrabable.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
                 Log("Rigidbody found", this);
-                Log("Grabable component found", this);
                 if (base.TryGrab(newGrabable))
                 {
+                    Log($"Grabable component found : {rb.gameObject.name}", this);
                     int excludeLayers = 1 << LayerMask.NameToLayer("Player");
                     Grabable.SetColliderExcludeLayers(excludeLayers);
                     PickupRbAndApplyConstraints(rb, newGrabable.HoldAreaConstraints);
