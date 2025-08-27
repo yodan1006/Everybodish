@@ -3,7 +3,27 @@ guid: 1d6103180c5122e43825bb2084dfac2b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cow
+    second: {fileID: 2100000, guid: b4302ccec19df4a459b1d3e4ec88cc8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold
+    second: {fileID: 2100000, guid: ed9618f93362b47448456094d1979d89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gradient
+    second: {fileID: 2100000, guid: 7b0fef2f6dd5bf545bb0f35936fa1f34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P-2
+    second: {fileID: 2100000, guid: d4fcf80923cef7d49b11b4cd17529bc1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

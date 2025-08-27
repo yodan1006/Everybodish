@@ -25,6 +25,7 @@ namespace ActiveRagdoll.Runtime
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            if(cameraTransform == null)cameraTransform = Camera.main.transform;
             controller.enabled = true;
         }
 

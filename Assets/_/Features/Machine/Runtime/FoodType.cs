@@ -1,0 +1,27 @@
+﻿namespace Machine.Runtime
+{
+    public enum FoodType
+    {
+        None,
+        Apple,
+        AppleSlice,
+        Applecompote,
+        Carotte,
+        Potato,
+        Fries,
+        SmashedPoatoes,
+        Tomato,
+        tomatoSlice,
+        tomatoSauce,
+        Steak,
+        Letuce,
+        LetuceLeaf,
+        Player,
+        Choppy,
+        Saussage,
+
+
+        
+    }
+    
+}

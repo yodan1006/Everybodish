@@ -80,5 +80,16 @@ namespace Grab.Runtime
                 OnRelease(callbackContext);
             }
         }
+
+        public new bool TryGrab(IGrabable newGrabable)
+        {
+            bool success = false;
+            if (base.TryGrab(newGrabable))
+            {
+                animator.SetLayerWeight(grabLayerIndex, 1);
+                success = true;
+            }
+            return success; ;
+        }
     }
 }
