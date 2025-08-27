@@ -38,7 +38,7 @@ namespace Machine.Runtime
 
         private void TryUseCookStation()
         {
-            if (!grabber.IsGrabbing()) return;
+           if (!grabber.IsGrabbing()) return;
 
             if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food) || food == null) 
                 return;
@@ -64,8 +64,26 @@ namespace Machine.Runtime
                 {
                     multiStation.AddFood(food);
                     grabber.Release();
-                    //food = null;
                     return;
+                }
+            }
+        }
+
+        private void SpawnAndGrabFood()
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+            foreach (var hit in hits)
+            {
+                if (hit.TryGetComponent<Barille>(out var barille))
+                {
+                    if (!grabber.IsGrabbing() && barille.TryProvideFood(out var newFoodPrefab))
+                    {
+                        // Spawn et grab direct
+                        var newFood = Instantiate(newFoodPrefab, barille.SpawnPoint.position, Quaternion.identity);
+                        var grabable = newFood.GetComponentInChildren<Grabable>();
+                        if (grabable != null)
+                            grabber.TryGrab(grabable);
+                    }
                 }
             }
         }
@@ -101,7 +119,8 @@ namespace Machine.Runtime
         {
             if (context.performed)
             {
-                TryUseCookStation();
+                if (grabber.IsGrabbing()) TryUseCookStation();
+                else SpawnAndGrabFood();
             }
         }
     }

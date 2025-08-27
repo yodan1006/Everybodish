@@ -83,7 +83,13 @@ namespace Grab.Runtime
 
         public new bool TryGrab(IGrabable newGrabable)
         {
-            return base.TryGrab(newGrabable);
+            bool success = false;
+            if (base.TryGrab(newGrabable))
+            {
+                animator.SetLayerWeight(grabLayerIndex, 1);
+                success = true;
+            }
+            return success; ;
         }
     }
 }

@@ -36,7 +36,6 @@ namespace Machine.Runtime
                     animator.SetBool("OnSlice", true);
                     //Destroy(currentFood.gameObject);
                     //_currentFood = null;
-
                     resultPrefab = recipe.outputPrefab;
                     return true;
                 }
@@ -58,13 +57,15 @@ namespace Machine.Runtime
 
         public void DestroyObjectInStation()
         {
-            if (_currentFood != null)
+            if (_currentFood == null)
             {
-                Debug.Log("DestroyObjectInStation appelé");
-                Destroy(_currentFood.gameObject);
-                // Debug.Log("Objet brut détruit : " + _currentFood.name);
-                // NE PAS mettre _currentFood = null ici
+                Debug.LogWarning("DestroyObjectInStation appelé mais _currentFood est null !");
+                return;
             }
+
+            Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
+            Destroy(_currentFood.transform.parent.gameObject);
+            _currentFood = null;
         }
 
         public void SpawnCookedFood()
@@ -98,10 +99,9 @@ namespace Machine.Runtime
             {
                 Debug.LogWarning("SpawnCookedFood : recette introuvable ou prefab manquant pour " + foodToCook.FoodType);
             }
-
             // Fin animation et nettoyage
             animator.SetBool("OnSlice", false);
-            _currentFood = null;
+            //_currentFood = null;
         }
     }
 }
