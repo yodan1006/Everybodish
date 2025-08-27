@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Machine.Runtime
 {
@@ -11,34 +14,39 @@ namespace Machine.Runtime
         [SerializeField] private Transform spawnPoint; // pour le plat final
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
+        public bool _isCooking = false;
         private Food _currentFood;
 
         public bool TryCook(Food food, out GameObject resultPrefab)
         {
+
             if (_currentFood != null)
             {
                 resultPrefab = null;
                 return false;
             }
-
-            foreach (var recipe in recipes)
+            if (_isCooking != true)
             {
-                if (recipe.input == food.FoodType)
+                foreach (var recipe in recipes)
                 {
-                    _currentFood = food;
-
-                    // Place l’objet visuellement sur le slot
-                    food.transform.position = foodSlot.position;
-                    food.transform.rotation = foodSlot.rotation;
-                    food.transform.SetParent(foodSlot);
-
-                    animator.SetBool("OnSlice", true);
-                    //Destroy(currentFood.gameObject);
-                    //_currentFood = null;
-                    resultPrefab = recipe.outputPrefab;
-                    return true;
+                    if (recipe.input == food.FoodType)
+                    {
+                        _isCooking = true;
+                        _currentFood = food;
+                
+                        // Place l’objet visuellement sur le slot
+                        food.transform.position = foodSlot.position;
+                        food.transform.rotation = foodSlot.rotation;
+                        //food.transform.SetParent(foodSlot);
+                
+                        animator.SetBool("OnSlice", true);
+                        //Destroy(currentFood.gameObject);
+                        //_currentFood = null;
+                        resultPrefab = recipe.outputPrefab;
+                        return true; }
                 }
             }
+            
 
             resultPrefab = null;
             return false;
@@ -63,7 +71,7 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            Destroy(_currentFood.transform.parent.gameObject);
+            Destroy(_currentFood.transform.root.gameObject);
             _currentFood = null;
         }
 
@@ -98,9 +106,12 @@ namespace Machine.Runtime
             {
                 Debug.LogWarning("SpawnCookedFood : recette introuvable ou prefab manquant pour " + foodToCook.FoodType);
             }
-            // Fin animation et nettoyage
             animator.SetBool("OnSlice", false);
-            //_currentFood = null;
+        }
+        
+        void EndingRecipe()
+        {
+            _isCooking = false;
         }
     }
 }

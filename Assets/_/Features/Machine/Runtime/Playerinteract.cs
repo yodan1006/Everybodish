@@ -48,7 +48,7 @@ namespace Machine.Runtime
             foreach (var hit in hits)
             {
                 // Cas 1 : CookStation simple
-                if (hit.TryGetComponent<CookStation>(out var simpleStation))
+                if (hit.TryGetComponent<CookStation>(out var simpleStation) && hit.GetComponent<CookStation>()._isCooking == false)
                 {
                     if (simpleStation.TryCook(food, out var resultPrefab))
                     {
