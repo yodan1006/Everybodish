@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e348cc29871f90047bcf9eb5ef739f0a, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e348cc29871f90047bcf9eb5ef739f0a, type: 3}
       propertyPath: m_Name
-      value: 3D_Chopper_Items_Saussage
+      value: P_Chopper_Items_Saussage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

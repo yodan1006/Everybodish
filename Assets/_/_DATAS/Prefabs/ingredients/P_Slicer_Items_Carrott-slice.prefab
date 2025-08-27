@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a45534e8c1f231f498bd21f411782e95, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a45534e8c1f231f498bd21f411782e95, type: 3}
       propertyPath: m_Name
-      value: 3D_Slicer_Items_Carrott-slice
+      value: P_Slicer_Items_Carrott-slice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
