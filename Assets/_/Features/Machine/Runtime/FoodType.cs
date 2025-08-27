@@ -5,12 +5,22 @@
         None,
         Apple,
         AppleSlice,
-        AppleSauce,
+        Applecompote,
         Carotte,
         Potato,
+        Fries,
+        SmashedPoatoes,
         Tomato,
+        tomatoSlice,
+        tomatoSauce,
         Steak,
         Letuce,
+        LetuceLeaf,
+        Player,
+        Choppy,
+        Saussage,
+
+
         
     }
     
