@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
         _attackTrigger = GetComponentInChildren<AttackTrigger>();
 
         AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(_attackTrigger, _animator, _movement);
+        animationEventListener.Initialize(_attackTrigger);
     }
 
     public void PlayAttack(InputAction.CallbackContext context)
