@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
-  m_Name: Choppy
+  m_Script: {fileID: 11500000, guid: c91efd6ed6f44b41a391e19c2db0d805, type: 3}
+  m_Name: Cervelas_Stoemp
   m_EditorClassIdentifier: 
-  input: 14
-  output: 15
-  outputPrefab: {fileID: 8127888706758936897, guid: 64ada8d0161794144ac0551a3ce26c55, type: 3}
+  IngredientsInput: 1000000007000000
+  Output: 20
+  OutputPrefab: {fileID: 4828952167413464975, guid: 841fbde48f5228d469df59ba3c115ba6, type: 3}

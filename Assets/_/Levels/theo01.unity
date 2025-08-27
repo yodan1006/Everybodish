@@ -2682,6 +2682,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 153450040}
   m_SourcePrefab: {fileID: 100100000, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+--- !u!1001 &6944426689644335911
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.783052
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -44.568382
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 38.909058
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709565020441597615, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694814349591059396, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
+      propertyPath: m_Name
+      value: P_Slicer_Items_Smashed_Potatoes_Grabable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 382d14aa36095df46be4edce1f33ee76, type: 3}
 --- !u!1001 &9054175092504469346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2772,3 +2829,4 @@ SceneRoots:
   - {fileID: 824409213}
   - {fileID: 246079798}
   - {fileID: 2026672551}
+  - {fileID: 6944426689644335911}

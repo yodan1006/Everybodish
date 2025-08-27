@@ -19,9 +19,10 @@
         Player,
         Choppy,
         Saussage,
-
-
-        
+        Fries_Cornet,
+        BouletteSauceLapin,
+        Riettes,
+        CervelasStoemp,
     }
     
 }
