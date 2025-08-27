@@ -1,14 +1,15 @@
 using DebugBehaviour.Runtime;
 using Grab.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Grab.Runtime
 {
-    public class Grabber : VerboseMonoBehaviour, IGrabber
+    public abstract class Grabber : VerboseMonoBehaviour, IGrabber
     {
         private IGrabable grabable;
         [SerializeField] protected float maxGrabRange = 5.0f;
 
-        protected IGrabable Grabable { get => grabable; }
+       public IGrabable Grabable { get => grabable; }
 
         public bool TryGrab(IGrabable newGrabable)
         {
@@ -21,7 +22,7 @@ namespace Grab.Runtime
                 float distance = Vector3.Distance(grabberPosition, grabablePosition);
                 if (distance < maxGrabRange)
                 {
-                    if (newGrabable.TryGrab(this))
+                    if (!IsGrabbing() && newGrabable.TryGrab(this))
                     {
                         grabable = newGrabable;
                         success = true;
@@ -43,13 +44,15 @@ namespace Grab.Runtime
             return success;
         }
 
-        public void Release()
+        public bool Release()
         {
+            bool success = false;
             if (IsGrabbing())
             {
-                grabable.Release();
+                success = grabable.Release();
                 grabable = null;
             }
+            return success;
         }
 
         public bool IsGrabbing()
@@ -61,5 +64,9 @@ namespace Grab.Runtime
         {
             Release();
         }
+
+        public abstract void OnGrabAction(InputAction.CallbackContext callbackContext);
+
+        public abstract void OnRelease(InputAction.CallbackContext callbackContext);
     }
 }

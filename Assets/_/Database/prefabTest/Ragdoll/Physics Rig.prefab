@@ -155,6 +155,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4083646151206151804, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6077965682826866123}
+    - targetCorrespondingSourceObject: {fileID: 4083646151206151804, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6683538765921956277}
     - targetCorrespondingSourceObject: {fileID: -2981687600441220834, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2978483279464441932}
@@ -172,6 +175,9 @@ PrefabInstance:
       addedObject: {fileID: 2009080959075863043}
     - targetCorrespondingSourceObject: {fileID: 4324166138896447989, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8532485414693011297}
+    - targetCorrespondingSourceObject: {fileID: 4324166138896447989, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5094256592331455595}
     - targetCorrespondingSourceObject: {fileID: -1446865062516700593, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
@@ -179,6 +185,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1446865062516700593, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4448028805757393530}
+    - targetCorrespondingSourceObject: {fileID: -1446865062516700593, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3169620990985287845}
     - targetCorrespondingSourceObject: {fileID: -1446865062516700593, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4688289719935975489}
@@ -208,6 +217,9 @@ PrefabInstance:
       addedObject: {fileID: 7654733773241650250}
     - targetCorrespondingSourceObject: {fileID: -1075304001374419446, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5934493120561176340}
+    - targetCorrespondingSourceObject: {fileID: -1075304001374419446, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2991475845168562727}
     - targetCorrespondingSourceObject: {fileID: -4174457886397755807, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
@@ -226,6 +238,9 @@ PrefabInstance:
       addedObject: {fileID: 3473385973366256750}
     - targetCorrespondingSourceObject: {fileID: 8752249864990427755, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 9104607783748783930}
+    - targetCorrespondingSourceObject: {fileID: 8752249864990427755, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3631100222312325610}
     - targetCorrespondingSourceObject: {fileID: -1619557178258832281, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
@@ -242,6 +257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -4345105073962152880, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4328476409614033791}
+    - targetCorrespondingSourceObject: {fileID: -4345105073962152880, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1173323248131670809}
     - targetCorrespondingSourceObject: {fileID: -4345105073962152880, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4347426281043293334}
@@ -299,6 +317,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6683538765921956277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248351093277934656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!1 &566559342263802825 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4324166138896447989, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
@@ -352,6 +389,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8532485414693011297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566559342263802825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!144 &5094256592331455595
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -554,6 +610,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9104607783748783930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803203799774062679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!144 &3631100222312325610
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -655,6 +730,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5934493120561176340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390127314684372022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!144 &2991475845168562727
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -756,6 +850,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3169620990985287845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779780152265615475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!144 &4688289719935975489
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1158,6 +1271,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1173323248131670809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677664065694002796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVerbose: 1
+  holdAreaConstraints: 0
+  releaseAreaConstraints: 0
+  grabbedBehaviour: 0
+  movementStrategy: 2
+  holdDistanceFromPlayer: {x: 0, y: 1, z: 1}
+  isGrabable: 1
 --- !u!144 &4347426281043293334
 CharacterJoint:
   m_ObjectHideFlags: 0

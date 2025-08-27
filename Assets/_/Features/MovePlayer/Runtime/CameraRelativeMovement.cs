@@ -9,7 +9,8 @@ namespace ActiveRagdoll.Runtime
     {
         [Header("Movement Settings")]
         public bool inverted = false;
-        public float moveSpeed = 5f;
+        public float baseMoveSpeed = 5f;
+        public float moveSpeedMultiplier = 1f;
         public Transform cameraTransform;
 
 
@@ -17,18 +18,20 @@ namespace ActiveRagdoll.Runtime
         private Animator animator;
 
         private Vector2 inputMovement;
-        private float verticalVelocity;
+        private readonly float verticalVelocity;
         private bool isGrounded;
 
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            if(cameraTransform == null)cameraTransform = Camera.main.transform;
+            controller.enabled = true;
         }
 
         private void OnDisable()
         {
-            animator.SetFloat("speedMove", 0);
+            SetAnimatorMoveSpeed(0);
         }
 
         public void OnMovement(InputAction.CallbackContext context)
@@ -49,21 +52,26 @@ namespace ActiveRagdoll.Runtime
             moveDir = moveDir.normalized;
 
             // Apply movement and gravity
-            Vector3 velocity = moveDir * moveSpeed * inputMovement.magnitude;
+            Vector3 velocity = moveDir * baseMoveSpeed * inputMovement.magnitude * moveSpeedMultiplier;
             velocity.y = verticalVelocity;
 
             controller.Move(velocity * Time.deltaTime);
             if (inverted == false)
             {
-                animator.SetFloat("speedMove", inputMovement.magnitude);
+                SetAnimatorMoveSpeed(inputMovement.magnitude);
 
             }
             else
             {
                 //Play animation backwards, needs changes in animator
                 //animator.SetFloat("speedMove", -inputMovement.magnitude);
-                animator.SetFloat("speedMove", inputMovement.magnitude);
+                SetAnimatorMoveSpeed(inputMovement.magnitude);
             }
+        }
+
+        private void SetAnimatorMoveSpeed(float speed)
+        {
+            animator.SetFloat("MoveSpeed", inputMovement.magnitude);
         }
 
         private static Vector3 GetGroundedVector(Vector3 vector)

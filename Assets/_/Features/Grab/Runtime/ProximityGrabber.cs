@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using Grab.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Grab.Runtime
 {
     [DisallowMultipleComponent]
     public class ProximityGrabber : RigidbodyGrabber, IProximityGrabber
     {
         [SerializeField] protected Transform grabAreaCenter;
-        public float grabAreaRadius = 0.5f;
+        public float grabAreaRadius = 1f;
         public LayerMask layerMask;
 
 
@@ -85,22 +86,36 @@ namespace Grab.Runtime
             }
         }
 
-        public void OnGrabAction()
+
+        public new void OnRelease(InputAction.CallbackContext callbackContext)
         {
-            Log("Grab");
-            Collider[] colliders = GetCollidersInArea();
-            Log($"Found {colliders.Length} colliders", this);
-            List<IGrabable> grabables = GetGrabables(colliders);
-            Log($"Found {grabables.Count} grabables", this);
-            if (TryGrabClosestAvailable(grabables))
+            if (IsGrabbing())
             {
-                Log("Grab successful", this);
-            }
-            else
-            {
-                Log("Grab unsuccessful", this);
+                base.OnRelease(callbackContext);
             }
         }
 
+        public override void OnGrabAction(InputAction.CallbackContext callbackContext)
+        {
+            if (!IsGrabbing())
+            {
+                Log("Grab");
+                Collider[] colliders = GetCollidersInArea();
+                Log($"Found {colliders.Length} colliders", this);
+                List<IGrabable> grabables = GetGrabables(colliders);
+                Log($"Found {grabables.Count} grabables", this);
+                TryGrabClosestAvailable(grabables);
+            }
+        }
+
+        void IProximityGrabber.OnGrabAction(InputAction.CallbackContext callbackContext)
+        {
+            OnGrabAction(callbackContext);
+        }
+
+        void IProximityGrabber.OnRelease(InputAction.CallbackContext callbackContext)
+        {
+            OnRelease(callbackContext);
+        }
     }
 }
