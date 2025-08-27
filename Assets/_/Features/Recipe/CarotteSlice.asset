@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
   m_Name: CarotteSlice
   m_EditorClassIdentifier: 
-  input: 0
+  input: 1
   output: 2
   outputPrefab: {fileID: 919132149155446097, guid: f5776520c4848be459f7e79a08ba325c, type: 3}

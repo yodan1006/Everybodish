@@ -282,10 +282,10 @@ MonoBehaviour:
     m_ActionName: 'Player/Grab[/Keyboard/e,/XInputControllerWindows1/rightShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Grab.Runtime.RigidbodyGrabber, Grab.Runtime
-        m_MethodName: Release
-        m_Mode: 1
+      - m_Target: {fileID: 3527468895308488571}
+        m_TargetAssemblyTypeName: Grab.Runtime.AnimatedProximityGrabber, Grab.Runtime
+        m_MethodName: OnRelease
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
