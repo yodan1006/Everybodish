@@ -9,7 +9,7 @@ namespace Grab.Runtime
         private IGrabable grabable;
         [SerializeField] protected float maxGrabRange = 5.0f;
 
-       public IGrabable Grabable { get => grabable; }
+        public IGrabable Grabable { get => grabable; }
 
         public bool TryGrab(IGrabable newGrabable)
         {

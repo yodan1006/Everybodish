@@ -24,15 +24,16 @@ namespace ActiveRagdoll.Runtime
 
         // Update is called once per frame
         protected void Update()
-            {
+        {
             if (respawnTimeDelta > 0)
             {
                 respawnTimeDelta -= Time.deltaTime;
-                if (respawnTimeDelta <= 0) {
+                if (respawnTimeDelta <= 0)
+                {
                     playerTeleporter.TeleportTo(transform);
                 }
             }
-            }
+        }
 
         #endregion
 
@@ -45,23 +46,24 @@ namespace ActiveRagdoll.Runtime
             respawnTimeDelta = respawnTime;
         }
 
-        public void KillPlayerNoRespawn() {
+        public void KillPlayerNoRespawn()
+        {
             m_playerRoot.SetActive(false);
             m_ragdollRoot.SetActive(false);
         }
 
         #endregion
-        
-        
+
+
         #region Utils
-        
+
         #endregion
-        
-        
+
+
         #region Private and Protected
-        
+
         #endregion
-        
-        
+
+
     }
 }

@@ -12,7 +12,8 @@ namespace MovePlayer.Runtime
             {
                 receiver.TakeDamage(degat);
                 Debug.Log("Attacked player!");
-            }else
+            }
+            else
             {
                 Debug.Log("Damage Receiver not found : " + collider.gameObject.name, this);
             }
