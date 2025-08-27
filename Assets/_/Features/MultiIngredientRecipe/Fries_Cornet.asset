@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
-  m_Name: Choppy
+  m_Script: {fileID: 11500000, guid: c91efd6ed6f44b41a391e19c2db0d805, type: 3}
+  m_Name: Fries_Cornet
   m_EditorClassIdentifier: 
-  input: 14
-  output: 15
-  outputPrefab: {fileID: 8127888706758936897, guid: 64ada8d0161794144ac0551a3ce26c55, type: 3}
+  IngredientsInput: 0a00000006000000
+  Output: 17
+  OutputPrefab: {fileID: 3709172563631499976, guid: 181d96ad8c2bb4e479d3b3e4ba8ad54c, type: 3}
