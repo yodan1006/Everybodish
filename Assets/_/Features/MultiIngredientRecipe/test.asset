@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91efd6ed6f44b41a391e19c2db0d805, type: 3}
   m_Name: test
   m_EditorClassIdentifier: 
-  IngredientsInput: 
-  Output: 0
-  OutputPrefab: {fileID: 0}
+  IngredientsInput: 0100000005000000
+  Output: 8
+  OutputPrefab: {fileID: 3059587863991007631, guid: 234a27dde12a86043b0078c24143c015, type: 3}
