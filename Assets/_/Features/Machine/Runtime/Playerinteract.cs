@@ -43,7 +43,7 @@ namespace Machine.Runtime
             if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food) || food == null)
                 return;
 
-            Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+            Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
 
             foreach (var hit in hits)
             {
@@ -71,7 +71,7 @@ namespace Machine.Runtime
 
         private void SpawnAndGrabFood()
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
+            Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
             foreach (var hit in hits)
             {
                 if (hit.TryGetComponent<Barille>(out var barille))

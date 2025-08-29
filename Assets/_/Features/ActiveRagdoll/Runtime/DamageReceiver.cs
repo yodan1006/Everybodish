@@ -16,7 +16,7 @@ namespace MovePlayer.Runtime
             if (stat.m_life < 0)
             {
                 stun.enabled = true;
-                stunDuration = stunDurationDelta;
+                stunDurationDelta = stunDuration;
             }
         }
         #endregion
