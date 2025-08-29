@@ -99,7 +99,7 @@ namespace DebugBehaviour.Runtime
         {
             if (isVerbose)
             {
-                Debug.Log(message, context);
+                Debug.LogError(message, context);
             }
         }
 

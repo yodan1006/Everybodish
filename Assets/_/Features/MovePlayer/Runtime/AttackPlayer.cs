@@ -13,7 +13,7 @@ namespace MovePlayer.Runtime
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-            other.GetComponent<PlayerStat>().m_life -= damage;
+            other.GetComponent<PlayerStat>().HurtPlayer(1);
         }
 
         public void Attack(InputAction.CallbackContext context)

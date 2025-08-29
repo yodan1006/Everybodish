@@ -11,7 +11,7 @@ namespace Grab.Runtime
         public float grabAreaRadius = 1f;
         public LayerMask layerMask;
         [SerializeField] protected GameObject root;
-        public Collider[] selfColliders;
+        private Collider[] selfColliders;
 
         protected new void Awake()
         {
@@ -72,7 +72,7 @@ namespace Grab.Runtime
                     Log($"{grabables[i].name}");
                     if (closestAvailableGrabable != null)
                     {
-                        if (!grabables[i].IsGrabbed() && grabables[i].IsGrabable)
+                        if (grabables[i].IsGrabable)
                         {
                             if (Vector3.Distance(grabAreaCenter.position, grabables[i].transform.position) < closestGrabableDistance)
                             {
