@@ -9,11 +9,11 @@ namespace Grab.Runtime
         private IGrabable grabable;
         [SerializeField] protected float maxGrabRange = 5.0f;
 
-       public IGrabable Grabable { get => grabable; }
+        public IGrabable Grabable { get => grabable; }
 
         public bool TryGrab(IGrabable newGrabable)
         {
-            Debug.Log("Grabber.TryGrab");
+            Log("Grabber.TryGrab");
             bool success = false;
             if (newGrabable.gameObject != transform.gameObject)
             {
@@ -22,24 +22,41 @@ namespace Grab.Runtime
                 float distance = Vector3.Distance(grabberPosition, grabablePosition);
                 if (distance < maxGrabRange)
                 {
-                    if (!IsGrabbing() && newGrabable.TryGrab(this))
+                    if (!IsGrabbing())
                     {
-                        grabable = newGrabable;
-                        success = true;
+                        if (newGrabable.IsGrabable)
+                        {
+                            if (newGrabable.TryGrab(this))
+                            {
+                                grabable = newGrabable;
+                                success = true;
+                                Log("Grab successful", this);
+                            }
+                            else
+                            {
+                                Log("Mysterious forces oppose themselves to your grabbing this object.", this);
+                            }
+
+                        }
+                        else
+                        {
+                            Log("Grabber is not currently grabable.  Grab failed.", this);
+                        }
+
                     }
                     else
                     {
-                        Debug.Log("Grab failed. Is something already holding the grabable or is is not available?");
+                        Log("Grabber is already grabbing something. Grab failed.", this);
                     }
                 }
                 else
                 {
-                    Debug.LogError($"Grabbed item was over grab range. Is something wrong? Distance:{distance} Grab Range:{maxGrabRange}", this);
+                    Log($"Grabbed item was over grab range. Is something wrong? Distance:{distance} Grab Range:{maxGrabRange}", this);
                 }
             }
             else
             {
-                Debug.LogError("STOP GRABBING YOURSELF.", this);
+                Log("STOP GRABBING YOURSELF.", this);
             }
             return success;
         }

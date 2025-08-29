@@ -7,16 +7,16 @@ namespace MovePlayer.Runtime
     public class DamageReceiver : MonoBehaviour
     {
         public float stunDuration = 5;
-        public float stunDurationDelta = 0;
+        private float stunDurationDelta = 0;
         #region Publics
         public void TakeDamage(int damage)
         {
             Debug.Log("Took damage!");
-            stat.m_life -= damage;
-            if (stat.m_life < 0)
+            stat.HurtPlayer(1);
+            if (stat.CurrentLife() < 0)
             {
                 stun.enabled = true;
-                stunDuration = stunDurationDelta;
+                stunDurationDelta = stunDuration;
             }
         }
         #endregion
@@ -38,6 +38,7 @@ namespace MovePlayer.Runtime
                 if (stunDurationDelta <= 0)
                 {
                     stun.enabled = false;
+                    stat.ResetLife();
                 }
             }
         }

@@ -1,5 +1,4 @@
-﻿using Grab.Runtime;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Machine.Runtime
 {
@@ -7,7 +6,7 @@ namespace Machine.Runtime
     {
         [SerializeField] private GameObject _foodPrefab;
         [SerializeField] private Transform _foodSpawnPoint;
-        
+
         public Transform SpawnPoint => _foodSpawnPoint;
 
         public bool TryProvideFood(out GameObject prefab)

@@ -422,7 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18baa7adfd88934496e341d4440d6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabables: []
+  grabables:
+  - {fileID: 9185769199870056687}
   physicsRig: {fileID: 7425460227140611265}
   physicsHip: {fileID: 6008338345124722668}
   playerTeleporter: {fileID: 9216517357953483427}
@@ -526,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d171e36149bc444ebb6159bc96044411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_life: 2
+  m_maxLife: 3
 --- !u!114 &4961796328084089532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +573,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   root: {fileID: 433505672345845218}
-  selfColliders: []
 --- !u!114 &8943239395027508255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2778,3 +2778,14 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2878192908170653873, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
   m_PrefabInstance: {fileID: 5770155541836673964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9185769199870056687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3416505400920877891, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008338345124722668}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

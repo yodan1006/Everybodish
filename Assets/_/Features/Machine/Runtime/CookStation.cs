@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -7,7 +6,7 @@ namespace Machine.Runtime
     {
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem particle;
-        
+
         [SerializeField] private Recipe[] recipes;
         [SerializeField] private Transform spawnPoint; // pour le plat final
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
