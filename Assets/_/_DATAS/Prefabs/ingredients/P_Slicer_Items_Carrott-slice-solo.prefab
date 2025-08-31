@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Slicer_Items_Carrott-slice-solo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b584f9d81dd1c4a44ac2318c082535bd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
