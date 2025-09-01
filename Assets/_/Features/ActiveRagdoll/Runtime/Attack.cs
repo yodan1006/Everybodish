@@ -31,11 +31,7 @@ public class Attack : MonoBehaviour
     {
         if (context.performed && !_proximityGrabber.IsGrabbing())
         {
-            _animator.SetBool("Attack", true);
-        }
-        else if (context.canceled)
-        {
-            _animator.SetBool("Attack", false);
+            _animator.SetTrigger("Attack");
         }
     }
 
