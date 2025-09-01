@@ -11,10 +11,10 @@ public class GameTimer : MonoBehaviour
 
     private void Update()
     {
-    if(hasStarted && !isStopped)
+        if (hasStarted && !isStopped)
         {
-            currentTime =+ Time.deltaTime;
-        }    
+            currentTime = +Time.deltaTime;
+        }
     }
 
     public float ElapsedTime

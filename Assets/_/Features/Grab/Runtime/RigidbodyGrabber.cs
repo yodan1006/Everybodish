@@ -13,6 +13,7 @@ namespace Grab.Runtime
         [SerializeField] protected float maxPickupForce = 50f;
         [SerializeField] protected float heldLinearDamping = 10f;
         [SerializeField] protected float snapbackDistanceMultiplier = 1.5f;
+        [SerializeField] protected float damageVelocityThreshold = 1.0f;
         [SerializeField] protected LayerMask snapbackLayer;
         //TODO: item rotation over time
         //[SerializeField] protected float rotationSpeed = 10f;

@@ -29,15 +29,17 @@ namespace ActiveRagdoll.Runtime
         {
             if (!proximityGrabber.IsGrabbing())
             {
-            attackTrigger.enabled = true;
-            Debug.Log("AnimEventActiveHeadButt");
-            }else
+                attackTrigger.enabled = true;
+                Debug.Log("AnimEventActiveHeadButt");
+            }
+            else
             {
                 Grab.Data.IGrabable grabable = proximityGrabber.Grabable;
                 proximityGrabber.Release();
-                if(grabable.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                if (grabable.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
                 {
-                    rb.linearVelocity =(transform.forward + transform.up).normalized * throwObjectForce;
+                    rb.linearVelocity = (transform.forward + transform.up).normalized * throwObjectForce;
+
                 }
             }
 
