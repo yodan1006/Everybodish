@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 5
+  playerSpawnSystem: {fileID: 0}
 --- !u!1001 &5321892395806503948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202,6 +203,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
       propertyPath: m_Name
       value: 3D_Items_Potatoes
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

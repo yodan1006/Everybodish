@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "3D_dishe_Items_Americain-pr\xE9parer"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d373141f48d3c5458fae35f3df21377, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -234,3 +238,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 19
+  playerSpawnSystem: {fileID: 0}
