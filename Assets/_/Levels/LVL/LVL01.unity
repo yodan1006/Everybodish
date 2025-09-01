@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_UsePipelineSettings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4060428790503486372, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4465882016790409962, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Shadows.m_Bias
       value: 0
