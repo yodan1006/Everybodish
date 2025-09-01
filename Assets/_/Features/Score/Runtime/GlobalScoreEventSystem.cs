@@ -10,10 +10,10 @@ namespace Score.Runtime
         public static GlobalScoreEventSystem Instance { get; private set; }
 
         private readonly List<ScoreEvent> scoreEventLog = new();
-        private readonly Dictionary<PlayerID, int> playerScores = new();
+        private readonly Dictionary<int, int> playerScores = new();
 
         public IReadOnlyList<ScoreEvent> ScoreEventLog => scoreEventLog.AsReadOnly();
-        public IReadOnlyDictionary<PlayerID, int> PlayerScores => playerScores;
+        public IReadOnlyDictionary<int, int> PlayerScores => playerScores;
 
         [Header("Score Events")]
         public ScoreEventUnityEvent OnScoreEvent = new();
@@ -29,13 +29,13 @@ namespace Score.Runtime
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            foreach (PlayerID player in System.Enum.GetValues(typeof(PlayerID)))
+            foreach (int player in playerScores.Keys)
             {
                 playerScores[player] = 0;
             }
         }
 
-        public void RegisterScoreEvent(PlayerID player, ScoreEventType eventType, int scoreDelta, PlayerID? targetPlayer = null)
+        public void RegisterScoreEvent(int player, ScoreEventType eventType, int scoreDelta, int? targetPlayer = null)
         {
             var scoreEvent = new ScoreEvent(player, eventType, scoreDelta, targetPlayer);
             scoreEventLog.Add(scoreEvent);
@@ -52,12 +52,12 @@ namespace Score.Runtime
             OnScoreEvent.Invoke(scoreEvent);
         }
 
-        public int GetScore(PlayerID player)
+        public int GetScore(int player)
         {
             return playerScores.TryGetValue(player, out int score) ? score : 0;
         }
 
-        public List<(PlayerID player, int score)> GetLeaderboard()
+        public List<(int player, int score)> GetLeaderboard()
         {
             return playerScores
                 .OrderByDescending(pair => pair.Value)
@@ -69,7 +69,7 @@ namespace Score.Runtime
         public void ResetAllScores()
         {
             scoreEventLog.Clear();
-            foreach (PlayerID player in playerScores.Keys)
+            foreach (int player in playerScores.Keys)
                 playerScores[player] = 0;
         }
     }
