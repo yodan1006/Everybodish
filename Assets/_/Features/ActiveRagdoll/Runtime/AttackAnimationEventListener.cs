@@ -7,9 +7,11 @@ namespace ActiveRagdoll.Runtime
     public class AttackAnimationEventListener : MonoBehaviour
     {
         #region Publics
-        public void Initialize(AttackTrigger attackTrigger)
+        public void Initialize(Attack attack, Animator animator, AttackTrigger attackTrigger)
         {
+            this.attack = attack;
             this.attackTrigger = attackTrigger;
+            this.animator = animator;
         }
         #endregion
 
@@ -31,6 +33,18 @@ namespace ActiveRagdoll.Runtime
             Debug.Log("AnimEventDisableHeadButt");
             attackTrigger.enabled = false;
         }
+
+        public void AttackStart()
+        {
+            attack.SetSpeedMultiplier(true);
+        }
+
+        public void AttackEnd()
+        {
+            attack.SetSpeedMultiplier(false);
+        }
+
+
         #endregion
 
 
@@ -41,6 +55,8 @@ namespace ActiveRagdoll.Runtime
 
         #region Private and Protected
         private AttackTrigger attackTrigger;
+        private Attack attack;
+        private Animator animator;
         #endregion
 
 

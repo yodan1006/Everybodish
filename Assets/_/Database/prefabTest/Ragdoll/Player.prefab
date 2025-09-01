@@ -543,8 +543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1874292481697590273}
   damage: 0
-  attackDuration: 1
-  movementLockDurationLeft: 0
   attackMoveSpeedMultiplier: 0.5
 --- !u!114 &3527468895308488571
 MonoBehaviour:
@@ -612,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 14
+  playerSpawnSystem: {fileID: 4932812266720519798}
 --- !u!114 &3955544047821425982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +624,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 5
-  stunDurationDelta: 0
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0
