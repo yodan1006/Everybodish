@@ -4,7 +4,7 @@ namespace Machine.Runtime
 {
     public class PlayerInventory : MonoBehaviour
     {
-        
+
         private Food carriedFood;
 
         public bool HasFood => carriedFood != null;

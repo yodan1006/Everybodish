@@ -8,8 +8,8 @@ namespace Machine.Runtime
     {
         [SerializeField] private MultiIngredientRecipe[] recipes;
         [SerializeField] private Transform output;
-        
-        private List<Food> _storedFoods = new List<Food>();
+
+        private readonly List<Food> _storedFoods = new List<Food>();
 
         public void AddFood(Food food)
         {
@@ -38,7 +38,7 @@ namespace Machine.Runtime
                 }
             }
         }
-        
+
         private void SpawnCookedFood(GameObject prefab)
         {
             Instantiate(prefab, output.position, Quaternion.identity);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
   m_Name: Saussage
   m_EditorClassIdentifier: 
-  input: 14
+  input: 15
   output: 16
   outputPrefab: {fileID: 203948742327318100, guid: 707e2e0ce8374484bbf9fbf1ef903edc, type: 3}

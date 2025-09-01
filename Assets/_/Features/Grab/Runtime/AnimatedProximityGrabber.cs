@@ -10,7 +10,7 @@ namespace Grab.Runtime
         private Animator animator;
         private int grabLayerIndex;
         // Grab Layer
-        private new void Awake()
+        protected new void Awake()
         {
             base.Awake();
             bool found = false;
@@ -83,7 +83,13 @@ namespace Grab.Runtime
 
         public new bool TryGrab(IGrabable newGrabable)
         {
-            return base.TryGrab(newGrabable);
+            bool success = false;
+            if (base.TryGrab(newGrabable))
+            {
+                animator.SetLayerWeight(grabLayerIndex, 1);
+                success = true;
+            }
+            return success; ;
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -7,40 +6,45 @@ namespace Machine.Runtime
     {
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem particle;
-        
+
         [SerializeField] private Recipe[] recipes;
         [SerializeField] private Transform spawnPoint; // pour le plat final
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
+        public bool _isCooking = false;
         private Food _currentFood;
 
         public bool TryCook(Food food, out GameObject resultPrefab)
         {
+
             if (_currentFood != null)
             {
                 resultPrefab = null;
                 return false;
             }
-
-            foreach (var recipe in recipes)
+            if (_isCooking != true)
             {
-                if (recipe.input == food.FoodType)
+                foreach (var recipe in recipes)
                 {
-                    _currentFood = food;
+                    if (recipe.input == food.FoodType)
+                    {
+                        _isCooking = true;
+                        _currentFood = food;
 
-                    // Place l’objet visuellement sur le slot
-                    food.transform.position = foodSlot.position;
-                    food.transform.rotation = foodSlot.rotation;
-                    food.transform.SetParent(foodSlot);
+                        // Place l’objet visuellement sur le slot
+                        food.transform.position = foodSlot.position;
+                        food.transform.rotation = foodSlot.rotation;
+                        //food.transform.SetParent(foodSlot);
 
-                    animator.SetBool("OnSlice", true);
-                    //Destroy(currentFood.gameObject);
-                    //_currentFood = null;
-
-                    resultPrefab = recipe.outputPrefab;
-                    return true;
+                        animator.SetBool("OnSlice", true);
+                        //Destroy(currentFood.gameObject);
+                        //_currentFood = null;
+                        resultPrefab = recipe.outputPrefab;
+                        return true;
+                    }
                 }
             }
+
 
             resultPrefab = null;
             return false;
@@ -58,13 +62,23 @@ namespace Machine.Runtime
 
         public void DestroyObjectInStation()
         {
-            if (_currentFood != null)
+            if (_currentFood == null)
             {
-                Debug.Log("DestroyObjectInStation appelé");
-                Destroy(_currentFood.gameObject);
-                // Debug.Log("Objet brut détruit : " + _currentFood.name);
-                // NE PAS mettre _currentFood = null ici
+                Debug.LogWarning("DestroyObjectInStation appelé mais _currentFood est null !");
+                return;
             }
+
+            Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
+            if (_currentFood.playerSpawnSystem == null)
+            {
+                Destroy(_currentFood.transform.root.gameObject);
+            }
+            else
+            {
+                _currentFood.playerSpawnSystem.KillPlayer();
+            }
+
+            _currentFood = null;
         }
 
         public void SpawnCookedFood()
@@ -98,10 +112,12 @@ namespace Machine.Runtime
             {
                 Debug.LogWarning("SpawnCookedFood : recette introuvable ou prefab manquant pour " + foodToCook.FoodType);
             }
-
-            // Fin animation et nettoyage
             animator.SetBool("OnSlice", false);
-            _currentFood = null;
+        }
+
+        private void EndingRecipe()
+        {
+            _isCooking = false;
         }
     }
 }

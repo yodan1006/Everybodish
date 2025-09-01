@@ -10,7 +10,18 @@ namespace Grab.Runtime
         [SerializeField] protected Transform grabAreaCenter;
         public float grabAreaRadius = 1f;
         public LayerMask layerMask;
+        [SerializeField] protected GameObject root;
+        private Collider[] selfColliders;
 
+        protected new void Awake()
+        {
+            base.Awake();
+            if (root == null)
+            {
+                root = transform.parent.gameObject;
+            }
+            selfColliders = root.GetComponentsInChildren<Collider>(true);
+        }
 
         public Collider[] GetCollidersInArea()
         {
@@ -23,18 +34,26 @@ namespace Grab.Runtime
             foreach (Collider collider in colliders)
             {
                 Log($"{collider.name}");
-                //self check
-                if (collider.gameObject != transform.gameObject)
+                bool found = false;
+                foreach (Collider selfCollider in selfColliders)
+                {
+                    if (collider == selfCollider)
+                    {
+                        found = true; break;
+                    }
+                }
+                if (found == true)
+                {
+                    Log("Player collider is overlapping with grab area. Filtering out.");
+                }
+                else
                 {
                     Grabable grabable = collider.gameObject.GetComponentInChildren<Grabable>();
                     if (grabable != null)
                     {
                         grabables.Add(grabable);
                     }
-                }
-                else
-                {
-                    Log("Player collider is overlapping with grab area. Filtering out.");
+
                 }
             }
             return grabables;
@@ -53,7 +72,7 @@ namespace Grab.Runtime
                     Log($"{grabables[i].name}");
                     if (closestAvailableGrabable != null)
                     {
-                        if (!grabables[i].IsGrabbed() && grabables[i].IsGrabable)
+                        if (grabables[i].IsGrabable)
                         {
                             if (Vector3.Distance(grabAreaCenter.position, grabables[i].transform.position) < closestGrabableDistance)
                             {

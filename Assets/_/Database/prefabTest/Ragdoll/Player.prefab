@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975634278693844309}
   - component: {fileID: 9216517357953483427}
+  - component: {fileID: 4932812266720519798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -79,6 +80,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerRoot: {fileID: 1700003924638526194}
   m_ragdollRoot: {fileID: 7425460227140611265}
+--- !u!114 &4932812266720519798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8397d443473b30343986a7da064ab3bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 5
+  m_playerRoot: {fileID: 1700003924638526194}
+  m_ragdollRoot: {fileID: 7425460227140611265}
 --- !u!1 &1700003924638526194
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +118,8 @@ GameObject:
   - component: {fileID: 3527468895308488571}
   - component: {fileID: 8943239395027508255}
   - component: {fileID: 7350386438472817992}
+  - component: {fileID: 6187919576285209978}
+  - component: {fileID: 3955544047821425982}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -282,10 +300,10 @@ MonoBehaviour:
     m_ActionName: 'Player/Grab[/Keyboard/e,/XInputControllerWindows1/rightShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Grab.Runtime.RigidbodyGrabber, Grab.Runtime
-        m_MethodName: Release
-        m_Mode: 1
+      - m_Target: {fileID: 3527468895308488571}
+        m_TargetAssemblyTypeName: Grab.Runtime.AnimatedProximityGrabber, Grab.Runtime
+        m_MethodName: OnRelease
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -405,9 +423,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18baa7adfd88934496e341d4440d6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabables: []
+  grabables:
+  - {fileID: 9185769199870056687}
   physicsRig: {fileID: 7425460227140611265}
   physicsHip: {fileID: 6008338345124722668}
+  playerTeleporter: {fileID: 9216517357953483427}
 --- !u!114 &4895347299854833210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 0
-  rotationSpeed: 10
+  rotationSpeed: 8
   cameraTransform: {fileID: 0}
 --- !u!114 &9193291211187720016
 MonoBehaviour:
@@ -508,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d171e36149bc444ebb6159bc96044411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_life: 2
+  m_maxLife: 3
 --- !u!114 &4961796328084089532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,8 +543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 1874292481697590273}
   damage: 0
-  attackDuration: 1
-  movementLockDurationLeft: 0
   attackMoveSpeedMultiplier: 0.5
 --- !u!114 &3527468895308488571
 MonoBehaviour:
@@ -552,7 +570,8 @@ MonoBehaviour:
   grabAreaRadius: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 448
+  root: {fileID: 433505672345845218}
 --- !u!114 &8943239395027508255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +596,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376dc51cac498d0468ef13544741ee91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusDetector: 2
+  radiusDetector: 0.7
+--- !u!114 &6187919576285209978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodType: 14
+  playerSpawnSystem: {fileID: 4932812266720519798}
+--- !u!114 &3955544047821425982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04a50ed12b8b4f488eeac759671601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunDuration: 5
 --- !u!1 &4377396605695371676
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +635,7 @@ GameObject:
   - component: {fileID: 8433824893248009446}
   - component: {fileID: 1874292481697590273}
   - component: {fileID: 5356192351409314552}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2745,3 +2791,14 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2878192908170653873, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
   m_PrefabInstance: {fileID: 5770155541836673964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9185769199870056687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3416505400920877891, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008338345124722668}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2633695fb474ec146a0906265185b618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

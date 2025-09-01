@@ -55,22 +55,29 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.7553423
+      - time: 0.70013523
         functionName: ActivateParticuleSysteme
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.761609
+      - time: 0.72346604
         functionName: SpawnCookedFood
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.76896876
+      - time: 0.7418671
         functionName: DestroyObjectInStation
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9975873
+        functionName: EndingRecipe
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

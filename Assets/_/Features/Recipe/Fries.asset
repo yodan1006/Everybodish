@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
   m_Name: Fries
   m_EditorClassIdentifier: 
-  input: 8
+  input: 5
   output: 6
   outputPrefab: {fileID: 6221054133954062723, guid: 6ff824cee17461449bc90bc9648de68b, type: 3}
