@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
         _proximityGrabber = GetComponent<AnimatedProximityGrabber>();
 
         AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(this,_animator, _attackTrigger);
+        animationEventListener.Initialize(this, _animator, _attackTrigger);
     }
 
     public void PlayAttack(InputAction.CallbackContext context)
@@ -44,7 +44,8 @@ public class Attack : MonoBehaviour
         if (isSet)
         {
             _movement.moveSpeedMultiplier = attackMoveSpeedMultiplier;
-        }else
+        }
+        else
         {
             _movement.moveSpeedMultiplier = 1;
         }

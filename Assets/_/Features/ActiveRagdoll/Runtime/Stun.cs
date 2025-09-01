@@ -30,7 +30,7 @@ namespace ActiveRagdoll.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _rootRigidBody = GetComponent<Rigidbody>();
-       //     _playerInput = GetComponent<PlayerInput>();
+            //     _playerInput = GetComponent<PlayerInput>();
             _gravity = GetComponent<GravityAndJump>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
@@ -42,7 +42,7 @@ namespace ActiveRagdoll.Runtime
             _attack.enabled = false;
             _rotation.enabled = false;
             _characterController.enabled = false;
-           // _playerInput.enabled = false;
+            // _playerInput.enabled = false;
             _gravity.enabled = false;
             foreach (Grabable grabable in grabables)
             {
@@ -58,7 +58,7 @@ namespace ActiveRagdoll.Runtime
             _attack.enabled = true;
             _rotation.enabled = true;
             _characterController.enabled = true;
-        //    _playerInput.enabled = true;
+            //    _playerInput.enabled = true;
             _gravity.enabled = true;
             foreach (var grabable in grabables)
             {
@@ -113,7 +113,7 @@ namespace ActiveRagdoll.Runtime
         private CameraRelativeRotation _rotation;
         private Rigidbody _rootRigidBody;
         private CharacterController _characterController;
-      //  private PlayerInput _playerInput;
+        //  private PlayerInput _playerInput;
         private GravityAndJump _gravity;
         #endregion
 

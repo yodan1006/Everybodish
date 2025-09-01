@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
 namespace Machine.Runtime
 {
@@ -33,20 +30,21 @@ namespace Machine.Runtime
                     {
                         _isCooking = true;
                         _currentFood = food;
-                
+
                         // Place l’objet visuellement sur le slot
                         food.transform.position = foodSlot.position;
                         food.transform.rotation = foodSlot.rotation;
                         //food.transform.SetParent(foodSlot);
-                
+
                         animator.SetBool("OnSlice", true);
                         //Destroy(currentFood.gameObject);
                         //_currentFood = null;
                         resultPrefab = recipe.outputPrefab;
-                        return true; }
+                        return true;
+                    }
                 }
             }
-            
+
 
             resultPrefab = null;
             return false;
@@ -71,7 +69,15 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            Destroy(_currentFood.transform.root.gameObject);
+            if (_currentFood.playerSpawnSystem == null)
+            {
+                Destroy(_currentFood.transform.root.gameObject);
+            }
+            else
+            {
+                _currentFood.playerSpawnSystem.KillPlayer();
+            }
+
             _currentFood = null;
         }
 
@@ -108,8 +114,8 @@ namespace Machine.Runtime
             }
             animator.SetBool("OnSlice", false);
         }
-        
-        void EndingRecipe()
+
+        private void EndingRecipe()
         {
             _isCooking = false;
         }
