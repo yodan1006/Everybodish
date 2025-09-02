@@ -57,6 +57,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 3854d083288af584a96ced87bf78d1be, type: 2}
     - target: {fileID: 5866666021909216657, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       propertyPath: m_AnimatePhysics
       value: 1
       objectReference: {fileID: 0}

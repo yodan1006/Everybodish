@@ -72,7 +72,12 @@ namespace ActiveRagdoll.Runtime
         {
             initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();
-            ConfigurableJointUtility.SetupAsCharacterJoint(joint);
+        }
+
+        private void OnEnable()
+        {
+            Debug.Log("Resetting joint rotation");
+           // transform.localRotation = initialLocalRotation;
         }
 
         private void FixedUpdate()
