@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 namespace Score.Runtime
 {
 
@@ -17,16 +18,21 @@ namespace Score.Runtime
 
         [Header("Score Events")]
         public ScoreEventUnityEvent OnScoreEvent = new();
+        public UnityEvent OnScoresChanged = new();
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (Instance == null)
             {
-                Destroy(gameObject);
-                return;
+                Instance = this;
+
+            }
+            else
+            {
+                Debug.LogError("More than one GlobalScoreEventSystem instanced! If you want to access the game timer, use GlobalScoreEventSystem.Instance.", this);
             }
 
-            Instance = this;
+
             DontDestroyOnLoad(gameObject);
 
             foreach (int player in playerScores.Keys)
@@ -70,7 +76,10 @@ namespace Score.Runtime
         {
             scoreEventLog.Clear();
             foreach (int player in playerScores.Keys)
+            {
                 playerScores[player] = 0;
+            }
+            OnScoresChanged.Invoke();
         }
     }
 
