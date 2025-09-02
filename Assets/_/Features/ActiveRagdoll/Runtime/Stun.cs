@@ -1,6 +1,5 @@
 using Grab.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ActiveRagdoll.Runtime
 {
@@ -8,7 +7,6 @@ namespace ActiveRagdoll.Runtime
     [RequireComponent(typeof(Attack))]
     [RequireComponent(typeof(CameraRelativeMovement))]
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(GravityAndJump))]
     public class Stun : MonoBehaviour
     {

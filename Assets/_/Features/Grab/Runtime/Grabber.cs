@@ -77,13 +77,13 @@ namespace Grab.Runtime
             return grabable != null;
         }
 
-        private  void OnDisable()
+        private void OnDisable()
         {
             Release();
         }
 
         public abstract void OnGrabAction(InputAction.CallbackContext callbackContext);
 
-        public  abstract void OnRelease(InputAction.CallbackContext callbackContext);
+        public abstract void OnRelease(InputAction.CallbackContext callbackContext);
     }
 }
