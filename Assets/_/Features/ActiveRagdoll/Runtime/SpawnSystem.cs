@@ -7,11 +7,14 @@ namespace ActiveRagdoll.Runtime
     {
         #region Publics
         public float respawnTime = 5;
-        private float respawnTimeDelta;
+        public float respawnTimeDelta;
         private PlayerTeleporter playerTeleporter;
 
-        [SerializeField] private GameObject m_playerRoot;
-        [SerializeField] private GameObject m_ragdollRoot;
+        [SerializeField] private Transform m_playerRoot;
+        [SerializeField] private GameObject m_player;
+        [SerializeField] private Transform m_ragdollRoot;
+        [SerializeField] private GameObject m_ragdoll;
+
         #endregion
 
 
@@ -30,6 +33,9 @@ namespace ActiveRagdoll.Runtime
                 respawnTimeDelta -= Time.deltaTime;
                 if (respawnTimeDelta <= 0)
                 {
+
+                    m_player.SetActive(true);        
+                    m_ragdoll.SetActive(true);   
                     playerTeleporter.TeleportTo(transform);
                 }
             }
@@ -41,15 +47,16 @@ namespace ActiveRagdoll.Runtime
         #region Main Methods
         public void KillPlayer()
         {
-            m_playerRoot.SetActive(false);
-            m_ragdollRoot.SetActive(false);
+            m_player.SetActive(false);
+            m_ragdoll.SetActive(false);
             respawnTimeDelta = respawnTime;
+
         }
 
         public void KillPlayerNoRespawn()
         {
-            m_playerRoot.SetActive(false);
-            m_ragdollRoot.SetActive(false);
+            m_player.SetActive(false);
+            m_ragdoll.SetActive(false);
         }
 
         #endregion
