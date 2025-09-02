@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_ShadowRenderingLayers
       value: 129
       objectReference: {fileID: 0}
+    - target: {fileID: 268655208708716742, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 556999522434144357, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.89
@@ -231,6 +235,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2716452570015324046, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716452570015324046, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716452570015324046, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716452570015324046, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2863473709131458845, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -255,6 +275,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -8.69
       objectReference: {fileID: 0}
+    - target: {fileID: 3802482109080768757, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060428790503486372, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4465882016790409962, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Shadows.m_Bias
       value: 0
@@ -271,6 +299,22 @@ PrefabInstance:
       propertyPath: m_Shadows.m_NormalBias
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4557402928414448826, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557402928414448826, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557402928414448826, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557402928414448826, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4702832893908778463, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_UsePipelineSettings
       value: 0
@@ -282,6 +326,10 @@ PrefabInstance:
     - target: {fileID: 4982599131763897118, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_ShadowRenderingLayers
       value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496472661150876909, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5522266265247997055, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Color.b
@@ -319,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -8.23
       objectReference: {fileID: 0}
+    - target: {fileID: 5633547894913110990, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6154931860007602805, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Color.b
       value: 0.4764151
@@ -330,6 +382,10 @@ PrefabInstance:
     - target: {fileID: 6154931860007602805, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261486590775615005, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6371847076610302086, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,6 +447,26 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 7973255068030724041, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973255068030724041, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973255068030724041, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973255068030724041, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095971054143253182, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8422369895498011369, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Shadows.m_Bias
       value: 0
@@ -410,6 +486,22 @@ PrefabInstance:
     - target: {fileID: 8884920905832041706, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081331271398858784, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081331271398858784, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081331271398858784, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081331271398858784, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
