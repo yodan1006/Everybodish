@@ -1,5 +1,6 @@
 using ActionMap;
 using Grab.Runtime;
+using Machine.Runtime;
 using MovePlayer.Runtime;
 using PlayerMovement.Runtime;
 using UnityEngine;
@@ -82,7 +83,6 @@ namespace Spawner.Runtime
             BindPlayerInput(playerInputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
             BindPlayerInput(playerInputMap.Player.Interact, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
             BindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
-            BindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
         }
 
         public void UnBindPlayerControls()
@@ -90,10 +90,10 @@ namespace Spawner.Runtime
             //Get components
             Debug.Log("Binding inputs");
             UnBindPlayerInput(playerInputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
+            UnBindPlayerInput(playerInputMap.Player.Release, GetComponentInChildren<AnimatedProximityGrabber>().OnRelease);
             UnBindPlayerInput(playerInputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
-            UnBindPlayerInput(playerInputMap.Player.Interact, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
+            UnBindPlayerInput(playerInputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
             UnBindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
-            UnBindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
         }
 
         public static void BindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
