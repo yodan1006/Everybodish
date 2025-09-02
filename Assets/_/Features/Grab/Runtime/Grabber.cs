@@ -11,7 +11,7 @@ namespace Grab.Runtime
 
         public IGrabable Grabable { get => grabable; }
 
-        public bool TryGrab(IGrabable newGrabable)
+        public virtual bool TryGrab(IGrabable newGrabable)
         {
             Log("Grabber.TryGrab");
             bool success = false;
@@ -61,7 +61,7 @@ namespace Grab.Runtime
             return success;
         }
 
-        public bool Release()
+        public virtual bool Release()
         {
             bool success = false;
             if (IsGrabbing())
@@ -72,7 +72,7 @@ namespace Grab.Runtime
             return success;
         }
 
-        public bool IsGrabbing()
+        public virtual bool IsGrabbing()
         {
             return grabable != null;
         }

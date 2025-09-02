@@ -68,7 +68,7 @@ namespace ActiveRagdoll.Runtime
             ApplyAdaptiveConfig();
         }
 
-        private void Start()
+        private void Awake()
         {
             initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();

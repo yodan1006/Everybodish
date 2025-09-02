@@ -472,6 +472,7 @@ MonoBehaviour:
   maxPickupForce: 50
   heldLinearDamping: 10
   snapbackDistanceMultiplier: 1.5
+  damageVelocityThreshold: 1
   snapbackLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -1258,6 +1259,10 @@ PrefabInstance:
       propertyPath: snapbackDistanceMultiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1917181855189238406, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 3694626041651239612}
     - target: {fileID: 2133843357310437445, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1405,22 +1410,6 @@ PrefabInstance:
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
