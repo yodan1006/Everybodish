@@ -1,4 +1,6 @@
 using Grab.Runtime;
+using MovePlayer.Runtime;
+using PlayerMovement.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -111,7 +113,6 @@ namespace ActiveRagdoll.Runtime
         private CameraRelativeRotation _rotation;
         private Rigidbody _rootRigidBody;
         private CharacterController _characterController;
-        //  private PlayerInput _playerInput;
         private GravityAndJump _gravity;
         #endregion
 

@@ -1,12 +1,14 @@
 {
-    "name": "ActiveRagdoll.Runtime",
-    "rootNamespace": "ActiveRagdoll.Runtime",
+    "name": "Spawner.Runtime",
+    "rootNamespace": "Spawner.Runtime",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:4a03ca78fbbf223419e5a3f628bbab87",
-        "GUID:b5745f3fab93bf643825dbdf032a2b0f",
+        "GUID:6f93e3644c1dc384ebd5a1a57bab0a0f",
         "GUID:00c109931f2831e409a63e80b2571e19",
-        "GUID:85d234a834ebc3542af0ac1c2d46ec5e"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:d3b21173be27aad41851fd219c6271f0",
+        "GUID:4a03ca78fbbf223419e5a3f628bbab87",
+        "GUID:644f5f0b2da993c41837a3a3eba94af7",
+        "GUID:b5745f3fab93bf643825dbdf032a2b0f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

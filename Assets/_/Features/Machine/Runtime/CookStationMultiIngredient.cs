@@ -17,7 +17,7 @@ namespace Machine.Runtime
         [Header("Paramètres de la poêle")]
         [SerializeField] private int maxIngredients = 4;
 
-        private readonly List<Food> _storedFoods = new List<Food>();
+        private readonly List<Food> _storedFoods = new();
         private bool _isCooking = false;
 
         public bool IsCooking => _isCooking;

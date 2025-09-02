@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ActiveRagdoll.Runtime
+namespace MovePlayer.Runtime
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CharacterController))]

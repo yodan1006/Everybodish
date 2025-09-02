@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputMap",
     "maps": [
         {
             "name": "Player",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Die",
+                    "name": "Selfdestruct",
                     "type": "Button",
                     "id": "62665559-3008-4a86-b5d0-e3dff4600598",
                     "expectedControlType": "",
@@ -315,7 +315,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Die",
+                    "action": "Selfdestruct",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,7 +326,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Die",
+                    "action": "Selfdestruct",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
