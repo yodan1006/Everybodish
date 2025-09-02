@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MovePlayer.Runtime
+namespace PlayerLocomotion.Runtime
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CharacterController))]

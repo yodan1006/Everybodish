@@ -1,8 +1,8 @@
 using ActionMap;
 using Grab.Runtime;
 using Machine.Runtime;
-using MovePlayer.Runtime;
-using PlayerMovement.Runtime;
+using PlayerLocomotion.Runtime;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -17,25 +17,36 @@ namespace Spawner.Runtime
 
         [SerializeField] private GameObject playerPrefab;
         private GameObject playerInstance;
-        [SerializeField] private PlayerInputMap playerInputMap;
+        private PlayerInput playerInput;
+        private PlayerInputMap inputMap;
+        private readonly Dictionary<InputAction, System.Action<CallbackContext>> boundActions = new();
+
         private void Awake()
         {
-            playerInputMap = new PlayerInputMap();
-            playerInputMap.Player.Selfdestruct.started += KillPlayer;
 
+            playerInput = GetComponent<PlayerInput>();
+
+            // Create wrapper from PlayerInput's actions
+            inputMap = new PlayerInputMap
+            {
+                devices = playerInput.devices
+            };
+            inputMap.Player.Selfdestruct.started += ctx => KillPlayer(ctx);
+            inputMap.Player.Selfdestruct.canceled += ctx => KillPlayer(ctx);
+            inputMap.Player.Selfdestruct.performed += ctx => KillPlayer(ctx);
         }
 
 
         private void OnEnable()
         {
-            playerInputMap.Enable();
+            inputMap.Enable();
             SetupNewPlayer();
         }
 
         private void OnDisable()
         {
-            playerInputMap.Disable();
-            
+            inputMap.Disable();
+
             DestroyPlayer();
         }
 
@@ -54,9 +65,11 @@ namespace Spawner.Runtime
 
         public void KillPlayer(CallbackContext callbackContext)
         {
-
-            respawnTimeDelta = respawnTime;
-            DestroyPlayer();
+            if (playerInstance != null)
+            {
+                respawnTimeDelta = respawnTime;
+                DestroyPlayer();
+            }
         }
 
         public void KillPlayerNoRespawn()
@@ -79,35 +92,43 @@ namespace Spawner.Runtime
         {
             //Get components
             Debug.Log("Binding inputs");
-            BindPlayerInput(playerInputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
-            BindPlayerInput(playerInputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
-            BindPlayerInput(playerInputMap.Player.Interact, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
-            BindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
+            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
+            BindPlayerInput(inputMap.Player.Release, GetComponentInChildren<AnimatedProximityGrabber>().OnRelease);
+            BindPlayerInput(inputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
+            BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
+            BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
+            BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
         }
 
         public void UnBindPlayerControls()
         {
             //Get components
             Debug.Log("Binding inputs");
-            UnBindPlayerInput(playerInputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
-            UnBindPlayerInput(playerInputMap.Player.Release, GetComponentInChildren<AnimatedProximityGrabber>().OnRelease);
-            UnBindPlayerInput(playerInputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
-            UnBindPlayerInput(playerInputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
-            UnBindPlayerInput(playerInputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
+            foreach(InputAction inputAction in boundActions.Keys)
+            {
+                UnBindPlayerInput(inputAction);
+            }
+            boundActions.Clear();
         }
 
-        public static void BindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
+        public void BindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
         {
-            inputAction.started += action;
-            inputAction.performed += action;
-            inputAction.canceled += action;
+            System.Action<CallbackContext> cachedAction = ctx => action(ctx);
+
+            boundActions[inputAction] = cachedAction;
+            inputAction.started += cachedAction;
+            inputAction.canceled += cachedAction;
+            inputAction.performed += cachedAction;
         }
 
-        public static void UnBindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
+        public void UnBindPlayerInput(InputAction inputAction)
         {
-            inputAction.started -= action;
-            inputAction.performed -= action;
-            inputAction.canceled -= action;
+            if (boundActions.TryGetValue(inputAction, out var cachedAction))
+            {
+                inputAction.started -= cachedAction;
+                inputAction.canceled -= cachedAction;
+                inputAction.performed -= cachedAction;
+            }
         }
 
         public void DestroyPlayer()

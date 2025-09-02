@@ -1,5 +1,5 @@
 using Grab.Data;
-using PlayerMovement.Runtime;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Grab.Runtime

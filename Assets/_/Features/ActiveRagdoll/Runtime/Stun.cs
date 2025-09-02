@@ -1,6 +1,5 @@
 using Grab.Runtime;
-using MovePlayer.Runtime;
-using PlayerMovement.Runtime;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime

@@ -1,6 +1,7 @@
 using ActiveRagdoll.Runtime;
 using Grab.Runtime;
 using MovePlayer.Runtime;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 

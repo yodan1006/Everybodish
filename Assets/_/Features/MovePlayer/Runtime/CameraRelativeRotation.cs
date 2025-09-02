@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PlayerMovement.Runtime
+namespace PlayerLocomotion.Runtime
 {
     public class CameraRelativeRotation : MonoBehaviour
     {
