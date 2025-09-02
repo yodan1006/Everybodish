@@ -106,7 +106,7 @@ namespace Grab.Runtime
         }
 
 
-        public new void OnRelease(InputAction.CallbackContext callbackContext)
+        public override void OnRelease(InputAction.CallbackContext callbackContext)
         {
             if (IsGrabbing())
             {

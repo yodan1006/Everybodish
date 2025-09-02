@@ -34,7 +34,7 @@ namespace Grab.Runtime
             Release();
         }
 
-        public new bool Release()
+        public override bool Release()
         {
             bool success = false;
             if (IsGrabbing())
@@ -48,12 +48,12 @@ namespace Grab.Runtime
             return success;
         }
 
-        public new void OnRelease(CallbackContext callbackContext)
+        public override void OnRelease(CallbackContext callbackContext)
         {
             Release();
         }
 
-        public new void OnGrabAction(CallbackContext callbackContext)
+        public override void OnGrabAction(CallbackContext callbackContext)
         {
             if (!IsGrabbing())
             {
@@ -81,7 +81,7 @@ namespace Grab.Runtime
             }
         }
 
-        public new bool TryGrab(IGrabable newGrabable)
+        public override bool TryGrab(IGrabable newGrabable)
         {
             bool success = false;
             if (base.TryGrab(newGrabable))

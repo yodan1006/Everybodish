@@ -178,7 +178,7 @@ namespace Grab.Runtime
             }
         }
 
-        protected new bool TryGrab(IGrabable newGrabable)
+        public override bool TryGrab(IGrabable newGrabable)
         {
             bool successfulGrab = false;
 
@@ -239,7 +239,7 @@ namespace Grab.Runtime
             }
         }
 
-        public new bool Release()
+        public override bool Release()
         {
             bool success = false;
             if (IsGrabbing())
