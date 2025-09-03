@@ -95,7 +95,17 @@ namespace Machine.Runtime
                         if (grabable != null)
                             grabber.TryGrab(grabable);
                     }
+                    
                 }
+                else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation) && multiStation._goReturn)
+                {
+                        multiStation.PlayRetournerAnimation();
+                }
+                else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multistation)&& multistation._goFinish)
+                {
+                    multistation.FinishFoodFrying();
+                    
+                } 
             }
         }
 

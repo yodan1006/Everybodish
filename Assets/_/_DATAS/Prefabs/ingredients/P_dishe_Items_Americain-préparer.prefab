@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3d373141f48d3c5458fae35f3df21377, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3d373141f48d3c5458fae35f3df21377, type: 3}
       propertyPath: m_Name
-      value: "3D_dishe_Items_Americain-pr\xE9parer"
+      value: "P_dishe_Items_Americain-pr\xE9parer"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d373141f48d3c5458fae35f3df21377, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

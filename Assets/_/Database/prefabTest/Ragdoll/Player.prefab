@@ -2045,6 +2045,10 @@ PrefabInstance:
       propertyPath: 'grabables.Array.data[0]'
       value: 
       objectReference: {fileID: 9185769199870056687}
+    - target: {fileID: 3870090278773716437, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
+      propertyPath: radiusDetector
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4909807124258996847, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
       propertyPath: m_Name
       value: Player Root
