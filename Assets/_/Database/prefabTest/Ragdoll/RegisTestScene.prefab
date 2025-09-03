@@ -304,7 +304,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8095928719633165831}
+  m_PlayerPrefab: {fileID: 433505672345845218, guid: 2e9fa57b8b1dedc4c897d20a09483ee8, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -472,6 +472,7 @@ MonoBehaviour:
   maxPickupForce: 50
   heldLinearDamping: 10
   snapbackDistanceMultiplier: 1.5
+  damageVelocityThreshold: 1
   snapbackLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -1258,6 +1259,10 @@ PrefabInstance:
       propertyPath: snapbackDistanceMultiplier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1917181855189238406, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 3694626041651239612}
     - target: {fileID: 2133843357310437445, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1405,22 +1410,6 @@ PrefabInstance:
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1648,8 +1637,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 5
---- !u!1 &8095928719633165831 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 433505672345845218, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-  m_PrefabInstance: {fileID: 8529425557229949925}
-  m_PrefabAsset: {fileID: 0}

@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Grab.Data;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Grab.Runtime
@@ -106,7 +106,7 @@ namespace Grab.Runtime
         }
 
 
-        public new void OnRelease(InputAction.CallbackContext callbackContext)
+        public override void OnRelease(InputAction.CallbackContext callbackContext)
         {
             if (IsGrabbing())
             {

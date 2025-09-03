@@ -1,8 +1,9 @@
 using ActiveRagdoll.Runtime;
 using Grab.Runtime;
 using MovePlayer.Runtime;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(CameraRelativeMovement))]
 [RequireComponent(typeof(AnimatedProximityGrabber))]
@@ -24,12 +25,12 @@ public class Attack : MonoBehaviour
         _proximityGrabber = GetComponent<AnimatedProximityGrabber>();
 
         AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(this, _animator, _attackTrigger);
+        animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber);
     }
 
-    public void PlayAttack(InputAction.CallbackContext context)
+    public void PlayAttack(CallbackContext context)
     {
-        if (context.performed && !_proximityGrabber.IsGrabbing())
+        if (context.performed)
         {
             _animator.SetTrigger("Attack");
         }

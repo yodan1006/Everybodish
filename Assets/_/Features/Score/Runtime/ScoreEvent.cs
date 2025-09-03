@@ -5,15 +5,16 @@ namespace Score.Runtime
     [Serializable]
     public class ScoreEvent
     {
+
         public float TimeStamp { get; private set; } // seconds since game start
-        public PlayerID Player { get; private set; }
+        public int Player { get; private set; }
         public ScoreEventType EventType { get; private set; }
         public int ScoreDelta { get; private set; }
-        public PlayerID? TargetPlayer { get; private set; }
+        public int? TargetPlayer { get; private set; }
 
-        public ScoreEvent(PlayerID player, ScoreEventType eventType, int scoreDelta, PlayerID? targetPlayer = null)
+        public ScoreEvent(int player, ScoreEventType eventType, int scoreDelta, int? targetPlayer = null)
         {
-            TimeStamp = GameTimer.Instance.GetTimestamp();
+            TimeStamp = GameTimer.Instance.GetTime();
             Player = player;
             EventType = eventType;
             ScoreDelta = scoreDelta;

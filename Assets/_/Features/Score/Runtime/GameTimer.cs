@@ -1,35 +1,46 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameTimer : MonoBehaviour
 {
-    public static GameTimer Instance { get; private set; }
-
-    private float gameStartTime;
-    private float stoppedTime;
+    public static GameTimer Instance;
     private bool hasStarted = false;
     private bool isStopped = false;
+    public float currentTime = 0;
     public bool IsRunning => hasStarted && !isStopped;
+    public bool IsStopped => isStopped;
+    public bool IsStarted => hasStarted;
+    public UnityEvent onTimerStarted;
+    public UnityEvent onTimerStopped;
+    public UnityEvent onTimerPaused;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("More than one gameTimer instanced! If you want to access the game timer, use GameTimer.Instance.", this);
+        }
+
+    }
+
+    private void Update()
+    {
+        if (hasStarted && !isStopped)
+        {
+            currentTime += Time.deltaTime;
+        }
+    }
 
     public float ElapsedTime
     {
         get
         {
-            if (!hasStarted) return 0f;
-            if (isStopped) return stoppedTime;
-            return Time.time - gameStartTime;
+            return currentTime;
         }
-    }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
@@ -37,8 +48,7 @@ public class GameTimer : MonoBehaviour
     /// </summary>
     public void StartGameTimer()
     {
-        gameStartTime = Time.time;
-        stoppedTime = 0f;
+        currentTime = 0f;
         hasStarted = true;
         isStopped = false;
         Debug.Log("Game timer started.");
@@ -51,9 +61,8 @@ public class GameTimer : MonoBehaviour
     {
         if (hasStarted && !isStopped)
         {
-            stoppedTime = Time.time - gameStartTime;
             isStopped = true;
-            Debug.Log($"Game timer stopped at {stoppedTime:F2} seconds.");
+            Debug.Log($"Game timer stopped at {currentTime:F2} seconds.");
         }
     }
 
@@ -62,8 +71,7 @@ public class GameTimer : MonoBehaviour
     /// </summary>
     public void ResetGameTimer()
     {
-        gameStartTime = 0f;
-        stoppedTime = 0f;
+        currentTime = 0f;
         hasStarted = false;
         isStopped = false;
         Debug.Log("Game timer reset.");
@@ -72,7 +80,7 @@ public class GameTimer : MonoBehaviour
     /// <summary>
     /// Returns current elapsed time.
     /// </summary>
-    public float GetTimestamp()
+    public float GetTime()
     {
         return ElapsedTime;
     }

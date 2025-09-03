@@ -1,5 +1,5 @@
-using ActiveRagdoll.Runtime;
 using Grab.Data;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace Grab.Runtime
@@ -13,6 +13,7 @@ namespace Grab.Runtime
         [SerializeField] protected float maxPickupForce = 50f;
         [SerializeField] protected float heldLinearDamping = 10f;
         [SerializeField] protected float snapbackDistanceMultiplier = 1.5f;
+        [SerializeField] protected float damageVelocityThreshold = 1.0f;
         [SerializeField] protected LayerMask snapbackLayer;
         //TODO: item rotation over time
         //[SerializeField] protected float rotationSpeed = 10f;
@@ -177,7 +178,7 @@ namespace Grab.Runtime
             }
         }
 
-        protected new bool TryGrab(IGrabable newGrabable)
+        public override bool TryGrab(IGrabable newGrabable)
         {
             bool successfulGrab = false;
 
@@ -238,7 +239,7 @@ namespace Grab.Runtime
             }
         }
 
-        public new bool Release()
+        public override bool Release()
         {
             bool success = false;
             if (IsGrabbing())

@@ -12,22 +12,12 @@ namespace Machine.Runtime
         private AnimatedProximityGrabber grabber;
         [SerializeField] private float radiusDetector;
 
-        // private void PickUp(GameObject obj)
-        // {
-        //     if (heldObject != null) return;
-        //
-        //     heldObject = obj;
-        //     heldObject.transform.SetParent(holdPoint);
-        //     heldObject.transform.localPosition = Vector3.zero;
-        // }
+        private bool isHoldCooking = false;
+        private float holdingTime = 0f;
+        [SerializeField] private float holdToCookDuration = 1f;
+        private bool cookTriggered = false;
 
-        // private void Drop()
-        // {
-        //     if (heldObject == null) return;
-        //
-        //     heldObject.transform.SetParent(null);
-        //     heldObject = null;
-        // }
+
         private void Awake()
         {
             if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
@@ -35,6 +25,20 @@ namespace Machine.Runtime
                 grabber = grabber;
             }
         }
+
+        private void Update()
+        {
+            if (isHoldCooking)
+            {
+                holdingTime += Time.deltaTime;
+                if (!cookTriggered && holdingTime >= holdToCookDuration)
+                {
+                    TryCookMultiIngredientStation();
+                    cookTriggered = true;
+                }
+            }
+        }
+
 
         private void TryUseCookStation()
         {
@@ -66,6 +70,13 @@ namespace Machine.Runtime
                     grabber.Release();
                     return;
                 }
+
+                if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
+                {
+                    grabber.Release();
+                    serviceCommande.ServicePlat(food);
+                    return;
+                }
             }
         }
 
@@ -88,39 +99,42 @@ namespace Machine.Runtime
             }
         }
 
-
-        // ✅ Callbacks Input System
-        // public void OnInteract(InputAction.CallbackContext context)
-        // {
-        //     if (!context.performed) return;
-        //
-        //     if (heldObject == null)
-        //     {
-        //         // Essayer de ramasser un aliment
-        //         Collider[] hits = Physics.OverlapSphere(transform.position, 2f);
-        //         foreach (var hit in hits)
-        //         {
-        //             var food = hit.GetComponent<Food>();
-        //             if (food != null)
-        //             {
-        //                 PickUp(food.gameObject);
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     else
-        //     {
-        //         // Déposer
-        //         Drop();
-        //     }
-        // }
-
         public void OnUse(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
                 if (grabber.IsGrabbing()) TryUseCookStation();
                 else SpawnAndGrabFood();
+            }
+        }
+
+        private void TryCookMultiIngredientStation()
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
+            foreach (var hit in hits)
+            {
+                if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
+                {
+                    multiStation.TryManualCook();
+                    break; // Un seul appel !
+                }
+            }
+        }
+
+
+        public void OnManualCook(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                isHoldCooking = true;
+                holdingTime = 0f;
+                cookTriggered = false;
+            }
+            if (context.canceled)
+            {
+                isHoldCooking = false;
+                holdingTime = 0f;
+                cookTriggered = false;
             }
         }
     }
