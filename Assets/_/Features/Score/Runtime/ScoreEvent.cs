@@ -5,6 +5,7 @@ namespace Score.Runtime
     [Serializable]
     public class ScoreEvent
     {
+
         public float TimeStamp { get; private set; } // seconds since game start
         public int Player { get; private set; }
         public ScoreEventType EventType { get; private set; }

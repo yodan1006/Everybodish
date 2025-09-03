@@ -6,7 +6,7 @@ namespace Projectiles.Runtime
     public class AnimatedProximityGrabAndThrow : AnimatedProximityGrabber
     {
         public float minimumThrowVelocity = 1f;
-        public new bool Release()
+        public override bool Release()
         {
             bool release = false;
             if (base.Release())

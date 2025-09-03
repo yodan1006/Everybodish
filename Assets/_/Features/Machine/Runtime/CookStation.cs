@@ -69,14 +69,7 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            if (_currentFood.playerSpawnSystem == null)
-            {
-                Destroy(_currentFood.transform.root.gameObject);
-            }
-            else
-            {
-                _currentFood.playerSpawnSystem.KillPlayer();
-            }
+            Destroy(_currentFood.transform.root.gameObject);
 
             _currentFood = null;
         }

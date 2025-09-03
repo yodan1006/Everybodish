@@ -1,19 +1,37 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameTimer : MonoBehaviour
 {
-    public static GameTimer Instance { get; private set; }
+    public static GameTimer Instance;
     private bool hasStarted = false;
     private bool isStopped = false;
-    private float currentTime = 0;
+    public float currentTime = 0;
     public bool IsRunning => hasStarted && !isStopped;
+    public bool IsStopped => isStopped;
+    public bool IsStarted => hasStarted;
+    public UnityEvent onTimerStarted;
+    public UnityEvent onTimerStopped;
+    public UnityEvent onTimerPaused;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("More than one gameTimer instanced! If you want to access the game timer, use GameTimer.Instance.", this);
+        }
+
+    }
 
     private void Update()
     {
         if (hasStarted && !isStopped)
         {
-            currentTime = +Time.deltaTime;
+            currentTime += Time.deltaTime;
         }
     }
 
@@ -23,18 +41,6 @@ public class GameTimer : MonoBehaviour
         {
             return currentTime;
         }
-    }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>

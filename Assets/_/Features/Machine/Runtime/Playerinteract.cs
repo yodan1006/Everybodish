@@ -11,13 +11,13 @@ namespace Machine.Runtime
         // private GameObject heldObject;
         private AnimatedProximityGrabber grabber;
         [SerializeField] private float radiusDetector;
-        
+
         private bool isHoldCooking = false;
         private float holdingTime = 0f;
         [SerializeField] private float holdToCookDuration = 1f;
         private bool cookTriggered = false;
 
-        
+
         private void Awake()
         {
             if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
@@ -25,7 +25,7 @@ namespace Machine.Runtime
                 grabber = grabber;
             }
         }
-        
+
         private void Update()
         {
             if (isHoldCooking)
@@ -70,7 +70,7 @@ namespace Machine.Runtime
                     grabber.Release();
                     return;
                 }
-                
+
                 if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
                 {
                     grabber.Release();
@@ -98,7 +98,7 @@ namespace Machine.Runtime
                 }
             }
         }
-        
+
         public void OnUse(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -107,7 +107,7 @@ namespace Machine.Runtime
                 else SpawnAndGrabFood();
             }
         }
-        
+
         private void TryCookMultiIngredientStation()
         {
             Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
@@ -121,7 +121,7 @@ namespace Machine.Runtime
             }
         }
 
-        
+
         public void OnManualCook(InputAction.CallbackContext context)
         {
             if (context.started)

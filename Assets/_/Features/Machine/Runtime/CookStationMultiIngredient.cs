@@ -16,8 +16,8 @@ namespace Machine.Runtime
         [SerializeField] private Vector3[] ingredientScales;
         [Header("Paramètres de la poêle")]
         [SerializeField] private int maxIngredients = 4;
-        
-        private readonly List<Food> _storedFoods = new List<Food>();
+
+        private readonly List<Food> _storedFoods = new();
         private bool _isCooking = false;
 
         public bool IsCooking => _isCooking;
@@ -36,7 +36,8 @@ namespace Machine.Runtime
                                      recipes.Any(r => r != null &&
                                              r.IngredientsInput != null &&
                                              r.IngredientsInput.Contains(food.FoodType));
-            if (!isPartOfAnyRecipe) {
+            if (!isPartOfAnyRecipe)
+            {
                 WrongIngredient(food);
                 return;
             }
@@ -45,17 +46,19 @@ namespace Machine.Runtime
 
             // Remplacement si même type déjà dans la poêle
             var existing = _storedFoods.FirstOrDefault(f => f.FoodType == food.FoodType);
-            if (existing != null) {
+            if (existing != null)
+            {
                 int index = _storedFoods.IndexOf(existing);
                 _storedFoods.RemoveAt(index);
                 Destroy(existing.gameObject);
             }
 
-            
+
             _storedFoods.Add(food);
-            
+
             int slotIndex = _storedFoods.Count - 1;
-            if (ingredientPoints.Length > slotIndex && ingredientPoints[slotIndex] != null) {
+            if (ingredientPoints.Length > slotIndex && ingredientPoints[slotIndex] != null)
+            {
                 food.gameObject.transform.position = ingredientPoints[slotIndex].position;
                 food.gameObject.transform.rotation = ingredientPoints[slotIndex].rotation;
                 // Echelle du GD
@@ -116,7 +119,7 @@ namespace Machine.Runtime
             if (prefab != null)
                 Instantiate(prefab, output.position, Quaternion.identity);
         }
-        
+
         public void TryManualCook()
         {
             if (_isCooking || _storedFoods.Count == 0)
