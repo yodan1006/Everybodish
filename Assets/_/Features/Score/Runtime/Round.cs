@@ -5,9 +5,10 @@ namespace Score.Runtime
 {
     [RequireComponent(typeof(GameTimer))]
     [RequireComponent(typeof(GlobalScoreEventSystem))]
+    [DisallowMultipleComponent]
     public class Round : MonoBehaviour
     {
-        #region Publics
+
         public static Round Instance;
         public int warmupTime = 10;
         public float warmupTimeDelta = 0;
@@ -19,10 +20,8 @@ namespace Score.Runtime
         public UnityEvent OnRoundFinished;
         private GameTimer gameTimer;
         private GlobalScoreEventSystem globalScoreEventSystem;
-        #endregion
 
 
-        #region Unity Api
         private void Awake()
         {
             gameTimer = GetComponent<GameTimer>();
@@ -33,7 +32,8 @@ namespace Score.Runtime
             }
             else
             {
-                Debug.LogError("More than one Round instanced! If you want to access the round, use Round.Instance.", this);
+                Debug.Log("More than one Round instanced! Replacing old round by new one.", this);
+                Instance = this;
             }
         }
         // Update is called once per frame
@@ -51,11 +51,12 @@ namespace Score.Runtime
             }
             else
             {
-                if (gameTimer.ElapsedTime > roundDuration)
+                if (gameTimer.GetTime() > roundDuration)
                 {
 
                     gameTimer.StopGameTimer();
                     OnRoundFinished.Invoke();
+                    enabled = false;
                 }
             }
         }
@@ -65,31 +66,12 @@ namespace Score.Runtime
 
             warmupTimeDelta = warmupTime;
             OnWarmupStarted.Invoke();
-
+            globalScoreEventSystem.ResetAllScores();
         }
 
         private void OnDisable()
         {
-
+            gameTimer.StopGameTimer();
         }
-
-        #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
-
-        #region Private and Protected
-
-        #endregion
-
-
     }
 }

@@ -12,7 +12,7 @@ namespace MovePlayer.Runtime
         public void TakeDamage(int damage)
         {
             Debug.Log("Took damage!");
-            stat.HurtPlayer(1);
+            stat.HurtPlayer(damage);
             if (stat.CurrentLife() < 0)
             {
                 stun.enabled = true;

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Score.Runtime
 {
 
-
+    [DisallowMultipleComponent]
     public class GlobalScoreEventSystem : MonoBehaviour
     {
         public static GlobalScoreEventSystem Instance { get; private set; }
@@ -25,7 +25,6 @@ namespace Score.Runtime
             if (Instance == null)
             {
                 Instance = this;
-
             }
             else
             {
@@ -56,6 +55,7 @@ namespace Score.Runtime
                       $" @ {scoreEvent.TimeStamp}");
 
             OnScoreEvent.Invoke(scoreEvent);
+            OnScoresChanged.Invoke();
         }
 
         public int GetScore(int player)
