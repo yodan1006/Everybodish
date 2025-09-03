@@ -104,6 +104,7 @@ MonoBehaviour:
   OnRoundFinished:
     m_PersistentCalls:
       m_Calls: []
+  playerList: []
 --- !u!114 &7843805783526301162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fee58e409254f64eb1da0d98dabe9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Score: {fileID: 1089876408725890385}
-  player2Score: {fileID: 363217780421308506}
-  player3Score: {fileID: 4666484937403522062}
-  player4Score: {fileID: 3800328845259952962}
+  player1Scoreboard: {fileID: 1089876408725890385}
+  player2Scoreboard: {fileID: 363217780421308506}
+  player3Scoreboard: {fileID: 4666484937403522062}
+  player4Scoreboard: {fileID: 3800328845259952962}
 --- !u!114 &5977605183389052832
 MonoBehaviour:
   m_ObjectHideFlags: 0

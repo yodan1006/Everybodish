@@ -86,7 +86,7 @@ namespace Score.Runtime
 
         public string GetFormatedTimeLeft(float targetTime)
         {
-            return FormatTime(targetTime -currentTime);
+            return FormatTime(targetTime - currentTime);
         }
 
         public static string FormatTime(float timeInSeconds)

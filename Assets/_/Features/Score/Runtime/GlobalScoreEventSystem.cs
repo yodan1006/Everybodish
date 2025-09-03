@@ -14,7 +14,8 @@ namespace Score.Runtime
         private readonly Dictionary<int, int> playerScores = new();
 
         public IReadOnlyList<ScoreEvent> ScoreEventLog => scoreEventLog.AsReadOnly();
-        public IReadOnlyDictionary<int, int> PlayerScores => playerScores;
+
+        public Dictionary<int, int> PlayerScores => playerScores;
 
         [Header("Score Events")]
         public ScoreEventUnityEvent OnScoreEvent = new();

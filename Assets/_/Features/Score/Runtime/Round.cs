@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Score.Runtime
 {
@@ -20,7 +23,7 @@ namespace Score.Runtime
         public UnityEvent OnRoundFinished;
         private GameTimer gameTimer;
         private GlobalScoreEventSystem globalScoreEventSystem;
-
+        public List<PlayerInput> playerList;
 
         private void Awake()
         {
@@ -59,6 +62,12 @@ namespace Score.Runtime
                     enabled = false;
                 }
             }
+        }
+
+        public void JoinRound(PlayerInput playerInput)
+        {
+            playerList.Add(playerInput);
+            globalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
         }
 
         private void OnEnable()
