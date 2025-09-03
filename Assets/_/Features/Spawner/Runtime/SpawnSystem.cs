@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using ActionMap;
 using Grab.Runtime;
 using Machine.Runtime;
+using MovePlayer.Runtime;
 using PlayerLocomotion.Runtime;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -63,13 +64,18 @@ namespace Spawner.Runtime
             }
         }
 
-        public void KillPlayer(CallbackContext callbackContext)
+        public void KillPlayer()
         {
             if (playerInstance != null)
             {
                 respawnTimeDelta = respawnTime;
                 DestroyPlayer();
             }
+        }
+
+        public void KillPlayer(CallbackContext callbackContext)
+        {
+            KillPlayer();
         }
 
         public void KillPlayerNoRespawn()
@@ -81,6 +87,12 @@ namespace Spawner.Runtime
         {
             InstantiatePlayer();
             BindPlayerControls();
+            BindPlayerEvents();
+        }
+
+        private void BindPlayerEvents()
+        {
+            GetComponentInChildren<PlayerStat>().onPlayerDied.AddListener(KillPlayer);
         }
 
         public void InstantiatePlayer()
@@ -104,7 +116,7 @@ namespace Spawner.Runtime
         {
             //Get components
             Debug.Log("Binding inputs");
-            foreach(InputAction inputAction in boundActions.Keys)
+            foreach (InputAction inputAction in boundActions.Keys)
             {
                 UnBindPlayerInput(inputAction);
             }
