@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3D_Chopper_Items_Smashed-potatoes
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ba13eb3df1cd2df4889ea3762b475d58, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -154,6 +158,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+      propertyPath: holdDistanceFromPlayer.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+      propertyPath: holdDistanceFromPlayer.z
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_RemovedGameObjects: []
@@ -168,9 +180,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2166463432214351327}
-    - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2888624990928350785}
   m_SourcePrefab: {fileID: 100100000, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
 --- !u!1 &3765272106136423724 stripped
 GameObject:
@@ -194,7 +203,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.4112568, y: 0.29650116, z: 0.46746445}
   m_Center: {x: 0.01791668, y: 0.028259277, z: 0.0000743866}
@@ -211,29 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 7
---- !u!136 &2888624990928350785
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3765272106136423724}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.14482942
-  m_Height: 0.48161626
-  m_Direction: 0
-  m_Center: {x: -0.0047849417, y: 0, z: 0}
+  playerSpawnSystem: {fileID: 0}
 --- !u!4 &5385549597945901480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2112020139632693603, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
