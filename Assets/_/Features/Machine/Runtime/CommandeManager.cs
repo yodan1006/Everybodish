@@ -16,7 +16,7 @@ namespace Machine.Runtime
         [Header("UI")]
         [SerializeField] private Transform parentUI;
 
-        private List<CommandeUI> commandesActives = new List<CommandeUI>();
+        private readonly List<CommandeUI> commandesActives = new List<CommandeUI>();
 
         private void Start()
         {

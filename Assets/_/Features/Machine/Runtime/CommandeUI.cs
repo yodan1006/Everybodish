@@ -5,6 +5,7 @@ namespace Machine.Runtime
     public class CommandeUI : MonoBehaviour
     {
         private RectTransform rectTransform;
+
         private Vector2 targetPosition;
         private float moveSpeed = 10f;
 
