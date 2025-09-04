@@ -16,7 +16,7 @@ public class Attack : MonoBehaviour
     private AttackTrigger _attackTrigger;
     private AnimatedProximityGrabber _proximityGrabber;
     public float attackMoveSpeedMultiplier = 0.5f;
-
+    public float throwObjectForce = 7f;
     private void Awake()
     {
         _movement = GetComponent<CameraRelativeMovement>();
@@ -25,7 +25,7 @@ public class Attack : MonoBehaviour
         _proximityGrabber = GetComponent<AnimatedProximityGrabber>();
 
         AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber);
+        animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
     }
 
     public void PlayAttack(CallbackContext context)
