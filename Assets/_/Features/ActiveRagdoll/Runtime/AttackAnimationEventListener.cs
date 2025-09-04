@@ -9,12 +9,13 @@ namespace ActiveRagdoll.Runtime
     {
         #region Publics
         public float throwObjectForce = 7;
-        public void Initialize(Attack attack, Animator animator, AttackTrigger attackTrigger, AnimatedProximityGrabber proximityGrabber)
+        public void Initialize(Attack attack, Animator animator, AttackTrigger attackTrigger, AnimatedProximityGrabber proximityGrabber, float throwObjectForce)
         {
             this.attack = attack;
             this.attackTrigger = attackTrigger;
             this.animator = animator;
             this.proximityGrabber = proximityGrabber;
+            this.throwObjectForce = throwObjectForce;
         }
         #endregion
 

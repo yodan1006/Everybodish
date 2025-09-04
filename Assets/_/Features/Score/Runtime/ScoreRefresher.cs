@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Score.Runtime
@@ -37,9 +35,9 @@ namespace Score.Runtime
         private void OnScoresChanged()
         {
             Debug.Log("OnScoresChanged");
-            List<PlayerInput> playerList = round.playerList ;
-            int playerCount = playerList.Count ;
-            int playerScoreboardCount = playerScoreboardList.Count ;
+            List<PlayerInput> playerList = round.playerList;
+            int playerCount = playerList.Count;
+            int playerScoreboardCount = playerScoreboardList.Count;
             for (int i = 0; i < playerScoreboardList.Count; i++)
             {
                 if (i < playerList.Count)
