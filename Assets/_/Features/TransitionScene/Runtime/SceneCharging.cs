@@ -17,7 +17,8 @@ namespace TransitionScene.Runtime
 
         public void SceneEnd()
         {
-            SceneLoader.Instance.LoadSceneWithLoading(3);
+            //SceneLoader.Instance.LoadSceneWithLoading(3);
+            SceneLoader.Instance.LoadSceneWithLoading(2);
         }
 
         public void Quit()
