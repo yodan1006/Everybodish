@@ -1,3 +1,4 @@
+using Grab.Runtime;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -37,6 +38,7 @@ namespace Machine.Runtime
             _onService = true;
             _timer = timeurDispawn;
             _foodToDestroy = food.gameObject;
+            food.GetComponent<Grabable>().enabled = false;
 
             if (commandeManager != null)
             {
