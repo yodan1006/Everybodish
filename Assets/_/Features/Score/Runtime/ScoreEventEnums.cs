@@ -3,6 +3,7 @@ namespace Score.Runtime
 
     public enum ScoreEventType
     {
+        JoinedGame,
         CookedItem,
         ServedItem,
         BurnedItem,

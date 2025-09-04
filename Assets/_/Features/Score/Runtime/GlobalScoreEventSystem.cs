@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Score.Runtime
 {
 
-
+    [DisallowMultipleComponent]
     public class GlobalScoreEventSystem : MonoBehaviour
     {
         public static GlobalScoreEventSystem Instance { get; private set; }
@@ -14,7 +14,8 @@ namespace Score.Runtime
         private readonly Dictionary<int, int> playerScores = new();
 
         public IReadOnlyList<ScoreEvent> ScoreEventLog => scoreEventLog.AsReadOnly();
-        public IReadOnlyDictionary<int, int> PlayerScores => playerScores;
+
+        public Dictionary<int, int> PlayerScores => playerScores;
 
         [Header("Score Events")]
         public ScoreEventUnityEvent OnScoreEvent = new();
@@ -25,7 +26,6 @@ namespace Score.Runtime
             if (Instance == null)
             {
                 Instance = this;
-
             }
             else
             {
@@ -56,6 +56,7 @@ namespace Score.Runtime
                       $" @ {scoreEvent.TimeStamp}");
 
             OnScoreEvent.Invoke(scoreEvent);
+            OnScoresChanged.Invoke();
         }
 
         public int GetScore(int player)
