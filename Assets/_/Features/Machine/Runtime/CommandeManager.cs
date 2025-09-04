@@ -10,6 +10,8 @@ namespace Machine.Runtime
         [SerializeField] private RecetteUI[] recettesDisponibles;
         [SerializeField] private int maxCommandes = 5;
         [SerializeField] private float tempsEntreCommandes = 5f;
+        [SerializeField]private  float startY = -300f;
+        [SerializeField] private float offsetY = 120f;
 
         [Header("UI")]
         [SerializeField] private Transform parentUI;
@@ -41,7 +43,7 @@ namespace Machine.Runtime
             RecetteUI recette = recettesDisponibles[Random.Range(0, recettesDisponibles.Length)];
 
             // On instancie directement le prefab lié à la recette
-            GameObject uiObj = Instantiate(recette.prefabUI, parentUI);
+            GameObject uiObj = Instantiate(recette.prefabUI, parentUI, false);
             CommandeUI ui = uiObj.GetComponent<CommandeUI>();
             ui.Initialiser(recette, this);
 
@@ -70,8 +72,8 @@ namespace Machine.Runtime
 
         private void ReorganiserCommandes()
         {
-            float startY = -300f;
-            float offsetY = 120f;
+            // float startY = -300f;
+            // float offsetY = 120f;
 
             for (int i = 0; i < commandesActives.Count; i++)
             {
