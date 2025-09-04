@@ -45,7 +45,7 @@ namespace Score.Runtime
         {
             if (warmupTimeleft.enabled)
             {
-                warmupTimeleft.SetText(round.warmupTimeDelta.ToString("0"));
+                warmupTimeleft.SetText(round.WarmupTimeDelta.ToString("0"));
             }
 
             if (roundTimeleft.enabled)

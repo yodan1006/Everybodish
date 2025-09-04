@@ -1,3 +1,4 @@
+using Grab.Runtime;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -10,7 +11,8 @@ namespace Machine.Runtime
         private bool _onService;
         private GameObject _foodToDestroy;
 
-        [Header("Référence Commandes")] [SerializeField]
+        [Header("Référence Commandes")]
+        [SerializeField]
         private CommandeManager commandeManager;
 
         private void Update()
@@ -37,6 +39,7 @@ namespace Machine.Runtime
             _onService = true;
             _timer = timeurDispawn;
             _foodToDestroy = food.gameObject;
+            food.GetComponent<Grabable>().enabled = false;
 
             if (commandeManager != null)
             {

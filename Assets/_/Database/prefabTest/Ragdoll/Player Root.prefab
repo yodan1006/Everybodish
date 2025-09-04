@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3870090278773716437}
   - component: {fileID: 462581098280439271}
   - component: {fileID: 7300450743963887011}
+  - component: {fileID: 5416788759587927982}
   m_Layer: 6
   m_Name: Player Root
   m_TagString: Untagged
@@ -235,6 +236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxLife: 3
+  onPlayerDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1688661189710610977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +254,7 @@ MonoBehaviour:
   attackCollider: {fileID: 5311520822483977372}
   damage: 0
   attackMoveSpeedMultiplier: 0.5
+  throwObjectForce: 7
 --- !u!114 &7151880423467956198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376dc51cac498d0468ef13544741ee91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusDetector: 0.7
+  radiusDetector: 0.6
   holdToCookDuration: 1
 --- !u!114 &462581098280439271
 MonoBehaviour:
@@ -331,6 +336,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 5
+--- !u!114 &5416788759587927982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4909807124258996847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc55186e6cb9ad948bda7eb57589ce58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solverIterations: 8
+  solverVelocityIterations: 8
+  maxAngularVelocity: 20
+  animatedBody: {fileID: 4909807124258996847}
+  physicsBody: {fileID: 0}
+  playerRootRb: {fileID: 8414906516820233088}
+  automaticSetup: 0
 --- !u!1 &6204423215245026383
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ namespace Machine.Runtime
     public class CommandeUI : MonoBehaviour
     {
         private RectTransform rectTransform;
-        private Vector3 targetPosition;
+
+        private Vector2 targetPosition;
         private float moveSpeed = 10f;
 
         public RecetteUI Recette { get; private set; }
@@ -16,24 +17,24 @@ namespace Machine.Runtime
             rectTransform = GetComponent<RectTransform>();
         }
 
-        // ⚠️ c’est cette méthode que ton manager appelle
+        // Appelé par le CommandeManager
         public void Initialiser(RecetteUI recette, CommandeManager manager)
         {
             Recette = recette;
             this.manager = manager;
 
-            // Spawn hors écran à gauche
-            rectTransform.anchoredPosition = new Vector2(-600, -300);
+            // Spawn hors écran à gauche (par rapport au parent UI)
+            rectTransform.anchoredPosition = new Vector2(-800f, -300f);
         }
 
-        public void SetTargetPosition(Vector3 pos)
+        public void SetTargetPosition(Vector2 pos)
         {
             targetPosition = pos;
         }
 
         private void Update()
         {
-            rectTransform.anchoredPosition = Vector3.Lerp(
+            rectTransform.anchoredPosition = Vector2.Lerp(
                 rectTransform.anchoredPosition,
                 targetPosition,
                 Time.deltaTime * moveSpeed

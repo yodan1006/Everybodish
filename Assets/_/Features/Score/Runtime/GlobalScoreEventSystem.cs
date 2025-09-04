@@ -101,7 +101,7 @@ namespace Score.Runtime
             {
                 playerScores[player] = scoreDelta;
             }
-            Debug.Log($"[ScoreEvent] {player} - {eventType} - Score: {scoreDelta}" +
+            Debug.Log($"[ScoreEvent] player {player} - {eventType} - Score: {scoreDelta}" +
                       (targetPlayer.HasValue ? $" (Target: {targetPlayer.Value})" : "") +
                       $" @ {scoreEvent.TimeStamp}");
 
