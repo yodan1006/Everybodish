@@ -34,7 +34,7 @@ namespace Machine.Runtime
                         // Place l’objet visuellement sur le slot
                         food.transform.position = foodSlot.position;
                         food.transform.rotation = foodSlot.rotation;
-                        
+
                         food.transform.SetParent(foodSlot);
                         food.rb.isKinematic = true;
                         food.grabable.enabled = false;
@@ -69,10 +69,19 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            //Destroy topmost item that might be lost in the scene
-            Destroy(_currentFood.topmost.gameObject);
-            //Destroy the remarented food item
-            Destroy(_currentFood.gameObject);
+            if (_currentFood.topmost.gameObject != _currentFood.gameObject)
+            {
+                GameObject topmostGo = _currentFood.topmost.gameObject; 
+                //Destroy the reparented food item
+                Destroy(_currentFood.gameObject);
+                //Destroy topmost item that might be lost in the scene
+                Destroy(topmostGo);
+
+            }
+            else
+            {
+                Destroy(_currentFood.gameObject);
+            }
             _currentFood = null;
         }
 
