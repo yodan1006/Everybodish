@@ -1,3 +1,4 @@
+using MovePlayer.Runtime._.Features.MovePlayer.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,14 @@ namespace MovePlayer.Runtime
         private float lastColorChangeTime = 0f;
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
-        private readonly bool isInitialized = false;
+        
+        public bool IsReady { get; private set;} = false;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+            LobbyManager.Instance.RegisterPlayer(this);
+        }
 
         public void OnChangeModel(InputAction.CallbackContext context)
         {
@@ -70,5 +78,16 @@ namespace MovePlayer.Runtime
             // Active la variante sélectionnée
             appearances[currentModelIndex].colorAppaerences[currentColorIndex].SetActive(true);
         }
+        
+        public void OnValidateSkin(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            if (IsReady) return;
+
+            IsReady = true;
+            LobbyManager.Instance.CheckAllReady();
+        }
+        
+        
     }
 }
