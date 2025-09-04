@@ -34,11 +34,11 @@ namespace Machine.Runtime
                         // Place l’objet visuellement sur le slot
                         food.transform.position = foodSlot.position;
                         food.transform.rotation = foodSlot.rotation;
-                        //food.transform.SetParent(foodSlot);
-
+                        
+                        food.transform.SetParent(foodSlot);
+                        food.rb.isKinematic = true;
+                        food.grabable.enabled = false;
                         animator.SetBool("OnSlice", true);
-                        //Destroy(currentFood.gameObject);
-                        //_currentFood = null;
                         resultPrefab = recipe.outputPrefab;
                         return true;
                     }
@@ -69,8 +69,10 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            Destroy(_currentFood.transform.root.gameObject);
-
+            //Destroy topmost item that might be lost in the scene
+            Destroy(_currentFood.topmost.gameObject);
+            //Destroy the remarented food item
+            Destroy(_currentFood.gameObject);
             _currentFood = null;
         }
 
