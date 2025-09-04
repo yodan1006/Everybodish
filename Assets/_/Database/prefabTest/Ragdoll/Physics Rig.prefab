@@ -196,6 +196,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4083646151206151804, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 849044337769520197}
+    - targetCorrespondingSourceObject: {fileID: 4083646151206151804, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4555300099361765380}
     - targetCorrespondingSourceObject: {fileID: -2981687600441220834, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2978483279464441932}
@@ -534,6 +537,22 @@ MonoBehaviour:
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &4555300099361765380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248351093277934656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodType: 14
+  rb: {fileID: 0}
+  grabable: {fileID: 0}
+  topmost: {fileID: 0}
 --- !u!1 &566559342263802825 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4324166138896447989, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
