@@ -6,7 +6,7 @@ namespace Machine.Runtime
     {
         private RectTransform rectTransform;
         private Vector3 targetPosition;
-        private float moveSpeed = 10f;
+        private readonly float moveSpeed = 10f;
 
         public RecetteUI Recette { get; private set; }
         private CommandeManager manager;

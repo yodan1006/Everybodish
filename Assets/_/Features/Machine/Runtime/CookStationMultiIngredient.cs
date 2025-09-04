@@ -37,8 +37,8 @@ namespace Machine.Runtime
         private bool _isCooking = false;
         public bool isRetourned;
         public bool _goFinish { get; private set; }
-        public bool isFinished { get; private set;}
-        public bool _goReturn {get;private set; }
+        public bool isFinished { get; private set; }
+        public bool _goReturn { get; private set; }
 
         public bool IsCooking => _isCooking;
 
@@ -89,7 +89,7 @@ namespace Machine.Runtime
 
             food.gameObject.SetActive(true); // On les voit dans la poêle !
         }
-        
+
 
         private void WrongIngredient(Food lastTried)
         {
@@ -131,7 +131,7 @@ namespace Machine.Runtime
 
             if (matchedRecipe != null)
             {
-                if(currentCookingRoutine != null)
+                if (currentCookingRoutine != null)
                     StopCoroutine(currentCookingRoutine);
 
                 _isCooking = true;
@@ -153,7 +153,7 @@ namespace Machine.Runtime
             float timerPlatFini = timerAvantPlatFini;
 
             // Suppression des ingrédients (si tu veux les garder visuellement, fais-le plus tard)
-            
+
 
             // ----------- PHASE 1 : cuisson avant retour ---------
             animator.SetBool("Frying", true);
@@ -177,7 +177,7 @@ namespace Machine.Runtime
                 {
                     break;
                 }
-                
+
                 if (elapsed >= timerRetourner + timerCrame)
                 {
                     animator.SetBool("Frying", false);
@@ -189,7 +189,7 @@ namespace Machine.Runtime
             _goReturn = false;
             if (crame)
             {
-                
+
                 WrongIngredient(null); // Apparition du caca
                 _isCooking = false;
                 currentCookingRoutine = null;
@@ -209,14 +209,14 @@ namespace Machine.Runtime
                 {
                     // Phase attente plat fini...
                     _goFinish = true;
-                    animator.SetBool("Done",true);
+                    animator.SetBool("Done", true);
                 }
 
                 if (isFinished)
                 {
                     break;
                 }
-                
+
                 if (elapsed >= timerPlatFini + timerCrame)
                 {
                     particleBurn.Play();
@@ -260,7 +260,7 @@ namespace Machine.Runtime
             isRetourned = true;
         }
 
-        
+
 
         public void FinishFoodFrying()
         {
@@ -269,20 +269,20 @@ namespace Machine.Runtime
             isFinished = true;
         }
 
-        
+
         //----------------Animation event zone--------------//
-        
+
         public void FinishRetournerAnimation()
         {
             animator.SetBool("Flip", false);
             animator.SetBool("Frying", true);
         }
-        
+
         public void FinishFoodFryingAnimation()
         {
             animator.SetBool("Frying", false);
             animator.SetBool("Done", false);
         }
-        
+
     }
 }

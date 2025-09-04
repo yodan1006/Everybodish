@@ -10,7 +10,8 @@ namespace Machine.Runtime
         private bool _onService;
         private GameObject _foodToDestroy;
 
-        [Header("Référence Commandes")] [SerializeField]
+        [Header("Référence Commandes")]
+        [SerializeField]
         private CommandeManager commandeManager;
 
         private void Update()
