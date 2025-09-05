@@ -13,6 +13,16 @@ namespace Grab.Runtime
         [SerializeField] protected Texture2D cursorTextureEnabled;
         [SerializeField] protected Vector2 hotSpotEnabled = Vector2.zero;
         [SerializeField] protected CursorStates currentState = CursorStates.Default;
+        [SerializeField] protected Camera _camera;
+
+        private new void Awake()
+        {
+            base.Awake();
+            if (_camera == null)
+            {
+                _camera = Camera.main;
+            }
+        }
         public enum CursorStates
         {
             Default,
@@ -94,23 +104,10 @@ namespace Grab.Runtime
             }
         }
 
-        public void OnGrab(CallbackContext context)
+        public bool StartDrag()
         {
-
-            if (context.performed == true)
-            {
-                Log("Starting Drag & Drop", this);
-                StartDrag();
-            }
-            else if (context.canceled == true)
-            {
-                Release();
-            }
-        }
-
-        public void StartDrag()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            bool success = false;
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, maxGrabRange))
             {
                 Rigidbody rb = hit.rigidbody;
@@ -122,6 +119,7 @@ namespace Grab.Runtime
                         {
                             Log("Cursor Drag success", this);
                             UpdateTargetPosition();
+                            success = true;
                         }
                         else
                         {
@@ -138,6 +136,7 @@ namespace Grab.Runtime
                     Log("Hit on non grabbable object detected", this);
                 }
             }
+            return success;
         }
         protected void UpdateTargetPosition()
         {
@@ -168,6 +167,28 @@ namespace Grab.Runtime
             {
                 Log("No hit found for drag to target", this);
             }
+        }
+
+
+        public override void OnGrabAction(CallbackContext callbackContext)
+        {
+
+            if (callbackContext.performed == true)
+            {
+                Log("Starting Drag & Drop", this);
+                StartDrag();
+            }
+            else if (callbackContext.canceled == true)
+            {
+                Log("Ending Drag & Drop", this);
+                Release();
+            }
+
+        }
+
+        public void OnClick(CallbackContext callbackContext)
+        {
+            OnGrabAction(callbackContext);
         }
     }
 

@@ -17,13 +17,13 @@ namespace MovePlayer.Runtime
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            PlayerInput playerInput = GetComponent<PlayerInput>();
-            foreach (var map in playerInput.actions.actionMaps)
-            {
-                if (map.name != "Player")
-                    map.Disable();
-            }
-            playerInput.actions.FindActionMap("Player").Enable();
+            // PlayerInput playerInput = GetComponent<PlayerInput>();
+            // foreach (var map in playerInput.actions.actionMaps)
+            // {
+            //     if (map.name != "Player")
+            //         map.Disable();
+            // }
+            // playerInput.actions.FindActionMap("Player").Enable();
         }
 
 

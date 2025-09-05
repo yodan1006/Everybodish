@@ -1,49 +1,50 @@
-using System.IO;
+using ActiveRagdoll.Runtime;
+using Grab.Runtime;
+using MovePlayer.Runtime;
+using PlayerLocomotion.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
-namespace ActiveRagdoll.Runtime
+[RequireComponent(typeof(CameraRelativeMovement))]
+[RequireComponent(typeof(AnimatedProximityGrabber))]
+public class Attack : MonoBehaviour
 {
-    [RequireComponent(typeof(CameraRelativeMovement))]
-    public class Attack : MonoBehaviour
+    [SerializeField] private Collider attackCollider;
+    [SerializeField] private int damage;
+    private CameraRelativeMovement _movement;
+    private Animator _animator;
+    private AttackTrigger _attackTrigger;
+    private AnimatedProximityGrabber _proximityGrabber;
+    public float attackMoveSpeedMultiplier = 0.5f;
+    public float throwObjectForce = 7f;
+    private void Awake()
     {
-        [SerializeField] private Collider attackCollider;
-        [SerializeField] private int damage;
-        [SerializeField] float attackDuration = 1;
-        private CameraRelativeMovement _movement;
-        private Animator _animator;
-        public float movementLockDurationLeft = 0;
+        _movement = GetComponent<CameraRelativeMovement>();
+        _animator = GetComponentInChildren<Animator>();
+        _attackTrigger = GetComponentInChildren<AttackTrigger>();
+        _proximityGrabber = GetComponent<AnimatedProximityGrabber>();
 
-        private void Awake()
+        AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
+        animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
+    }
+
+    public void PlayAttack(CallbackContext context)
+    {
+        if (context.performed)
         {
-            _movement = GetComponent<CameraRelativeMovement>();
-            _animator = GetComponentInChildren<Animator>();
-            AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-            animationEventListener.Initialize(attackCollider, _animator, _movement);
+            _animator.SetTrigger("Attack");
         }
+    }
 
-        public void PlayAttack(InputAction.CallbackContext context)
+    public void SetSpeedMultiplier(bool isSet)
+    {
+        if (isSet)
         {
-            if (context.performed && movementLockDurationLeft == 0)
-            {
-                _animator.SetBool("Attack", true);
-                _movement.enabled = false;
-                movementLockDurationLeft = attackDuration;
-            }
+            _movement.moveSpeedMultiplier = attackMoveSpeedMultiplier;
         }
-
-        private void Update()
+        else
         {
-            if (movementLockDurationLeft > 0)
-            {
-                movementLockDurationLeft -= Time.deltaTime;
-                if(movementLockDurationLeft < 0)
-                {
-                    movementLockDurationLeft = 0;
-                    _animator.SetBool("Attack", false);
-                    _movement.enabled = true;
-                }
-            }
+            _movement.moveSpeedMultiplier = 1;
         }
     }
 }

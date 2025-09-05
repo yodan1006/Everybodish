@@ -13,9 +13,10 @@ namespace Grab.Data
         GrabableBehaviourEnum GrabbedBehaviour { get; }
         Vector3 HoldDistanceFromPlayerCenter { get; }
         protected IGrabber Grabber();
-        void Release();
+        bool Release();
         bool TryGrab(IGrabber newGrabber);
         bool IsGrabbed();
-        bool IsGrabable { get; set; }
+        bool IsGrabable { get; }
+        void SetColliderExcludeLayers(LayerMask excludeLayers);
     }
 }

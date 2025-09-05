@@ -13,29 +13,54 @@ namespace Grab.Runtime
         [SerializeField] private GrabableBehaviourEnum grabbedBehaviour = GrabableBehaviourEnum.None;
         [SerializeField] private MovementStrategyEnum movementStrategy = MovementStrategyEnum.Hold;
         [SerializeField] private Vector3 holdDistanceFromPlayer = new(0, 1, 1);
-        [SerializeField] private bool isGrabable = true;
 
+        public IGrabber Grabber { get => grabber; }
         public Vector3 HoldDistanceFromPlayerCenter { get => holdDistanceFromPlayer; }
         public RigidbodyConstraints ReleaseAreaConstraints { get => releaseAreaConstraints; }
         public MovementStrategyEnum MovementStrategy { get => movementStrategy; }
         public RigidbodyConstraints HoldAreaConstraints { get => holdAreaConstraints; }
         public GrabableBehaviourEnum GrabbedBehaviour { get => grabbedBehaviour; }
-        bool IGrabable.IsGrabable { get => isGrabable; set => isGrabable = value; }
+        bool IGrabable.IsGrabable { get => IsGrabable(); }
+
+        public bool IsGrabable()
+        {
+            return grabber == null && enabled;
+        }
 
         public bool IsGrabbed()
         {
             return grabber != null;
         }
 
-        public void Release()
+        private void OnDisable()
         {
-            grabber = null;
+            //Force Grabbers out
+            if (IsGrabbed())
+            {   //Upgrade to the highest available class to be sure
+                //TODO: Should be doable using only interfaces 
+                if (Grabber.gameObject.TryGetComponent<AnimatedProximityGrabber>(out AnimatedProximityGrabber grabber))
+                {
+                    grabber.Release();
+                }
+            }
+
+        }
+
+        public bool Release()
+        {
+            bool success = false;
+            if (IsGrabbed())
+            {
+                grabber = null;
+                success = true;
+            }
+            return success;
         }
 
         public bool TryGrab(IGrabber newGrabber)
         {
             bool success = false;
-            if (isGrabable == true)
+            if (IsGrabable() == true)
             {
                 if (grabber == null)
                 {
@@ -58,6 +83,17 @@ namespace Grab.Runtime
         IGrabber IGrabable.Grabber()
         {
             return grabber;
+        }
+        public void SetColliderExcludeLayers(LayerMask excludeLayers)
+        {
+            if (TryGetComponent<Collider>(out Collider collider))
+            {
+                collider.excludeLayers = excludeLayers;
+            }
+            else
+            {
+                Debug.LogError("Grabable has no collider!");
+            }
         }
     }
 }

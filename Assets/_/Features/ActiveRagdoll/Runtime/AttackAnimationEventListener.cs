@@ -1,15 +1,21 @@
+using Grab.Runtime;
+using MovePlayer.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
+    [DisallowMultipleComponent]
     public class AttackAnimationEventListener : MonoBehaviour
     {
         #region Publics
-        public void Initialize(Collider attackCollider, Animator animator, CameraRelativeMovement movement)
+        public float throwObjectForce = 7;
+        public void Initialize(Attack attack, Animator animator, AttackTrigger attackTrigger, AnimatedProximityGrabber proximityGrabber, float throwObjectForce)
         {
-            this.attackCollider = attackCollider;
+            this.attack = attack;
+            this.attackTrigger = attackTrigger;
             this.animator = animator;
-            this.movement = movement;
+            this.proximityGrabber = proximityGrabber;
+            this.throwObjectForce = throwObjectForce;
         }
         #endregion
 
@@ -22,16 +28,41 @@ namespace ActiveRagdoll.Runtime
         #region Main Methods
         public void AnimEventActiveHeadButt()
         {
-            attackCollider.enabled = true;
-            Debug.Log("AnimEventActiveHeadButt");
+            if (!proximityGrabber.IsGrabbing())
+            {
+                attackTrigger.enabled = true;
+                Debug.Log("AnimEventActiveHeadButt");
+            }
+            else
+            {
+                Grab.Data.IGrabable grabable = proximityGrabber.Grabable;
+                proximityGrabber.Release();
+                if (grabable.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                {
+                    rb.linearVelocity = (transform.forward + transform.up).normalized * throwObjectForce;
+
+                }
+            }
+
         }
 
         public void AnimEventDisableHeadButt()
         {
             Debug.Log("AnimEventDisableHeadButt");
-            attackCollider.enabled = false;
-            animator.SetBool("Attack", false);
+            attackTrigger.enabled = false;
         }
+
+        public void AttackStart()
+        {
+            attack.SetSpeedMultiplier(true);
+        }
+
+        public void AttackEnd()
+        {
+            attack.SetSpeedMultiplier(false);
+        }
+
+
         #endregion
 
 
@@ -41,9 +72,10 @@ namespace ActiveRagdoll.Runtime
 
 
         #region Private and Protected
-        private Collider attackCollider;
+        private AttackTrigger attackTrigger;
+        private Attack attack;
         private Animator animator;
-        private CameraRelativeMovement movement;
+        private ProximityGrabber proximityGrabber;
         #endregion
 
 

@@ -5,7 +5,6 @@ namespace ActiveRagdoll.Runtime
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(ConfigurableJoint))]
     public class ConfigurableJointExtended : VerboseMonoBehaviour
     {
         public ConfigurableJoint joint;
@@ -56,7 +55,7 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
-        private bool isColliderDisabled = false;
+        // private readonly bool isColliderDisabled = false;
 
         public void Initialize(GameObject targetObject, Rigidbody connectedBody)
         {
@@ -69,11 +68,16 @@ namespace ActiveRagdoll.Runtime
             ApplyAdaptiveConfig();
         }
 
-        private void Start()
+        private void Awake()
         {
             initialLocalRotation = transform.localRotation;
             joint = GetComponent<ConfigurableJoint>();
-            ConfigurableJointUtility.SetupAsCharacterJoint(joint);
+        }
+
+        private void OnEnable()
+        {
+            Debug.Log("Resetting joint rotation");
+            // transform.localRotation = initialLocalRotation;
         }
 
         private void FixedUpdate()
@@ -85,7 +89,6 @@ namespace ActiveRagdoll.Runtime
 
 
             float currentBoneLength = GetBoneLength();
-            ApplyAdaptiveConfig();
 
             if (currentBoneLength > boneLength * 1.5f)
             {
@@ -216,6 +219,13 @@ namespace ActiveRagdoll.Runtime
 
             Gizmos.color = jointAxisColor;
             Gizmos.DrawRay(transform.position, transform.forward * 0.2f);
+        }
+
+        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint)
+        {
+            ConfigurableJointUtility.SetupAsCharacterJoint(configurableJoint);
+            joint = configurableJoint;
+            joint.connectedBody = rootRigidBody;
         }
 
         public static class ConfigurableJointUtility

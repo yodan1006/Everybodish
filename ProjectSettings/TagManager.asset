@@ -14,6 +14,7 @@ TagManager:
   - Player
   - Ragdoll
   - RigidbodyObjects
+  - Attack
   - 
   - 
   - 
@@ -24,9 +25,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - OutlinePlayer
+  - OutlineFood
   - 
   - 
   - 

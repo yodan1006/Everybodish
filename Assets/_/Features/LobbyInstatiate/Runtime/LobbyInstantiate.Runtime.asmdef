@@ -2,7 +2,8 @@
     "name": "LobbyInstantiate.Runtime",
     "rootNamespace": "LobbyInstantiate.Runtime",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6f93e3644c1dc384ebd5a1a57bab0a0f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

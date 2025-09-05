@@ -3,7 +3,10 @@
     "rootNamespace": "ActiveRagdoll.Runtime",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:4a03ca78fbbf223419e5a3f628bbab87"
+        "GUID:4a03ca78fbbf223419e5a3f628bbab87",
+        "GUID:b5745f3fab93bf643825dbdf032a2b0f",
+        "GUID:00c109931f2831e409a63e80b2571e19",
+        "GUID:85d234a834ebc3542af0ac1c2d46ec5e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

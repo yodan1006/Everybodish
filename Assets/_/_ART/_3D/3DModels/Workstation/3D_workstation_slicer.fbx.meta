@@ -84,6 +84,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: MAT_Workstation_rouge.001
     second: {fileID: 2100000, guid: 1e25a1085bcd48240bd7e4d0419cb80d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_workstation_Belt
+    second: {fileID: 2100000, guid: f3e3d6d046d537442a6140ba445e5669, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

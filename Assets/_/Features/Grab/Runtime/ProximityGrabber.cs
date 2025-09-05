@@ -1,15 +1,27 @@
 using System.Collections.Generic;
 using Grab.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace Grab.Runtime
 {
     [DisallowMultipleComponent]
     public class ProximityGrabber : RigidbodyGrabber, IProximityGrabber
     {
         [SerializeField] protected Transform grabAreaCenter;
-        public float grabAreaRadius = 0.5f;
+        public float grabAreaRadius = 1f;
         public LayerMask layerMask;
+        [SerializeField] protected GameObject root;
+        private Collider[] selfColliders;
 
+        protected new void Awake()
+        {
+            base.Awake();
+            if (root == null)
+            {
+                root = transform.parent.gameObject;
+            }
+            selfColliders = root.GetComponentsInChildren<Collider>(true);
+        }
 
         public Collider[] GetCollidersInArea()
         {
@@ -22,18 +34,26 @@ namespace Grab.Runtime
             foreach (Collider collider in colliders)
             {
                 Log($"{collider.name}");
-                //self check
-                if (collider.gameObject != transform.gameObject)
+                bool found = false;
+                foreach (Collider selfCollider in selfColliders)
+                {
+                    if (collider == selfCollider)
+                    {
+                        found = true; break;
+                    }
+                }
+                if (found == true)
+                {
+                    Log("Player collider is overlapping with grab area. Filtering out.");
+                }
+                else
                 {
                     Grabable grabable = collider.gameObject.GetComponentInChildren<Grabable>();
                     if (grabable != null)
                     {
                         grabables.Add(grabable);
                     }
-                }
-                else
-                {
-                    Log("Player collider is overlapping with grab area. Filtering out.");
+
                 }
             }
             return grabables;
@@ -52,7 +72,7 @@ namespace Grab.Runtime
                     Log($"{grabables[i].name}");
                     if (closestAvailableGrabable != null)
                     {
-                        if (!grabables[i].IsGrabbed() && grabables[i].IsGrabable)
+                        if (grabables[i].IsGrabable)
                         {
                             if (Vector3.Distance(grabAreaCenter.position, grabables[i].transform.position) < closestGrabableDistance)
                             {
@@ -85,22 +105,36 @@ namespace Grab.Runtime
             }
         }
 
-        public void OnGrabAction()
+
+        public override void OnRelease(InputAction.CallbackContext callbackContext)
         {
-            Log("Grab");
-            Collider[] colliders = GetCollidersInArea();
-            Log($"Found {colliders.Length} colliders", this);
-            List<IGrabable> grabables = GetGrabables(colliders);
-            Log($"Found {grabables.Count} grabables", this);
-            if (TryGrabClosestAvailable(grabables))
+            if (IsGrabbing())
             {
-                Log("Grab successful", this);
-            }
-            else
-            {
-                Log("Grab unsuccessful", this);
+                base.OnRelease(callbackContext);
             }
         }
 
+        public override void OnGrabAction(InputAction.CallbackContext callbackContext)
+        {
+            if (!IsGrabbing())
+            {
+                Log("Grab");
+                Collider[] colliders = GetCollidersInArea();
+                Log($"Found {colliders.Length} colliders", this);
+                List<IGrabable> grabables = GetGrabables(colliders);
+                Log($"Found {grabables.Count} grabables", this);
+                TryGrabClosestAvailable(grabables);
+            }
+        }
+
+        void IProximityGrabber.OnGrabAction(InputAction.CallbackContext callbackContext)
+        {
+            OnGrabAction(callbackContext);
+        }
+
+        void IProximityGrabber.OnRelease(InputAction.CallbackContext callbackContext)
+        {
+            OnRelease(callbackContext);
+        }
     }
 }

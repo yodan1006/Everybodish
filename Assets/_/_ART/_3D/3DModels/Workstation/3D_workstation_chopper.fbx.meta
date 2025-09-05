@@ -54,6 +54,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: MAT_Workstation_vert.F
     second: {fileID: 2100000, guid: 7751163fe1071c84d87ffc83eb74b2bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_workstation_Belt
+    second: {fileID: 2100000, guid: f3e3d6d046d537442a6140ba445e5669, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -101,7 +106,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 0
+    preserveHierarchy: 1
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
@@ -139,7 +144,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: ROOT
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -147,7 +152,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
