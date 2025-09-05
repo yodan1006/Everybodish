@@ -43,7 +43,7 @@ namespace Score.Runtime
                 if (i < playerList.Count)
                 {
                     playerScoreboardList[i].enabled = true;
-                    playerScoreboardList[i].SetText(scoreSystem.PlayerScores.GetValueOrDefault(playerList[i].playerIndex).ToString());
+                    playerScoreboardList[i].SetText(GlobalScoreEventSystem.PlayerScores.GetValueOrDefault(playerList[i].playerIndex).ToString());
                 }
                 else
                 {
