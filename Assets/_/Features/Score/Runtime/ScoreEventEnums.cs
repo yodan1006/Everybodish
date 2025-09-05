@@ -3,16 +3,16 @@ namespace Score.Runtime
 
     public enum ScoreEventType
     {
-        CookedItem,
-        ServedItem,
-        BurnedItem,
+        JoinedGame,
+        PreparedIngredient,
+        CookedDish,
+        ServedDish,
+        BurnedDish,
         ThrewAwayItem,
         BonusTip,
         Penalty,
-        ComboAchieved,
         PlayerKilled,
         FoodPoisoned,
-
     }
 
 }

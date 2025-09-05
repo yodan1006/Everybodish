@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace MovePlayer.Runtime
 {
@@ -6,6 +7,13 @@ namespace MovePlayer.Runtime
     {
         public int m_maxLife = 3;
         private int m_life = 0;
+        public UnityEvent onPlayerDied;
+
+        public void KillPlayer()
+        {
+            onPlayerDied.Invoke();
+        }
+
         public int CurrentLife()
         {
             return m_life;
