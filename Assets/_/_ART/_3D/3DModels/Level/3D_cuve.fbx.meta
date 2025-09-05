@@ -3,7 +3,17 @@ guid: 20fb2b85758a47047a39d0d902392be5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT.decore-Gradient
+    second: {fileID: 2100000, guid: 40f3554003787e6448c473d1d1c2e299, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT.decore-Metalness
+    second: {fileID: 2100000, guid: 32ad01e11eb93ef4386de9a56f312c7a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
