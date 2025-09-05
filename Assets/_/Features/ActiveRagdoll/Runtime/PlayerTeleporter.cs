@@ -22,11 +22,13 @@ namespace ActiveRagdoll.Runtime
 
         public void ReconnectCharacterControllerToRagdoll()
         {
+            //Find root joint
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponentInChildren<ConfigurableJointExtended>();
+            //get ragdoll position and rotation
             m_ragdollRoot.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation);
             //teleport player to current position of ragdoll
             _characterController.transform.position = position;
-            //Set the position correctly before reconnecting
+            //Set the position of the ragdoll back to it's original position correctly before reconnecting
             m_ragdollRoot.transform.SetPositionAndRotation(configurableJointExtended.target.transform.position, configurableJointExtended.target.transform.rotation);
             ReconnectRoot();
             //Reset the position to the start position to maintain the illusion nothing happend

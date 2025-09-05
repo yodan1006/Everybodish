@@ -68,7 +68,7 @@ namespace Score.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             playerList.Add(playerInput);
-            globalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
         }
 
         private void OnEnable()
@@ -76,7 +76,7 @@ namespace Score.Runtime
 
             warmupTimeDelta = warmupTime;
             OnWarmupStarted.Invoke();
-            globalScoreEventSystem.ResetAllScores();
+            GlobalScoreEventSystem.ResetAllScores();
         }
 
         private void OnDisable()

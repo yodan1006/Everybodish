@@ -82,6 +82,9 @@ namespace Machine.Runtime
             {
                 food.gameObject.transform.position = ingredientPoints[slotIndex].position;
                 food.gameObject.transform.rotation = ingredientPoints[slotIndex].rotation;
+                //Remet la vitesse linéaire et angulaire à zero gros il y a tous les ingrédients qui sortent de ta poelle!
+                food.rb.linearVelocity = Vector3.zero;
+                food.rb.angularVelocity = Vector3.zero;
                 // Echelle du GD
                 if (ingredientScales.Length > slotIndex)
                     food.gameObject.transform.localScale = ingredientScales[slotIndex];

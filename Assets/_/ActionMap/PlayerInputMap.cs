@@ -970,6 +970,15 @@ namespace ActionMap
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""validateSkin"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e681e6f-d132-4455-a098-68fe51570488"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -981,6 +990,17 @@ namespace ActionMap
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""selectSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f5c77d-8156-4d71-a640-2bcb3a966e9c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""validateSkin"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1015,6 +1035,7 @@ namespace ActionMap
             // Lobby
             m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
             m_Lobby_selectSkin = m_Lobby.FindAction("selectSkin", throwIfNotFound: true);
+            m_Lobby_validateSkin = m_Lobby.FindAction("validateSkin", throwIfNotFound: true);
         }
 
         ~@PlayerInputMap()
@@ -1477,6 +1498,7 @@ namespace ActionMap
         private readonly InputActionMap m_Lobby;
         private List<ILobbyActions> m_LobbyActionsCallbackInterfaces = new List<ILobbyActions>();
         private readonly InputAction m_Lobby_selectSkin;
+        private readonly InputAction m_Lobby_validateSkin;
         /// <summary>
         /// Provides access to input actions defined in input action map "Lobby".
         /// </summary>
@@ -1492,6 +1514,10 @@ namespace ActionMap
             /// Provides access to the underlying input action "Lobby/selectSkin".
             /// </summary>
             public InputAction @selectSkin => m_Wrapper.m_Lobby_selectSkin;
+            /// <summary>
+            /// Provides access to the underlying input action "Lobby/validateSkin".
+            /// </summary>
+            public InputAction @validateSkin => m_Wrapper.m_Lobby_validateSkin;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1521,6 +1547,9 @@ namespace ActionMap
                 @selectSkin.started += instance.OnSelectSkin;
                 @selectSkin.performed += instance.OnSelectSkin;
                 @selectSkin.canceled += instance.OnSelectSkin;
+                @validateSkin.started += instance.OnValidateSkin;
+                @validateSkin.performed += instance.OnValidateSkin;
+                @validateSkin.canceled += instance.OnValidateSkin;
             }
 
             /// <summary>
@@ -1535,6 +1564,9 @@ namespace ActionMap
                 @selectSkin.started -= instance.OnSelectSkin;
                 @selectSkin.performed -= instance.OnSelectSkin;
                 @selectSkin.canceled -= instance.OnSelectSkin;
+                @validateSkin.started -= instance.OnValidateSkin;
+                @validateSkin.performed -= instance.OnValidateSkin;
+                @validateSkin.canceled -= instance.OnValidateSkin;
             }
 
             /// <summary>
@@ -1731,6 +1763,13 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSelectSkin(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "validateSkin" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnValidateSkin(InputAction.CallbackContext context);
         }
     }
 }

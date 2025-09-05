@@ -882,6 +882,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "validateSkin",
+                    "type": "Button",
+                    "id": "7e681e6f-d132-4455-a098-68fe51570488",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -893,6 +902,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "selectSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5f5c77d-8156-4d71-a640-2bcb3a966e9c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "validateSkin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
