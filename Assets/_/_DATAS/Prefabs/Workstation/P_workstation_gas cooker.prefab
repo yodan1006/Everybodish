@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 62488c4ab110f7f44a01e91f22d35a40, type: 3}
       propertyPath: m_Name
-      value: 3D_workstation_gas cooker
+      value: P_workstation_gas cooker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
