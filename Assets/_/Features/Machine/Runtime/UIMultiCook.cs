@@ -8,7 +8,7 @@ namespace Machine.Runtime
     public class UIMultiCook : MonoBehaviour
     {
         [SerializeField] private Canvas uiCanvas;
-        [SerializeField] private Image uiImage;
+        [SerializeField] public Image uiImage;
 
         [SerializeField] private float holdTime = 1f;
         
@@ -40,6 +40,11 @@ namespace Machine.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
+            if (gameObject.TryGetComponent<CookStationMultiIngredient>(out var cookStationMultiIngredient))
+                if (cookStationMultiIngredient.IsCooking)
+                {
+                    return;
+                }
             if (other.TryGetComponent<PlayerInteract>(out var player))
             {
                 ShowUI();
