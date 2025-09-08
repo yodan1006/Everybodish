@@ -1,5 +1,7 @@
 using Grab.Runtime;
+using Score.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Machine.Runtime
@@ -16,13 +18,13 @@ namespace Machine.Runtime
         private float holdingTime = 0f;
         [SerializeField] private float holdToCookDuration = 1f;
         private bool cookTriggered = false;
-
+        public UnityEvent<ScoreEventType> onScoreEvent = new();
 
         private void Awake()
         {
             if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
             {
-                grabber = grabber;
+                Debug.LogError("Grabber not found!");
             }
         }
 
@@ -44,7 +46,7 @@ namespace Machine.Runtime
         {
             if (!grabber.IsGrabbing()) return;
 
-            if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food) || food == null)
+            if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
                 return;
 
             Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
@@ -54,28 +56,37 @@ namespace Machine.Runtime
                 // Cas 1 : CookStation simple
                 if (hit.TryGetComponent<CookStation>(out var simpleStation) && hit.GetComponent<CookStation>()._isCooking == false)
                 {
-                    if (simpleStation.TryCook(food, out var resultPrefab))
+                    if (simpleStation.TryCook(food, out _))
                     {
                         grabber.Release();
+                        if (food.FoodType == FoodType.Player)
+                        {
+                            onScoreEvent.Invoke(ScoreEventType.PreparedIngredient);
+                        }
+                        else
+                        {
+                            onScoreEvent.Invoke(ScoreEventType.PlayerKilled);
+                        }
+
                         //food = null;
                         //simpleStation.SpawnCookedFood(resultPrefab);
                     }
-                    return;
-                }
 
-                // Cas 2 : CookStation multi
-                if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
+                } // Cas 2 : CookStation multi
+                else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
                 {
+                    grabber.Release();
                     multiStation.AddFood(food);
-                    grabber.Release();
-                    return;
-                }
 
-                if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
+                }
+                else if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
                 {
                     grabber.Release();
-                    serviceCommande.ServicePlat(food);
-                    return;
+                    if (serviceCommande.ServicePlat(food))
+                    {
+                        onScoreEvent.Invoke(ScoreEventType.ServedDish);
+                    }
+
                 }
             }
         }

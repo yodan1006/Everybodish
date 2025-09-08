@@ -10,7 +10,7 @@ namespace Machine.Runtime
         [SerializeField] private RecetteUI[] recettesDisponibles;
         [SerializeField] private int maxCommandes = 5;
         [SerializeField] private float tempsEntreCommandes = 5f;
-        [SerializeField]private  float startY = -300f;
+        [SerializeField] private float startY = -300f;
         [SerializeField] private float offsetY = 120f;
 
         [Header("UI")]

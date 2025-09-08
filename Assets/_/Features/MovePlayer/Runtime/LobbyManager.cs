@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using TransitionScene.Runtime;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
 {
@@ -19,7 +17,7 @@ namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         public void RegisterPlayer(SelectSkin player)

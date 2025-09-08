@@ -79,7 +79,7 @@ namespace ActiveRagdoll.Runtime
 
 
         #region Main Methods
-        internal void StunForDuration(float stunDuration)
+        public void StunForDuration(float stunDuration)
         {
             enabled = true;
             this.stunDuration = stunDuration;
