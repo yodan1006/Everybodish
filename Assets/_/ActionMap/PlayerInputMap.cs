@@ -301,17 +301,6 @@ namespace ActionMap
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a9dec5d-46aa-4bff-89e8-4f2818e735ee"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HeadButt"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""933803d6-51cd-466b-8422-c2eb4ad9693c"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -324,7 +313,7 @@ namespace ActionMap
                 {
                     ""name"": """",
                     ""id"": ""16d1c959-e0d7-4f5c-873f-e47820c43346"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -336,6 +325,17 @@ namespace ActionMap
                     ""name"": """",
                     ""id"": ""2cf6614d-6c65-48a9-adc2-dec3e9758287"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeadButt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7658aedb-8fbb-470c-bed4-cd1115dee0cc"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
