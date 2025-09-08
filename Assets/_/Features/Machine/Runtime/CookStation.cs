@@ -14,6 +14,7 @@ namespace Machine.Runtime
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
         public bool _isCooking = false;
+        public bool hideItemDuringPrepare = false;
         private Food _currentFood;
 
         public bool TryCook(Food food, out GameObject resultPrefab)
@@ -33,13 +34,21 @@ namespace Machine.Runtime
                         _isCooking = true;
                         _currentFood = food;
 
-                        // Place l’objet visuellement sur le slot
-                        food.transform.transform.SetPositionAndRotation(foodSlot.transform.position, foodSlot.transform.rotation);
+                       
+                        if (hideItemDuringPrepare == true)
+                        {
+                            food.grabable.enabled = false;
+                            food.transform.localScale =Vector3.zero;
+                        }
+                        else
+                        {
+                            // Place l’objet visuellement sur le slot
+                            food.transform.transform.SetPositionAndRotation(foodSlot.transform.position, foodSlot.transform.rotation);
+                            food.grabable.enabled = false;
+                            food.rb.linearVelocity = Vector3.zero;
+                            food.rb.angularVelocity = Vector3.zero;
+                        }
 
-                        //food.rb.isKinematic = true;
-                        food.grabable.enabled = false;
-                        food.rb.linearVelocity = Vector3.zero;
-                        food.rb.angularVelocity = Vector3.zero;
                         animator.SetBool("OnSlice", true);
                         resultPrefab = recipe.outputPrefab;
                         if (food.FoodType == FoodType.Player)
