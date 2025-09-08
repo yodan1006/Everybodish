@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Release",
-                    "type": "Button",
-                    "id": "2cdb3feb-1b9b-46b4-bb67-2ce58e23e3b8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "HeadButt",
                     "type": "Button",
                     "id": "ea5da2ab-e055-4e47-99e4-54c8791296e4",
@@ -245,33 +236,11 @@
                 {
                     "name": "",
                     "id": "16d1c959-e0d7-4f5c-873f-e47820c43346",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Grab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "99859b93-ea1f-4dd3-bb08-6ea4390c21a1",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57b2c1a7-10ae-4c55-8b56-fdc5c1e1fb72",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Release",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

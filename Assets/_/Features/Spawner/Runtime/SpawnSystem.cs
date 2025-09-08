@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ActionMap;
 using Grab.Runtime;
@@ -118,8 +117,7 @@ namespace Spawner.Runtime
         {
             //Get components
             Debug.Log("Binding inputs");
-            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
-            BindPlayerInput(inputMap.Player.Release, GetComponentInChildren<AnimatedProximityGrabber>().OnRelease);
+            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
             BindPlayerInput(inputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);
