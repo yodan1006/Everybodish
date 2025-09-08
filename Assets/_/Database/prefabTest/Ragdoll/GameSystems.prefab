@@ -71,7 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f4ed06cc3e47f40a0bf4f66e8a742f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joinedGameDelta: 0
+  joinedGameDelta: 1
+  preparedIngredientDelta: 1
   CookedItemDelta: 10
   ServedItemDelta: 30
   BurnedItemDelta: -10
@@ -79,8 +80,8 @@ MonoBehaviour:
   BonusTipDelta: 0
   PenaltyDelta: 0
   ComboAchievedDelta: 0
-  PlayerKilledDelta: 0
-  FoodPoisonedDelta: 0
+  PlayerKilledDelta: 5
+  FoodPoisonedDelta: -1
   OnScoreEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -100,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warmupTime: 10
-  warmupTimeDelta: 0
   roundDuration: 300
   OnWarmupStarted:
     m_PersistentCalls:

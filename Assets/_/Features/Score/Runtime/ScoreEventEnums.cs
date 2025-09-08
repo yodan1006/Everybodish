@@ -12,6 +12,7 @@ namespace Score.Runtime
         BonusTip,
         Penalty,
         PlayerKilled,
+        PlayerDied,
         FoodPoisoned,
     }
 

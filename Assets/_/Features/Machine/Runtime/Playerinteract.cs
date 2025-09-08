@@ -61,11 +61,11 @@ namespace Machine.Runtime
                         grabber.Release();
                         if (food.FoodType == FoodType.Player)
                         {
-                            onScoreEvent.Invoke(ScoreEventType.PreparedIngredient);
+                            onScoreEvent.Invoke(ScoreEventType.PlayerKilled);
                         }
                         else
                         {
-                            onScoreEvent.Invoke(ScoreEventType.PlayerKilled);
+                            onScoreEvent.Invoke(ScoreEventType.PreparedIngredient);
                         }
 
                         //food = null;
