@@ -22,7 +22,7 @@ namespace Machine.Runtime
 
         private void Awake()
         {
-            if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
+            if (!TryGetComponent<AnimatedProximityGrabber>(out grabber))
             {
                 Debug.LogError("Grabber not found!");
             }
