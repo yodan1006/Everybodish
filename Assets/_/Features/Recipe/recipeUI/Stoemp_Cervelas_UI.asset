@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c849d4b9a8619fa4eabf3d25adaacfff, type: 3}
   m_Name: Stoemp_Cervelas_UI
   m_EditorClassIdentifier: 
-  foodType: 0
-  prefabUI: {fileID: 0}
+  foodType: 20
+  prefabUI: {fileID: 2296498912645301165, guid: c1ede16d599ed28439c2b943d19b372f, type: 3}

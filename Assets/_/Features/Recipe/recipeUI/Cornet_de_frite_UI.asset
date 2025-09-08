@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c849d4b9a8619fa4eabf3d25adaacfff, type: 3}
   m_Name: Cornet_de_frite_UI
   m_EditorClassIdentifier: 
-  foodType: 0
-  prefabUI: {fileID: 0}
+  foodType: 17
+  prefabUI: {fileID: 3912450150923663591, guid: eac444e8c09b0194098533d262831692, type: 3}

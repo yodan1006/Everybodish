@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Boulette_sauce_lapin_UI
   m_EditorClassIdentifier: 
   foodType: 18
-  prefabUI: {fileID: 0}
+  prefabUI: {fileID: 7265204374074145714, guid: f7c887f723c768f4695b051afb89cfba, type: 3}
