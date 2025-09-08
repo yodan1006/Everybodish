@@ -29,6 +29,7 @@ namespace Score.Runtime
         public int PenaltyDelta;
         public int ComboAchievedDelta;
         public int PlayerKilledDelta;
+        public int PlayerDiedDelta;
         public int FoodPoisonedDelta;
 
         [Header("Score Events")]
@@ -67,6 +68,7 @@ namespace Score.Runtime
                 ScoreEventType.BonusTip => Instance.BonusTipDelta,
                 ScoreEventType.Penalty => Instance.PenaltyDelta,
                 ScoreEventType.PlayerKilled => Instance.PlayerKilledDelta,
+                ScoreEventType.PlayerDied => Instance.PlayerDiedDelta,
                 ScoreEventType.FoodPoisoned => Instance.FoodPoisonedDelta,
                 ScoreEventType.PreparedIngredient => Instance.preparedIngredientDelta,
                 _ => throw new System.NotImplementedException()

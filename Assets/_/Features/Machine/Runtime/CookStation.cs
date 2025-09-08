@@ -1,4 +1,4 @@
-using System;
+using ActiveRagdoll.Runtime;
 using MovePlayer.Runtime;
 using UnityEngine;
 
@@ -42,6 +42,15 @@ namespace Machine.Runtime
                         food.rb.angularVelocity = Vector3.zero;
                         animator.SetBool("OnSlice", true);
                         resultPrefab = recipe.outputPrefab;
+                        if (food.FoodType == FoodType.Player)
+                        {
+                            Stun stun = food.topmost.GetComponentInChildren<Stun>();
+                            if (stun != null)
+                            {
+                                //Stun player FOREVER
+                                stun.StunForDuration(float.PositiveInfinity);
+                            }
+                        }
                         return true;
                     }
                 }
@@ -72,7 +81,7 @@ namespace Machine.Runtime
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
 
-            switch(_currentFood.FoodType)
+            switch (_currentFood.FoodType)
             {
                 case FoodType.Player:
                     KillPlayer(_currentFood);
@@ -82,7 +91,7 @@ namespace Machine.Runtime
                     break;
             }
 
-    
+
         }
 
         private void KillPlayer(Food currentFood)
@@ -94,7 +103,7 @@ namespace Machine.Runtime
         {
             if (food.topmost.gameObject != food.gameObject)
             {
-                GameObject topmostGo = food.topmost.gameObject; 
+                GameObject topmostGo = food.topmost.gameObject;
                 //Destroy the reparented food item
                 Destroy(food.gameObject);
                 //Destroy topmost item that might be lost in the scene

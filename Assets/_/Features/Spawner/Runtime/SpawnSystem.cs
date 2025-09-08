@@ -4,6 +4,7 @@ using Grab.Runtime;
 using Machine.Runtime;
 using MovePlayer.Runtime;
 using PlayerLocomotion.Runtime;
+using Score.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -74,6 +75,7 @@ namespace Spawner.Runtime
             if (playerInstance != null)
             {
                 respawnTimeDelta = respawnTime;
+                ScoreEvent(ScoreEventType.PlayerDied);
                 DestroyPlayer();
             }
         }
@@ -98,6 +100,12 @@ namespace Spawner.Runtime
         private void BindPlayerEvents()
         {
             GetComponentInChildren<PlayerStat>().onPlayerDied.AddListener(KillPlayer);
+            GetComponentInChildren<PlayerInteract>().onScoreEvent.AddListener(ScoreEvent);
+        }
+
+        private void ScoreEvent(ScoreEventType eventType)
+        {
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, eventType);
         }
 
         public void InstantiatePlayer()
@@ -109,8 +117,7 @@ namespace Spawner.Runtime
         {
             //Get components
             Debug.Log("Binding inputs");
-            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().OnGrabAction);
-            BindPlayerInput(inputMap.Player.Release, GetComponentInChildren<AnimatedProximityGrabber>().OnRelease);
+            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
             BindPlayerInput(inputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);

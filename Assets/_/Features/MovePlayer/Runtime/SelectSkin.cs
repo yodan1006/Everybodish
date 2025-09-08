@@ -13,12 +13,12 @@ namespace MovePlayer.Runtime
         private float lastColorChangeTime = 0f;
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
-        
-        public bool IsReady { get; private set;} = false;
+
+        public bool IsReady { get; private set; } = false;
 
         private void Awake()
         {
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             LobbyManager.Instance.RegisterPlayer(this);
         }
 
@@ -78,7 +78,7 @@ namespace MovePlayer.Runtime
             // Active la variante sélectionnée
             appearances[currentModelIndex].colorAppaerences[currentColorIndex].SetActive(true);
         }
-        
+
         public void OnValidateSkin(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
@@ -87,7 +87,7 @@ namespace MovePlayer.Runtime
             IsReady = true;
             LobbyManager.Instance.CheckAllReady();
         }
-        
-        
+
+
     }
 }
