@@ -251,7 +251,6 @@ namespace Machine.Runtime
             _goFinish = false;
             _isCooking = false;
             isFinished = false;
-            isRetourned = false;
             currentCookingRoutine = null;
             _storedFoods.Clear();
         }

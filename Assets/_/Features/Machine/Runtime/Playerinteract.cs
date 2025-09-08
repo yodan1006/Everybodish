@@ -7,17 +7,16 @@ namespace Machine.Runtime
     [RequireComponent(typeof(PlayerInventory))]
     public class PlayerInteract : MonoBehaviour
     {
-        // [SerializeField] private Transform holdPoint;
-        // private GameObject heldObject;
-        private AnimatedProximityGrabber grabber;
+        [SerializeField] private float holdToCookDuration = 1f;
         [SerializeField] private float radiusDetector;
-
+        
+        private AnimatedProximityGrabber grabber;
         private bool isHoldCooking = false;
         private float holdingTime = 0f;
-        [SerializeField] private float holdToCookDuration = 1f;
         private bool cookTriggered = false;
-
-
+        
+        public UIMultiCook CurrentMultiCookUI { get; set; }
+        
         private void Awake()
         {
             if (TryGetComponent<AnimatedProximityGrabber>(out grabber))
@@ -134,6 +133,20 @@ namespace Machine.Runtime
 
         public void OnManualCook(InputAction.CallbackContext context)
         {
+            
+            if (CurrentMultiCookUI != null)
+            {
+                if (context.started)
+                {
+                    CurrentMultiCookUI.StartHold();
+                }
+                if (context.canceled)
+                {
+                    CurrentMultiCookUI.StopHold();
+                }
+            }
+
+            
             if (context.started)
             {
                 isHoldCooking = true;
