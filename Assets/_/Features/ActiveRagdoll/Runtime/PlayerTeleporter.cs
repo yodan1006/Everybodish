@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -12,7 +11,7 @@ namespace ActiveRagdoll.Runtime
         private void Awake()
         {
             _rootRigidBody = m_playerRoot.GetComponent<Rigidbody>();
-            _characterController  = m_playerRoot.GetComponentInChildren<CharacterController>();
+            _characterController = m_playerRoot.GetComponentInChildren<CharacterController>();
         }
         public void TeleportTo(Transform transform)
         {

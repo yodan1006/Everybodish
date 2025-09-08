@@ -19,10 +19,10 @@ namespace ActiveRagdoll.Runtime
         {
             if (automaticSetup)
             {
-            SetupAnimatedBody();
-            SetupPhysicsBody();
-            SetupJoints();
-            animatedTransformsDictionary.Clear();
+                SetupAnimatedBody();
+                SetupPhysicsBody();
+                SetupJoints();
+                animatedTransformsDictionary.Clear();
             }
 
         }
@@ -45,7 +45,7 @@ namespace ActiveRagdoll.Runtime
                 animatedTransformsDictionary[t.name] = t;
             }
         }
-       public void DisconnectRoot()
+        public void DisconnectRoot()
         {
             ConfigurableJoint configurableJoint = physicsBody.GetComponent<ConfigurableJoint>();
             physicsBody.GetComponent<ConfigurableJointExtended>().enabled = false;

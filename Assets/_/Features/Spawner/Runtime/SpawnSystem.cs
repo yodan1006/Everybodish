@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ActionMap;
 using Grab.Runtime;
@@ -14,7 +13,7 @@ namespace Spawner.Runtime
     [RequireComponent(typeof(PlayerInput))]
     public class SpawnSystem : MonoBehaviour
     {
-        
+
         public float respawnTime = 5;
         public float respawnTimeDelta;
 

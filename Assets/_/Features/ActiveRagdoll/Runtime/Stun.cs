@@ -30,7 +30,7 @@ namespace ActiveRagdoll.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
-            _activeRagdoll =GetComponent<ActiveRagdoll>();
+            _activeRagdoll = GetComponent<ActiveRagdoll>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
 
@@ -88,8 +88,8 @@ namespace ActiveRagdoll.Runtime
 
 
         #region Utils
- 
- 
+
+
         #endregion
 
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3789299592840288672}
   - component: {fileID: 2487107271704755313}
+  - component: {fileID: 7823528420382472928}
   m_Layer: 0
   m_Name: RabbitModel
   m_TagString: Untagged
@@ -110,6 +111,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0029083192, y: 0.0016190708, z: 0.81512964}
     m_Extent: {x: 0.52115, y: 0.29707742, z: 0.85974514}
   m_DirtyAABB: 0
+--- !u!114 &7823528420382472928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345413945728355093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68e8e3c078e44b418daa13c05f3755c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 6044559475038935738}
+  skinMesh: {fileID: 2487107271704755313}
 --- !u!1 &3871336031314727682
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8475134202920688520}
   - component: {fileID: 2948555846439698690}
+  - component: {fileID: 4068449179801143652}
   m_Layer: 0
   m_Name: CowModel
   m_TagString: Untagged
@@ -221,6 +237,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0058380067, y: 0.06133108, z: 0.8341482}
     m_Extent: {x: 0.5119178, y: 0.3675651, z: 0.871623}
   m_DirtyAABB: 0
+--- !u!114 &4068449179801143652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871336031314727682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68e8e3c078e44b418daa13c05f3755c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 6044559475038935738}
+  skinMesh: {fileID: 2948555846439698690}
 --- !u!1 &6926384754770486297
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6929875803407603910}
   - component: {fileID: 8076574390458640991}
+  - component: {fileID: 2685811839220831639}
   m_Layer: 0
   m_Name: PigModel
   m_TagString: Untagged
@@ -331,6 +362,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0066532493, y: 0.0020959377, z: 0.82658076}
     m_Extent: {x: 0.51233035, y: 0.30287015, z: 0.87163365}
   m_DirtyAABB: 0
+--- !u!114 &2685811839220831639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926384754770486297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68e8e3c078e44b418daa13c05f3755c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 6044559475038935738}
+  skinMesh: {fileID: 8076574390458640991}
 --- !u!1001 &4313978441283265084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2106,6 +2151,11 @@ MonoBehaviour:
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!1 &6044559475038935738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1712280074624223098, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+  m_PrefabInstance: {fileID: 4313978441283265084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7212808529754245102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6901590153715328466, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
