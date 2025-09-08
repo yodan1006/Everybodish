@@ -1,3 +1,4 @@
+using Grab.Runtime;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -10,7 +11,8 @@ namespace Machine.Runtime
         private bool _onService;
         private GameObject _foodToDestroy;
 
-        [Header("Référence Commandes")] [SerializeField]
+        [Header("Référence Commandes")]
+        [SerializeField]
         private CommandeManager commandeManager;
 
         private void Update()
@@ -31,18 +33,21 @@ namespace Machine.Runtime
             }
         }
 
-        public void ServicePlat(Food food)
+        public bool ServicePlat(Food food)
         {
+            bool valide = false;
             food.transform.position = _transformPlat.position;
             _onService = true;
             _timer = timeurDispawn;
             _foodToDestroy = food.gameObject;
+            food.GetComponent<Grabable>().enabled = false;
 
             if (commandeManager != null)
             {
-                bool valide = commandeManager.VerifierCommande(food.FoodType);
+                valide = commandeManager.VerifierCommande(food.FoodType);
                 Debug.Log(valide ? "Commande validée !" : "Plat non commandé.");
             }
+            return valide;
         }
     }
 }

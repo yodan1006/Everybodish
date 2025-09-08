@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Release",
-                    "type": "Button",
-                    "id": "2cdb3feb-1b9b-46b4-bb67-2ce58e23e3b8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "HeadButt",
                     "type": "Button",
                     "id": "ea5da2ab-e055-4e47-99e4-54c8791296e4",
@@ -222,17 +213,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9a9dec5d-46aa-4bff-89e8-4f2818e735ee",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HeadButt",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "933803d6-51cd-466b-8422-c2eb4ad9693c",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -245,7 +225,7 @@
                 {
                     "name": "",
                     "id": "16d1c959-e0d7-4f5c-873f-e47820c43346",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -255,30 +235,19 @@
                 },
                 {
                     "name": "",
-                    "id": "99859b93-ea1f-4dd3-bb08-6ea4390c21a1",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57b2c1a7-10ae-4c55-8b56-fdc5c1e1fb72",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Release",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2cf6614d-6c65-48a9-adc2-dec3e9758287",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeadButt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7658aedb-8fbb-470c-bed4-cd1115dee0cc",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -882,6 +851,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "validateSkin",
+                    "type": "Button",
+                    "id": "7e681e6f-d132-4455-a098-68fe51570488",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -893,6 +871,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "selectSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5f5c77d-8156-4d71-a640-2bcb3a966e9c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "validateSkin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

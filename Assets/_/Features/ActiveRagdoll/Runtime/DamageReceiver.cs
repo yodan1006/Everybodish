@@ -7,7 +7,6 @@ namespace MovePlayer.Runtime
     public class DamageReceiver : MonoBehaviour
     {
         public float stunDuration = 5;
-        private float stunDurationDelta = 0;
         #region Publics
         public void TakeDamage(int damage)
         {
@@ -15,8 +14,8 @@ namespace MovePlayer.Runtime
             stat.HurtPlayer(damage);
             if (stat.CurrentLife() < 0)
             {
-                stun.enabled = true;
-                stunDurationDelta = stunDuration;
+                stun.StunForDuration(stunDuration);
+                stat.ResetLife();
             }
         }
         #endregion
@@ -29,20 +28,6 @@ namespace MovePlayer.Runtime
             stat = GetComponent<PlayerStat>();
             stun = GetComponent<Stun>();
         }
-
-        private void Update()
-        {
-            if (stunDurationDelta > 0)
-            {
-                stunDurationDelta -= Time.deltaTime;
-                if (stunDurationDelta <= 0)
-                {
-                    stun.enabled = false;
-                    stat.ResetLife();
-                }
-            }
-        }
-
         #endregion
 
 

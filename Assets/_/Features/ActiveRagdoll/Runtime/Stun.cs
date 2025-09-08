@@ -9,6 +9,7 @@ namespace ActiveRagdoll.Runtime
     [RequireComponent(typeof(CameraRelativeMovement))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GravityAndJump))]
+    [RequireComponent(typeof(ActiveRagdoll))]
     public class Stun : MonoBehaviour
     {
         #region Publics
@@ -28,9 +29,8 @@ namespace ActiveRagdoll.Runtime
             _attack = GetComponentInChildren<Attack>();
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
-            _rootRigidBody = GetComponent<Rigidbody>();
-            //     _playerInput = GetComponent<PlayerInput>();
             _gravity = GetComponent<GravityAndJump>();
+            _activeRagdoll = GetComponent<ActiveRagdoll>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
 
@@ -41,14 +41,13 @@ namespace ActiveRagdoll.Runtime
             _attack.enabled = false;
             _rotation.enabled = false;
             _characterController.enabled = false;
-            // _playerInput.enabled = false;
             _gravity.enabled = false;
             foreach (Grabable grabable in grabables)
             {
                 grabable.enabled = true;
             }
             _animator.SetBool("Stunned", true);
-            DisconnectRoot();
+            _activeRagdoll.DisconnectRoot();
         }
 
         private void OnDisable()
@@ -57,51 +56,40 @@ namespace ActiveRagdoll.Runtime
             _attack.enabled = true;
             _rotation.enabled = true;
             _characterController.enabled = true;
-            //    _playerInput.enabled = true;
             _gravity.enabled = true;
             foreach (var grabable in grabables)
             {
                 grabable.enabled = false;
             }
             _animator.SetBool("Stunned", false);
-            TeleportCharacterController();
+            playerTeleporter.ReconnectCharacterControllerToRagdoll();
 
         }
 
-        private void TeleportCharacterController()
+        private void Update()
         {
-            ConfigurableJointExtended configurableJointExtended = physicsHip.GetComponent<ConfigurableJointExtended>();
-            physicsHip.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation);
-            //teleport player to current position of ragdoll
-            _characterController.transform.position = position;
-            //Set the position correctly before reconnecting
-            physicsHip.transform.SetPositionAndRotation(configurableJointExtended.target.transform.position, configurableJointExtended.target.transform.rotation);
-            ReconnectRoot();
-            //Reset the position to the start position to maintain the illusion nothing happend
-            physicsHip.transform.SetPositionAndRotation(position, rotation);
+            stunDuration -= Time.deltaTime;
+            if (stunDuration < 0)
+            {
+                enabled = false;
+            }
         }
+
         #endregion
 
 
         #region Main Methods
-
+        public void StunForDuration(float stunDuration)
+        {
+            enabled = true;
+            this.stunDuration = stunDuration;
+        }
         #endregion
 
 
         #region Utils
-        private void DisconnectRoot()
-        {
-            ConfigurableJoint configurableJoint = physicsHip.GetComponent<ConfigurableJoint>();
-            physicsHip.GetComponent<ConfigurableJointExtended>().enabled = false;
-            Destroy(configurableJoint);
-        }
 
-        private void ReconnectRoot()
-        {
-            ConfigurableJoint configurableJoint = physicsHip.AddComponent<ConfigurableJoint>();
-            ConfigurableJointExtended configurableJointExtended = physicsHip.GetComponent<ConfigurableJointExtended>();
-            configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint);
-        }
+
         #endregion
 
 
@@ -110,9 +98,10 @@ namespace ActiveRagdoll.Runtime
         private CameraRelativeMovement _movement;
         private Attack _attack;
         private CameraRelativeRotation _rotation;
-        private Rigidbody _rootRigidBody;
         private CharacterController _characterController;
         private GravityAndJump _gravity;
+        private ActiveRagdoll _activeRagdoll;
+        private float stunDuration;
         #endregion
 
 

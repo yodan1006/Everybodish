@@ -12,14 +12,19 @@ namespace ActiveRagdoll.Runtime
         public GameObject animatedBody;
         public GameObject physicsBody;
         public Rigidbody playerRootRb;
+        public bool automaticSetup = false;
         private readonly Dictionary<String, Transform> animatedTransformsDictionary = new();
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            SetupAnimatedBody();
-            SetupPhysicsBody();
-            SetupJoints();
-            animatedTransformsDictionary.Clear();
+            if (automaticSetup)
+            {
+                SetupAnimatedBody();
+                SetupPhysicsBody();
+                SetupJoints();
+                animatedTransformsDictionary.Clear();
+            }
+
         }
 
         private void SetupAnimatedBody()
@@ -40,6 +45,14 @@ namespace ActiveRagdoll.Runtime
                 animatedTransformsDictionary[t.name] = t;
             }
         }
+        public void DisconnectRoot()
+        {
+            ConfigurableJoint configurableJoint = physicsBody.GetComponent<ConfigurableJoint>();
+            physicsBody.GetComponent<ConfigurableJointExtended>().enabled = false;
+            Destroy(configurableJoint);
+        }
+
+
 
         private void SetupPhysicsBody()
         {

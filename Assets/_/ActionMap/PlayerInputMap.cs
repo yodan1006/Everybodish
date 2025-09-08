@@ -121,15 +121,6 @@ namespace ActionMap
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Release"",
-                    ""type"": ""Button"",
-                    ""id"": ""2cdb3feb-1b9b-46b4-bb67-2ce58e23e3b8"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""HeadButt"",
                     ""type"": ""Button"",
                     ""id"": ""ea5da2ab-e055-4e47-99e4-54c8791296e4"",
@@ -310,17 +301,6 @@ namespace ActionMap
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a9dec5d-46aa-4bff-89e8-4f2818e735ee"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HeadButt"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""933803d6-51cd-466b-8422-c2eb4ad9693c"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -333,7 +313,7 @@ namespace ActionMap
                 {
                     ""name"": """",
                     ""id"": ""16d1c959-e0d7-4f5c-873f-e47820c43346"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -343,30 +323,19 @@ namespace ActionMap
                 },
                 {
                     ""name"": """",
-                    ""id"": ""99859b93-ea1f-4dd3-bb08-6ea4390c21a1"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Release"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""57b2c1a7-10ae-4c55-8b56-fdc5c1e1fb72"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Release"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2cf6614d-6c65-48a9-adc2-dec3e9758287"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeadButt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7658aedb-8fbb-470c-bed4-cd1115dee0cc"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -970,6 +939,15 @@ namespace ActionMap
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""validateSkin"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e681e6f-d132-4455-a098-68fe51570488"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -983,6 +961,17 @@ namespace ActionMap
                     ""action"": ""selectSkin"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5f5c77d-8156-4d71-a640-2bcb3a966e9c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""validateSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -994,7 +983,6 @@ namespace ActionMap
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
-            m_Player_Release = m_Player.FindAction("Release", throwIfNotFound: true);
             m_Player_HeadButt = m_Player.FindAction("HeadButt", throwIfNotFound: true);
             m_Player_LeftClick = m_Player.FindAction("LeftClick", throwIfNotFound: true);
             m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
@@ -1015,6 +1003,7 @@ namespace ActionMap
             // Lobby
             m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
             m_Lobby_selectSkin = m_Lobby.FindAction("selectSkin", throwIfNotFound: true);
+            m_Lobby_validateSkin = m_Lobby.FindAction("validateSkin", throwIfNotFound: true);
         }
 
         ~@PlayerInputMap()
@@ -1100,7 +1089,6 @@ namespace ActionMap
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Grab;
-        private readonly InputAction m_Player_Release;
         private readonly InputAction m_Player_HeadButt;
         private readonly InputAction m_Player_LeftClick;
         private readonly InputAction m_Player_RightClick;
@@ -1129,10 +1117,6 @@ namespace ActionMap
             /// Provides access to the underlying input action "Player/Grab".
             /// </summary>
             public InputAction @Grab => m_Wrapper.m_Player_Grab;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/Release".
-            /// </summary>
-            public InputAction @Release => m_Wrapper.m_Player_Release;
             /// <summary>
             /// Provides access to the underlying input action "Player/HeadButt".
             /// </summary>
@@ -1188,9 +1172,6 @@ namespace ActionMap
                 @Grab.started += instance.OnGrab;
                 @Grab.performed += instance.OnGrab;
                 @Grab.canceled += instance.OnGrab;
-                @Release.started += instance.OnRelease;
-                @Release.performed += instance.OnRelease;
-                @Release.canceled += instance.OnRelease;
                 @HeadButt.started += instance.OnHeadButt;
                 @HeadButt.performed += instance.OnHeadButt;
                 @HeadButt.canceled += instance.OnHeadButt;
@@ -1226,9 +1207,6 @@ namespace ActionMap
                 @Grab.started -= instance.OnGrab;
                 @Grab.performed -= instance.OnGrab;
                 @Grab.canceled -= instance.OnGrab;
-                @Release.started -= instance.OnRelease;
-                @Release.performed -= instance.OnRelease;
-                @Release.canceled -= instance.OnRelease;
                 @HeadButt.started -= instance.OnHeadButt;
                 @HeadButt.performed -= instance.OnHeadButt;
                 @HeadButt.canceled -= instance.OnHeadButt;
@@ -1477,6 +1455,7 @@ namespace ActionMap
         private readonly InputActionMap m_Lobby;
         private List<ILobbyActions> m_LobbyActionsCallbackInterfaces = new List<ILobbyActions>();
         private readonly InputAction m_Lobby_selectSkin;
+        private readonly InputAction m_Lobby_validateSkin;
         /// <summary>
         /// Provides access to input actions defined in input action map "Lobby".
         /// </summary>
@@ -1492,6 +1471,10 @@ namespace ActionMap
             /// Provides access to the underlying input action "Lobby/selectSkin".
             /// </summary>
             public InputAction @selectSkin => m_Wrapper.m_Lobby_selectSkin;
+            /// <summary>
+            /// Provides access to the underlying input action "Lobby/validateSkin".
+            /// </summary>
+            public InputAction @validateSkin => m_Wrapper.m_Lobby_validateSkin;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1521,6 +1504,9 @@ namespace ActionMap
                 @selectSkin.started += instance.OnSelectSkin;
                 @selectSkin.performed += instance.OnSelectSkin;
                 @selectSkin.canceled += instance.OnSelectSkin;
+                @validateSkin.started += instance.OnValidateSkin;
+                @validateSkin.performed += instance.OnValidateSkin;
+                @validateSkin.canceled += instance.OnValidateSkin;
             }
 
             /// <summary>
@@ -1535,6 +1521,9 @@ namespace ActionMap
                 @selectSkin.started -= instance.OnSelectSkin;
                 @selectSkin.performed -= instance.OnSelectSkin;
                 @selectSkin.canceled -= instance.OnSelectSkin;
+                @validateSkin.started -= instance.OnValidateSkin;
+                @validateSkin.performed -= instance.OnValidateSkin;
+                @validateSkin.canceled -= instance.OnValidateSkin;
             }
 
             /// <summary>
@@ -1596,13 +1585,6 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnGrab(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "Release" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnRelease(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "HeadButt" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
@@ -1731,6 +1713,13 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSelectSkin(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "validateSkin" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnValidateSkin(InputAction.CallbackContext context);
         }
     }
 }

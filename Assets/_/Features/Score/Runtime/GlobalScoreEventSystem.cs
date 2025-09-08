@@ -2,22 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace Score.Runtime
 {
-
     [DisallowMultipleComponent]
     public class GlobalScoreEventSystem : MonoBehaviour
     {
         public static GlobalScoreEventSystem Instance { get; private set; }
 
-        private readonly List<ScoreEvent> scoreEventLog = new();
-        private readonly Dictionary<int, int> playerScores = new();
+        // Static data structures
+        private static readonly List<ScoreEvent> scoreEventLog = new();
+        private static readonly Dictionary<int, int> playerScores = new();
 
-        public IReadOnlyList<ScoreEvent> ScoreEventLog => scoreEventLog.AsReadOnly();
+        public static IReadOnlyList<ScoreEvent> ScoreEventLog => scoreEventLog.AsReadOnly();
+        public static Dictionary<int, int> PlayerScores => playerScores;
 
-        public Dictionary<int, int> PlayerScores => playerScores;
+        // Score values per event type - non-static, configurable via Inspector
         [Header("Score Values")]
         public int joinedGameDelta;
+        public int preparedIngredientDelta;
         public int CookedItemDelta;
         public int ServedItemDelta;
         public int BurnedItemDelta;
@@ -26,7 +29,9 @@ namespace Score.Runtime
         public int PenaltyDelta;
         public int ComboAchievedDelta;
         public int PlayerKilledDelta;
+        public int PlayerDiedDelta;
         public int FoodPoisonedDelta;
+
         [Header("Score Events")]
         public ScoreEventUnityEvent OnScoreEvent = new();
         public UnityEvent OnScoresChanged = new();
@@ -36,85 +41,65 @@ namespace Score.Runtime
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
-                Debug.LogError("More than one GlobalScoreEventSystem instanced! If you want to access the game timer, use GlobalScoreEventSystem.Instance.", this);
-            }
-
-
-            DontDestroyOnLoad(gameObject);
-
-            foreach (int player in playerScores.Keys)
-            {
-                playerScores[player] = 0;
+                Debug.LogError("More than one GlobalScoreEventSystem instanced! Use GlobalScoreEventSystem.Instance.", this);
+                Destroy(gameObject);
             }
         }
 
-        private int GetScoreDelta(ScoreEventType eventType)
+        private static int GetScoreDelta(ScoreEventType eventType)
         {
-            int delta = 0;
-            switch (eventType)
+            if (Instance == null)
             {
-                case ScoreEventType.JoinedGame:
-                    delta = joinedGameDelta;
-                    break;
-                case ScoreEventType.CookedDish:
-                    delta = CookedItemDelta;
-                    break;
-                case ScoreEventType.ServedDish:
-                    delta = ServedItemDelta;
-                    break;
-                case ScoreEventType.BurnedDish:
-                    delta = BurnedItemDelta;
-                    break;
-                case ScoreEventType.ThrewAwayItem:
-                    delta = ThrewAwayItemDelta;
-                    break;
-                case ScoreEventType.BonusTip:
-                    delta = BonusTipDelta;
-                    break;
-                case ScoreEventType.Penalty:
-                    delta = PenaltyDelta;
-                    break;
-                case ScoreEventType.PlayerKilled:
-                    delta = PlayerKilledDelta;
-                    break;
-                case ScoreEventType.FoodPoisoned:
-                    delta = FoodPoisonedDelta;
-                    break;
+                Debug.LogWarning("GlobalScoreEventSystem.Instance is null when accessing score deltas.");
+                return 0;
             }
-            return delta;
+
+            return eventType switch
+            {
+                ScoreEventType.JoinedGame => Instance.joinedGameDelta,
+                ScoreEventType.CookedDish => Instance.CookedItemDelta,
+                ScoreEventType.ServedDish => Instance.ServedItemDelta,
+                ScoreEventType.BurnedDish => Instance.BurnedItemDelta,
+                ScoreEventType.ThrewAwayItem => Instance.ThrewAwayItemDelta,
+                ScoreEventType.BonusTip => Instance.BonusTipDelta,
+                ScoreEventType.Penalty => Instance.PenaltyDelta,
+                ScoreEventType.PlayerKilled => Instance.PlayerKilledDelta,
+                ScoreEventType.PlayerDied => Instance.PlayerDiedDelta,
+                ScoreEventType.FoodPoisoned => Instance.FoodPoisonedDelta,
+                ScoreEventType.PreparedIngredient => Instance.preparedIngredientDelta,
+                _ => throw new System.NotImplementedException()
+            };
         }
 
-        public void RegisterScoreEvent(int player, ScoreEventType eventType, int? targetPlayer = null)
+        public static void RegisterScoreEvent(int player, ScoreEventType eventType, int? targetPlayer = null)
         {
             int scoreDelta = GetScoreDelta(eventType);
             var scoreEvent = new ScoreEvent(player, eventType, scoreDelta, targetPlayer);
             scoreEventLog.Add(scoreEvent);
 
             if (playerScores.ContainsKey(player))
-            {
                 playerScores[player] += scoreDelta;
-            }
             else
-            {
                 playerScores[player] = scoreDelta;
-            }
-            Debug.Log($"[ScoreEvent] {player} - {eventType} - Score: {scoreDelta}" +
+
+            Debug.Log($"[ScoreEvent] player {player} - {eventType} - Score: {scoreDelta}" +
                       (targetPlayer.HasValue ? $" (Target: {targetPlayer.Value})" : "") +
                       $" @ {scoreEvent.TimeStamp}");
 
-            OnScoreEvent.Invoke(scoreEvent);
-            OnScoresChanged.Invoke();
+            Instance?.OnScoreEvent?.Invoke(scoreEvent);
+            Instance?.OnScoresChanged?.Invoke();
         }
 
-        public int GetScore(int player)
+        public static int GetScore(int player)
         {
             return playerScores.TryGetValue(player, out int score) ? score : 0;
         }
 
-        public List<(int player, int score)> GetLeaderboard()
+        public static List<(int player, int score)> GetLeaderboard()
         {
             return playerScores
                 .OrderByDescending(pair => pair.Value)
@@ -122,16 +107,13 @@ namespace Score.Runtime
                 .ToList();
         }
 
-
-        public void ResetAllScores()
+        public static void ResetAllScores()
         {
             scoreEventLog.Clear();
-            foreach (int player in playerScores.Keys)
-            {
-                playerScores[player] = 0;
-            }
-            OnScoresChanged.Invoke();
+            foreach (var key in playerScores.Keys.ToList())
+                playerScores[key] = 0;
+
+            Instance?.OnScoresChanged?.Invoke();
         }
     }
-
 }

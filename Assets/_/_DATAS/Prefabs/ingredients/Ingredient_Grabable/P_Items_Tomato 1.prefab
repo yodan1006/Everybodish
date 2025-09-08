@@ -229,4 +229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 8
-  playerSpawnSystem: {fileID: 0}
+  rb: {fileID: 0}
+  grabable: {fileID: 0}
+  topmost: {fileID: 0}

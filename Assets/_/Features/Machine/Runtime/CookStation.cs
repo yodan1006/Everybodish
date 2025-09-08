@@ -1,3 +1,5 @@
+using ActiveRagdoll.Runtime;
+using MovePlayer.Runtime;
 using UnityEngine;
 
 namespace Machine.Runtime
@@ -32,14 +34,23 @@ namespace Machine.Runtime
                         _currentFood = food;
 
                         // Place l’objet visuellement sur le slot
-                        food.transform.position = foodSlot.position;
-                        food.transform.rotation = foodSlot.rotation;
-                        //food.transform.SetParent(foodSlot);
+                        food.transform.transform.SetPositionAndRotation(foodSlot.transform.position, foodSlot.transform.rotation);
 
+                        //food.rb.isKinematic = true;
+                        food.grabable.enabled = false;
+                        food.rb.linearVelocity = Vector3.zero;
+                        food.rb.angularVelocity = Vector3.zero;
                         animator.SetBool("OnSlice", true);
-                        //Destroy(currentFood.gameObject);
-                        //_currentFood = null;
                         resultPrefab = recipe.outputPrefab;
+                        if (food.FoodType == FoodType.Player)
+                        {
+                            Stun stun = food.topmost.GetComponentInChildren<Stun>();
+                            if (stun != null)
+                            {
+                                //Stun player FOREVER
+                                stun.StunForDuration(float.PositiveInfinity);
+                            }
+                        }
                         return true;
                     }
                 }
@@ -69,9 +80,41 @@ namespace Machine.Runtime
             }
 
             Debug.Log("DestroyObjectInStation appelé pour " + _currentFood.name);
-            Destroy(_currentFood.transform.root.gameObject);
 
-            _currentFood = null;
+            switch (_currentFood.FoodType)
+            {
+                case FoodType.Player:
+                    KillPlayer(_currentFood);
+                    break;
+                default:
+                    DestroyFoodPrefab(_currentFood);
+                    break;
+            }
+
+
+        }
+
+        private void KillPlayer(Food currentFood)
+        {
+            currentFood.topmost.GetComponentInChildren<PlayerStat>().KillPlayer();
+        }
+
+        public static void DestroyFoodPrefab(Food food)
+        {
+            if (food.topmost.gameObject != food.gameObject)
+            {
+                GameObject topmostGo = food.topmost.gameObject;
+                //Destroy the reparented food item
+                Destroy(food.gameObject);
+                //Destroy topmost item that might be lost in the scene
+                Destroy(topmostGo);
+
+            }
+            else
+            {
+                Destroy(food.gameObject);
+            }
+            food = null;
         }
 
         public void SpawnCookedFood()

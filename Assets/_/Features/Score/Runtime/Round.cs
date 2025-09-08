@@ -13,7 +13,7 @@ namespace Score.Runtime
 
         public static Round Instance;
         public int warmupTime = 10;
-        public float warmupTimeDelta = 0;
+        private float warmupTimeDelta = 0;
         public int roundDuration = 300;
 
         public UnityEvent OnWarmupStarted;
@@ -23,6 +23,8 @@ namespace Score.Runtime
         private GameTimer gameTimer;
         private GlobalScoreEventSystem globalScoreEventSystem;
         public List<PlayerInput> playerList;
+
+        public float WarmupTimeDelta { get => warmupTimeDelta; }
 
         private void Awake()
         {
@@ -41,10 +43,10 @@ namespace Score.Runtime
         // Update is called once per frame
         private void Update()
         {
-            if (warmupTimeDelta > 0)
+            if (WarmupTimeDelta > 0)
             {
                 warmupTimeDelta -= Time.deltaTime;
-                if (warmupTimeDelta < 0)
+                if (WarmupTimeDelta < 0)
                 {
                     OnWarmupFinished.Invoke();
                     OnRoundStarted.Invoke();
@@ -66,7 +68,7 @@ namespace Score.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             playerList.Add(playerInput);
-            globalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
         }
 
         private void OnEnable()
@@ -74,7 +76,7 @@ namespace Score.Runtime
 
             warmupTimeDelta = warmupTime;
             OnWarmupStarted.Invoke();
-            globalScoreEventSystem.ResetAllScores();
+            GlobalScoreEventSystem.ResetAllScores();
         }
 
         private void OnDisable()
