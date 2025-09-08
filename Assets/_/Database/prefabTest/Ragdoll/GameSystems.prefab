@@ -81,6 +81,7 @@ MonoBehaviour:
   PenaltyDelta: 0
   ComboAchievedDelta: 0
   PlayerKilledDelta: 5
+  PlayerDiedDelta: -5
   FoodPoisonedDelta: -1
   OnScoreEvent:
     m_PersistentCalls:
