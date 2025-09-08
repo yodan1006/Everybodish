@@ -19,6 +19,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: MAT_Workstation_bleu
     second: {fileID: 2100000, guid: 75d311c73b8fae449b05ee27ee2fe68e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_trash
+    second: {fileID: 2100000, guid: bcf5a786313ca3547ba9c75a30bb5b28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trash
+    second: {fileID: 2100000, guid: bcf5a786313ca3547ba9c75a30bb5b28, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
