@@ -45,9 +45,9 @@ namespace Spawner.Runtime
         }
 
         private void OnEnable()
-        {     
+        {
             playerPrefab.SetActive(false);
-            inputMap.Enable(); 
+            inputMap.Enable();
             SetupNewPlayer();
         }
 
@@ -97,7 +97,7 @@ namespace Spawner.Runtime
             playerInstance.SetActive(true);
             BindPlayerControls();
             BindPlayerEvents();
-          
+
         }
 
         private void BindPlayerEvents()

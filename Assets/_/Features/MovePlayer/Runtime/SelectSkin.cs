@@ -86,8 +86,8 @@ namespace MovePlayer.Runtime
             if (IsReady) return;
 
             IsReady = true;
-            if(LobbyManager.Instance!= null)
-            LobbyManager.Instance.CheckAllReady();
+            if (LobbyManager.Instance != null)
+                LobbyManager.Instance.CheckAllReady();
         }
 
 
