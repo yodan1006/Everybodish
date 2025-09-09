@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Score.Runtime
@@ -12,6 +11,7 @@ namespace Score.Runtime
         public GameObject player3;
         public GameObject player4;
         public GameObject pause;
+
         #endregion
 
 
@@ -19,18 +19,29 @@ namespace Score.Runtime
 
         private void OnEnable()
         {
-            
+            GlobalScoreEventSystem.Instance?.OnScoreEvent?.AddListener(RefreshUIPlayer);
+            GlobalScoreEventSystem.Instance?.OnScoresChanged?.AddListener(RefreshUI);
         }
 
+        private void RefreshUIPlayer(ScoreEvent arg0)
+        {
+        }
+
+        private void RefreshUI()
+        { }
+
+
         // Update is called once per frame
-        void Update()
-            {
-        
-            }
+        private void Update()
+        {
+            needle.transform.rotation = Quaternion.Euler(0, 0, -( timer.currentTime / 60 * 360 - needleStartRotation));
+        }
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
             round = GetComponent<Round>();
+            needle = GameObject.Find("NEEDLE");
+            needleStartRotation = needle.transform.rotation.eulerAngles.z;
             round.OnRoundStarted.AddListener(OnRoundStarted);
             round.OnRoundFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
@@ -39,22 +50,22 @@ namespace Score.Runtime
 
         private void OnWarmupFinished()
         {
-         
+
         }
 
         private void OnWarmupStarted()
         {
-         
+
         }
 
         private void OnRoundFinished()
         {
-       
+
         }
 
         private void OnRoundStarted()
         {
-         
+
         }
         #endregion
 
@@ -70,8 +81,11 @@ namespace Score.Runtime
 
 
         #region Private and Protected
+
         private GameTimer timer;
         private Round round;
+        private GameObject needle;
+        private float needleStartRotation;
         #endregion
 
 
