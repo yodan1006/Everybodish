@@ -1,6 +1,4 @@
-using Grab.Runtime;
 using Machine.Runtime;
-using MovePlayer.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -10,11 +8,21 @@ namespace ActiveRagdoll.Runtime
         public CookStation station;
         private void OnTriggerEnter(Collider collider)
         {
+            ChopIngredient(collider);
+        }
+
+        private void OnTriggerStay(Collider collider)
+        {
+            ChopIngredient(collider);
+        }
+
+        public void ChopIngredient(Collider collider)
+        {
             if (collider.gameObject.TryGetComponent<Food>(out Food food))
             {
-                if(station != null)
+                if (station != null)
                 {
-                    station.TryCook(food,out GameObject _);
+                    station.TryCook(food, out GameObject _);
                 }
                 Debug.Log("Player killed!", this);
             }
@@ -23,6 +31,5 @@ namespace ActiveRagdoll.Runtime
                 Debug.Log("Damage Receiver not found : " + collider.gameObject.name, this);
             }
         }
-
     }
 }
