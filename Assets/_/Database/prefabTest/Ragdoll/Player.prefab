@@ -222,9 +222,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8431854110669475478, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
   m_PrefabInstance: {fileID: 5770155541836673964}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3462357547836217269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926384754770486297, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6008338345124722668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 248351093277934656, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7325679285275091118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3871336031314727682, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
   m_PrefabInstance: {fileID: 5770155541836673964}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7425460227140611265 stripped
@@ -235,6 +245,11 @@ GameObject:
 --- !u!4 &7802301707436799611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+  m_PrefabInstance: {fileID: 5770155541836673964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9114997189556041913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3345413945728355093, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
   m_PrefabInstance: {fileID: 5770155541836673964}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &9185769199870056687 stripped
@@ -366,7 +381,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700003924638526194}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89ea72892f8e0a94289ca7023e03bb9d, type: 3}
   m_Name: 
@@ -375,13 +390,11 @@ MonoBehaviour:
   - colorAppaerences:
     - {fileID: 2670708551280901434}
   - colorAppaerences:
-    - {fileID: 0}
+    - {fileID: 9114997189556041913}
   - colorAppaerences:
-    - {fileID: 0}
+    - {fileID: 7325679285275091118}
   - colorAppaerences:
-    - {fileID: 0}
-  - colorAppaerences:
-    - {fileID: 0}
+    - {fileID: 3462357547836217269}
   changeCooldown: 0.2
 --- !u!1 &1812173230815492658 stripped
 GameObject:

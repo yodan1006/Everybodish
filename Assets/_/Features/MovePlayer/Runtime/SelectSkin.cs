@@ -87,7 +87,5 @@ namespace MovePlayer.Runtime
             IsReady = true;
             LobbyManager.Instance.CheckAllReady();
         }
-
-
     }
 }

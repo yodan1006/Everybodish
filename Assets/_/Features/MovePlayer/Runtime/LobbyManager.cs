@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TransitionScene.Runtime;
+using UnityEngine.SceneManagement;
+
 
 namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
 {
@@ -43,7 +46,7 @@ namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
             }
 
             // 🚨 Tous les joueurs sont prêts → on change de scène
-            //SceneLoader.LoadSceneWithLoading(SceneManager.GetActiveScene().buildIndex + 1);
+            FindFirstObjectByType<SceneLoader>().LoadSceneWithLoading(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

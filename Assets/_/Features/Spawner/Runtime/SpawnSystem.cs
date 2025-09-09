@@ -7,6 +7,7 @@ using PlayerLocomotion.Runtime;
 using Score.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Spawner.Runtime
@@ -23,9 +24,18 @@ namespace Spawner.Runtime
         private PlayerInput playerInput;
         private PlayerInputMap inputMap;
         private readonly Dictionary<InputAction, System.Action<CallbackContext>> boundActions = new();
+        
+        public static List<SpawnSystem> AllPlayers = new List<SpawnSystem>();
+
 
         private void Awake()
         {
+            
+            // ajout d'un systeme dont destroy pour le passage de scene
+            
+            DontDestroyOnLoad(this);
+            //
+            
             playerInput = GetComponent<PlayerInput>();
 
             // Create wrapper from PlayerInput's actions
@@ -40,20 +50,26 @@ namespace Spawner.Runtime
 
         private void Start()
         {
-            //inputMap.Player.Disable();
-            inputMap.Lobby.Disable();
+            inputMap.Player.Disable();
+        //     //inputMap.Lobby.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            AllPlayers.Remove(this);
         }
 
         private void OnEnable()
         {
             inputMap.Enable();
+            SceneManager.sceneLoaded += OnSceneLoaded;
             SetupNewPlayer();
         }
 
         private void OnDisable()
         {
             inputMap.Disable();
-
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             DestroyPlayer();
         }
 
@@ -164,6 +180,20 @@ namespace Spawner.Runtime
             UnBindPlayerControls();
             Destroy(playerInstance);
             playerInstance = null;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.buildIndex == 0)
+            {
+                inputMap.Player.Disable();
+                inputMap.Lobby.Enable();
+            }
+            else
+            {
+                inputMap.Lobby.Disable();
+                inputMap.Player.Enable();
+            }
         }
     }
 }
