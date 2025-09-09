@@ -22,7 +22,7 @@ namespace Spawner.Runtime
         private GameObject playerInstance;
         private PlayerInput playerInput;
         private PlayerInputMap inputMap;
-        private readonly Dictionary<InputAction, System.Action<CallbackContext>> boundActions = new();
+        private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
 
         private void Awake()
         {
@@ -133,12 +133,17 @@ namespace Spawner.Runtime
 
         public void UnBindPlayerControls()
         {
-            //Get components
-            Debug.Log("Binding inputs");
-            foreach (InputAction inputAction in boundActions.Keys)
+            foreach (var kvp in boundActions)
             {
-                UnbindPlayerInput(inputAction);
+                InputAction inputAction = kvp.Key;
+                foreach (var cachedAction in kvp.Value)
+                {
+                    inputAction.started -= cachedAction;
+                    inputAction.canceled -= cachedAction;
+                    inputAction.performed -= cachedAction;
+                }
             }
+
             boundActions.Clear();
         }
 
@@ -146,7 +151,13 @@ namespace Spawner.Runtime
         {
             System.Action<CallbackContext> cachedAction = ctx => action(ctx);
 
-            boundActions[inputAction] = cachedAction;
+            if (!boundActions.ContainsKey(inputAction))
+            {
+                boundActions[inputAction] = new List<System.Action<CallbackContext>>();
+            }
+
+            boundActions[inputAction].Add(cachedAction);
+
             inputAction.started += cachedAction;
             inputAction.canceled += cachedAction;
             inputAction.performed += cachedAction;
@@ -154,11 +165,16 @@ namespace Spawner.Runtime
 
         public void UnbindPlayerInput(InputAction inputAction)
         {
-            if (boundActions.TryGetValue(inputAction, out var cachedAction))
+            if (boundActions.TryGetValue(inputAction, out var callbacks))
             {
-                inputAction.started -= cachedAction;
-                inputAction.canceled -= cachedAction;
-                inputAction.performed -= cachedAction;
+                foreach (var callback in callbacks)
+                {
+                    inputAction.started -= callback;
+                    inputAction.canceled -= callback;
+                    inputAction.performed -= callback;
+                }
+
+                boundActions.Remove(inputAction);
             }
         }
 
