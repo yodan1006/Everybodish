@@ -161,9 +161,12 @@ namespace Spawner.Runtime
 
         public void DestroyPlayer()
         {
-            UnBindPlayerControls();
-            Destroy(playerInstance);
-            playerInstance = null;
+            if (playerInstance != null)
+            {
+                UnBindPlayerControls();
+                Destroy(playerInstance);
+                playerInstance = null;
+            }
         }
     }
 }

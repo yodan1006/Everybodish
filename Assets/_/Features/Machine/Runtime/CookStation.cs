@@ -34,11 +34,11 @@ namespace Machine.Runtime
                         _isCooking = true;
                         _currentFood = food;
 
-                       
+
                         if (hideItemDuringPrepare == true)
                         {
                             food.grabable.enabled = false;
-                            food.transform.localScale =Vector3.zero;
+                            food.transform.localScale = Vector3.zero;
                         }
                         else
                         {

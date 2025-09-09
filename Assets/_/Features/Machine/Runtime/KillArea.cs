@@ -1,4 +1,5 @@
 using Machine.Runtime;
+using MovePlayer.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -22,13 +23,31 @@ namespace ActiveRagdoll.Runtime
             {
                 if (station != null)
                 {
-                    station.TryCook(food, out GameObject _);
+                    if (station.TryCook(food, out GameObject _))
+                    {
+                        Debug.Log("Item choppped!", this);
+                    }
+                    else
+                    {
+                        if (food.FoodType != FoodType.Player)
+                        {
+                            Debug.Log("Incompatible ingredient,destroying", this);
+                        }
+                        else
+                        {
+                            Debug.Log("Something happened that didn't allow the player to become an ingredient.");
+                            food.topmost.GetComponentInChildren<PlayerStat>().KillPlayer();
+                        }
+                    }
                 }
-                Debug.Log("Player killed!", this);
+                else
+                {
+                    Debug.Log("Station is null, aborting", this);
+                }
             }
             else
             {
-                Debug.Log("Damage Receiver not found : " + collider.gameObject.name, this);
+                Debug.Log("This is not an ingredient.", this);
             }
         }
     }

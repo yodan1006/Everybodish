@@ -1192,9 +1192,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05eb10c998fd0144487982876c66796f, type: 2}
   - {fileID: 11400000, guid: fff61e349e38c33448fc0fc5835d2aba, type: 2}
   - {fileID: 11400000, guid: ea43434503f7df54aafde47f539e173c, type: 2}
-  spawnPoint: {fileID: 0}
-  foodSlot: {fileID: 0}
+  spawnPoint: {fileID: 412924508847265127}
+  foodSlot: {fileID: 4185898743370021234}
   _isCooking: 0
+  hideItemDuringPrepare: 1
 --- !u!65 &3702151640714314708
 BoxCollider:
   m_ObjectHideFlags: 0
