@@ -1,4 +1,5 @@
 using Grab.Runtime;
+using Machine.Runtime._.Features.Machine.Runtime;
 using Score.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,7 +58,7 @@ namespace Machine.Runtime
                 // Cas 1 : CookStation simple
                 if (hit.TryGetComponent<CookStation>(out var simpleStation) && hit.GetComponent<CookStation>()._isCooking == false)
                 {
-                    if (simpleStation.TryCook(food, out _))
+                    if (simpleStation.TryCook(food, out var _))
                     {
                         grabber.Release();
                         if (food.FoodType == FoodType.Player)
@@ -87,7 +88,16 @@ namespace Machine.Runtime
                     {
                         onScoreEvent.Invoke(ScoreEventType.ServedDish);
                     }
-
+                }
+                else if (hit.TryGetComponent<Trash>(out var trashBin))
+                {
+                    // grabber.Release();
+                    if (trashBin.ThrowFood(food))
+                    {
+                        Destroy(food.gameObject);
+                        grabber.Release();
+                        //onScoreEvent.Invoke(ScoreEventType.Trash); // si tu veux un score spécifique
+                    }
                 }
             }
         }
