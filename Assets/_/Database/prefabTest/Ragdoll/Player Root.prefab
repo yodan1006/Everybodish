@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 7151880423467956198}
   - component: {fileID: 3434073638983070850}
   - component: {fileID: 3870090278773716437}
-  - component: {fileID: 462581098280439271}
   - component: {fileID: 7300450743963887011}
   - component: {fileID: 5416788759587927982}
   m_Layer: 6
@@ -313,22 +312,6 @@ MonoBehaviour:
   onScoreEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &462581098280439271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909807124258996847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodType: 14
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
 --- !u!114 &7300450743963887011
 MonoBehaviour:
   m_ObjectHideFlags: 0
