@@ -22,7 +22,7 @@ namespace Spawner.Runtime
         private GameObject playerInstance;
         private PlayerInput playerInput;
         private PlayerInputMap inputMap;
-        private readonly Dictionary<InputAction, System.Action<CallbackContext>> boundActions = new();
+        private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
 
         private void Awake()
         {
@@ -46,6 +46,7 @@ namespace Spawner.Runtime
 
         private void OnEnable()
         {
+            playerPrefab.SetActive(false);
             inputMap.Enable();
             SetupNewPlayer();
         }
@@ -53,8 +54,8 @@ namespace Spawner.Runtime
         private void OnDisable()
         {
             inputMap.Disable();
-
             DestroyPlayer();
+            playerPrefab.SetActive(true);
         }
 
         // Update is called once per frame
@@ -93,8 +94,10 @@ namespace Spawner.Runtime
         public void SetupNewPlayer()
         {
             InstantiatePlayer();
+            playerInstance.SetActive(true);
             BindPlayerControls();
             BindPlayerEvents();
+
         }
 
         private void BindPlayerEvents()
@@ -130,12 +133,17 @@ namespace Spawner.Runtime
 
         public void UnBindPlayerControls()
         {
-            //Get components
-            Debug.Log("Binding inputs");
-            foreach (InputAction inputAction in boundActions.Keys)
+            foreach (var kvp in boundActions)
             {
-                UnBindPlayerInput(inputAction);
+                InputAction inputAction = kvp.Key;
+                foreach (var cachedAction in kvp.Value)
+                {
+                    inputAction.started -= cachedAction;
+                    inputAction.canceled -= cachedAction;
+                    inputAction.performed -= cachedAction;
+                }
             }
+
             boundActions.Clear();
         }
 
@@ -143,27 +151,41 @@ namespace Spawner.Runtime
         {
             System.Action<CallbackContext> cachedAction = ctx => action(ctx);
 
-            boundActions[inputAction] = cachedAction;
+            if (!boundActions.ContainsKey(inputAction))
+            {
+                boundActions[inputAction] = new List<System.Action<CallbackContext>>();
+            }
+
+            boundActions[inputAction].Add(cachedAction);
+
             inputAction.started += cachedAction;
             inputAction.canceled += cachedAction;
             inputAction.performed += cachedAction;
         }
 
-        public void UnBindPlayerInput(InputAction inputAction)
+        public void UnbindPlayerInput(InputAction inputAction)
         {
-            if (boundActions.TryGetValue(inputAction, out var cachedAction))
+            if (boundActions.TryGetValue(inputAction, out var callbacks))
             {
-                inputAction.started -= cachedAction;
-                inputAction.canceled -= cachedAction;
-                inputAction.performed -= cachedAction;
+                foreach (var callback in callbacks)
+                {
+                    inputAction.started -= callback;
+                    inputAction.canceled -= callback;
+                    inputAction.performed -= callback;
+                }
+
+                boundActions.Remove(inputAction);
             }
         }
 
         public void DestroyPlayer()
         {
-            UnBindPlayerControls();
-            Destroy(playerInstance);
-            playerInstance = null;
+            if (playerInstance != null)
+            {
+                UnBindPlayerControls();
+                Destroy(playerInstance);
+                playerInstance = null;
+            }
         }
     }
 }

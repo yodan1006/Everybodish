@@ -22,13 +22,19 @@ namespace ActiveRagdoll.Runtime
             {
                 if (station != null)
                 {
-                    station.TryCook(food, out GameObject _);
+                    if (station.TryCook(food, out GameObject _))
+                    {
+                        Debug.Log("Item choppped!", this);
+                    }
                 }
-                Debug.Log("Player killed!", this);
+                else
+                {
+                    Debug.Log("Station is null, aborting", this);
+                }
             }
             else
             {
-                Debug.Log("Damage Receiver not found : " + collider.gameObject.name, this);
+                Debug.Log("This is not an ingredient.", this);
             }
         }
     }
