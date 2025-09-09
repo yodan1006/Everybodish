@@ -181,6 +181,7 @@ MonoBehaviour:
     - {fileID: 6932316097876771444}
   - colorAppaerences:
     - {fileID: 3860219729600001391}
+  animalTypes: 00000000020000000300000001000000
   changeCooldown: 0.2
 --- !u!1001 &404904761111388890
 PrefabInstance:

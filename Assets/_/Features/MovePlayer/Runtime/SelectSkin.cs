@@ -7,6 +7,7 @@ namespace MovePlayer.Runtime
     public class SelectSkin : MonoBehaviour
     {
         public ApparenceSet[] appearances;
+        public AnimalType[] animalTypes;
 
         [SerializeField] private float changeCooldown = 0.2f;
         private float lastModelChangeTime = 0f;
@@ -90,6 +91,12 @@ namespace MovePlayer.Runtime
                 LobbyManager.Instance.CheckAllReady();
         }
 
-
+        public enum AnimalType
+        {
+            DUCK,
+            PIG,
+            RABBIT,
+            COW
+        }
     }
 }
