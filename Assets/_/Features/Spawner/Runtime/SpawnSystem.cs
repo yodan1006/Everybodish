@@ -45,16 +45,17 @@ namespace Spawner.Runtime
         }
 
         private void OnEnable()
-        {
-            inputMap.Enable();
+        {     
+            playerPrefab.SetActive(false);
+            inputMap.Enable(); 
             SetupNewPlayer();
         }
 
         private void OnDisable()
         {
             inputMap.Disable();
-
             DestroyPlayer();
+            playerPrefab.SetActive(true);
         }
 
         // Update is called once per frame
@@ -93,8 +94,10 @@ namespace Spawner.Runtime
         public void SetupNewPlayer()
         {
             InstantiatePlayer();
+            playerInstance.SetActive(true);
             BindPlayerControls();
             BindPlayerEvents();
+          
         }
 
         private void BindPlayerEvents()
@@ -134,7 +137,7 @@ namespace Spawner.Runtime
             Debug.Log("Binding inputs");
             foreach (InputAction inputAction in boundActions.Keys)
             {
-                UnBindPlayerInput(inputAction);
+                UnbindPlayerInput(inputAction);
             }
             boundActions.Clear();
         }
@@ -149,7 +152,7 @@ namespace Spawner.Runtime
             inputAction.performed += cachedAction;
         }
 
-        public void UnBindPlayerInput(InputAction inputAction)
+        public void UnbindPlayerInput(InputAction inputAction)
         {
             if (boundActions.TryGetValue(inputAction, out var cachedAction))
             {

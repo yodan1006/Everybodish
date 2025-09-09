@@ -19,7 +19,8 @@ namespace MovePlayer.Runtime
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            LobbyManager.Instance.RegisterPlayer(this);
+            if (LobbyManager.Instance != null)
+                LobbyManager.Instance.RegisterPlayer(this);
         }
 
         public void OnChangeModel(InputAction.CallbackContext context)
@@ -85,6 +86,7 @@ namespace MovePlayer.Runtime
             if (IsReady) return;
 
             IsReady = true;
+            if(LobbyManager.Instance!= null)
             LobbyManager.Instance.CheckAllReady();
         }
 
