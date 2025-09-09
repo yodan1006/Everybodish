@@ -199,11 +199,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3592782674347605771, guid: 606b3ac8bb474b847a59879882583478, type: 3}
---- !u!4 &48759603 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2695848344832796894, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-  m_PrefabInstance: {fileID: 6391205504502629625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &57336999 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8442157246565601701, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -1467,61 +1462,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 954291334383270826, guid: bbc52680146729c428ec71ea5150079d, type: 3}
   m_PrefabInstance: {fileID: 6391205504502629625}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &799515674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5991627556552948284, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-  m_PrefabInstance: {fileID: 6391205504502629625}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &799515676 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1048624016006986492, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-  m_PrefabInstance: {fileID: 6391205504502629625}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &799515677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799515674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfd80a9d178aa34eb490ea927a2838d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 799515676}
-  particle: {fileID: 2024720995}
-  recipes:
-  - {fileID: 11400000, guid: fea9ca0d52fd9a54e971ec79da8d5ddb, type: 2}
-  - {fileID: 11400000, guid: c34742c3220525e469da9c697b64b161, type: 2}
-  - {fileID: 11400000, guid: 05eb10c998fd0144487982876c66796f, type: 2}
-  - {fileID: 11400000, guid: fff61e349e38c33448fc0fc5835d2aba, type: 2}
-  - {fileID: 11400000, guid: ea43434503f7df54aafde47f539e173c, type: 2}
-  spawnPoint: {fileID: 890735140}
-  foodSlot: {fileID: 48759603}
-  _isCooking: 0
-  hideItemDuringPrepare: 0
---- !u!65 &799515678
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799515674}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.8, y: 2.32, z: -0.19}
 --- !u!1 &816029123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7295940597072175786, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -1727,11 +1667,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &890735140 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1929194120490992843, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-  m_PrefabInstance: {fileID: 6391205504502629625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &956821876 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 497469221141070507, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -2945,11 +2880,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 817380430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &2024720995 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6025978128168970796, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-  m_PrefabInstance: {fileID: 6391205504502629625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2030041075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6717155315621810176, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -3872,12 +3802,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2065322971236060635, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1451535351}
-    - targetCorrespondingSourceObject: {fileID: 5991627556552948284, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 799515677}
-    - targetCorrespondingSourceObject: {fileID: 5991627556552948284, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 799515678}
     - targetCorrespondingSourceObject: {fileID: 3732398281781073408, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1562480691}

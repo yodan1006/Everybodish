@@ -777,6 +777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4975634278693844309}
     m_Modifications:
+    - target: {fileID: 139851993357592973, guid: e6dcbb564845f8741ac76b1809cbd9e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1380742173003386167, guid: e6dcbb564845f8741ac76b1809cbd9e0, type: 3}
       propertyPath: m_Name
       value: prefabPlayerProto
@@ -820,6 +824,10 @@ PrefabInstance:
     - target: {fileID: 2941646957330228988, guid: e6dcbb564845f8741ac76b1809cbd9e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278328812148578585, guid: e6dcbb564845f8741ac76b1809cbd9e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

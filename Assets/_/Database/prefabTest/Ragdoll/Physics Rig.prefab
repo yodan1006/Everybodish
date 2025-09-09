@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3789299592840288672
 Transform:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8475134202920688520
 Transform:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6929875803407603910
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3540495426589365078, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       propertyPath: m_Name
-      value: Mesh
+      value: DuckModel
       objectReference: {fileID: 0}
     - target: {fileID: -3540495426589365078, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       propertyPath: m_Layer
@@ -894,7 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 8174213493503110736}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 194645927307116191}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 5113001442732567490}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 8135846827921414385}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 1287540289813829264}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -1918,7 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 808307974324572462}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 2187272340856519344}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 4377467580706549108}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 6240893671188046947}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
@@ -2931,7 +2931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69b50636c9e97345a566083c000ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVerbose: 1
+  isVerbose: 0
   joint: {fileID: 64978163787882513}
   initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 0}
