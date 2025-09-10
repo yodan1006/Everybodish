@@ -529,45 +529,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "JoinGame",
-            "id": "c2556605-7d24-478a-a0b3-da7971ac650a",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "dd988ade-2abd-48b6-b985-d5163ca80e16",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "31002924-f613-4a08-9415-a4efeb6d930f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bd438e19-04b3-4050-9197-173454de213e",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": []

@@ -617,45 +617,6 @@ namespace ActionMap
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""JoinGame"",
-            ""id"": ""c2556605-7d24-478a-a0b3-da7971ac650a"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""dd988ade-2abd-48b6-b985-d5163ca80e16"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""31002924-f613-4a08-9415-a4efeb6d930f"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bd438e19-04b3-4050-9197-173454de213e"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -677,16 +638,12 @@ namespace ActionMap
             m_Lobby_creditMenu = m_Lobby.FindAction("creditMenu", throwIfNotFound: true);
             m_Lobby_Control = m_Lobby.FindAction("Control", throwIfNotFound: true);
             m_Lobby_Quit = m_Lobby.FindAction("Quit", throwIfNotFound: true);
-            // JoinGame
-            m_JoinGame = asset.FindActionMap("JoinGame", throwIfNotFound: true);
-            m_JoinGame_Newaction = m_JoinGame.FindAction("New action", throwIfNotFound: true);
         }
 
         ~@PlayerInputMap()
         {
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputMap.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Lobby.enabled, "This will cause a leak and performance issues, PlayerInputMap.Lobby.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_JoinGame.enabled, "This will cause a leak and performance issues, PlayerInputMap.JoinGame.Disable() has not been called.");
         }
 
         /// <summary>
@@ -1071,102 +1028,6 @@ namespace ActionMap
         /// Provides a new <see cref="LobbyActions" /> instance referencing this action map.
         /// </summary>
         public LobbyActions @Lobby => new LobbyActions(this);
-
-        // JoinGame
-        private readonly InputActionMap m_JoinGame;
-        private List<IJoinGameActions> m_JoinGameActionsCallbackInterfaces = new List<IJoinGameActions>();
-        private readonly InputAction m_JoinGame_Newaction;
-        /// <summary>
-        /// Provides access to input actions defined in input action map "JoinGame".
-        /// </summary>
-        public struct JoinGameActions
-        {
-            private @PlayerInputMap m_Wrapper;
-
-            /// <summary>
-            /// Construct a new instance of the input action map wrapper class.
-            /// </summary>
-            public JoinGameActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
-            /// <summary>
-            /// Provides access to the underlying input action "JoinGame/Newaction".
-            /// </summary>
-            public InputAction @Newaction => m_Wrapper.m_JoinGame_Newaction;
-            /// <summary>
-            /// Provides access to the underlying input action map instance.
-            /// </summary>
-            public InputActionMap Get() { return m_Wrapper.m_JoinGame; }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-            public void Enable() { Get().Enable(); }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-            public void Disable() { Get().Disable(); }
-            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-            public bool enabled => Get().enabled;
-            /// <summary>
-            /// Implicitly converts an <see ref="JoinGameActions" /> to an <see ref="InputActionMap" /> instance.
-            /// </summary>
-            public static implicit operator InputActionMap(JoinGameActions set) { return set.Get(); }
-            /// <summary>
-            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-            /// </summary>
-            /// <param name="instance">Callback instance.</param>
-            /// <remarks>
-            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-            /// </remarks>
-            /// <seealso cref="JoinGameActions" />
-            public void AddCallbacks(IJoinGameActions instance)
-            {
-                if (instance == null || m_Wrapper.m_JoinGameActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_JoinGameActionsCallbackInterfaces.Add(instance);
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-            }
-
-            /// <summary>
-            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-            /// </summary>
-            /// <remarks>
-            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-            /// </remarks>
-            /// <seealso cref="JoinGameActions" />
-            private void UnregisterCallbacks(IJoinGameActions instance)
-            {
-                @Newaction.started -= instance.OnNewaction;
-                @Newaction.performed -= instance.OnNewaction;
-                @Newaction.canceled -= instance.OnNewaction;
-            }
-
-            /// <summary>
-            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="JoinGameActions.UnregisterCallbacks(IJoinGameActions)" />.
-            /// </summary>
-            /// <seealso cref="JoinGameActions.UnregisterCallbacks(IJoinGameActions)" />
-            public void RemoveCallbacks(IJoinGameActions instance)
-            {
-                if (m_Wrapper.m_JoinGameActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            /// <summary>
-            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-            /// </summary>
-            /// <remarks>
-            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-            /// </remarks>
-            /// <seealso cref="JoinGameActions.AddCallbacks(IJoinGameActions)" />
-            /// <seealso cref="JoinGameActions.RemoveCallbacks(IJoinGameActions)" />
-            /// <seealso cref="JoinGameActions.UnregisterCallbacks(IJoinGameActions)" />
-            public void SetCallbacks(IJoinGameActions instance)
-            {
-                foreach (var item in m_Wrapper.m_JoinGameActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_JoinGameActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        /// <summary>
-        /// Provides a new <see cref="JoinGameActions" /> instance referencing this action map.
-        /// </summary>
-        public JoinGameActions @JoinGame => new JoinGameActions(this);
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
         /// </summary>
@@ -1273,21 +1134,6 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnQuit(InputAction.CallbackContext context);
-        }
-        /// <summary>
-        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "JoinGame" which allows adding and removing callbacks.
-        /// </summary>
-        /// <seealso cref="JoinGameActions.AddCallbacks(IJoinGameActions)" />
-        /// <seealso cref="JoinGameActions.RemoveCallbacks(IJoinGameActions)" />
-        public interface IJoinGameActions
-        {
-            /// <summary>
-            /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnNewaction(InputAction.CallbackContext context);
         }
     }
 }
