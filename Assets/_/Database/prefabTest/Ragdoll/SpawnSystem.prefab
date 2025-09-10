@@ -219,6 +219,9 @@ MonoBehaviour:
     - {fileID: 3860219729600001391}
   animalTypes: 00000000020000000300000001000000
   changeCooldown: 0.2
+  onSkinValidated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &404904761111388890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,8 +282,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7202203583501668783, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

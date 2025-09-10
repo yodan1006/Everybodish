@@ -47,7 +47,8 @@ namespace Round.Runtime
         {
             foreach (PlayerInput player in playerList)
             {
-                player.GetComponent<SpawnSystem>();
+                player.GetComponent<SpawnSystem>().enabled = true;
+       //         player.action
             }
         }
 

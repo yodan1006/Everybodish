@@ -1,3 +1,4 @@
+using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
 using Skins.Runtime;
@@ -66,7 +67,8 @@ namespace UI.Runtime
             {
                 PlayerInput player = round.playerList[i];
                 SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                SelectSkin.AnimalType animalType = selectSkin.CurrentAnimalType();
+                AnimalType animalType = selectSkin.CurrentAnimalType();
+
             }
         }
 
