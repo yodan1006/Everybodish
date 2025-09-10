@@ -5,18 +5,24 @@ namespace InteractionPlayerStart.Runtime
 {
     public class Control : MonoBehaviour
     {
-        // Exemple de nom d'objet à rechercher, peut aussi venir d'une variable publique/exportée
         [SerializeField] private string nameMenuControl;
         [SerializeField] private string nameMenuCredit;
+        [SerializeField] private float quitterPressedTime = 0.5f;
+        
+        [SerializeField] private float longPressDuration = 1.0f; // Durée pour considérer comme un appui long (en secondes)
 
         public void ControleMenu(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                GameObject objet = GameObject.Find(nameMenuControl);
-                if (objet != null)
+                GameObject uiManager = GameObject.Find("UIParentMenu");
+                if (uiManager != null)
                 {
-                    objet.SetActive(true);
+                    Transform child = uiManager.transform.Find(nameMenuControl);
+                    if (child != null)
+                    {
+                        child.gameObject.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -24,15 +30,19 @@ namespace InteractionPlayerStart.Runtime
                 }
             }
         }
-        
+
         public void CreditMenu(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                GameObject objet = GameObject.Find(nameMenuCredit);
-                if (objet != null)
+                GameObject uiManager = GameObject.Find("UIParentMenu");
+                if (uiManager != null)
                 {
-                    objet.SetActive(true);
+                    Transform child = uiManager.transform.Find(nameMenuCredit);
+                    if (child != null)
+                    {
+                        child.gameObject.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -45,9 +55,43 @@ namespace InteractionPlayerStart.Runtime
         {
             if (context.started)
             {
-                Application.Quit();
+                // Début de l'appui
+                quitterPressedTime = Time.time;
+            }
+            else if (context.canceled)
+            {
+                // Fin de l'appui
+                float pressedDuration = Time.time - quitterPressedTime;
+                if (pressedDuration >= longPressDuration)
+                {
+                    // Appui long : quitter l'application
+                    Application.Quit();
+                }
+                else
+                {
+                    // Appui court : désactiver les menus si actifs
+                    GameObject menuControl = GameObject.Find(nameMenuControl);
+                    GameObject menuCredit = GameObject.Find(nameMenuCredit);
+
+                    bool anyMenuActive = false;
+
+                    if (menuControl != null && menuControl.activeSelf)
+                    {
+                        menuControl.SetActive(false);
+                        anyMenuActive = true;
+                    }
+                    if (menuCredit != null && menuCredit.activeSelf)
+                    {
+                        menuCredit.SetActive(false);
+                        anyMenuActive = true;
+                    }
+
+                    if (!anyMenuActive)
+                    {
+                        Debug.Log("Aucun menu actif à désactiver.");
+                    }
+                }
             }
         }
-        
     }
 }

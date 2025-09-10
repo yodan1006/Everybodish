@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4932812266720519798}
   - component: {fileID: 1917181855189238406}
   - component: {fileID: 2877955335872950180}
+  - component: {fileID: -4855144887064598340}
   m_Layer: 0
   m_Name: SpawnSystem
   m_TagString: Untagged
@@ -108,46 +109,6 @@ MonoBehaviour:
     m_ActionId: 1b9641d4-31fa-45c2-b69f-856358ca111c
     m_ActionName: 'Player/Pause[/XInputControllerWindows1/start,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7cf1df48-4b5a-4d08-8f62-6e5bc764913c
-    m_ActionName: 'UI/Navigate[/XInputControllerWindows1/leftStick/up,/XInputControllerWindows1/rightStick/up,/XInputControllerWindows1/leftStick/down,/XInputControllerWindows1/rightStick/down,/XInputControllerWindows1/leftStick/left,/XInputControllerWindows1/rightStick/left,/XInputControllerWindows1/leftStick/right,/XInputControllerWindows1/rightStick/right,/XInputControllerWindows1/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ab09b9f7-1df2-452e-83b8-681f4b856092
-    m_ActionName: 'UI/Submit[/Keyboard/enter,/XInputControllerWindows1/buttonSouth]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c82eb98b-070b-4a05-9814-c1d34f68d5bd
-    m_ActionName: 'UI/Cancel[/Keyboard/escape,/XInputControllerWindows1/buttonEast]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d62f5ac7-89e8-4628-87f5-269cc1cbf88d
-    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f57a5fe3-7238-4a2a-acd7-733847322fc5
-    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0e7b063d-b056-4197-8d9a-71d27f8f3633
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c18e5f72-0fb3-4ea8-8c9f-5fb79b383473
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d5495077-335e-48ff-a0e3-a69f12db30f9
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4b706aaa-dffd-4037-9e48-9db0dd4b4dc5
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cdd9782f-0448-41c0-8b0c-23806f6dc0f7
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2877955335872950180}
         m_TargetAssemblyTypeName: MovePlayer.Runtime.SelectSkin, MovePlayer.Runtime
@@ -191,9 +152,61 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7e681e6f-d132-4455-a098-68fe51570488
     m_ActionName: 'Lobby/validateSkin[/XInputControllerWindows/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4855144887064598340}
+        m_TargetAssemblyTypeName: InteractionPlayerStart.Runtime.Control, InteractionPlayerStart.Runtime
+        m_MethodName: CreditMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 18e9fb64-45ed-4f71-8721-9290b6f540fb
+    m_ActionName: 'Lobby/creditMenu[/Keyboard/c,/DualShock4GamepadHID/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4855144887064598340}
+        m_TargetAssemblyTypeName: InteractionPlayerStart.Runtime.Control, InteractionPlayerStart.Runtime
+        m_MethodName: ControleMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c98aec94-ab8d-4169-8cba-83a80417f792
+    m_ActionName: 'Lobby/Control[/Keyboard/x,/DualShock4GamepadHID/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4855144887064598340}
+        m_TargetAssemblyTypeName: InteractionPlayerStart.Runtime.Control, InteractionPlayerStart.Runtime
+        m_MethodName: Quitter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3b9237ff-99a8-4fca-ae7a-0edb1a19c703
+    m_ActionName: 'Lobby/Quit[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd988ade-2abd-48b6-b985-d5163ca80e16
+    m_ActionName: 'JoinGame/New action[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Lobby
+  m_DefaultActionMap: JoinGame
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2877955335872950180
@@ -222,6 +235,22 @@ MonoBehaviour:
   onSkinValidated:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-4855144887064598340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4caf09e994410b4db04152887a16f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameMenuControl: UI_P_CONTROLS
+  nameMenuCredit: UI_P_CREDITS
+  quitterPressedTime: 0.5
+  longPressDuration: 1
 --- !u!1001 &404904761111388890
 PrefabInstance:
   m_ObjectHideFlags: 0
