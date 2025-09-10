@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 3446248171838043829}
   - component: {fileID: 5449516774266982159}
   - component: {fileID: 1835438565663637275}
+  - component: {fileID: 5346749580903086416}
   m_Layer: 5
   m_Name: UI_P_Player03
   m_TagString: Untagged
@@ -683,3 +684,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5346749580903086416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338398435515050586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8663ab87ef7472a48bc3e2fb813dc3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duckIcon: {fileID: 4184468105568170924}
+  rabbitIcon: {fileID: 7491411847929700450}
+  pigIcon: {fileID: 5159452653813731262}
+  cowIcon: {fileID: 6260347806991889794}

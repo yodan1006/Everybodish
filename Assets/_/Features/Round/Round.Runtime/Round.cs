@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Score.Runtime;
 using Spawner.Runtime;
@@ -41,13 +42,24 @@ namespace Round.Runtime
                 Instance = this;
             }
             OnRoundStarted.AddListener(StartRound);
+            OnRoundFinished.AddListener(EndRound);
+        }
+
+        private void EndRound()
+        {
+            foreach (PlayerInput player in playerList)
+            {
+                player.GetComponent<SpawnSystem>().enabled = false;
+                player.actions.FindActionMap("Player").Disable();
+            }
         }
 
         private void StartRound()
         {
             foreach (PlayerInput player in playerList)
             {
-                player.GetComponent<SpawnSystem>();
+                player.GetComponent<SpawnSystem>().enabled = true;
+                player.actions.FindActionMap("Player").Enable();
             }
         }
 
@@ -97,6 +109,7 @@ namespace Round.Runtime
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
+            OnRoundFinished.Invoke();
         }
     }
 }

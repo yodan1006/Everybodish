@@ -1,3 +1,4 @@
+using Animals.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -27,6 +28,7 @@ namespace Skins.Runtime
         {
             DontDestroyOnLoad(gameObject);
             LobbyManager.Instance?.RegisterPlayer(this);
+            currentModelIndex = Random.Range(0, appearances.Length);
         }
 
         public void OnChangeModel(InputAction.CallbackContext context)
@@ -104,14 +106,6 @@ namespace Skins.Runtime
             {
                 Debug.LogError("❌ LobbyManager.Instance est NULL !");
             }
-        }
-
-        public enum AnimalType
-        {
-            DUCK,
-            PIG,
-            RABBIT,
-            COW
         }
     }
 }
