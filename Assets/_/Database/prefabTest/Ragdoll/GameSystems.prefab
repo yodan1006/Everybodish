@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081dabbc531782b4fbb562de0cca73f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warmupTime: 10
+  warmupTime: 3
   roundDuration: 300
   OnWarmupStarted:
     m_PersistentCalls:
@@ -160,10 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clock: {fileID: 3802536422620486294}
-  player1: {fileID: 5526957594412667448}
-  player2: {fileID: 7962495206878265167}
-  player3: {fileID: 3888595746656997317}
-  player4: {fileID: 6729012295101240119}
+  playerUis:
+  - {fileID: 5526957594412667448}
+  - {fileID: 7962495206878265167}
+  - {fileID: 3888595746656997317}
+  - {fileID: 6729012295101240119}
   pause: {fileID: 3821808986416735572}
 --- !u!1 &514618461738559018
 GameObject:
@@ -397,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2229025279012709118
 RectTransform:
   m_ObjectHideFlags: 0

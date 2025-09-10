@@ -1,27 +1,32 @@
-using MovePlayer.Runtime._.Features.MovePlayer.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace MovePlayer.Runtime
+namespace Skins.Runtime
 {
     public class SelectSkin : MonoBehaviour
     {
-        public ApparenceSet[] appearances;
-        public AnimalType[] animalTypes;
+        [SerializeField] private ApparenceSet[] appearances;
+        [SerializeField] private AnimalType[] animalTypes;
 
         [SerializeField] private float changeCooldown = 0.2f;
         private float lastModelChangeTime = 0f;
         private float lastColorChangeTime = 0f;
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
+        public UnityEvent<bool> onSkinValidated = new();
+
+        public AnimalType CurrentAnimalType()
+        {
+            return animalTypes[currentModelIndex];
+        }
 
         public bool IsReady { get; private set; } = false;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            if (LobbyManager.Instance != null)
-                LobbyManager.Instance.RegisterPlayer(this);
+            LobbyManager.Instance?.RegisterPlayer(this);
         }
 
         public void OnChangeModel(InputAction.CallbackContext context)

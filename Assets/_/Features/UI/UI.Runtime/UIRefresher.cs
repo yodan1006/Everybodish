@@ -1,15 +1,17 @@
+using Round.Runtime;
+using Score.Runtime;
+using Skins.Runtime;
+using Timer.Runtime;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace Score.Runtime
+namespace UI.Runtime
 {
     public class UIRefresher : MonoBehaviour
     {
         #region Publics
         public GameObject clock;
-        public GameObject player1;
-        public GameObject player2;
-        public GameObject player3;
-        public GameObject player4;
+        public GameObject[] playerUis;
         public GameObject pause;
 
         #endregion
@@ -34,12 +36,17 @@ namespace Score.Runtime
         // Update is called once per frame
         private void Update()
         {
-            needle.transform.rotation = Quaternion.Euler(0, 0, -( timer.currentTime / 60 * 360 - needleStartRotation));
+            float currentTime = timer.currentTime;
+            int roundDuration = round.roundDuration;
+            float clockRange = 360f;
+            float needleNormalizedOffset = currentTime / roundDuration;
+            float needleAngle = needleNormalizedOffset * clockRange;
+            needle.transform.rotation = Quaternion.Euler(0, 0, -needleAngle + needleStartRotation);
         }
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
-            round = GetComponent<Round>();
+            round = GetComponent<RoundSystem>();
             needle = GameObject.Find("NEEDLE");
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
             round.OnRoundStarted.AddListener(OnRoundStarted);
@@ -55,7 +62,12 @@ namespace Score.Runtime
 
         private void OnWarmupStarted()
         {
-
+            for (int i = 0; i < round.playerList.Count; i++)
+            {
+                PlayerInput player = round.playerList[i];
+                SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                SelectSkin.AnimalType animalType = selectSkin.CurrentAnimalType();
+            }
         }
 
         private void OnRoundFinished()
@@ -81,9 +93,8 @@ namespace Score.Runtime
 
 
         #region Private and Protected
-
         private GameTimer timer;
-        private Round round;
+        private RoundSystem round;
         private GameObject needle;
         private float needleStartRotation;
         #endregion

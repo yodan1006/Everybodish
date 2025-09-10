@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,9 +10,9 @@ namespace Machine.Runtime
         [SerializeField] public Image uiImage;
 
         [SerializeField] private float holdTime = 1f;
-        
+
         public UnityEvent OnHoldComplete;
-        
+
         private bool _isHolding;
         private bool _isVisible;
         private float _holdTimerProgress;
@@ -27,10 +26,10 @@ namespace Machine.Runtime
         private void Update()
         {
             if (!_isHolding) return;
-            
+
             _holdTimerProgress += Time.deltaTime / holdTime;
             if (uiImage != null) uiImage.fillAmount = _holdTimerProgress;
-            
+
             if (_holdTimerProgress >= 1f)
             {
                 OnHoldComplete?.Invoke();
@@ -51,7 +50,7 @@ namespace Machine.Runtime
                 player.CurrentMultiCookUI = this;
             }
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<PlayerInteract>(out var player))
@@ -64,10 +63,10 @@ namespace Machine.Runtime
         public void ShowUI()
         {
             if (uiCanvas != null) uiCanvas.enabled = true;
-            if (uiImage!= null) uiImage.fillAmount = 0;
+            if (uiImage != null) uiImage.fillAmount = 0;
             _isVisible = true;
         }
-        
+
         public void HideUI()
         {
             if (uiCanvas != null) uiCanvas.enabled = false;
@@ -87,7 +86,7 @@ namespace Machine.Runtime
         {
             ResetHold();
         }
-        
+
         private void ResetHold()
         {
             _isHolding = false;

@@ -12,9 +12,9 @@ namespace Score.Runtime
         public int ScoreDelta { get; private set; }
         public int? TargetPlayer { get; private set; }
 
-        public ScoreEvent(int player, ScoreEventType eventType, int scoreDelta, int? targetPlayer = null)
+        public ScoreEvent(int player, float timestamp, ScoreEventType eventType, int scoreDelta, int? targetPlayer = null)
         {
-            TimeStamp = GameTimer.Instance.GetTime();
+            TimeStamp = timestamp;
             Player = player;
             EventType = eventType;
             ScoreDelta = scoreDelta;

@@ -1,10 +1,10 @@
 {
-    "name": "Score.Runtime",
-    "rootNamespace": "Score.Runtime",
+    "name": "Lobby.Runtime",
+    "rootNamespace": "Lobby.Runtime",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:df4c38949cb6e5a42a65e45aab87c539"
+        "GUID:f056481186e75eb4593e36740b96ec6d",
+        "GUID:d02d2451dd6ae4d489f3dde898a1da9e",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

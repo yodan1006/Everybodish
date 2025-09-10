@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Grab.Runtime;
@@ -44,7 +43,7 @@ namespace Machine.Runtime
         private readonly List<Food> _storedFoods = new();
         private bool _isCooking = false;
         private float _progress;
-        
+
         public bool isRetourned;
         public bool _goFinish { get; private set; }
         public bool isFinished { get; private set; }
@@ -283,18 +282,18 @@ namespace Machine.Runtime
             animator.SetBool("Flip", true);
             isRetourned = true;
         }
-        
+
         public void FinishFoodFrying()
         {
             if (!_goFinish) return;
             animator.SetBool("Frying", false);
-             isFinished = true;
+            isFinished = true;
         }
 
         private void Update()
         {
             uiProgression.fillAmount = _progress;
-            
+
             if (_goReturn) uiReturn.SetActive(true);
             else uiReturn.SetActive(false);
         }

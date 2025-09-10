@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Machine.Runtime
 {
@@ -32,7 +30,7 @@ namespace Machine.Runtime
                 player.CurrentMultiCookUI = uiMultiCook;
             }
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<PlayerInteract>(out var player))

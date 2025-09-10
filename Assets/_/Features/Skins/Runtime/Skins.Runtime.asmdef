@@ -1,10 +1,9 @@
 {
-    "name": "Score.Runtime",
-    "rootNamespace": "Score.Runtime",
+    "name": "Skins.Runtime",
+    "rootNamespace": "Skins.Runtime",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:df4c38949cb6e5a42a65e45aab87c539"
+        "GUID:25c500f9f3b2074488297a62a53cad67"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

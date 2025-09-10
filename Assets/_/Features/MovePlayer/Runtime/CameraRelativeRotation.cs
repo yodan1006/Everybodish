@@ -21,9 +21,9 @@ namespace PlayerLocomotion.Runtime
                 cameraTransform = Camera.main.transform;
             }
         }
-        
+
         //brandon modif 
-        
+
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (Camera.main != null)
@@ -39,11 +39,11 @@ namespace PlayerLocomotion.Runtime
         {
             //brandon
             SceneManager.sceneLoaded -= OnSceneLoaded;
-        }        
-        
+        }
+
 
         // -----------------------------------------------------------------
-        
+
         public void OnMovement(InputAction.CallbackContext context)
         {
             inputMovement = context.ReadValue<Vector2>();
@@ -51,11 +51,11 @@ namespace PlayerLocomotion.Runtime
         private void Update()
         {
             // modif brandon perte de camera
-            
+
             if (cameraTransform == null) return;
-            
+
             //------------------------------------
-            
+
             if (transform.gameObject != cameraTransform.gameObject)
             {
                 // Camera-relative rotation

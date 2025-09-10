@@ -12,16 +12,16 @@ namespace Machine.Runtime
     {
         [SerializeField] private float holdToCookDuration = 1f;
         [SerializeField] private float radiusDetector;
-        
+
         private AnimatedProximityGrabber grabber;
         private bool isHoldCooking = false;
         private float holdingTime = 0f;
         private bool cookTriggered = false;
         public UnityEvent<ScoreEventType> onScoreEvent = new();
 
-        
+
         public UIMultiCook CurrentMultiCookUI { get; set; }
-        
+
         private void Awake()
         {
             if (!TryGetComponent<AnimatedProximityGrabber>(out grabber))
@@ -156,7 +156,7 @@ namespace Machine.Runtime
 
         public void OnManualCook(InputAction.CallbackContext context)
         {
-            
+
             if (CurrentMultiCookUI != null)
             {
                 if (context.started)
@@ -169,7 +169,7 @@ namespace Machine.Runtime
                 }
             }
 
-            
+
             if (context.started)
             {
                 isHoldCooking = true;

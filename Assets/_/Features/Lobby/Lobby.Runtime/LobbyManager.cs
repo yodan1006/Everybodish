@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using TransitionScene.Runtime;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
+namespace Skins.Runtime
 {
     public class LobbyManager : MonoBehaviour
     {

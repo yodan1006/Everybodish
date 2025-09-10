@@ -24,19 +24,19 @@ namespace Spawner.Runtime
         private PlayerInput playerInput;
         private PlayerInputMap inputMap;
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
-        
+
         public static List<SpawnSystem> AllPlayers = new List<SpawnSystem>();
 
 
         private void Awake()
         {
-            
+
             // ajout d'un systeme dont destroy pour le passage de scene
-            
+
             DontDestroyOnLoad(this);
-            
+
             //
-            
+
             playerInput = GetComponent<PlayerInput>();
 
             // Create wrapper from PlayerInput's actions
@@ -51,8 +51,8 @@ namespace Spawner.Runtime
 
         private void Start()
         {
-            OnSceneLoaded( SceneManager.GetActiveScene(), LoadSceneMode.Single);
-            
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+
             // inputMap.Player.Disable();
             // inputMap.Lobby.Disable();
         }

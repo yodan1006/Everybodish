@@ -1,15 +1,17 @@
 using System.Collections.Generic;
+using Round.Runtime;
+using Score.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Score.Runtime
+namespace UI.Runtime
 {
     [RequireComponent(typeof(GlobalScoreEventSystem))]
     public class ScoreRefresher : MonoBehaviour
     {
         private GlobalScoreEventSystem scoreSystem;
-        private Round round;
+        private RoundSystem round;
         [SerializeField] private TextMeshProUGUI player1Scoreboard;
         [SerializeField] private TextMeshProUGUI player2Scoreboard;
         [SerializeField] private TextMeshProUGUI player3Scoreboard;
@@ -18,7 +20,7 @@ namespace Score.Runtime
         private void Awake()
         {
             scoreSystem = GetComponent<GlobalScoreEventSystem>();
-            round = GetComponent<Round>();
+            round = GetComponent<RoundSystem>();
             scoreSystem.OnScoresChanged.AddListener(OnScoresChanged);
             scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
             playerScoreboardList.Add(player1Scoreboard);
