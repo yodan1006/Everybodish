@@ -13,6 +13,7 @@ namespace UI.Runtime
         #region Publics
         public GameObject clock;
         public GameObject[] playerUis;
+        public GameObject[] playerTexts;
         public GameObject pause;
 
         #endregion
@@ -58,19 +59,37 @@ namespace UI.Runtime
 
         private void OnWarmupFinished()
         {
+            int playerCount = round.playerList.Count;
+            for (int i = 0; i < playerUis.Length; i++)
+            {
+                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
+                if (i < playerCount)
+                {
+                    playerUis[i].SetActive(true);
+                    playerTexts[i].SetActive(true);
+                    PlayerInput player = round.playerList[i];
+                    SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                    AnimalType animalType = selectSkin.CurrentAnimalType();
 
+                    if (playerIcon != null)
+                    {
+                        playerIcon.SetPlayerIcon(animalType);
+                    }
+                }
+                else
+                {
+                    playerUis[i].SetActive(false);
+                    playerTexts[i].SetActive(false);
+                }
+
+            }
         }
 
         private void OnWarmupStarted()
         {
-            for (int i = 0; i < round.playerList.Count; i++)
-            {
-                PlayerInput player = round.playerList[i];
-                SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                AnimalType animalType = selectSkin.CurrentAnimalType();
 
-            }
         }
+
 
         private void OnRoundFinished()
         {

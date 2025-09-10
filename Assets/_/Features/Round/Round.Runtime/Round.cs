@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Score.Runtime;
 using Spawner.Runtime;
@@ -49,9 +48,13 @@ namespace Round.Runtime
         {
             foreach (PlayerInput player in playerList)
             {
-                player.GetComponent<SpawnSystem>().enabled = false;
-                player.actions.FindActionMap("Player").Disable();
+                if (player != null)
+                {
+                    player.GetComponent<SpawnSystem>().enabled = false;
+                    player.actions.FindActionMap("Player").Disable();
+                }
             }
+            playerList.Clear();
         }
 
         private void StartRound()

@@ -18,12 +18,12 @@ namespace LobbyInstantiate.Runtime
                 InputDevice device = playerInput.user.pairedDevices[0];
                 deviceName = device.displayName ?? device.name;
             }
-            
+
             PlayerTeleporter teleporter = playerInput.GetComponentInChildren<PlayerTeleporter>();
             if (teleporter != null)
             {
                 teleporter.TeleportTo(spawn);
-                playerInput.transform.root.name = deviceName + " Player"; 
+                playerInput.transform.root.name = deviceName + " Player";
             }
             else
             {

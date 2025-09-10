@@ -24,7 +24,7 @@ namespace InteractionPlayerStart.Runtime
                 }
             }
         }
-        
+
         public void CreditMenu(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -48,6 +48,6 @@ namespace InteractionPlayerStart.Runtime
                 Application.Quit();
             }
         }
-        
+
     }
 }
