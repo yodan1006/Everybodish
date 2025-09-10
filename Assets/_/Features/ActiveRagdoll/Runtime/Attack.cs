@@ -28,7 +28,8 @@ public class Attack : MonoBehaviour
         {
             AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
             animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
-        }else
+        }
+        else
         {
             listener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
         }
