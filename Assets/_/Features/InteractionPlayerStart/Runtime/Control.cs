@@ -1,3 +1,4 @@
+using Skins.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,16 @@ namespace InteractionPlayerStart.Runtime
         
         [SerializeField] private float longPressDuration = 1.0f; // Durée pour considérer comme un appui long (en secondes)
 
+        private PlayerInput playerInput;
+        private LobbyManager lobbyManager;
+        
+        
+        private void Awake()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            lobbyManager = FindFirstObjectByType<LobbyManager>();
+        }
+        
         public void ControleMenu(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -88,7 +99,10 @@ namespace InteractionPlayerStart.Runtime
 
                     if (!anyMenuActive)
                     {
-                        Debug.Log("Aucun menu actif à désactiver.");
+                        lobbyManager.UnregisterPlayer(gameObject.GetComponent<SelectSkin>());
+                        // Si aucun menu actif → le joueur quitte la partie
+                        Debug.Log($"Le joueur {playerInput.playerIndex} quitte la partie !");
+                        Destroy(gameObject); // Supprime ce joueur
                     }
                 }
             }
