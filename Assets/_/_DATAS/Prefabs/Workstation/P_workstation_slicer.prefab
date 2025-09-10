@@ -160,9 +160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfd80a9d178aa34eb490ea927a2838d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  particle: {fileID: 0}
   recipes: []
   spawnPoint: {fileID: 7079444430276549061}
   foodSlot: {fileID: 7793743231122422100}
+  _isCooking: 0
 --- !u!4 &3284703108624303955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe0a15696964c0a4498cd355510ad843, type: 3}

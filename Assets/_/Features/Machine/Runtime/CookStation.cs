@@ -19,12 +19,19 @@ namespace Machine.Runtime
 
         public bool TryCook(Food food, out GameObject resultPrefab)
         {
+            if (food == null)
+            {
+                Debug.LogWarning("TryCook called with null food!");
+                resultPrefab = null;
+                return false;
+            }
 
             if (_currentFood != null)
             {
                 resultPrefab = null;
                 return false;
             }
+
             if (_isCooking != true)
             {
                 foreach (var recipe in recipes)
@@ -34,23 +41,46 @@ namespace Machine.Runtime
                         _isCooking = true;
                         _currentFood = food;
 
-                       
                         if (hideItemDuringPrepare == true)
                         {
-                            food.grabable.enabled = false;
-                            food.transform.localScale =Vector3.zero;
+                            if (food.grabable != null)
+                            {
+                                food.grabable.enabled = false;
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"CookStation: food.grabable is null on {food.name}");
+                            }
+                            food.transform.localScale = Vector3.zero;
                         }
                         else
                         {
                             // Place l’objet visuellement sur le slot
-                            food.transform.transform.SetPositionAndRotation(foodSlot.transform.position, foodSlot.transform.rotation);
-                            food.grabable.enabled = false;
-                            food.rb.linearVelocity = Vector3.zero;
-                            food.rb.angularVelocity = Vector3.zero;
+                            food.transform.SetPositionAndRotation(foodSlot.position, foodSlot.rotation);
+
+                            if (food.grabable != null)
+                            {
+                                food.grabable.enabled = false;
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"CookStation: food.grabable is null on {food.name}");
+                            }
+
+                            if (food.rb != null)
+                            {
+                                food.rb.linearVelocity = Vector3.zero;
+                                food.rb.angularVelocity = Vector3.zero;
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"CookStation: food.rb (Rigidbody) is null on {food.name}");
+                            }
                         }
 
                         animator.SetBool("OnSlice", true);
                         resultPrefab = recipe.outputPrefab;
+
                         if (food.FoodType == FoodType.Player)
                         {
                             Stun stun = food.topmost.GetComponentInChildren<Stun>();
@@ -64,7 +94,6 @@ namespace Machine.Runtime
                     }
                 }
             }
-
 
             resultPrefab = null;
             return false;
