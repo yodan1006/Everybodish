@@ -1117,6 +1117,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7335868099650093823, guid: bbc52680146729c428ec71ea5150079d, type: 3}
   m_PrefabInstance: {fileID: 6391205504502629625}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &659080492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6539618627280152491, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+  m_PrefabInstance: {fileID: 6391205504502629625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &684006354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3897980057264827600, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -2401,6 +2412,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
+--- !u!1 &1508583988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1335418415208706619, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+  m_PrefabInstance: {fileID: 6391205504502629625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1531074546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3260476321258324577, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -2650,7 +2666,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2190665034994577146, guid: bbc52680146729c428ec71ea5150079d, type: 3}
   m_PrefabInstance: {fileID: 6391205504502629625}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1508583988}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -3470,9 +3486,33 @@ PrefabInstance:
       value: CommandeManager
       objectReference: {fileID: 0}
     - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: startY
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
       propertyPath: parentUI
       value: 
       objectReference: {fileID: 207061332}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: recettesDisponibles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: 'recettesDisponibles.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 97fef16ec95c14547b7304e056a9c9fa, type: 2}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: 'recettesDisponibles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 950d7f2526645a1488682f2dc42271b4, type: 2}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: 'recettesDisponibles.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 36936686789873c49847c4ca885f444d, type: 2}
+    - target: {fileID: 8654865969901073244, guid: 7930da0e94a342c449b7e276c9a1db97, type: 3}
+      propertyPath: 'recettesDisponibles.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 170ab89c9e8b24842ad1ed357fbc4620, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3914,6 +3954,26 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: uiDone
+      value: 
+      objectReference: {fileID: 1531074546}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: uiIcone
+      value: 
+      objectReference: {fileID: 531617533}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: uiReturn
+      value: 
+      objectReference: {fileID: 587057977}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: uiProgression
+      value: 
+      objectReference: {fileID: 659080492}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: uiBarProgression
+      value: 
+      objectReference: {fileID: 1508583988}
     - target: {fileID: 9055476074982689081, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

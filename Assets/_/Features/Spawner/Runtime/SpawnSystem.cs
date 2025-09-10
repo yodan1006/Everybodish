@@ -24,7 +24,6 @@ namespace Spawner.Runtime
         private PlayerInput playerInput;
         private PlayerInputMap inputMap;
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
-        private readonly Dictionary<InputAction, System.Action<CallbackContext>> boundActions = new();
         
         public static List<SpawnSystem> AllPlayers = new List<SpawnSystem>();
 
@@ -35,6 +34,7 @@ namespace Spawner.Runtime
             // ajout d'un systeme dont destroy pour le passage de scene
             
             DontDestroyOnLoad(this);
+            
             //
             
             playerInput = GetComponent<PlayerInput>();
@@ -51,8 +51,10 @@ namespace Spawner.Runtime
 
         private void Start()
         {
-            inputMap.Player.Disable();
-        //     //inputMap.Lobby.Disable();
+            OnSceneLoaded( SceneManager.GetActiveScene(), LoadSceneMode.Single);
+            
+            // inputMap.Player.Disable();
+            // inputMap.Lobby.Disable();
         }
 
         private void OnDestroy()
@@ -144,9 +146,9 @@ namespace Spawner.Runtime
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
-            BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeColor);
-            BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeModel);
-            BindPlayerInput(inputMap.Lobby.validateSkin, GetComponentInChildren<SelectSkin>().OnValidateSkin);
+            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeColor);
+            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeModel);
+            // BindPlayerInput(inputMap.Lobby.validateSkin, GetComponentInChildren<SelectSkin>().OnValidateSkin);
         }
 
         public void UnBindPlayerControls()
@@ -212,11 +214,6 @@ namespace Spawner.Runtime
             {
                 inputMap.Player.Disable();
                 inputMap.Lobby.Enable();
-            }
-            else
-            {
-                inputMap.Lobby.Disable();
-                inputMap.Player.Enable();
             }
         }
     }

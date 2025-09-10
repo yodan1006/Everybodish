@@ -26,6 +26,7 @@ namespace MovePlayer.Runtime
 
         public void OnChangeModel(InputAction.CallbackContext context)
         {
+            if (IsReady) return;
             if (!context.performed) return;
 
             if (Time.time - lastModelChangeTime < changeCooldown) return;
@@ -47,6 +48,7 @@ namespace MovePlayer.Runtime
 
         public void OnChangeColor(InputAction.CallbackContext context)
         {
+            if (IsReady) return;
             if (!context.performed) return;
 
             if (Time.time - lastColorChangeTime < changeCooldown) return;
@@ -87,8 +89,16 @@ namespace MovePlayer.Runtime
             if (IsReady) return;
 
             IsReady = true;
+            Debug.Log("✅ Joueur a validé, tentative CheckAllReady...");
+
             if (LobbyManager.Instance != null)
+            {
                 LobbyManager.Instance.CheckAllReady();
+            }
+            else
+            {
+                Debug.LogError("❌ LobbyManager.Instance est NULL !");
+            }
         }
 
         public enum AnimalType
