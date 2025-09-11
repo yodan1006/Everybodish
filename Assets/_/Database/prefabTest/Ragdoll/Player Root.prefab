@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 6722713378931368680}
   - component: {fileID: 2552863704497171152}
   - component: {fileID: 5279781161226758150}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ProjectileHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
