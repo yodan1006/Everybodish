@@ -44,7 +44,7 @@ namespace Round.Runtime
 
         private void Update()
         {
-            float v = Mathf.Ceil(round.WarmupTimeDelta -1);
+            float v = Mathf.Ceil(round.WarmupTimeDelta - 1);
             if (warmupTimeleft.enabled)
             {
                 if (v > 0)
