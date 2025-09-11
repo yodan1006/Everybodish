@@ -125,6 +125,7 @@ namespace Machine.Runtime
                 }
                 else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multistation) && multistation._goFinish)
                 {
+                    onScoreEvent.Invoke(ScoreEventType.CookedDish);
                     multistation.FinishFoodFrying();
 
                 }

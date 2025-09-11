@@ -28,7 +28,9 @@ namespace Skins.Runtime
         {
             DontDestroyOnLoad(gameObject);
             LobbyManager.Instance?.RegisterPlayer(this);
+            //Random appearance on join
             currentModelIndex = Random.Range(0, appearances.Length);
+            ApplyAppearance();
         }
 
         public void OnChangeModel(InputAction.CallbackContext context)
