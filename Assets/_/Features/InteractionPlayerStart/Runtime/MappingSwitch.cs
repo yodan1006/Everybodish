@@ -22,7 +22,7 @@ namespace InteractionPlayerStart.Runtime
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        
+
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
@@ -31,7 +31,7 @@ namespace InteractionPlayerStart.Runtime
                 input.SwitchCurrentActionMap("Lobby");
                 var asset = input.actions;
                 asset.FindActionMap("Player").Disable();
-                
+
             }
             else
             {

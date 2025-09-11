@@ -9,19 +9,19 @@ namespace InteractionPlayerStart.Runtime
         [SerializeField] private string nameMenuControl;
         [SerializeField] private string nameMenuCredit;
         [SerializeField] private float quitterPressedTime = 0.5f;
-        
+
         [SerializeField] private float longPressDuration = 1.0f; // Durée pour considérer comme un appui long (en secondes)
 
         private PlayerInput playerInput;
         private LobbyManager lobbyManager;
-        
-        
+
+
         private void Awake()
         {
             playerInput = GetComponent<PlayerInput>();
             lobbyManager = FindFirstObjectByType<LobbyManager>();
         }
-        
+
         public void ControleMenu(InputAction.CallbackContext context)
         {
             if (context.started)
