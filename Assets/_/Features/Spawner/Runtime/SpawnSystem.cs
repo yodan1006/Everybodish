@@ -51,8 +51,6 @@ namespace Spawner.Runtime
 
         private void Start()
         {
-            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-
             // inputMap.Player.Disable();
             // inputMap.Lobby.Disable();
         }
@@ -66,14 +64,12 @@ namespace Spawner.Runtime
         {
             playerPrefab.SetActive(false);
             inputMap.Enable();
-            SceneManager.sceneLoaded += OnSceneLoaded;
             SetupNewPlayer();
         }
 
         private void OnDisable()
         {
             inputMap.Disable();
-            SceneManager.sceneLoaded -= OnSceneLoaded;
             DestroyPlayer();
             playerPrefab.SetActive(true);
         }
@@ -207,14 +203,6 @@ namespace Spawner.Runtime
                 playerInstance = null;
             }
         }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.buildIndex == 0)
-            {
-                inputMap.Player.Disable();
-                inputMap.Lobby.Enable();
-            }
-        }
+        
     }
 }
