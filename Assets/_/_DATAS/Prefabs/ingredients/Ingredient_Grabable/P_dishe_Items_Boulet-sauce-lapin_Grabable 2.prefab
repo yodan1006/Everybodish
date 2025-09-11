@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 8336300325008270987, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+      propertyPath: FoodType
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_RemovedGameObjects:
