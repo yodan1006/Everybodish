@@ -115,6 +115,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     - {fileID: 5262590258132329934, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    - {fileID: 8336300325008270987, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4358472033176171831, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_AddedGameObjects:
@@ -163,8 +164,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7470932, y: 0.13679826, z: 0.73906136}
-  m_Center: {x: -0.009226799, y: 0.01729542, z: -0.004251957}
+  m_Size: {x: 1.1684427, y: 0.8165092, z: 1.176093}
+  m_Center: {x: 0.016263485, y: 0.130146, z: -0.025157154}
 --- !u!114 &6599641018232872750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodType: 19
+  FoodType: 0
   rb: {fileID: 0}
   grabable: {fileID: 0}
   topmost: {fileID: 0}
