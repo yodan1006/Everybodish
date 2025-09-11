@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f4ed06cc3e47f40a0bf4f66e8a742f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joinedGameDelta: 1
+  joinedGameDelta: 0
   preparedIngredientDelta: 1
   CookedItemDelta: 10
   ServedItemDelta: 30
