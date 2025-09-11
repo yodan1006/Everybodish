@@ -44,9 +44,18 @@ namespace Round.Runtime
 
         private void Update()
         {
+            float v = Mathf.Ceil(round.WarmupTimeDelta -1);
             if (warmupTimeleft.enabled)
             {
-                warmupTimeleft.SetText(round.WarmupTimeDelta.ToString("0"));
+                if (v > 0)
+                {
+                    warmupTimeleft.SetText(v.ToString("0"));
+                }
+                else
+                {
+                    warmupTimeleft.SetText("GO!");
+                }
+
             }
 
             if (roundTimeleft.enabled)

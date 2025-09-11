@@ -7,7 +7,6 @@ using PlayerLocomotion.Runtime;
 using Score.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Spawner.Runtime
@@ -203,6 +202,6 @@ namespace Spawner.Runtime
                 playerInstance = null;
             }
         }
-        
+
     }
 }

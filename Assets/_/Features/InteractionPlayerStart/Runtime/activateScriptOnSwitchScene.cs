@@ -1,7 +1,5 @@
 using System.Linq;
 using Round.Runtime;
-using Spawner.Runtime;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +8,7 @@ namespace InteractionPlayerStart.Runtime
 {
     public class activateScriptOnSwitchScene : MonoBehaviour
     {
-        
+
 
         private void OnEnable()
         {
@@ -21,8 +19,8 @@ namespace InteractionPlayerStart.Runtime
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        
-        
+
+
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (scene.buildIndex == 1)
@@ -32,8 +30,8 @@ namespace InteractionPlayerStart.Runtime
                 var round = FindFirstObjectByType<RoundSystem>();
                 round.playerList = allPlayers;
             }
-            
-        }
+
         }
     }
+}
 
