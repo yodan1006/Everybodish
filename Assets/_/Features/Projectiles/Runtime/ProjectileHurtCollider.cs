@@ -18,17 +18,18 @@ namespace ActiveRagdoll.Runtime
                     //Check for speed and not being grabbed
                     if (rb.linearVelocity.magnitude > minmimumStunVelocity)
                     {
-                        if(collision.TryGetComponent<Grabable>(out Grabable grabable))
+                        if (collision.TryGetComponent<Grabable>(out Grabable grabable))
                         {
                             if (!grabable.IsGrabbed())
                             {
                                 Debug.Log("Player stunned by grabable object!", this);
                                 _stun.StunForDuration(5);
                             }
-                        }else
+                        }
+                        else
                         {
-                        Debug.Log("Player stunned by kinetic object!", this);
-                        _stun.StunForDuration(5);
+                            Debug.Log("Player stunned by kinetic object!", this);
+                            _stun.StunForDuration(5);
                         }
                     }
             }
