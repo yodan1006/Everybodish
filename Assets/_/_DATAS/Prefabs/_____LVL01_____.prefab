@@ -8769,8 +8769,12 @@ PrefabInstance:
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6559442518852917702, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559442518852917702, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.792
+      value: -0.349
       objectReference: {fileID: 0}
     - target: {fileID: 6675365169214139405, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
       propertyPath: m_RenderingLayerMask
