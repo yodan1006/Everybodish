@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MovePlayer.Runtime
+namespace Skins.Runtime
 {
     [System.Serializable]
     public class ApparenceSet

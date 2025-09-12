@@ -1,0 +1,20 @@
+{
+    "name": "InteractionPlayerStart.Runtime",
+    "rootNamespace": "InteractionPlayerStart.Runtime",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:25c500f9f3b2074488297a62a53cad67",
+        "GUID:d3b21173be27aad41851fd219c6271f0",
+        "GUID:a607e08af540b50499e29ffe85b5c6f9",
+        "GUID:c10d74f1664bf6049af44010a5c97c77"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

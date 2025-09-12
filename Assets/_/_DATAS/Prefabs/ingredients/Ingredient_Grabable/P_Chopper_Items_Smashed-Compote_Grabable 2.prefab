@@ -41,6 +41,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 3502118344042914684}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0332b7a086ecefb408adfa3eb7cbf986, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0332b7a086ecefb408adfa3eb7cbf986, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0332b7a086ecefb408adfa3eb7cbf986, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0332b7a086ecefb408adfa3eb7cbf986, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -176,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: holdDistanceFromPlayer.z
-      value: 0.75
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: m_Radius
@@ -188,7 +200,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 5262590258132329934, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    - {fileID: 8336300325008270987, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 4358472033176171831, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 799899999832215365, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
@@ -235,10 +250,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1906066
-  m_Height: 0.4256308
+  m_Radius: 0.26
+  m_Height: 0.64
   m_Direction: 1
-  m_Center: {x: -0.00063848495, y: -0.02971828, z: 0}
+  m_Center: {x: 0, y: -0.056605786, z: 0}
 --- !u!114 &173607951419430735
 MonoBehaviour:
   m_ObjectHideFlags: 0

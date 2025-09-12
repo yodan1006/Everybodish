@@ -1,31 +1,41 @@
-using MovePlayer.Runtime._.Features.MovePlayer.Runtime;
+using Animals.Data;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace MovePlayer.Runtime
+namespace Skins.Runtime
 {
     public class SelectSkin : MonoBehaviour
     {
-        public ApparenceSet[] appearances;
-        public AnimalType[] animalTypes;
+        [SerializeField] private ApparenceSet[] appearances;
+        [SerializeField] private AnimalType[] animalTypes;
 
         [SerializeField] private float changeCooldown = 0.2f;
         private float lastModelChangeTime = 0f;
         private float lastColorChangeTime = 0f;
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
+        public UnityEvent<bool> onSkinValidated = new();
+
+        public AnimalType CurrentAnimalType()
+        {
+            return animalTypes[currentModelIndex];
+        }
 
         public bool IsReady { get; private set; } = false;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            if (LobbyManager.Instance != null)
-                LobbyManager.Instance.RegisterPlayer(this);
+            LobbyManager.Instance?.RegisterPlayer(this);
+            //Random appearance on join
+            currentModelIndex = Random.Range(0, appearances.Length);
+            ApplyAppearance();
         }
 
         public void OnChangeModel(InputAction.CallbackContext context)
         {
+            if (IsReady) return;
             if (!context.performed) return;
 
             if (Time.time - lastModelChangeTime < changeCooldown) return;
@@ -47,6 +57,7 @@ namespace MovePlayer.Runtime
 
         public void OnChangeColor(InputAction.CallbackContext context)
         {
+            if (IsReady) return;
             if (!context.performed) return;
 
             if (Time.time - lastColorChangeTime < changeCooldown) return;
@@ -87,16 +98,16 @@ namespace MovePlayer.Runtime
             if (IsReady) return;
 
             IsReady = true;
-            if (LobbyManager.Instance != null)
-                LobbyManager.Instance.CheckAllReady();
-        }
+            Debug.Log("✅ Joueur a validé, tentative CheckAllReady...");
 
-        public enum AnimalType
-        {
-            DUCK,
-            PIG,
-            RABBIT,
-            COW
+            if (LobbyManager.Instance != null)
+            {
+                LobbyManager.Instance.CheckAllReady();
+            }
+            else
+            {
+                Debug.LogError("❌ LobbyManager.Instance est NULL !");
+            }
         }
     }
 }

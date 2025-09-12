@@ -17,15 +17,23 @@ public class Attack : MonoBehaviour
     private AnimatedProximityGrabber _proximityGrabber;
     public float attackMoveSpeedMultiplier = 0.5f;
     public float throwObjectForce = 7f;
+
     private void Awake()
     {
         _movement = GetComponent<CameraRelativeMovement>();
         _animator = GetComponentInChildren<Animator>();
         _attackTrigger = GetComponentInChildren<AttackTrigger>();
         _proximityGrabber = GetComponent<AnimatedProximityGrabber>();
+        if (!_animator.gameObject.TryGetComponent<AttackAnimationEventListener>(out AttackAnimationEventListener listener))
+        {
+            AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
+            animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
+        }
+        else
+        {
+            listener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
+        }
 
-        AttackAnimationEventListener animationEventListener = _animator.gameObject.AddComponent<AttackAnimationEventListener>();
-        animationEventListener.Initialize(this, _animator, _attackTrigger, _proximityGrabber, throwObjectForce);
     }
 
     public void PlayAttack(CallbackContext context)

@@ -1,20 +1,21 @@
+using Timer.Runtime;
 using TMPro;
 using UnityEngine;
 
-namespace Score.Runtime
+namespace Round.Runtime
 {
     [RequireComponent(typeof(GameTimer))]
-    [RequireComponent(typeof(Round))]
+    [RequireComponent(typeof(RoundSystem))]
     public class TimerRefresher : MonoBehaviour
     {
         private GameTimer timer;
-        private Round round;
+        private RoundSystem round;
         [SerializeField] private TextMeshProUGUI roundTimeleft;
         [SerializeField] private TextMeshProUGUI warmupTimeleft;
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
-            round = GetComponent<Round>();
+            round = GetComponent<RoundSystem>();
             round.OnRoundStarted.AddListener(OnRoundStarted);
             round.OnRoundFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
@@ -43,9 +44,18 @@ namespace Score.Runtime
 
         private void Update()
         {
+            float v = Mathf.Ceil(round.WarmupTimeDelta - 1);
             if (warmupTimeleft.enabled)
             {
-                warmupTimeleft.SetText(round.WarmupTimeDelta.ToString("0"));
+                if (v > 0)
+                {
+                    warmupTimeleft.SetText(v.ToString("0"));
+                }
+                else
+                {
+                    warmupTimeleft.SetText("GO!");
+                }
+
             }
 
             if (roundTimeleft.enabled)

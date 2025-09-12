@@ -89,12 +89,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+      propertyPath: holdAreaConstraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: holdDistanceFromPlayer.y
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: holdDistanceFromPlayer.z
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: m_Radius
@@ -106,7 +110,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 5262590258132329934, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    - {fileID: 8336300325008270987, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 4358472033176171831, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 799899999832215365, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
@@ -153,8 +160,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5489788, y: 0.19733751, z: 0.56378984}
-  m_Center: {x: -0.013252258, y: 0.16483706, z: -0.004378557}
+  m_Size: {x: 1.0272448, y: 0.37308615, z: 1.0125008}
+  m_Center: {x: -0.01348114, y: 0.24693632, z: 0.01431939}
 --- !u!114 &984866794692081779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 9
-  playerSpawnSystem: {fileID: 0}
+  rb: {fileID: 0}
+  grabable: {fileID: 0}
+  topmost: {fileID: 0}
 --- !u!1001 &7866269165817667257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,6 +186,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2802511212185870192}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: db6c9bceec337d84f97272dd1028746e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db6c9bceec337d84f97272dd1028746e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: db6c9bceec337d84f97272dd1028746e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db6c9bceec337d84f97272dd1028746e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0

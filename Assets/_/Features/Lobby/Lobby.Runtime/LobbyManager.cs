@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using TransitionScene.Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
+
+namespace Skins.Runtime
 {
     public class LobbyManager : MonoBehaviour
     {
@@ -34,16 +37,25 @@ namespace MovePlayer.Runtime._.Features.MovePlayer.Runtime
 
         public void CheckAllReady()
         {
+            Debug.Log($"Nb joueurs enregistrés: {players.Count}");
             if (players.Count == 0) return;
 
             foreach (var player in players)
             {
+                Debug.Log($"{player.name} Ready = {player.IsReady}");
                 if (!player.IsReady)
                     return; // au moins un joueur pas prêt
             }
 
             // 🚨 Tous les joueurs sont prêts → on change de scène
-            //SceneLoader.LoadSceneWithLoading(SceneManager.GetActiveScene().buildIndex + 1);
+            //FindFirstObjectByType<SceneLoader>().LoadSceneWithLoading(SceneManager.GetActiveScene().buildIndex + 1);
+            var loader = FindFirstObjectByType<SceneLoader>();
+            if (loader == null)
+            {
+                Debug.LogError("❌ SceneLoader introuvable dans la scène !");
+                return;
+            }
+            loader.LoadSceneWithLoading(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

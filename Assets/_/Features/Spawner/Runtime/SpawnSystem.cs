@@ -24,8 +24,18 @@ namespace Spawner.Runtime
         private PlayerInputMap inputMap;
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
 
+        public static List<SpawnSystem> AllPlayers = new List<SpawnSystem>();
+
+
         private void Awake()
         {
+
+            // ajout d'un systeme dont destroy pour le passage de scene
+
+            DontDestroyOnLoad(this);
+
+            //
+
             playerInput = GetComponent<PlayerInput>();
 
             // Create wrapper from PlayerInput's actions
@@ -40,8 +50,13 @@ namespace Spawner.Runtime
 
         private void Start()
         {
-            //inputMap.Player.Disable();
-            inputMap.Lobby.Disable();
+            // inputMap.Player.Disable();
+            // inputMap.Lobby.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            AllPlayers.Remove(this);
         }
 
         private void OnEnable()
@@ -126,9 +141,9 @@ namespace Spawner.Runtime
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
-            BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeColor);
-            BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeModel);
-            BindPlayerInput(inputMap.Lobby.validateSkin, GetComponentInChildren<SelectSkin>().OnValidateSkin);
+            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeColor);
+            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeModel);
+            // BindPlayerInput(inputMap.Lobby.validateSkin, GetComponentInChildren<SelectSkin>().OnValidateSkin);
         }
 
         public void UnBindPlayerControls()
@@ -187,5 +202,6 @@ namespace Spawner.Runtime
                 playerInstance = null;
             }
         }
+
     }
 }

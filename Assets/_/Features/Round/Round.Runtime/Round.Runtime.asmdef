@@ -1,0 +1,19 @@
+{
+    "name": "Round.Runtime",
+    "rootNamespace": "Round.Runtime",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:b1cb290971a2e6e47baf77c5ac3a92c2",
+        "GUID:df4c38949cb6e5a42a65e45aab87c539",
+        "GUID:a607e08af540b50499e29ffe85b5c6f9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

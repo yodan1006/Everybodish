@@ -24,7 +24,7 @@ namespace Machine.Runtime
                 {
                     if (_foodToDestroy != null)
                     {
-                        Destroy(_foodToDestroy);
+                        Destroy(_foodToDestroy.gameObject.transform.parent.parent.gameObject);
                         _foodToDestroy = null;
                     }
 

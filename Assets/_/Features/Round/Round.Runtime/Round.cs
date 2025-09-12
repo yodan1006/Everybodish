@@ -1,17 +1,20 @@
 using System.Collections.Generic;
+using Score.Runtime;
+using Spawner.Runtime;
+using Timer.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Score.Runtime
+namespace Round.Runtime
 {
     [RequireComponent(typeof(GameTimer))]
     [RequireComponent(typeof(GlobalScoreEventSystem))]
     [DisallowMultipleComponent]
-    public class Round : MonoBehaviour
+    public class RoundSystem : MonoBehaviour
     {
 
-        public static Round Instance;
+        public static RoundSystem Instance;
         public int warmupTime = 10;
         private float warmupTimeDelta = 0;
         public int roundDuration = 300;
@@ -21,7 +24,6 @@ namespace Score.Runtime
         public UnityEvent OnRoundStarted;
         public UnityEvent OnRoundFinished;
         private GameTimer gameTimer;
-        private GlobalScoreEventSystem globalScoreEventSystem;
         public List<PlayerInput> playerList;
 
         public float WarmupTimeDelta { get => warmupTimeDelta; }
@@ -29,7 +31,6 @@ namespace Score.Runtime
         private void Awake()
         {
             gameTimer = GetComponent<GameTimer>();
-            globalScoreEventSystem = GetComponent<GlobalScoreEventSystem>();
             if (Instance == null)
             {
                 Instance = this;
@@ -39,7 +40,32 @@ namespace Score.Runtime
                 Debug.Log("More than one Round instanced! Replacing old round by new one.", this);
                 Instance = this;
             }
+            OnRoundStarted.AddListener(StartRound);
+            OnRoundFinished.AddListener(EndRound);
         }
+
+        private void EndRound()
+        {
+            foreach (PlayerInput player in playerList)
+            {
+                if (player != null)
+                {
+                    player.GetComponent<SpawnSystem>().enabled = false;
+                    player.actions.FindActionMap("Player").Disable();
+                }
+            }
+            playerList.Clear();
+        }
+
+        private void StartRound()
+        {
+            foreach (PlayerInput player in playerList)
+            {
+                player.GetComponent<SpawnSystem>().enabled = true;
+                player.actions.FindActionMap("Player").Enable();
+            }
+        }
+
         // Update is called once per frame
         private void Update()
         {
@@ -68,7 +94,12 @@ namespace Score.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             playerList.Add(playerInput);
-            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame, 0);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
+        }
+
+        public void LeaveRound(PlayerInput playerInput)
+        {
+            playerList.Remove(playerInput);
         }
 
         private void OnEnable()
@@ -82,6 +113,7 @@ namespace Score.Runtime
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
+            OnRoundFinished.Invoke();
         }
     }
 }
