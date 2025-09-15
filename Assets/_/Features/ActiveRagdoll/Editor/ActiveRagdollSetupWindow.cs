@@ -157,6 +157,7 @@ namespace ActiveRagdoll.Editor
                         if (child.gameObject.TryGetComponent<CharacterJoint>(out CharacterJoint characterJoint))
                         {
                             DestroyImmediate(characterJoint);
+                            child.gameObject.AddComponent<ConfigurableJoint>();
                         }
                         if (!child.gameObject.TryGetComponent<ConfigurableJointExtended>(out jointExt))
                         {

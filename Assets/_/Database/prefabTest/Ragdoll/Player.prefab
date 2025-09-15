@@ -72,18 +72,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2755893239021821771}
-    - target: {fileID: 2464199877198365586, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+    - target: {fileID: 2371229667304198537, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 5023158225835283233}
-    - target: {fileID: 3345413945728355093, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3871336031314727682, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3700206373268877633}
+    - target: {fileID: 2473169210087066887, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 2842690537545933597}
     - target: {fileID: 3971960848111165293, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_Name
       value: Physics Rig
@@ -98,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -144,22 +140,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 122666006556309599}
-    - target: {fileID: 6926384754770486297, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174213493503110736, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
-      propertyPath: m_ConnectedBody
-      value: 
-      objectReference: {fileID: 2842690537545933597}
     - target: {fileID: 8328088488782249350, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 3680313171693105669}
-    - target: {fileID: 8431854110669475478, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 9010416078621015143, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 
@@ -243,6 +227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2244064473958196516, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
+      propertyPath: m_Center.y
+      value: 0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 3415649936529396107, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
       propertyPath: physicsHip
       value: 
@@ -316,6 +304,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6964704998165830296, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
   m_PrefabInstance: {fileID: 6031589970290583709}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3700206373268877633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6984314499992476124, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
+  m_PrefabInstance: {fileID: 6031589970290583709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3941023555569283124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7279460853896566953, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
@@ -324,11 +317,6 @@ GameObject:
 --- !u!1 &4116686140983501309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7680303283241666912, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
-  m_PrefabInstance: {fileID: 6031589970290583709}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5023158225835283233 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1585641821584030652, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
   m_PrefabInstance: {fileID: 6031589970290583709}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5191535644500875305 stripped

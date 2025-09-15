@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UI_P_CREDITS
   - UI_P_CONTROLS
+  - ExtraBone
   layers:
   - Default
   - TransparentFX
