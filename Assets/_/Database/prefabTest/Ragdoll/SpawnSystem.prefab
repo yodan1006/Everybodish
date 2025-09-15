@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5194391658945213380}
   m_Layer: 0
   m_Name: SpawnSystem
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +202,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3b9237ff-99a8-4fca-ae7a-0edb1a19c703
     m_ActionName: 'Lobby/Quit[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5fd3ebeb-7e29-4f18-956c-bffb25570e9d
+    m_ActionName: 'Lobby/Join[/XInputControllerWindows/buttonSouth,/DualShock4GamepadHID/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Lobby

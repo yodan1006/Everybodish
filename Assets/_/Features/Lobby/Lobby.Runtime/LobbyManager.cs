@@ -12,6 +12,9 @@ namespace Skins.Runtime
 
         private readonly List<SelectSkin> players = new();
 
+        [SerializeField] private GameObject[] UIjoin;
+        [SerializeField] private GameObject[] UIvalidateskins;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -26,13 +29,21 @@ namespace Skins.Runtime
         public void RegisterPlayer(SelectSkin player)
         {
             if (!players.Contains(player))
+            {
                 players.Add(player);
+                UIjoin[players.Count - 1].SetActive(false); // [ 0, 1, 2, 3]
+                UIvalidateskins[players.Count - 1].SetActive(true); // [ 0, 1, 2, 3]
+            }
         }
 
         public void UnregisterPlayer(SelectSkin player)
         {
             if (players.Contains(player))
+            {
                 players.Remove(player);
+                UIjoin[players.Count].SetActive(true); // [ 0, 1, 2, 3]
+                UIvalidateskins[players.Count].SetActive(false); // [ 0, 1, 2, 3]
+            }
         }
 
         public void CheckAllReady()
