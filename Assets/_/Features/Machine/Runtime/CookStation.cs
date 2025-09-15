@@ -45,9 +45,9 @@ namespace Machine.Runtime
 
                         if (hideItemDuringPrepare == true)
                         {
-                            if (food.grabable != null)
+                            if (food.Grabable != null)
                             {
-                                food.grabable.enabled = false;
+                                food.Grabable.enabled = false;
                             }
                             else
                             {
@@ -60,19 +60,19 @@ namespace Machine.Runtime
                             // Place l’objet visuellement sur le slot
                             food.transform.SetPositionAndRotation(foodSlot.position, foodSlot.rotation);
 
-                            if (food.grabable != null)
+                            if (food.Grabable != null)
                             {
-                                food.grabable.enabled = false;
+                                food.Grabable.enabled = false;
                             }
                             else
                             {
                                 Debug.LogWarning($"CookStation: food.grabable is null on {food.name}");
                             }
 
-                            if (food.rb != null)
+                            if (food.Rb != null)
                             {
-                                food.rb.linearVelocity = Vector3.zero;
-                                food.rb.angularVelocity = Vector3.zero;
+                                food.Rb.linearVelocity = Vector3.zero;
+                                food.Rb.angularVelocity = Vector3.zero;
                             }
                             else
                             {
@@ -85,7 +85,7 @@ namespace Machine.Runtime
 
                         if (food.FoodType == FoodType.Player)
                         {
-                            Stun stun = food.topmost.GetComponentInChildren<Stun>();
+                            Stun stun = food.Topmost.GetComponentInChildren<Stun>();
                             if (stun != null)
                             {
                                 //Stun player FOREVER
@@ -136,14 +136,14 @@ namespace Machine.Runtime
 
         private void KillPlayer(Food currentFood)
         {
-            currentFood.topmost.GetComponentInChildren<PlayerStat>().KillPlayer();
+            currentFood.Topmost.GetComponentInChildren<PlayerStat>().KillPlayer();
         }
 
         public static void DestroyFoodPrefab(Food food)
         {
-            if (food.topmost.gameObject != food.gameObject)
+            if (food.Topmost.gameObject != food.gameObject)
             {
-                GameObject topmostGo = food.topmost.gameObject;
+                GameObject topmostGo = food.Topmost.gameObject;
                 //Destroy the reparented food item
                 Destroy(food.gameObject);
                 //Destroy topmost item that might be lost in the scene
