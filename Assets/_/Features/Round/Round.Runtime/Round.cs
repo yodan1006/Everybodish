@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Score.Runtime;
 using Spawner.Runtime;
 using Timer.Runtime;
+using TransitionScene.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -55,6 +56,8 @@ namespace Round.Runtime
                 }
             }
             playerList.Clear();
+            SceneLoader loader = FindAnyObjectByType<SceneLoader>();
+            loader.LoadSceneWithLoading(3);
         }
 
         private void StartRound()
