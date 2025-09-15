@@ -180,6 +180,7 @@ namespace Machine.Runtime
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerRetourner;
+                uiProgression.fillAmount = _progress;
                 if (elapsed >= timerRetourner && !_goReturn)
                 {
                     // Ici, le joueur devrait retourner la poêle (lancer animation),
@@ -223,6 +224,7 @@ namespace Machine.Runtime
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerPlatFini;
+                uiProgression.fillAmount = _progress;
                 if (elapsed >= timerPlatFini)
                 {
                     // Phase attente plat fini...

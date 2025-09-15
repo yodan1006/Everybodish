@@ -1,31 +1,50 @@
-using MovePlayer.Runtime;
+using Grab.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
     public class ProjectileHurtCollider : MonoBehaviour
     {
-        [SerializeField] private int degat = 1;
         [SerializeField] private Collider _collider;
-
-        private void OnCollisionEnter(Collision collision)
+        [SerializeField] private Stun _stun;
+        [SerializeField] private Grabber _grab;
+        [SerializeField] private float minmimumStunVelocity = 5;
+        private void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.TryGetComponent<DamageReceiver>(out DamageReceiver receiver))
+            if (collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                receiver.TakeDamage(degat);
-                Debug.Log("Attacked player!");
-                Destroy(this);
+                //Check for collision while grabbing
+                if (!_grab.IsGrabbing() || _grab.Grabable.gameObject != collision.gameObject)
+                    //Check for speed and not being grabbed
+                    if (rb.linearVelocity.magnitude > minmimumStunVelocity)
+                    {
+                        if (collision.TryGetComponent<Grabable>(out Grabable grabable))
+                        {
+                            if (!grabable.IsGrabbed())
+                            {
+                                Debug.Log("Player stunned by grabable object!", this);
+                                _stun.StunForDuration(5);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("Player stunned by kinetic object!", this);
+                            _stun.StunForDuration(5);
+                        }
+                    }
             }
             else
             {
-                Debug.Log("Damage Receiver not found : " + collision.gameObject.name, this);
-                Destroy(this);
+                Debug.Log("Rigidbody Receiver not found : " + collision.gameObject.name, this);
             }
         }
 
         private void Awake()
         {
-            _collider.GetComponent<Collider>();
+            if (_collider != null)
+            {
+                _collider.GetComponent<Collider>();
+            }
         }
 
     }

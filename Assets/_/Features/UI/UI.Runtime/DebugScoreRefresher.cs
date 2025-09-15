@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace UI.Runtime
 {
     [RequireComponent(typeof(GlobalScoreEventSystem))]
-    public class ScoreRefresher : MonoBehaviour
+    public class DebugScoreRefresher : MonoBehaviour
     {
         private GlobalScoreEventSystem scoreSystem;
         private RoundSystem round;
@@ -22,16 +22,10 @@ namespace UI.Runtime
             scoreSystem = GetComponent<GlobalScoreEventSystem>();
             round = GetComponent<RoundSystem>();
             scoreSystem.OnScoresChanged.AddListener(OnScoresChanged);
-            scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
             playerScoreboardList.Add(player1Scoreboard);
             playerScoreboardList.Add(player2Scoreboard);
             playerScoreboardList.Add(player3Scoreboard);
             playerScoreboardList.Add(player4Scoreboard);
-        }
-
-        private void OnScoreEvent(ScoreEvent scoreEvent)
-        {
-            Debug.Log("OnScoreEvent");
         }
 
         private void OnScoresChanged()

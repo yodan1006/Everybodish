@@ -2724,7 +2724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5394600727892452082
 Transform:
   m_ObjectHideFlags: 0
@@ -3373,7 +3373,7 @@ Transform:
   m_GameObject: {fileID: 4341764552431091170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -1.664, y: 1.6730003, z: -1.1479998}
+  m_LocalPosition: {x: -1.87, y: 1.6730003, z: -1.09}
   m_LocalScale: {x: 0.9000001, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8186,6 +8186,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2c049f1d85dcbef4a91a9b4a7748945b, type: 2}
   output: {fileID: 6463801226488603506}
   poopPrefab: {fileID: 919132149155446097, guid: a45534e8c1f231f498bd21f411782e95, type: 3}
+  uiReturn: {fileID: 0}
+  uiProgression: {fileID: 0}
+  uiBarProgression: {fileID: 0}
+  uiIcone: {fileID: 0}
+  uiDone: {fileID: 0}
   ingredientPoints:
   - {fileID: 3897980057264827600}
   - {fileID: 954291334383270826}
@@ -8762,6 +8767,14 @@ PrefabInstance:
     - target: {fileID: 6408820618139340319, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559442518852917702, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559442518852917702, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.349
       objectReference: {fileID: 0}
     - target: {fileID: 6675365169214139405, guid: fb38d12ccfa44f146855a1de514a2dc1, type: 3}
       propertyPath: m_RenderingLayerMask

@@ -94,7 +94,7 @@ namespace Round.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             playerList.Add(playerInput);
-            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex,ScoreEventType.JoinedGame);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
         }
 
         public void LeaveRound(PlayerInput playerInput)

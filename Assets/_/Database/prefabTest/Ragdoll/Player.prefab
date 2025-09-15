@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 5023158225835283233}
+    - target: {fileID: 3345413945728355093, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871336031314727682, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3971960848111165293, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_Name
       value: Physics Rig
@@ -136,6 +144,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 122666006556309599}
+    - target: {fileID: 6926384754770486297, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8174213493503110736, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_ConnectedBody
       value: 
@@ -144,6 +156,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3680313171693105669}
+    - target: {fileID: 8431854110669475478, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9010416078621015143, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 

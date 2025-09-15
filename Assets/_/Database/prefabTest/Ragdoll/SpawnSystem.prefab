@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1917181855189238406}
   - component: {fileID: 2877955335872950180}
   - component: {fileID: -4855144887064598340}
+  - component: {fileID: 4458774732992080430}
+  - component: {fileID: 5194391658945213380}
   m_Layer: 0
   m_Name: SpawnSystem
   m_TagString: Untagged
@@ -200,13 +202,9 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3b9237ff-99a8-4fca-ae7a-0edb1a19c703
     m_ActionName: 'Lobby/Quit[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dd988ade-2abd-48b6-b985-d5163ca80e16
-    m_ActionName: 'JoinGame/New action[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: JoinGame
+  m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2877955335872950180
@@ -251,6 +249,30 @@ MonoBehaviour:
   nameMenuCredit: UI_P_CREDITS
   quitterPressedTime: 0.5
   longPressDuration: 1
+--- !u!114 &4458774732992080430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb806b1dd4c94343a4ead1b93af5e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5194391658945213380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505672345845218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317559b99c7bc7c489188d659e1791aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &404904761111388890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 7202203583501668783, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193291211187720016, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
