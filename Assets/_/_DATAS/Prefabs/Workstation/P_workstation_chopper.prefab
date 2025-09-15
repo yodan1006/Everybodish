@@ -639,8 +639,8 @@ Transform:
   m_GameObject: {fileID: 3667821564520855217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.116, y: 1.005, z: 0.136}
-  m_LocalScale: {x: 0.71, y: 0.18, z: 0.71}
+  m_LocalPosition: {x: -0.116, y: 1.14, z: 0.136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3008710814307413188}
@@ -709,7 +709,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.64, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8152864404069082678
 MonoBehaviour:
@@ -968,8 +968,8 @@ Transform:
   m_GameObject: {fileID: 6283414980147738976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: -0.71, y: 1.7459, z: 0.1055}
-  m_LocalScale: {x: 1.0948513, y: 1.5672003, z: 0.04315529}
+  m_LocalPosition: {x: -0.55, y: 2.183, z: 0.1055}
+  m_LocalScale: {x: 1.0948513, y: 3.4, z: 0.04315529}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3008710814307413188}
@@ -1046,7 +1046,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.45, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7652800427992598219
 GameObject:
@@ -1073,7 +1073,7 @@ Transform:
   m_GameObject: {fileID: 7652800427992598219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.496, y: 0.569, z: -0.39}
+  m_LocalPosition: {x: -1.139, y: 0.569, z: -0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1192,9 +1192,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05eb10c998fd0144487982876c66796f, type: 2}
   - {fileID: 11400000, guid: fff61e349e38c33448fc0fc5835d2aba, type: 2}
   - {fileID: 11400000, guid: ea43434503f7df54aafde47f539e173c, type: 2}
-  spawnPoint: {fileID: 0}
-  foodSlot: {fileID: 0}
+  spawnPoint: {fileID: 412924508847265127}
+  foodSlot: {fileID: 4185898743370021234}
   _isCooking: 0
+  hideItemDuringPrepare: 1
 --- !u!65 &3702151640714314708
 BoxCollider:
   m_ObjectHideFlags: 0
