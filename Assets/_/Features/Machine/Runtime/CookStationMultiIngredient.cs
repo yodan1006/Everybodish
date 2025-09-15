@@ -105,11 +105,11 @@ namespace Machine.Runtime
                 food.gameObject.transform.localPosition = Vector3.zero;
                 food.gameObject.transform.localRotation = Quaternion.identity;
                 
-                if (food.rb != null) {
-                    food.rb.isKinematic = true;
-                    food.rb.useGravity = false;
-                    food.rb.linearVelocity = Vector3.zero;
-                    food.rb.angularVelocity = Vector3.zero;
+                if (food.Rb != null) {
+                    food.Rb.isKinematic = true;
+                    food.Rb.useGravity = false;
+                    food.Rb.linearVelocity = Vector3.zero;
+                    food.Rb.angularVelocity = Vector3.zero;
                 }
 
 
