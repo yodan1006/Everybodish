@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace PlayerLocomotion.Runtime
 {
@@ -29,9 +30,32 @@ namespace PlayerLocomotion.Runtime
             controller.enabled = true;
         }
 
+        // BRANDON modif
+
+        private void Start()
+        {
+            if (Camera.main != null) cameraTransform = Camera.main.transform;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (Camera.main != null)
+                cameraTransform = Camera.main.transform;
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        //BRANDON modif
+        //--------------------------------------------------------------
         private void OnDisable()
         {
             SetAnimatorMoveSpeed(0);
+
+            //brandon
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         public void OnMovement(InputAction.CallbackContext context)
@@ -42,6 +66,11 @@ namespace PlayerLocomotion.Runtime
 
         private void Update()
         {
+            // modif brandon perte de camera
+
+            if (cameraTransform == null) return;
+
+
             // Ground check
             isGrounded = controller.isGrounded;
 

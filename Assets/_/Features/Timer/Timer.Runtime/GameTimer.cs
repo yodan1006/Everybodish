@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-namespace Score.Runtime
+namespace Timer.Runtime
 {
     [DisallowMultipleComponent]
     public class GameTimer : MonoBehaviour

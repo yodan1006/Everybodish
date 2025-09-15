@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Timer.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -78,7 +79,7 @@ namespace Score.Runtime
         public static void RegisterScoreEvent(int player, ScoreEventType eventType, int? targetPlayer = null)
         {
             int scoreDelta = GetScoreDelta(eventType);
-            var scoreEvent = new ScoreEvent(player, eventType, scoreDelta, targetPlayer);
+            var scoreEvent = new ScoreEvent(player, GameTimer.Instance.currentTime, eventType, scoreDelta, targetPlayer);
             scoreEventLog.Add(scoreEvent);
 
             if (playerScores.ContainsKey(player))

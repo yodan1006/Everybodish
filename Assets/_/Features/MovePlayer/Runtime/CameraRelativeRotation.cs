@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace PlayerLocomotion.Runtime
 {
@@ -21,12 +22,40 @@ namespace PlayerLocomotion.Runtime
             }
         }
 
+        //brandon modif 
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (Camera.main != null)
+                cameraTransform = Camera.main.transform;
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            //brandon
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+
+        // -----------------------------------------------------------------
+
         public void OnMovement(InputAction.CallbackContext context)
         {
             inputMovement = context.ReadValue<Vector2>();
         }
         private void Update()
         {
+            // modif brandon perte de camera
+
+            if (cameraTransform == null) return;
+
+            //------------------------------------
+
             if (transform.gameObject != cameraTransform.gameObject)
             {
                 // Camera-relative rotation

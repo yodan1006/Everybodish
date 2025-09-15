@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Grab.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Machine.Runtime
 {
@@ -20,6 +21,11 @@ namespace Machine.Runtime
         [Header("Apparence et feedback")]
         [SerializeField] private Transform output;
         [SerializeField] private GameObject poopPrefab;
+        [SerializeField] private GameObject uiReturn;
+        [SerializeField] private Image uiProgression;
+        [SerializeField] private GameObject uiBarProgression;
+        [SerializeField] private GameObject uiIcone;
+        [SerializeField] private GameObject uiDone;
         [Header("Points d'apparition des ingrédients (ordre important !)")]
         [SerializeField] private Transform[] ingredientPoints;
         [Header("Scales designers par ingrédient (ordre identique aux points)")]
@@ -32,9 +38,12 @@ namespace Machine.Runtime
         [SerializeField] private float timerAvantCramé = 2f; // marge de sécurité
 
         private Coroutine currentCookingRoutine;
+        private float elapsed;
 
         private readonly List<Food> _storedFoods = new();
         private bool _isCooking = false;
+        private float _progress;
+
         public bool isRetourned;
         public bool _goFinish { get; private set; }
         public bool isFinished { get; private set; }
@@ -148,6 +157,9 @@ namespace Machine.Runtime
 
         private IEnumerator CookSequence(MultiIngredientRecipe recipe)
         {
+            uiIcone.SetActive(false);
+            uiBarProgression.SetActive(true);
+            _isCooking = true;
             particleFlash1.Play();
             particleFlash2.Play();
             particleFlash3.Play();
@@ -162,11 +174,12 @@ namespace Machine.Runtime
             animator.SetBool("Frying", true);
             particleFrying.Play();
             bool crame = false;
-            float elapsed = 0f;
+            elapsed = 0f;
             while (elapsed < timerRetourner + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
+                _progress = elapsed / timerRetourner;
                 if (elapsed >= timerRetourner && !_goReturn)
                 {
                     // Ici, le joueur devrait retourner la poêle (lancer animation),
@@ -203,14 +216,17 @@ namespace Machine.Runtime
             //PlayRetournerAnimation();
 
             elapsed = 0f;
+            _progress = elapsed;
             crame = false;
             while (elapsed < timerPlatFini + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
+                _progress = elapsed / timerPlatFini;
                 if (elapsed >= timerPlatFini)
                 {
                     // Phase attente plat fini...
+                    uiDone.SetActive(true);
                     _goFinish = true;
                     animator.SetBool("Done", true);
                 }
@@ -241,7 +257,7 @@ namespace Machine.Runtime
                 if (foodToRemove != null)
                 {
                     _storedFoods.Remove(foodToRemove);
-                    Destroy(foodToRemove.gameObject);
+                    Destroy(foodToRemove.gameObject.transform.parent.parent.gameObject);
                 }
             }
 
@@ -254,6 +270,10 @@ namespace Machine.Runtime
             isRetourned = false;
             currentCookingRoutine = null;
             _storedFoods.Clear();
+            _progress = 0;
+            uiBarProgression.SetActive(false);
+            uiIcone.SetActive(true);
+            uiDone.SetActive(false);
         }
 
         public void PlayRetournerAnimation()
@@ -263,13 +283,19 @@ namespace Machine.Runtime
             isRetourned = true;
         }
 
-
-
         public void FinishFoodFrying()
         {
             if (!_goFinish) return;
             animator.SetBool("Frying", false);
             isFinished = true;
+        }
+
+        private void Update()
+        {
+            uiProgression.fillAmount = _progress;
+
+            if (_goReturn) uiReturn.SetActive(true);
+            else uiReturn.SetActive(false);
         }
 
 
