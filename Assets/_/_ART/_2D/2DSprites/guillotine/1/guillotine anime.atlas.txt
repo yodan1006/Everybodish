@@ -1,0 +1,19 @@
+guillotine anime.png
+size:1024,512
+filter:Linear,Linear
+pma:true
+Guilotine
+bounds:2,119,267,584
+rotate:90
+Manivelle base
+bounds:160,82,36,35
+offsets:2,2,40,39
+corde
+bounds:2,2,16,153
+rotate:90
+lam
+bounds:2,20,156,97
+offsets:2,2,160,101
+manivelle
+bounds:588,273,70,113
+offsets:2,2,74,117
