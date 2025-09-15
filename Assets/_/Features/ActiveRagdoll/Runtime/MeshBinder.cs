@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -13,7 +14,19 @@ namespace ActiveRagdoll.Runtime
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            skinMesh.bones = root.GetComponentsInChildren<Transform>();
+            Debug.Log("Running MeshBinder", this);
+            var allBones = root.GetComponentsInChildren<Transform>();
+            var filteredBones = new List<Transform>();
+
+            foreach (var bone in allBones)
+            {
+                if (!bone.tag.StartsWith("ExtraBone"))  // ignore bones starting with "ExtraBone"
+                {
+                    filteredBones.Add(bone);
+                }
+            }
+
+            skinMesh.bones = filteredBones.ToArray();
         }
 
     }

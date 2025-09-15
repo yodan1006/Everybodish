@@ -92,7 +92,7 @@ namespace ActiveRagdoll.Runtime
 
             if (currentBoneLength > boneLength * 1.5f)
             {
-                LogWarning($"{name} overextended (distance = {currentBoneLength:F3}), performing hard reset.");
+                LogWarning($"{name} overextended (lengh = {boneLength:F3}, distance = {currentBoneLength:F3}), performing hard reset.");
 
                 // Snap position to connectedBody plus initial offset along bone axis
                 Vector3 direction = (transform.position - joint.connectedBody.position).normalized;
