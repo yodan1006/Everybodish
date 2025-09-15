@@ -38,6 +38,7 @@ namespace Machine.Runtime
                 {
                     if (recipe.input == food.FoodType)
                     {
+                        food.GetComponent<IngredientTimer>().enabled = false;
                         _isCooking = true;
                         _currentFood = food;
 

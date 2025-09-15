@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MAT_Items_Tomato
-    second: {fileID: 2100000, guid: 7a75c0dd8c8ff3d42a4d6f37ef6f93d8, type: 2}
+    second: {fileID: 2100000, guid: 71505de5e0370b94e89ec5dfc874011f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
