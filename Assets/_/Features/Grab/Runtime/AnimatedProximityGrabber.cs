@@ -50,12 +50,18 @@ namespace Grab.Runtime
 
         public override void OnRelease(CallbackContext callbackContext)
         {
-            Release();
+            if (enabled)
+            {
+                Release();
+            }
         }
 
         public override void OnGrabAction(CallbackContext callbackContext)
         {
-            TryGrab();
+            if (enabled)
+            {
+                TryGrab();
+            }
         }
 
         public void TryGrab()
@@ -76,29 +82,35 @@ namespace Grab.Runtime
 
         public void TryGrabReleaseAction(CallbackContext callbackContext)
         {
-            if (callbackContext.performed)
+            if (enabled)
             {
-                if (IsGrabbing())
+                if (callbackContext.performed)
                 {
-                    Release();
+                    if (IsGrabbing())
+                    {
+                        Release();
 
-                }
-                else
-                {
-                    TryGrab();
+                    }
+                    else
+                    {
+                        TryGrab();
+                    }
                 }
             }
         }
 
         public void OnHoldGrabAction(CallbackContext callbackContext)
         {
-            if (callbackContext.performed)
+            if (enabled)
             {
-                TryGrab();
-            }
-            else if (callbackContext.canceled)
-            {
-                Release();
+                if (callbackContext.performed)
+                {
+                    TryGrab();
+                }
+                else if (callbackContext.canceled)
+                {
+                    Release();
+                }
             }
         }
 

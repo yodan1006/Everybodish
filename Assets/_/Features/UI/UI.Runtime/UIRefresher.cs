@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
@@ -13,28 +14,17 @@ namespace UI.Runtime
     {
         #region Publics
         public GameObject clock;
-        public GameObject[] playerUis;
+        public GameObject[] playerUis ;
         public GameObject[] playerTexts;
+        public Disabler[] upArrows;
+        public Disabler[] downArrows;
         public GameObject pause;
-        public Image cadranMask;
+        public float arrowDuration = 2;
 
         #endregion
 
 
         #region Unity Api
-
-        private void OnEnable()
-        {
-            GlobalScoreEventSystem.Instance?.OnScoreEvent?.AddListener(RefreshUIPlayer);
-            GlobalScoreEventSystem.Instance?.OnScoresChanged?.AddListener(RefreshUI);
-        }
-
-        private void RefreshUIPlayer(ScoreEvent arg0)
-        {
-        }
-
-        private void RefreshUI()
-        { }
 
 
         // Update is called once per frame
@@ -50,6 +40,7 @@ namespace UI.Runtime
         }
         private void Awake()
         {
+            scoreSystem = GetComponent<GlobalScoreEventSystem>();
             timer = GetComponent<GameTimer>();
             round = GetComponent<RoundSystem>();
             needle = GameObject.Find("NEEDLE");
@@ -59,6 +50,29 @@ namespace UI.Runtime
             round.OnRoundFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
+            scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
+        }
+
+
+        private void OnScoreEvent(ScoreEvent scoreEvent)
+        {
+            List<PlayerInput> playerList = round.playerList;
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
+                if (scoreEvent.Player == playerList[i].playerIndex)
+                {
+                    if (scoreEvent.ScoreDelta > 0)
+                    {
+                        upArrows[i].EnableForDuration(arrowDuration);
+                    }
+                    else if (scoreEvent.ScoreDelta < 0)
+                    {
+                        downArrows[i].EnableForDuration(arrowDuration);
+                    }
+                }
+
+            }
         }
 
         private void OnWarmupFinished()
@@ -122,6 +136,8 @@ namespace UI.Runtime
         private RoundSystem round;
         private GameObject needle;
         private float needleStartRotation;
+        private Image cadranMask;
+        private GlobalScoreEventSystem scoreSystem;
         #endregion
 
 

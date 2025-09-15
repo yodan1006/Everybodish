@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace Timer.Runtime
 {
     [DisallowMultipleComponent]

@@ -134,10 +134,13 @@ namespace Machine.Runtime
 
         public void OnUse(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (enabled)
             {
-                if (grabber.IsGrabbing()) TryUseCookStation();
-                else SpawnAndGrabFood();
+                if (context.performed)
+                {
+                    if (grabber.IsGrabbing()) TryUseCookStation();
+                    else SpawnAndGrabFood();
+                }
             }
         }
 
@@ -157,31 +160,33 @@ namespace Machine.Runtime
 
         public void OnManualCook(InputAction.CallbackContext context)
         {
-
-            if (CurrentMultiCookUI != null)
+            if (enabled)
             {
+                if (CurrentMultiCookUI != null)
+                {
+                    if (context.started)
+                    {
+                        CurrentMultiCookUI.StartHold();
+                    }
+                    if (context.canceled)
+                    {
+                        CurrentMultiCookUI.StopHold();
+                    }
+                }
+
+
                 if (context.started)
                 {
-                    CurrentMultiCookUI.StartHold();
+                    isHoldCooking = true;
+                    holdingTime = 0f;
+                    cookTriggered = false;
                 }
                 if (context.canceled)
                 {
-                    CurrentMultiCookUI.StopHold();
+                    isHoldCooking = false;
+                    holdingTime = 0f;
+                    cookTriggered = false;
                 }
-            }
-
-
-            if (context.started)
-            {
-                isHoldCooking = true;
-                holdingTime = 0f;
-                cookTriggered = false;
-            }
-            if (context.canceled)
-            {
-                isHoldCooking = false;
-                holdingTime = 0f;
-                cookTriggered = false;
             }
         }
     }
