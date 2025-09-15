@@ -459,6 +459,15 @@ namespace ActionMap
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fd3ebeb-7e29-4f18-956c-bffb25570e9d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -615,6 +624,17 @@ namespace ActionMap
                     ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b0ceed2-108e-404f-892e-84c4d4abfc89"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -638,6 +658,7 @@ namespace ActionMap
             m_Lobby_creditMenu = m_Lobby.FindAction("creditMenu", throwIfNotFound: true);
             m_Lobby_Control = m_Lobby.FindAction("Control", throwIfNotFound: true);
             m_Lobby_Quit = m_Lobby.FindAction("Quit", throwIfNotFound: true);
+            m_Lobby_Join = m_Lobby.FindAction("Join", throwIfNotFound: true);
         }
 
         ~@PlayerInputMap()
@@ -897,6 +918,7 @@ namespace ActionMap
         private readonly InputAction m_Lobby_creditMenu;
         private readonly InputAction m_Lobby_Control;
         private readonly InputAction m_Lobby_Quit;
+        private readonly InputAction m_Lobby_Join;
         /// <summary>
         /// Provides access to input actions defined in input action map "Lobby".
         /// </summary>
@@ -928,6 +950,10 @@ namespace ActionMap
             /// Provides access to the underlying input action "Lobby/Quit".
             /// </summary>
             public InputAction @Quit => m_Wrapper.m_Lobby_Quit;
+            /// <summary>
+            /// Provides access to the underlying input action "Lobby/Join".
+            /// </summary>
+            public InputAction @Join => m_Wrapper.m_Lobby_Join;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -969,6 +995,9 @@ namespace ActionMap
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Join.started += instance.OnJoin;
+                @Join.performed += instance.OnJoin;
+                @Join.canceled += instance.OnJoin;
             }
 
             /// <summary>
@@ -995,6 +1024,9 @@ namespace ActionMap
                 @Quit.started -= instance.OnQuit;
                 @Quit.performed -= instance.OnQuit;
                 @Quit.canceled -= instance.OnQuit;
+                @Join.started -= instance.OnJoin;
+                @Join.performed -= instance.OnJoin;
+                @Join.canceled -= instance.OnJoin;
             }
 
             /// <summary>
@@ -1134,6 +1166,13 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnQuit(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Join" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnJoin(InputAction.CallbackContext context);
         }
     }
 }
