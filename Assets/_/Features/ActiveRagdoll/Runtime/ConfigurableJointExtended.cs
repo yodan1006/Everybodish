@@ -77,12 +77,12 @@ namespace ActiveRagdoll.Runtime
         private void OnEnable()
         {
             Debug.Log("Resetting joint rotation");
-         
+
         }
 
         private void OnDisable()
         {
-             transform.localRotation = initialLocalRotation;
+            transform.localRotation = initialLocalRotation;
         }
 
         private void FixedUpdate()

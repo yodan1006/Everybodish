@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TransitionScene.Runtime;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 namespace Skins.Runtime
@@ -11,7 +10,7 @@ namespace Skins.Runtime
         public static LobbyManager Instance { get; private set; }
 
         private readonly List<SelectSkin> players = new();
-        
+
         private SelectSkin[] playerSlots;
 
 
@@ -60,12 +59,12 @@ namespace Skins.Runtime
                 UIA[index].SetActive(true);
             }
         }
-        
+
         public int GetPlayerIndex(SelectSkin player)
         {
             return players.IndexOf(player);
         }
-        
+
         public void CheckAllReady()
         {
             int connectedPlayers = 0;

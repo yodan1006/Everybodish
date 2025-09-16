@@ -8,7 +8,7 @@ namespace ActiveRagdoll.Runtime
     // #UnityFixYourShit
     public class AnimatorFix : MonoBehaviour
     {
-        Animator animator;
+        private Animator animator;
 
         private void Awake()
         {

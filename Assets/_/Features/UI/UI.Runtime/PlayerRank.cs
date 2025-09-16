@@ -1,4 +1,3 @@
-using Animals.Data;
 using UnityEngine;
 
 namespace UI.Runtime
