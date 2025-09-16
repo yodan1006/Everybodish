@@ -20,10 +20,10 @@ namespace Round.Runtime
         private float warmupTimeDelta = 0;
         public int roundDuration = 300;
 
-        public UnityEvent OnWarmupStarted;
-        public UnityEvent OnWarmupFinished;
-        public UnityEvent OnRoundStarted;
-        public UnityEvent OnRoundFinished;
+        public UnityEvent OnWarmupStarted = new();
+        public UnityEvent OnWarmupFinished = new();
+        public UnityEvent OnRoundStarted = new();
+        public UnityEvent OnRoundFinished = new();
         private GameTimer gameTimer;
         public List<PlayerInput> playerList;
 

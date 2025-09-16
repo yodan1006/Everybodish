@@ -10,7 +10,7 @@ namespace Score.Runtime
     public class GlobalScoreEventSystem : MonoBehaviour
     {
         public static GlobalScoreEventSystem Instance { get; private set; }
-
+        public static int passingTeamScore = 100;
         // Static data structures
         private static readonly List<ScoreEvent> scoreEventLog = new();
         private static readonly Dictionary<int, int> playerScores = new();
@@ -72,7 +72,7 @@ namespace Score.Runtime
                 ScoreEventType.PlayerDied => Instance.PlayerDiedDelta,
                 ScoreEventType.FoodPoisoned => Instance.FoodPoisonedDelta,
                 ScoreEventType.PreparedIngredient => Instance.preparedIngredientDelta,
-                _ => throw new System.NotImplementedException()
+                _ => throw new System.NotImplementedException("Why are we still here? Just to suffer?")
             };
         }
 
@@ -90,9 +90,12 @@ namespace Score.Runtime
             Debug.Log($"[ScoreEvent] player {player} - {eventType} - Score: {scoreDelta}" +
                       (targetPlayer.HasValue ? $" (Target: {targetPlayer.Value})" : "") +
                       $" @ {scoreEvent.TimeStamp}");
+            if (Instance != null)
+            {
+                Instance.OnScoreEvent?.Invoke(scoreEvent);
+                Instance.OnScoresChanged?.Invoke();
+            }
 
-            Instance?.OnScoreEvent?.Invoke(scoreEvent);
-            Instance?.OnScoresChanged?.Invoke();
         }
 
         public static int GetScore(int player)
@@ -108,13 +111,30 @@ namespace Score.Runtime
                 .ToList();
         }
 
+        public static int TeamScore()
+        {
+            int total = 0;
+            foreach (var item in playerScores)
+            {
+                total += item.Value;
+            }
+            return total;
+        }
+
+        public static bool Passed()
+        {
+            return TeamScore() > passingTeamScore;
+        }
+
         public static void ResetAllScores()
         {
             scoreEventLog.Clear();
             foreach (var key in playerScores.Keys.ToList())
                 playerScores[key] = 0;
-
-            Instance?.OnScoresChanged?.Invoke();
+            if (Instance != null)
+            {
+                Instance.OnScoresChanged?.Invoke();
+            }
         }
     }
 }

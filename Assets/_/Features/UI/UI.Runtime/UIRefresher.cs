@@ -73,9 +73,42 @@ namespace UI.Runtime
                 }
 
             }
+        }    
+        
+        
+        private void OnWarmupStarted()
+        {
+            //Disable player ui
+            foreach (var item in playerTexts)
+            {
+                item.SetActive(false);
+            }
+
+            foreach(var item in playerUis)
+            {
+                item.SetActive(false);
+            }
         }
 
+
         private void OnWarmupFinished()
+        {
+            //Disable player ui
+            foreach (var item in playerTexts)
+            {
+                item.SetActive(true);
+            }
+
+            foreach (var item in playerUis)
+            {
+                item.SetActive(true);
+            }
+        }
+
+
+
+
+        private void OnRoundStarted()
         {
             int playerCount = round.playerList.Count;
             for (int i = 0; i < playerUis.Length; i++)
@@ -101,23 +134,13 @@ namespace UI.Runtime
                 }
 
             }
-        }
-
-        private void OnWarmupStarted()
-        {
-
-        }
-
-
+        } 
+        
         private void OnRoundFinished()
         {
 
         }
 
-        private void OnRoundStarted()
-        {
-
-        }
         #endregion
 
 
