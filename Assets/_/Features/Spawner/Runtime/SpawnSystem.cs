@@ -62,7 +62,6 @@ namespace Spawner.Runtime
         private void OnEnable()
         {
             playerPrefab.SetActive(false);
-            playerPrefab.transform.localPosition = Vector3.zero;
             inputMap.Enable();
             SetupNewPlayer();
         }
