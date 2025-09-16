@@ -78,7 +78,7 @@ namespace Results.Runtime
                 if (i < playerCount)
                 {
                     playerUis[i].SetActive(true);
-                    playerTexts[i].SetActive(true);
+            //        playerTexts[i].SetActive(true);
                     PlayerInput player = round.playerList[i];
                     SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                     AnimalType animalType = selectSkin.CurrentAnimalType();
@@ -91,7 +91,7 @@ namespace Results.Runtime
                 else
                 {
                     playerUis[i].SetActive(false);
-                    playerTexts[i].SetActive(false);
+               //     playerTexts[i].SetActive(false);
                 }
 
             }
