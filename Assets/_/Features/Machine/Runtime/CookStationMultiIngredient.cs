@@ -90,21 +90,21 @@ namespace Machine.Runtime
                 Destroy(existing.gameObject);
             }
 
-
             _storedFoods.Add(food);
             food.GetComponentInChildren<Grabable>().enabled = false;
 
             int slotIndex = _storedFoods.Count - 1;
             if (ingredientPoints.Length > slotIndex && ingredientPoints[slotIndex] != null)
             {
-                // food.gameObject.transform.position = ingredientPoints[slotIndex].position;
-                // food.gameObject.transform.rotation = ingredientPoints[slotIndex].rotation;
                 _storedFoodsArray[slotIndex] = food;
-                
-                food.gameObject.transform.SetParent(ingredientPoints[slotIndex]);
-                food.gameObject.transform.localPosition = Vector3.zero;
-                food.gameObject.transform.localRotation = Quaternion.identity;
-                
+
+                // sauver le parent d’origine
+                Transform oldParent = food.transform.parent.parent;
+
+                food.transform.SetParent(ingredientPoints[slotIndex]);
+                food.transform.localPosition = Vector3.zero;
+                food.transform.localRotation = Quaternion.identity;
+
                 if (food.Rb != null) {
                     food.Rb.isKinematic = true;
                     food.Rb.useGravity = false;
@@ -112,14 +112,14 @@ namespace Machine.Runtime
                     food.Rb.angularVelocity = Vector3.zero;
                 }
 
-
-                
-                //Remet la vitesse linéaire et angulaire à zero gros il y a tous les ingrédients qui sortent de ta poelle!
-                food.Rb.linearVelocity = Vector3.zero;
-                food.Rb.angularVelocity = Vector3.zero;
-                // Echelle du GD
                 if (ingredientScales.Length > slotIndex)
-                    food.gameObject.transform.localScale = ingredientScales[slotIndex];
+                    food.transform.localScale = ingredientScales[slotIndex];
+
+                // si l’ancien parent n’est pas null → le détruire après avoir replacé l’enfant
+                if (oldParent != null)
+                {
+                    Destroy(oldParent.gameObject);
+                }
             }
 
             food.gameObject.SetActive(true); // On les voit dans la poêle !
@@ -296,7 +296,8 @@ namespace Machine.Runtime
                     if (slotToFree != -1)
                         _storedFoodsArray[slotToFree] = null;
 
-                    Destroy(foodToRemove.gameObject.transform.parent.parent.gameObject);
+                    Destroy(foodToRemove.gameObject);
+                    //Destroy(foodToRemove.gameObject.transform.root.gameObject);
                 }
             }
 
