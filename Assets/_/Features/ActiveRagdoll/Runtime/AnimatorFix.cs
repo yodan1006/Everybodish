@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
-    // #Fix your shit Unity
+    // To fix the animator: check write defaults on all animations
+    // Add this to the animator
+    // Manually reset the bones on disable
+    // #UnityFixYourShit
     public class AnimatorFix : MonoBehaviour
     {
         Animator animator;
