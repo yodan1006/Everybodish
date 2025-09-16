@@ -28,6 +28,7 @@ namespace Results.Runtime
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
+            DontDestroyOnLoad(this);
             List<PlayerInput> playerList = RoundSystem.Instance.playerList;
             Dictionary<int, int> playerScores = GlobalScoreEventSystem.PlayerScores;
             bool passed = GlobalScoreEventSystem.Passed();
