@@ -105,7 +105,8 @@ namespace Machine.Runtime
                 food.transform.localPosition = Vector3.zero;
                 food.transform.localRotation = Quaternion.identity;
 
-                if (food.Rb != null) {
+                if (food.Rb != null)
+                {
                     food.Rb.isKinematic = true;
                     food.Rb.useGravity = false;
                     food.Rb.linearVelocity = Vector3.zero;
@@ -133,13 +134,13 @@ namespace Machine.Runtime
             {
                 if (food != null)
                 {
-                  // Libère le slot correspondant 
-                  int slot = Array.IndexOf(_storedFoodsArray, food); 
-                  if (slot != -1)
-                  
-                      _storedFoodsArray[slot] = null;  
+                    // Libère le slot correspondant 
+                    int slot = Array.IndexOf(_storedFoodsArray, food);
+                    if (slot != -1)
+
+                        _storedFoodsArray[slot] = null;
                 }
-                    
+
 
                 Destroy(food.gameObject);
 
