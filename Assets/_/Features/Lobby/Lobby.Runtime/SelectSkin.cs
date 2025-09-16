@@ -16,6 +16,10 @@ namespace Skins.Runtime
         private int currentModelIndex = 0;
         private int currentColorIndex = 0;
         public UnityEvent<bool> onSkinValidated = new();
+        private int mySlotIndex = -1;
+        public void AssignSlotIndex(int index) => mySlotIndex = index;
+        public int GetSlotIndex() => mySlotIndex;
+
 
         public AnimalType CurrentAnimalType()
         {
@@ -102,7 +106,16 @@ namespace Skins.Runtime
 
             if (LobbyManager.Instance != null)
             {
+                int slotIndex = GetSlotIndex(); // la méthode de ton SelectSkin
+                if (slotIndex >= 0 && slotIndex < LobbyManager.Instance.UIValidate.Length)
+                {
+                    LobbyManager.Instance.UIValidate[slotIndex].SetActive(true);    // affiche valider pour ce slot
+                    LobbyManager.Instance.UIA[slotIndex].SetActive(false);          // cache "A" pour ce slot
+                    LobbyManager.Instance.UIreeady[slotIndex].SetActive(false);     // cache ready (ou ce que tu veux)
+                }
+
                 LobbyManager.Instance.CheckAllReady();
+
             }
             else
             {

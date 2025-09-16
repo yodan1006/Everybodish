@@ -47,7 +47,7 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -64,12 +64,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Score.Runtime.Round, Score.Runtime
-        m_MethodName: JoinRound
+        m_TargetAssemblyTypeName: LobbyInstantiate.Runtime.SpawnPoint, LobbyInstantiate.Runtime
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -81,13 +81,29 @@ MonoBehaviour:
   m_JoinAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
-      m_ExpectedControlType: 
+      m_ExpectedControlType: Button
       m_Id: 252e005b-af12-4947-813f-8984ef2a39bb
       m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
+      m_Interactions: Press
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 08fa21ab-0fea-419d-b95c-7b0964b29b71
+        m_Path: <Gamepad>/buttonSouth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: c4d9a520-fa65-44f7-9385-d635d081d700
+        m_Path: <Keyboard>/enter
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_PlayerPrefab: {fileID: 433505672345845218, guid: 2e9fa57b8b1dedc4c897d20a09483ee8, type: 3}
