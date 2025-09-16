@@ -23,6 +23,12 @@
         BouletteSauceLapin,
         Riettes,
         CervelasStoemp,
+        Rotie,
+        pate,
+        blé,
+        Roti_preparé,
+        Tarte_Au_Pomme,
+        Pain_Saucisse,
     }
 
 }
