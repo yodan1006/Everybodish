@@ -13,10 +13,10 @@ namespace Machine.Runtime
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem particleBurn;
         [SerializeField] private ParticleSystem particleFrying;
-        [SerializeField] private ParticleSystem particleCrame;
-        [SerializeField] private ParticleSystem particleFlash1;
-        [SerializeField] private ParticleSystem particleFlash2;
-        [SerializeField] private ParticleSystem particleFlash3;
+        [SerializeField] private ParticleSystem? particleCrame;
+        [SerializeField] private ParticleSystem? particleFlash1;
+        [SerializeField] private ParticleSystem? particleFlash2;
+        [SerializeField] private ParticleSystem? particleFlash3;
         [Header("Recettes")]
         [SerializeField] private MultiIngredientRecipe[] recipes;
         [Header("Apparence et feedback")]
@@ -193,9 +193,12 @@ namespace Machine.Runtime
             uiIcone.SetActive(false);
             uiBarProgression.SetActive(true);
             _isCooking = true;
-            particleFlash1.Play();
-            particleFlash2.Play();
-            particleFlash3.Play();
+            if (particleFlash1 != null)
+                particleFlash1.Play();
+            if (particleFlash2 != null)
+                particleFlash2.Play();
+            if (particleFlash3 != null)
+                particleFlash3.Play();
             float timerRetourner = timerAvantRetourner;
             float timerCrame = timerAvantCramé; // marge max d'attente
             float timerPlatFini = timerAvantPlatFini;
