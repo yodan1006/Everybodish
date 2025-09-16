@@ -19,19 +19,32 @@ namespace LobbyInstantiate.Runtime
                 deviceName = device.displayName ?? device.name;
             }
 
-            if (playerInput.transform.parent != null)
+            PlayerTeleporter teleporter = playerInput.GetComponentInChildren<PlayerTeleporter>();
+            if (teleporter != null)
             {
-                if (playerInput.transform.parent.TryGetComponent<PlayerTeleporter>(out PlayerTeleporter teleporter))
-                {
-                    teleporter.TeleportTo(spawn);
-                }
-                playerInput.transform.parent.name = deviceName + " Player";
+                teleporter.TeleportTo(spawn);
+                playerInput.transform.root.name = deviceName + " Player";
             }
             else
             {
-                playerInput.transform.SetPositionAndRotation(spawn.transform.position, spawn.transform.rotation);
+                // fallback si jamais pas de teleporter
+                playerInput.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                 playerInput.transform.name = deviceName + " Player";
             }
+
+            // if (playerInput.transform.parent != null)
+            // {
+            //     if (playerInput.transform.parent.TryGetComponent<PlayerTeleporter>(out PlayerTeleporter teleporter))
+            //     {
+            //         teleporter.TeleportTo(spawn);
+            //     }
+            //     playerInput.transform.parent.name = deviceName + " Player";
+            // }
+            // else
+            // {
+            //     playerInput.transform.SetPositionAndRotation(spawn.transform.position, spawn.transform.rotation);
+            //     playerInput.transform.name = deviceName + " Player";
+            // }
         }
     }
 }

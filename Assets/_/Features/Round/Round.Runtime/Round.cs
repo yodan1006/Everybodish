@@ -41,13 +41,28 @@ namespace Round.Runtime
                 Instance = this;
             }
             OnRoundStarted.AddListener(StartRound);
+            OnRoundFinished.AddListener(EndRound);
+        }
+
+        private void EndRound()
+        {
+            foreach (PlayerInput player in playerList)
+            {
+                if (player != null)
+                {
+                    player.GetComponent<SpawnSystem>().enabled = false;
+                    player.actions.FindActionMap("Player").Disable();
+                }
+            }
+            playerList.Clear();
         }
 
         private void StartRound()
         {
             foreach (PlayerInput player in playerList)
             {
-                player.GetComponent<SpawnSystem>();
+                player.GetComponent<SpawnSystem>().enabled = true;
+                player.actions.FindActionMap("Player").Enable();
             }
         }
 
@@ -79,6 +94,7 @@ namespace Round.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             playerList.Add(playerInput);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
         }
 
         public void LeaveRound(PlayerInput playerInput)
@@ -97,6 +113,7 @@ namespace Round.Runtime
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
+            OnRoundFinished.Invoke();
         }
     }
 }

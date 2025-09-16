@@ -1,9 +1,11 @@
+using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
 using Skins.Runtime;
 using Timer.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace UI.Runtime
 {
@@ -12,7 +14,9 @@ namespace UI.Runtime
         #region Publics
         public GameObject clock;
         public GameObject[] playerUis;
+        public GameObject[] playerTexts;
         public GameObject pause;
+        public Image cadranMask;
 
         #endregion
 
@@ -42,12 +46,14 @@ namespace UI.Runtime
             float needleNormalizedOffset = currentTime / roundDuration;
             float needleAngle = needleNormalizedOffset * clockRange;
             needle.transform.rotation = Quaternion.Euler(0, 0, -needleAngle + needleStartRotation);
+            cadranMask.fillAmount = needleNormalizedOffset;
         }
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
             round = GetComponent<RoundSystem>();
             needle = GameObject.Find("NEEDLE");
+            cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
             round.OnRoundStarted.AddListener(OnRoundStarted);
             round.OnRoundFinished.AddListener(OnRoundFinished);
@@ -57,18 +63,37 @@ namespace UI.Runtime
 
         private void OnWarmupFinished()
         {
+            int playerCount = round.playerList.Count;
+            for (int i = 0; i < playerUis.Length; i++)
+            {
+                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
+                if (i < playerCount)
+                {
+                    playerUis[i].SetActive(true);
+                    playerTexts[i].SetActive(true);
+                    PlayerInput player = round.playerList[i];
+                    SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                    AnimalType animalType = selectSkin.CurrentAnimalType();
 
+                    if (playerIcon != null)
+                    {
+                        playerIcon.SetPlayerIcon(animalType);
+                    }
+                }
+                else
+                {
+                    playerUis[i].SetActive(false);
+                    playerTexts[i].SetActive(false);
+                }
+
+            }
         }
 
         private void OnWarmupStarted()
         {
-            for (int i = 0; i < round.playerList.Count; i++)
-            {
-                PlayerInput player = round.playerList[i];
-                SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                SelectSkin.AnimalType animalType = selectSkin.CurrentAnimalType();
-            }
+
         }
+
 
         private void OnRoundFinished()
         {
