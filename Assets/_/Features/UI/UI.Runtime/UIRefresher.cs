@@ -42,7 +42,7 @@ namespace UI.Runtime
         {
             scoreSystem = GetComponent<GlobalScoreEventSystem>();
             timer = GetComponent<GameTimer>();
-            round = GetComponent<RoundSystem>();
+            round = RoundSystem.Instance;
             needle = GameObject.Find("NEEDLE");
             cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;

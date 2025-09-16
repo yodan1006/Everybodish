@@ -24,6 +24,7 @@ namespace Round.Runtime
         public UnityEvent OnWarmupFinished = new();
         public UnityEvent OnRoundStarted = new();
         public UnityEvent OnRoundFinished = new();
+        public UnityEvent<bool> OnPlayerLifeStatus = new();
         private GameTimer gameTimer;
         public List<PlayerInput> playerList;
 
