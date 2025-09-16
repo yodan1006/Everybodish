@@ -33,208 +33,247 @@
 
 using UnityEngine;
 
-namespace Spine.Unity {
-	/// <summary>Sets a GameObject's transform to match a bone on a Spine skeleton.</summary>
+namespace Spine.Unity
+{
+    /// <summary>Sets a GameObject's transform to match a bone on a Spine skeleton.</summary>
 #if NEW_PREFAB_SYSTEM
-	[ExecuteAlways]
+    [ExecuteAlways]
 #else
 	[ExecuteInEditMode]
 #endif
-	[AddComponentMenu("Spine/SkeletonUtilityBone")]
-	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonUtilityBone")]
-	public class SkeletonUtilityBone : MonoBehaviour {
-		public enum Mode {
-			Follow,
-			Override
-		}
+    [AddComponentMenu("Spine/SkeletonUtilityBone")]
+    [HelpURL("http://esotericsoftware.com/spine-unity#SkeletonUtilityBone")]
+    public class SkeletonUtilityBone : MonoBehaviour
+    {
+        public enum Mode
+        {
+            Follow,
+            Override
+        }
 
-		public enum UpdatePhase {
-			Local,
-			World,
-			Complete
-		}
+        public enum UpdatePhase
+        {
+            Local,
+            World,
+            Complete
+        }
 
-		#region Inspector
-		/// <summary>If a bone isn't set, boneName is used to find the bone.</summary>
-		public string boneName;
-		public Transform parentReference;
-		public Mode mode;
-		public bool position, rotation, scale, zPosition = true;
-		[Range(0f, 1f)]
-		public float overrideAlpha = 1;
-		#endregion
+        #region Inspector
+        /// <summary>If a bone isn't set, boneName is used to find the bone.</summary>
+        public string boneName;
+        public Transform parentReference;
+        public Mode mode;
+        public bool position, rotation, scale, zPosition = true;
+        [Range(0f, 1f)]
+        public float overrideAlpha = 1;
+        #endregion
 
-		public SkeletonUtility hierarchy;
-		[System.NonSerialized] public Bone bone;
-		[System.NonSerialized] public bool transformLerpComplete;
-		[System.NonSerialized] public bool valid;
-		Transform cachedTransform;
-		Transform skeletonTransform;
-		bool incompatibleTransformMode;
-		public bool IncompatibleTransformMode { get { return incompatibleTransformMode; } }
+        public SkeletonUtility hierarchy;
+        [System.NonSerialized] public Bone bone;
+        [System.NonSerialized] public bool transformLerpComplete;
+        [System.NonSerialized] public bool valid;
+        private Transform cachedTransform;
+        private Transform skeletonTransform;
+        private bool incompatibleTransformMode;
+        public bool IncompatibleTransformMode { get { return incompatibleTransformMode; } }
 
-		public void Reset () {
-			bone = null;
-			cachedTransform = transform;
-			valid = hierarchy != null && hierarchy.IsValid;
-			if (!valid)
-				return;
-			skeletonTransform = hierarchy.transform;
-			hierarchy.OnReset -= HandleOnReset;
-			hierarchy.OnReset += HandleOnReset;
-			DoUpdate(UpdatePhase.Local);
-		}
+        public void Reset()
+        {
+            bone = null;
+            cachedTransform = transform;
+            valid = hierarchy != null && hierarchy.IsValid;
+            if (!valid)
+                return;
+            skeletonTransform = hierarchy.transform;
+            hierarchy.OnReset -= HandleOnReset;
+            hierarchy.OnReset += HandleOnReset;
+            DoUpdate(UpdatePhase.Local);
+        }
 
-		void OnEnable () {
-			if (hierarchy == null) hierarchy = transform.GetComponentInParent<SkeletonUtility>();
-			if (hierarchy == null) return;
+        private void OnEnable()
+        {
+            if (hierarchy == null) hierarchy = transform.GetComponentInParent<SkeletonUtility>();
+            if (hierarchy == null) return;
 
-			hierarchy.RegisterBone(this);
-			hierarchy.OnReset += HandleOnReset;
-		}
+            hierarchy.RegisterBone(this);
+            hierarchy.OnReset += HandleOnReset;
+        }
 
-		void HandleOnReset () {
-			Reset();
-		}
+        private void HandleOnReset()
+        {
+            Reset();
+        }
 
-		void OnDisable () {
-			if (hierarchy != null) {
-				hierarchy.OnReset -= HandleOnReset;
-				hierarchy.UnregisterBone(this);
-			}
-		}
+        private void OnDisable()
+        {
+            if (hierarchy != null)
+            {
+                hierarchy.OnReset -= HandleOnReset;
+                hierarchy.UnregisterBone(this);
+            }
+        }
 
-		public void DoUpdate (UpdatePhase phase) {
-			if (!valid) {
-				Reset();
-				return;
-			}
+        public void DoUpdate(UpdatePhase phase)
+        {
+            if (!valid)
+            {
+                Reset();
+                return;
+            }
 
-			Skeleton skeleton = hierarchy.Skeleton;
+            Skeleton skeleton = hierarchy.Skeleton;
 
-			if (bone == null) {
-				if (string.IsNullOrEmpty(boneName)) return;
-				bone = skeleton.FindBone(boneName);
-				if (bone == null) {
-					Debug.LogError("Bone not found: " + boneName, this);
-					return;
-				}
-			}
-			if (!bone.Active) return;
+            if (bone == null)
+            {
+                if (string.IsNullOrEmpty(boneName)) return;
+                bone = skeleton.FindBone(boneName);
+                if (bone == null)
+                {
+                    Debug.LogError("Bone not found: " + boneName, this);
+                    return;
+                }
+            }
+            if (!bone.Active) return;
 
-			float positionScale = hierarchy.PositionScale;
+            float positionScale = hierarchy.PositionScale;
 
-			Transform thisTransform = cachedTransform;
-			float skeletonFlipRotation = Mathf.Sign(skeleton.ScaleX * skeleton.ScaleY);
-			if (mode == Mode.Follow) {
-				switch (phase) {
-				case UpdatePhase.Local:
-					if (position)
-						thisTransform.localPosition = new Vector3(bone.X * positionScale, bone.Y * positionScale,
-							zPosition ? 0 : thisTransform.localPosition.z);
+            Transform thisTransform = cachedTransform;
+            float skeletonFlipRotation = Mathf.Sign(skeleton.ScaleX * skeleton.ScaleY);
+            if (mode == Mode.Follow)
+            {
+                switch (phase)
+                {
+                    case UpdatePhase.Local:
+                        if (position)
+                            thisTransform.localPosition = new Vector3(bone.X * positionScale, bone.Y * positionScale,
+                                zPosition ? 0 : thisTransform.localPosition.z);
 
-					if (rotation) {
-						if (bone.Data.Inherit.InheritsRotation()) {
-							thisTransform.localRotation = Quaternion.Euler(0, 0, bone.Rotation);
-						} else {
-							Vector3 euler = skeletonTransform.rotation.eulerAngles;
-							thisTransform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + (bone.WorldRotationX * skeletonFlipRotation));
-						}
-					}
+                        if (rotation)
+                        {
+                            if (bone.Data.Inherit.InheritsRotation())
+                            {
+                                thisTransform.localRotation = Quaternion.Euler(0, 0, bone.Rotation);
+                            }
+                            else
+                            {
+                                Vector3 euler = skeletonTransform.rotation.eulerAngles;
+                                thisTransform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + (bone.WorldRotationX * skeletonFlipRotation));
+                            }
+                        }
 
-					if (scale) {
-						thisTransform.localScale = new Vector3(bone.ScaleX, bone.ScaleY, 1f);
-						incompatibleTransformMode = BoneTransformModeIncompatible(bone);
-					}
-					break;
-				case UpdatePhase.World:
-				case UpdatePhase.Complete:
-					if (position)
-						thisTransform.localPosition = new Vector3(bone.AX * positionScale, bone.AY * positionScale,
-							zPosition ? 0 : thisTransform.localPosition.z);
+                        if (scale)
+                        {
+                            thisTransform.localScale = new Vector3(bone.ScaleX, bone.ScaleY, 1f);
+                            incompatibleTransformMode = BoneTransformModeIncompatible(bone);
+                        }
+                        break;
+                    case UpdatePhase.World:
+                    case UpdatePhase.Complete:
+                        if (position)
+                            thisTransform.localPosition = new Vector3(bone.AX * positionScale, bone.AY * positionScale,
+                                zPosition ? 0 : thisTransform.localPosition.z);
 
-					if (rotation) {
-						if (bone.Data.Inherit.InheritsRotation()) {
-							thisTransform.localRotation = Quaternion.Euler(0, 0, bone.AppliedRotation);
-						} else {
-							Vector3 euler = skeletonTransform.rotation.eulerAngles;
-							thisTransform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + (bone.WorldRotationX * skeletonFlipRotation));
-						}
-					}
+                        if (rotation)
+                        {
+                            if (bone.Data.Inherit.InheritsRotation())
+                            {
+                                thisTransform.localRotation = Quaternion.Euler(0, 0, bone.AppliedRotation);
+                            }
+                            else
+                            {
+                                Vector3 euler = skeletonTransform.rotation.eulerAngles;
+                                thisTransform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z + (bone.WorldRotationX * skeletonFlipRotation));
+                            }
+                        }
 
-					if (scale) {
-						thisTransform.localScale = new Vector3(bone.AScaleX, bone.AScaleY, 1f);
-						incompatibleTransformMode = BoneTransformModeIncompatible(bone);
-					}
-					break;
-				}
+                        if (scale)
+                        {
+                            thisTransform.localScale = new Vector3(bone.AScaleX, bone.AScaleY, 1f);
+                            incompatibleTransformMode = BoneTransformModeIncompatible(bone);
+                        }
+                        break;
+                }
 
-			} else if (mode == Mode.Override) {
-				if (transformLerpComplete)
-					return;
+            }
+            else if (mode == Mode.Override)
+            {
+                if (transformLerpComplete)
+                    return;
 
-				if (parentReference == null) {
-					if (position) {
-						Vector3 clp = thisTransform.localPosition / positionScale;
-						bone.X = Mathf.Lerp(bone.X, clp.x, overrideAlpha);
-						bone.Y = Mathf.Lerp(bone.Y, clp.y, overrideAlpha);
-					}
+                if (parentReference == null)
+                {
+                    if (position)
+                    {
+                        Vector3 clp = thisTransform.localPosition / positionScale;
+                        bone.X = Mathf.Lerp(bone.X, clp.x, overrideAlpha);
+                        bone.Y = Mathf.Lerp(bone.Y, clp.y, overrideAlpha);
+                    }
 
-					if (rotation) {
-						float angle = Mathf.LerpAngle(bone.Rotation, thisTransform.localRotation.eulerAngles.z, overrideAlpha);
-						bone.Rotation = angle;
-						bone.AppliedRotation = angle;
-					}
+                    if (rotation)
+                    {
+                        float angle = Mathf.LerpAngle(bone.Rotation, thisTransform.localRotation.eulerAngles.z, overrideAlpha);
+                        bone.Rotation = angle;
+                        bone.AppliedRotation = angle;
+                    }
 
-					if (scale) {
-						Vector3 cls = thisTransform.localScale;
-						bone.ScaleX = Mathf.Lerp(bone.ScaleX, cls.x, overrideAlpha);
-						bone.ScaleY = Mathf.Lerp(bone.ScaleY, cls.y, overrideAlpha);
-					}
+                    if (scale)
+                    {
+                        Vector3 cls = thisTransform.localScale;
+                        bone.ScaleX = Mathf.Lerp(bone.ScaleX, cls.x, overrideAlpha);
+                        bone.ScaleY = Mathf.Lerp(bone.ScaleY, cls.y, overrideAlpha);
+                    }
 
-				} else {
-					if (transformLerpComplete)
-						return;
+                }
+                else
+                {
+                    if (transformLerpComplete)
+                        return;
 
-					if (position) {
-						Vector3 pos = parentReference.InverseTransformPoint(thisTransform.position) / positionScale;
-						bone.X = Mathf.Lerp(bone.X, pos.x, overrideAlpha);
-						bone.Y = Mathf.Lerp(bone.Y, pos.y, overrideAlpha);
-					}
+                    if (position)
+                    {
+                        Vector3 pos = parentReference.InverseTransformPoint(thisTransform.position) / positionScale;
+                        bone.X = Mathf.Lerp(bone.X, pos.x, overrideAlpha);
+                        bone.Y = Mathf.Lerp(bone.Y, pos.y, overrideAlpha);
+                    }
 
-					if (rotation) {
-						float angle = Mathf.LerpAngle(bone.Rotation, Quaternion.LookRotation(Vector3.forward, parentReference.InverseTransformDirection(thisTransform.up)).eulerAngles.z, overrideAlpha);
-						bone.Rotation = angle;
-						bone.AppliedRotation = angle;
-					}
+                    if (rotation)
+                    {
+                        float angle = Mathf.LerpAngle(bone.Rotation, Quaternion.LookRotation(Vector3.forward, parentReference.InverseTransformDirection(thisTransform.up)).eulerAngles.z, overrideAlpha);
+                        bone.Rotation = angle;
+                        bone.AppliedRotation = angle;
+                    }
 
-					if (scale) {
-						Vector3 cls = thisTransform.localScale;
-						bone.ScaleX = Mathf.Lerp(bone.ScaleX, cls.x, overrideAlpha);
-						bone.ScaleY = Mathf.Lerp(bone.ScaleY, cls.y, overrideAlpha);
-					}
+                    if (scale)
+                    {
+                        Vector3 cls = thisTransform.localScale;
+                        bone.ScaleX = Mathf.Lerp(bone.ScaleX, cls.x, overrideAlpha);
+                        bone.ScaleY = Mathf.Lerp(bone.ScaleY, cls.y, overrideAlpha);
+                    }
 
-					incompatibleTransformMode = BoneTransformModeIncompatible(bone);
-				}
+                    incompatibleTransformMode = BoneTransformModeIncompatible(bone);
+                }
 
-				transformLerpComplete = true;
-			}
-		}
+                transformLerpComplete = true;
+            }
+        }
 
-		public static bool BoneTransformModeIncompatible (Bone bone) {
-			return !bone.Data.Inherit.InheritsScale();
-		}
+        public static bool BoneTransformModeIncompatible(Bone bone)
+        {
+            return !bone.Data.Inherit.InheritsScale();
+        }
 
-		public void AddBoundingBox (string skinName, string slotName, string attachmentName) {
-			SkeletonUtility.AddBoneRigidbody2D(transform.gameObject);
-			SkeletonUtility.AddBoundingBoxGameObject(bone.Skeleton, skinName, slotName, attachmentName, transform);
-		}
+        public void AddBoundingBox(string skinName, string slotName, string attachmentName)
+        {
+            SkeletonUtility.AddBoneRigidbody2D(transform.gameObject);
+            SkeletonUtility.AddBoundingBoxGameObject(bone.Skeleton, skinName, slotName, attachmentName, transform);
+        }
 
 #if UNITY_EDITOR
-		void OnDrawGizmos () {
-			if (IncompatibleTransformMode)
-				Gizmos.DrawIcon(transform.position + new Vector3(0, 0.128f, 0), "icon-warning");
-		}
+        private void OnDrawGizmos()
+        {
+            if (IncompatibleTransformMode)
+                Gizmos.DrawIcon(transform.position + new Vector3(0, 0.128f, 0), "icon-warning");
+        }
 #endif
-	}
+    }
 }

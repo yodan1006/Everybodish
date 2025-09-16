@@ -6,6 +6,7 @@ using MovePlayer.Runtime;
 using PlayerLocomotion.Runtime;
 using Score.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -24,8 +25,8 @@ namespace Spawner.Runtime
         private PlayerInputMap inputMap;
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
 
-        public static List<SpawnSystem> AllPlayers = new List<SpawnSystem>();
-
+        public static List<SpawnSystem> AllPlayers = new();
+        public UnityEvent<bool> onPlayerLifeStatusChanged = new();
 
         private void Awake()
         {
@@ -48,12 +49,6 @@ namespace Spawner.Runtime
             inputMap.Player.Selfdestruct.performed += ctx => KillPlayer(ctx);
         }
 
-        private void Start()
-        {
-            // inputMap.Player.Disable();
-            // inputMap.Lobby.Disable();
-        }
-
         private void OnDestroy()
         {
             AllPlayers.Remove(this);
@@ -62,8 +57,9 @@ namespace Spawner.Runtime
         private void OnEnable()
         {
             playerPrefab.SetActive(false);
+            playerPrefab.transform.localPosition = Vector3.zero;
             inputMap.Enable();
-            SetupNewPlayer();
+            SpawnPlayer();
         }
 
         private void OnDisable()
@@ -81,7 +77,7 @@ namespace Spawner.Runtime
                 respawnTimeDelta -= Time.deltaTime;
                 if (respawnTimeDelta <= 0)
                 {
-                    SetupNewPlayer();
+                    SpawnPlayer();
                 }
             }
         }
@@ -93,6 +89,7 @@ namespace Spawner.Runtime
                 respawnTimeDelta = respawnTime;
                 ScoreEvent(ScoreEventType.PlayerDied);
                 DestroyPlayer();
+                onPlayerLifeStatusChanged.Invoke(false);
             }
         }
 
@@ -106,13 +103,13 @@ namespace Spawner.Runtime
             DestroyPlayer();
         }
 
-        public void SetupNewPlayer()
+        public void SpawnPlayer()
         {
             InstantiatePlayer();
             playerInstance.SetActive(true);
             BindPlayerControls();
             BindPlayerEvents();
-
+            onPlayerLifeStatusChanged.Invoke(true);
         }
 
         private void BindPlayerEvents()

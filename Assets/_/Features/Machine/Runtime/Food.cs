@@ -11,9 +11,9 @@ namespace Machine.Runtime
         private Grabable grabable;
         private Transform topmost;
 
-        public Rigidbody Rb { get => rb;  }
+        public Rigidbody Rb { get => rb; }
         public Grabable Grabable { get => grabable; }
-        public Transform Topmost { get => topmost;  }
+        public Transform Topmost { get => topmost; }
 
         private void Awake()
         {

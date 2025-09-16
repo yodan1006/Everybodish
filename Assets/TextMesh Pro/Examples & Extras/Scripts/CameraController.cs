@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 
 namespace TMPro.Examples
 {
-    
+
     public class CameraController : MonoBehaviour
     {
         public enum CameraModes { Follow, Isometric, Free }
@@ -50,7 +49,7 @@ namespace TMPro.Examples
         private const string event_FollowDistance = "Slider - Camera Zoom";
 
 
-        void Awake()
+        private void Awake()
         {
             if (QualitySettings.vSyncCount > 0)
                 Application.targetFrameRate = 60;
@@ -66,7 +65,7 @@ namespace TMPro.Examples
 
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             if (CameraTarget == null)
             {
@@ -77,7 +76,7 @@ namespace TMPro.Examples
         }
 
         // Update is called once per frame
-        void LateUpdate()
+        private void LateUpdate()
         {
             GetPlayerInput();
 
@@ -123,7 +122,7 @@ namespace TMPro.Examples
 
 
 
-        void GetPlayerInput()
+        private void GetPlayerInput()
         {
             moveVector = Vector3.zero;
 

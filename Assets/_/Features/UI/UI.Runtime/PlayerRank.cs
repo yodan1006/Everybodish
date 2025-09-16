@@ -1,4 +1,3 @@
-using Animals.Data;
 using UnityEngine;
 
 namespace UI.Runtime
@@ -15,8 +14,9 @@ namespace UI.Runtime
 
         #region Unity Api
 
-        public void SetPlayerIcon(int rank)
+        public void SetRankIcon(int rank)
         {
+            gameObject.SetActive(true);
             first.SetActive(rank == 0);
             second.SetActive(rank == 1);
             third.SetActive(rank == 2);

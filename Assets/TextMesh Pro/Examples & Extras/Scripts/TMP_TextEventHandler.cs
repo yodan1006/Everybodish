@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using System;
 
 
 namespace TMPro
@@ -96,7 +96,7 @@ namespace TMPro
         private int m_lastWordIndex = -1;
         private int m_lastLineIndex = -1;
 
-        void Awake()
+        private void Awake()
         {
             // Get a reference to the text component.
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
@@ -120,7 +120,7 @@ namespace TMPro
         }
 
 
-        void LateUpdate()
+        private void LateUpdate()
         {
             if (TMP_TextUtilities.IsIntersectingRectTransform(m_TextComponent.rectTransform, Input.mousePosition, m_Camera))
             {
@@ -231,32 +231,27 @@ namespace TMPro
 
         private void SendOnCharacterSelection(char character, int characterIndex)
         {
-            if (onCharacterSelection != null)
-                onCharacterSelection.Invoke(character, characterIndex);
+            onCharacterSelection?.Invoke(character, characterIndex);
         }
 
         private void SendOnSpriteSelection(char character, int characterIndex)
         {
-            if (onSpriteSelection != null)
-                onSpriteSelection.Invoke(character, characterIndex);
+            onSpriteSelection?.Invoke(character, characterIndex);
         }
 
         private void SendOnWordSelection(string word, int charIndex, int length)
         {
-            if (onWordSelection != null)
-                onWordSelection.Invoke(word, charIndex, length);
+            onWordSelection?.Invoke(word, charIndex, length);
         }
 
         private void SendOnLineSelection(string line, int charIndex, int length)
         {
-            if (onLineSelection != null)
-                onLineSelection.Invoke(line, charIndex, length);
+            onLineSelection?.Invoke(line, charIndex, length);
         }
 
         private void SendOnLinkSelection(string linkID, string linkText, int linkIndex)
         {
-            if (onLinkSelection != null)
-                onLinkSelection.Invoke(linkID, linkText, linkIndex);
+            onLinkSelection?.Invoke(linkID, linkText, linkIndex);
         }
 
     }

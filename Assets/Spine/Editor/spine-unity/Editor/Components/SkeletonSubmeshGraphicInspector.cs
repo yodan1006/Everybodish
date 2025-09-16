@@ -29,15 +29,16 @@
 
 using UnityEditor;
 
-namespace Spine.Unity.Editor {
-	using Icons = SpineEditorUtilities.Icons;
+namespace Spine.Unity.Editor
+{
+    [CustomEditor(typeof(SkeletonSubmeshGraphic))]
+    [CanEditMultipleObjects]
+    public class SkeletonGraphicSubmeshInspector : UnityEditor.Editor
+    {
 
-	[CustomEditor(typeof(SkeletonSubmeshGraphic))]
-	[CanEditMultipleObjects]
-	public class SkeletonGraphicSubmeshInspector : UnityEditor.Editor {
-
-		public override void OnInspectorGUI () {
-			EditorGUILayout.HelpBox("This component is manged by the parent SkeletonGraphic component.", MessageType.None);
-		}
-	}
+        public override void OnInspectorGUI()
+        {
+            EditorGUILayout.HelpBox("This component is manged by the parent SkeletonGraphic component.", MessageType.None);
+        }
+    }
 }

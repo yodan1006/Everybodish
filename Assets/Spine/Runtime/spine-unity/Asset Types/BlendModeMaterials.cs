@@ -27,282 +27,321 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-using Spine;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-namespace Spine.Unity {
-	[System.Serializable]
-	public class BlendModeMaterials {
+namespace Spine.Unity
+{
+    [System.Serializable]
+    public class BlendModeMaterials
+    {
 
-		public const string MATERIAL_SUFFIX_MULTIPLY = "-Multiply";
-		public const string MATERIAL_SUFFIX_SCREEN = "-Screen";
-		public const string MATERIAL_SUFFIX_ADDITIVE = "-Additive";
+        public const string MATERIAL_SUFFIX_MULTIPLY = "-Multiply";
+        public const string MATERIAL_SUFFIX_SCREEN = "-Screen";
+        public const string MATERIAL_SUFFIX_ADDITIVE = "-Additive";
 
-		[System.Serializable]
-		public class ReplacementMaterial {
-			public string pageName;
-			public Material material;
-		}
+        [System.Serializable]
+        public class ReplacementMaterial
+        {
+            public string pageName;
+            public Material material;
+        }
 
-		[SerializeField, HideInInspector] protected bool requiresBlendModeMaterials = false;
-		public bool applyAdditiveMaterial = false;
+        [SerializeField, HideInInspector] protected bool requiresBlendModeMaterials = false;
+        public bool applyAdditiveMaterial = false;
 
-		public List<ReplacementMaterial> additiveMaterials = new List<ReplacementMaterial>();
-		public List<ReplacementMaterial> multiplyMaterials = new List<ReplacementMaterial>();
-		public List<ReplacementMaterial> screenMaterials = new List<ReplacementMaterial>();
+        public List<ReplacementMaterial> additiveMaterials = new List<ReplacementMaterial>();
+        public List<ReplacementMaterial> multiplyMaterials = new List<ReplacementMaterial>();
+        public List<ReplacementMaterial> screenMaterials = new List<ReplacementMaterial>();
 
-		public bool RequiresBlendModeMaterials { get { return requiresBlendModeMaterials; } set { requiresBlendModeMaterials = value; } }
+        public bool RequiresBlendModeMaterials { get { return requiresBlendModeMaterials; } set { requiresBlendModeMaterials = value; } }
 
-		public BlendMode BlendModeForMaterial (Material material) {
-			foreach (ReplacementMaterial pair in multiplyMaterials)
-				if (pair.material == material) return BlendMode.Multiply;
-			foreach (ReplacementMaterial pair in additiveMaterials)
-				if (pair.material == material) return BlendMode.Additive;
-			foreach (ReplacementMaterial pair in screenMaterials)
-				if (pair.material == material) return BlendMode.Screen;
-			return BlendMode.Normal;
-		}
+        public BlendMode BlendModeForMaterial(Material material)
+        {
+            foreach (ReplacementMaterial pair in multiplyMaterials)
+                if (pair.material == material) return BlendMode.Multiply;
+            foreach (ReplacementMaterial pair in additiveMaterials)
+                if (pair.material == material) return BlendMode.Additive;
+            foreach (ReplacementMaterial pair in screenMaterials)
+                if (pair.material == material) return BlendMode.Screen;
+            return BlendMode.Normal;
+        }
 
 #if UNITY_EDITOR
-		public void TransferSettingsFrom (BlendModeMaterialsAsset modifierAsset) {
-			applyAdditiveMaterial = modifierAsset.applyAdditiveMaterial;
-		}
+        public void TransferSettingsFrom(BlendModeMaterialsAsset modifierAsset)
+        {
+            applyAdditiveMaterial = modifierAsset.applyAdditiveMaterial;
+        }
 #endif
 
-		public bool UpdateBlendmodeMaterialsRequiredState (SkeletonData skeletonData) {
-			requiresBlendModeMaterials = false;
+        public bool UpdateBlendmodeMaterialsRequiredState(SkeletonData skeletonData)
+        {
+            requiresBlendModeMaterials = false;
 
-			if (skeletonData == null) return false;
+            if (skeletonData == null) return false;
 
-			List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
-			SlotData[] slotsItems = skeletonData.Slots.Items;
-			for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++) {
-				SlotData slot = slotsItems[slotIndex];
-				if (slot.BlendMode == BlendMode.Normal) continue;
-				if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
+            List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
+            SlotData[] slotsItems = skeletonData.Slots.Items;
+            for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++)
+            {
+                SlotData slot = slotsItems[slotIndex];
+                if (slot.BlendMode == BlendMode.Normal) continue;
+                if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
 
-				skinEntries.Clear();
-				foreach (Skin skin in skeletonData.Skins)
-					skin.GetAttachments(slotIndex, skinEntries);
+                skinEntries.Clear();
+                foreach (Skin skin in skeletonData.Skins)
+                    skin.GetAttachments(slotIndex, skinEntries);
 
-				foreach (Skin.SkinEntry entry in skinEntries) {
-					if (entry.Attachment is IHasTextureRegion) {
-						requiresBlendModeMaterials = true;
-						return true;
-					}
-				}
-			}
-			return false;
-		}
+                foreach (Skin.SkinEntry entry in skinEntries)
+                {
+                    if (entry.Attachment is IHasTextureRegion)
+                    {
+                        requiresBlendModeMaterials = true;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
-		[System.Serializable]
-		public class TemplateMaterials {
-			public Material additiveTemplate;
-			public Material multiplyTemplate;
-			public Material screenTemplate;
-		};
+        [System.Serializable]
+        public class TemplateMaterials
+        {
+            public Material additiveTemplate;
+            public Material multiplyTemplate;
+            public Material screenTemplate;
+        };
 
-		public delegate bool CreateForRegionDelegate (ref List<BlendModeMaterials.ReplacementMaterial> replacementMaterials,
-			ref bool anyReplacementMaterialsChanged,
-			AtlasRegion originalRegion, Material materialTemplate, string materialSuffix,
-			SkeletonDataAsset skeletonDataAsset);
+        public delegate bool CreateForRegionDelegate(ref List<BlendModeMaterials.ReplacementMaterial> replacementMaterials,
+            ref bool anyReplacementMaterialsChanged,
+            AtlasRegion originalRegion, Material materialTemplate, string materialSuffix,
+            SkeletonDataAsset skeletonDataAsset);
 
-		public static bool CreateAndAssignMaterials (SkeletonDataAsset skeletonDataAsset,
-				TemplateMaterials templateMaterials, ref bool anyReplacementMaterialsChanged) {
+        public static bool CreateAndAssignMaterials(SkeletonDataAsset skeletonDataAsset,
+                TemplateMaterials templateMaterials, ref bool anyReplacementMaterialsChanged)
+        {
 
-			return CreateAndAssignMaterials(skeletonDataAsset,
-				templateMaterials, ref anyReplacementMaterialsChanged,
-				(asset) => { asset.Clear(); }, null, CreateForRegion);
-		}
+            return CreateAndAssignMaterials(skeletonDataAsset,
+                templateMaterials, ref anyReplacementMaterialsChanged,
+                (asset) => { asset.Clear(); }, null, CreateForRegion);
+        }
 
-		public static bool CreateAndAssignMaterials (SkeletonDataAsset skeletonDataAsset,
-			TemplateMaterials templateMaterials, ref bool anyReplacementMaterialsChanged,
-			System.Action<SkeletonDataAsset> clearSkeletonDataAssetFunc,
-			System.Action<SkeletonDataAsset> afterAssetModifiedFunc,
-			CreateForRegionDelegate createForRegionFunc) {
+        public static bool CreateAndAssignMaterials(SkeletonDataAsset skeletonDataAsset,
+            TemplateMaterials templateMaterials, ref bool anyReplacementMaterialsChanged,
+            System.Action<SkeletonDataAsset> clearSkeletonDataAssetFunc,
+            System.Action<SkeletonDataAsset> afterAssetModifiedFunc,
+            CreateForRegionDelegate createForRegionFunc)
+        {
 
-			bool anyCreationFailed = false;
-			BlendModeMaterials blendModeMaterials = skeletonDataAsset.blendModeMaterials;
-			bool applyAdditiveMaterial = blendModeMaterials.applyAdditiveMaterial;
+            bool anyCreationFailed = false;
+            BlendModeMaterials blendModeMaterials = skeletonDataAsset.blendModeMaterials;
+            bool applyAdditiveMaterial = blendModeMaterials.applyAdditiveMaterial;
 
-			List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
+            List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
 
-			clearSkeletonDataAssetFunc(skeletonDataAsset);
-			skeletonDataAsset.isUpgradingBlendModeMaterials = true;
-			SkeletonData skeletonData = skeletonDataAsset.GetSkeletonData(true);
+            clearSkeletonDataAssetFunc(skeletonDataAsset);
+            skeletonDataAsset.isUpgradingBlendModeMaterials = true;
+            SkeletonData skeletonData = skeletonDataAsset.GetSkeletonData(true);
 
-			SlotData[] slotsItems = skeletonData.Slots.Items;
-			for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++) {
-				SlotData slot = slotsItems[slotIndex];
-				if (slot.BlendMode == BlendMode.Normal) continue;
-				if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
+            SlotData[] slotsItems = skeletonData.Slots.Items;
+            for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++)
+            {
+                SlotData slot = slotsItems[slotIndex];
+                if (slot.BlendMode == BlendMode.Normal) continue;
+                if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
 
-				List<BlendModeMaterials.ReplacementMaterial> replacementMaterials = null;
-				Material materialTemplate = null;
-				string materialSuffix = null;
-				switch (slot.BlendMode) {
-				case BlendMode.Multiply:
-					replacementMaterials = blendModeMaterials.multiplyMaterials;
-					materialTemplate = templateMaterials.multiplyTemplate;
-					materialSuffix = MATERIAL_SUFFIX_MULTIPLY;
-					break;
-				case BlendMode.Screen:
-					replacementMaterials = blendModeMaterials.screenMaterials;
-					materialTemplate = templateMaterials.screenTemplate;
-					materialSuffix = MATERIAL_SUFFIX_SCREEN;
-					break;
-				case BlendMode.Additive:
-					replacementMaterials = blendModeMaterials.additiveMaterials;
-					materialTemplate = templateMaterials.additiveTemplate;
-					materialSuffix = MATERIAL_SUFFIX_ADDITIVE;
-					break;
-				}
+                List<BlendModeMaterials.ReplacementMaterial> replacementMaterials = null;
+                Material materialTemplate = null;
+                string materialSuffix = null;
+                switch (slot.BlendMode)
+                {
+                    case BlendMode.Multiply:
+                        replacementMaterials = blendModeMaterials.multiplyMaterials;
+                        materialTemplate = templateMaterials.multiplyTemplate;
+                        materialSuffix = MATERIAL_SUFFIX_MULTIPLY;
+                        break;
+                    case BlendMode.Screen:
+                        replacementMaterials = blendModeMaterials.screenMaterials;
+                        materialTemplate = templateMaterials.screenTemplate;
+                        materialSuffix = MATERIAL_SUFFIX_SCREEN;
+                        break;
+                    case BlendMode.Additive:
+                        replacementMaterials = blendModeMaterials.additiveMaterials;
+                        materialTemplate = templateMaterials.additiveTemplate;
+                        materialSuffix = MATERIAL_SUFFIX_ADDITIVE;
+                        break;
+                }
 
-				skinEntries.Clear();
-				foreach (Skin skin in skeletonData.Skins)
-					skin.GetAttachments(slotIndex, skinEntries);
+                skinEntries.Clear();
+                foreach (Skin skin in skeletonData.Skins)
+                    skin.GetAttachments(slotIndex, skinEntries);
 
-				foreach (Skin.SkinEntry entry in skinEntries) {
-					IHasTextureRegion renderableAttachment = entry.Attachment as IHasTextureRegion;
-					if (renderableAttachment != null) {
-						AtlasRegion originalRegion = (AtlasRegion)renderableAttachment.Region;
-						if (originalRegion != null) {
-							anyCreationFailed |= createForRegionFunc(
-								ref replacementMaterials, ref anyReplacementMaterialsChanged,
-								originalRegion, materialTemplate, materialSuffix, skeletonDataAsset);
-						} else {
-							Sequence sequence = renderableAttachment.Sequence;
-							if (sequence != null && sequence.Regions != null) {
-								for (int i = 0, count = sequence.Regions.Length; i < count; ++i) {
-									originalRegion = (AtlasRegion)sequence.Regions[i];
-									anyCreationFailed |= createForRegionFunc(
-										ref replacementMaterials, ref anyReplacementMaterialsChanged,
-										originalRegion, materialTemplate, materialSuffix, skeletonDataAsset);
-								}
-							}
-						}
-					}
-				}
-			}
-			skeletonDataAsset.isUpgradingBlendModeMaterials = false;
-			if (afterAssetModifiedFunc != null) afterAssetModifiedFunc(skeletonDataAsset);
-			return !anyCreationFailed;
-		}
+                foreach (Skin.SkinEntry entry in skinEntries)
+                {
+                    IHasTextureRegion renderableAttachment = entry.Attachment as IHasTextureRegion;
+                    if (renderableAttachment != null)
+                    {
+                        AtlasRegion originalRegion = (AtlasRegion)renderableAttachment.Region;
+                        if (originalRegion != null)
+                        {
+                            anyCreationFailed |= createForRegionFunc(
+                                ref replacementMaterials, ref anyReplacementMaterialsChanged,
+                                originalRegion, materialTemplate, materialSuffix, skeletonDataAsset);
+                        }
+                        else
+                        {
+                            Sequence sequence = renderableAttachment.Sequence;
+                            if (sequence != null && sequence.Regions != null)
+                            {
+                                for (int i = 0, count = sequence.Regions.Length; i < count; ++i)
+                                {
+                                    originalRegion = (AtlasRegion)sequence.Regions[i];
+                                    anyCreationFailed |= createForRegionFunc(
+                                        ref replacementMaterials, ref anyReplacementMaterialsChanged,
+                                        originalRegion, materialTemplate, materialSuffix, skeletonDataAsset);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            skeletonDataAsset.isUpgradingBlendModeMaterials = false;
+            if (afterAssetModifiedFunc != null) afterAssetModifiedFunc(skeletonDataAsset);
+            return !anyCreationFailed;
+        }
 
-		protected static bool CreateForRegion (ref List<BlendModeMaterials.ReplacementMaterial> replacementMaterials,
-			ref bool anyReplacementMaterialsChanged,
-			AtlasRegion originalRegion, Material materialTemplate, string materialSuffix,
-			SkeletonDataAsset skeletonDataAsset) {
+        protected static bool CreateForRegion(ref List<BlendModeMaterials.ReplacementMaterial> replacementMaterials,
+            ref bool anyReplacementMaterialsChanged,
+            AtlasRegion originalRegion, Material materialTemplate, string materialSuffix,
+            SkeletonDataAsset skeletonDataAsset)
+        {
 
-			bool anyCreationFailed = false;
-			bool replacementExists = replacementMaterials.Exists(
-				replacement => replacement.pageName == originalRegion.page.name);
-			if (!replacementExists) {
-				BlendModeMaterials.ReplacementMaterial replacement = CreateReplacementMaterial(originalRegion, materialTemplate, materialSuffix);
-				if (replacement != null) {
-					replacementMaterials.Add(replacement);
-					anyReplacementMaterialsChanged = true;
-				} else {
-					Debug.LogError(string.Format("Failed creating blend mode Material for SkeletonData asset '{0}'," +
-						" atlas page '{1}', template '{2}'.",
-						skeletonDataAsset.name, originalRegion.page.name, materialTemplate.name),
-						skeletonDataAsset);
-					anyCreationFailed = true;
-				}
-			}
-			return anyCreationFailed;
-		}
+            bool anyCreationFailed = false;
+            bool replacementExists = replacementMaterials.Exists(
+                replacement => replacement.pageName == originalRegion.page.name);
+            if (!replacementExists)
+            {
+                BlendModeMaterials.ReplacementMaterial replacement = CreateReplacementMaterial(originalRegion, materialTemplate, materialSuffix);
+                if (replacement != null)
+                {
+                    replacementMaterials.Add(replacement);
+                    anyReplacementMaterialsChanged = true;
+                }
+                else
+                {
+                    Debug.LogError(string.Format("Failed creating blend mode Material for SkeletonData asset '{0}'," +
+                        " atlas page '{1}', template '{2}'.",
+                        skeletonDataAsset.name, originalRegion.page.name, materialTemplate.name),
+                        skeletonDataAsset);
+                    anyCreationFailed = true;
+                }
+            }
+            return anyCreationFailed;
+        }
 
-		protected static BlendModeMaterials.ReplacementMaterial CreateReplacementMaterial (
-			AtlasRegion originalRegion, Material materialTemplate, string materialSuffix) {
+        protected static BlendModeMaterials.ReplacementMaterial CreateReplacementMaterial(
+            AtlasRegion originalRegion, Material materialTemplate, string materialSuffix)
+        {
 
-			BlendModeMaterials.ReplacementMaterial newReplacement = new BlendModeMaterials.ReplacementMaterial();
-			AtlasPage originalPage = originalRegion.page;
-			Material originalMaterial = originalPage.rendererObject as Material;
+            BlendModeMaterials.ReplacementMaterial newReplacement = new BlendModeMaterials.ReplacementMaterial();
+            AtlasPage originalPage = originalRegion.page;
+            Material originalMaterial = originalPage.rendererObject as Material;
 
-			newReplacement.pageName = originalPage.name;
+            newReplacement.pageName = originalPage.name;
 
-			Material blendModeMaterial = new Material(materialTemplate) {
-				name = originalMaterial.name + " " + materialTemplate.name,
-				mainTexture = originalMaterial.mainTexture
-			};
-			newReplacement.material = blendModeMaterial;
+            Material blendModeMaterial = new Material(materialTemplate)
+            {
+                name = originalMaterial.name + " " + materialTemplate.name,
+                mainTexture = originalMaterial.mainTexture
+            };
+            newReplacement.material = blendModeMaterial;
 
-			if (newReplacement.material)
-				return newReplacement;
-			else
-				return null;
-		}
+            if (newReplacement.material)
+                return newReplacement;
+            else
+                return null;
+        }
 
-		public void ApplyMaterials (SkeletonData skeletonData) {
-			if (skeletonData == null) throw new ArgumentNullException("skeletonData");
-			if (!requiresBlendModeMaterials)
-				return;
+        public void ApplyMaterials(SkeletonData skeletonData)
+        {
+            if (skeletonData == null) throw new ArgumentNullException("skeletonData");
+            if (!requiresBlendModeMaterials)
+                return;
 
-			List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
-			SlotData[] slotsItems = skeletonData.Slots.Items;
-			for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++) {
-				SlotData slot = slotsItems[slotIndex];
-				if (slot.BlendMode == BlendMode.Normal) continue;
-				if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
+            List<Skin.SkinEntry> skinEntries = new List<Skin.SkinEntry>();
+            SlotData[] slotsItems = skeletonData.Slots.Items;
+            for (int slotIndex = 0, slotCount = skeletonData.Slots.Count; slotIndex < slotCount; slotIndex++)
+            {
+                SlotData slot = slotsItems[slotIndex];
+                if (slot.BlendMode == BlendMode.Normal) continue;
+                if (!applyAdditiveMaterial && slot.BlendMode == BlendMode.Additive) continue;
 
-				List<ReplacementMaterial> replacementMaterials = null;
-				switch (slot.BlendMode) {
-				case BlendMode.Multiply:
-					replacementMaterials = multiplyMaterials;
-					break;
-				case BlendMode.Screen:
-					replacementMaterials = screenMaterials;
-					break;
-				case BlendMode.Additive:
-					replacementMaterials = additiveMaterials;
-					break;
-				}
-				if (replacementMaterials == null)
-					continue;
+                List<ReplacementMaterial> replacementMaterials = null;
+                switch (slot.BlendMode)
+                {
+                    case BlendMode.Multiply:
+                        replacementMaterials = multiplyMaterials;
+                        break;
+                    case BlendMode.Screen:
+                        replacementMaterials = screenMaterials;
+                        break;
+                    case BlendMode.Additive:
+                        replacementMaterials = additiveMaterials;
+                        break;
+                }
+                if (replacementMaterials == null)
+                    continue;
 
-				skinEntries.Clear();
-				foreach (Skin skin in skeletonData.Skins)
-					skin.GetAttachments(slotIndex, skinEntries);
+                skinEntries.Clear();
+                foreach (Skin skin in skeletonData.Skins)
+                    skin.GetAttachments(slotIndex, skinEntries);
 
-				foreach (Skin.SkinEntry entry in skinEntries) {
-					IHasTextureRegion renderableAttachment = entry.Attachment as IHasTextureRegion;
-					if (renderableAttachment != null) {
-						if (renderableAttachment.Region != null) {
-							renderableAttachment.Region = CloneAtlasRegionWithMaterial(
-							(AtlasRegion)renderableAttachment.Region, replacementMaterials);
-						} else {
-							if (renderableAttachment.Sequence != null) {
-								TextureRegion[] regions = renderableAttachment.Sequence.Regions;
-								for (int i = 0; i < regions.Length; ++i) {
-									regions[i] = CloneAtlasRegionWithMaterial(
-										(AtlasRegion)regions[i], replacementMaterials);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+                foreach (Skin.SkinEntry entry in skinEntries)
+                {
+                    IHasTextureRegion renderableAttachment = entry.Attachment as IHasTextureRegion;
+                    if (renderableAttachment != null)
+                    {
+                        if (renderableAttachment.Region != null)
+                        {
+                            renderableAttachment.Region = CloneAtlasRegionWithMaterial(
+                            (AtlasRegion)renderableAttachment.Region, replacementMaterials);
+                        }
+                        else
+                        {
+                            if (renderableAttachment.Sequence != null)
+                            {
+                                TextureRegion[] regions = renderableAttachment.Sequence.Regions;
+                                for (int i = 0; i < regions.Length; ++i)
+                                {
+                                    regions[i] = CloneAtlasRegionWithMaterial(
+                                        (AtlasRegion)regions[i], replacementMaterials);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-		protected AtlasRegion CloneAtlasRegionWithMaterial (AtlasRegion originalRegion, List<ReplacementMaterial> replacementMaterials) {
-			AtlasRegion newRegion = originalRegion.Clone();
-			Material material = null;
-			foreach (ReplacementMaterial replacement in replacementMaterials) {
-				if (replacement.pageName == originalRegion.page.name) {
-					material = replacement.material;
-					break;
-				}
-			}
+        protected AtlasRegion CloneAtlasRegionWithMaterial(AtlasRegion originalRegion, List<ReplacementMaterial> replacementMaterials)
+        {
+            AtlasRegion newRegion = originalRegion.Clone();
+            Material material = null;
+            foreach (ReplacementMaterial replacement in replacementMaterials)
+            {
+                if (replacement.pageName == originalRegion.page.name)
+                {
+                    material = replacement.material;
+                    break;
+                }
+            }
 
-			AtlasPage originalPage = originalRegion.page;
-			AtlasPage newPage = originalPage.Clone();
-			newPage.rendererObject = material;
-			newRegion.page = newPage;
-			return newRegion;
-		}
-	}
+            AtlasPage originalPage = originalRegion.page;
+            AtlasPage newPage = originalPage.Clone();
+            newPage.rendererObject = material;
+            newRegion.page = newPage;
+            return newRegion;
+        }
+    }
 }

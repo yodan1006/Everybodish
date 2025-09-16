@@ -31,7 +31,10 @@ namespace Skins.Runtime
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            LobbyManager.Instance?.RegisterPlayer(this);
+            if (LobbyManager.Instance != null)
+            {
+                LobbyManager.Instance.RegisterPlayer(this);
+            }
             //Random appearance on join
             currentModelIndex = Random.Range(0, appearances.Length);
             ApplyAppearance();
