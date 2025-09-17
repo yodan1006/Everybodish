@@ -53,6 +53,9 @@ MonoBehaviour:
   respawnTime: 5
   respawnTimeDelta: 0
   playerPrefab: {fileID: 259693241692249912}
+  onPlayerLifeStatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1917181855189238406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +338,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7202203583501668783, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114997189556041913, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9193291211187720016, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
