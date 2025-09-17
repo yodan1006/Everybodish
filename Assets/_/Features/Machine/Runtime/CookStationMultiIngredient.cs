@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Grab.Runtime;
@@ -41,6 +42,7 @@ namespace Machine.Runtime
         private float elapsed;
 
         private readonly List<Food> _storedFoods = new();
+        private Food[] _storedFoodsArray;
         private bool _isCooking = false;
         private float _progress;
 
@@ -50,6 +52,12 @@ namespace Machine.Runtime
         public bool _goReturn { get; private set; }
 
         public bool IsCooking => _isCooking;
+
+
+        private void Awake()
+        {
+            _storedFoodsArray = new Food[ingredientPoints.Length];
+        }
 
         public void AddFood(Food food)
         {
@@ -82,21 +90,37 @@ namespace Machine.Runtime
                 Destroy(existing.gameObject);
             }
 
-
             _storedFoods.Add(food);
             food.GetComponentInChildren<Grabable>().enabled = false;
 
             int slotIndex = _storedFoods.Count - 1;
             if (ingredientPoints.Length > slotIndex && ingredientPoints[slotIndex] != null)
             {
-                food.gameObject.transform.position = ingredientPoints[slotIndex].position;
-                food.gameObject.transform.rotation = ingredientPoints[slotIndex].rotation;
-                //Remet la vitesse linéaire et angulaire à zero gros il y a tous les ingrédients qui sortent de ta poelle!
-                food.rb.linearVelocity = Vector3.zero;
-                food.rb.angularVelocity = Vector3.zero;
-                // Echelle du GD
+                _storedFoodsArray[slotIndex] = food;
+
+                // sauver le parent d’origine
+                Transform oldParent = food.transform.parent.parent;
+
+                food.transform.SetParent(ingredientPoints[slotIndex]);
+                food.transform.localPosition = Vector3.zero;
+                food.transform.localRotation = Quaternion.identity;
+
+                if (food.Rb != null)
+                {
+                    food.Rb.isKinematic = true;
+                    food.Rb.useGravity = false;
+                    food.Rb.linearVelocity = Vector3.zero;
+                    food.Rb.angularVelocity = Vector3.zero;
+                }
+
                 if (ingredientScales.Length > slotIndex)
-                    food.gameObject.transform.localScale = ingredientScales[slotIndex];
+                    food.transform.localScale = ingredientScales[slotIndex];
+
+                // si l’ancien parent n’est pas null → le détruire après avoir replacé l’enfant
+                if (oldParent != null)
+                {
+                    Destroy(oldParent.gameObject);
+                }
             }
 
             food.gameObject.SetActive(true); // On les voit dans la poêle !
@@ -109,7 +133,17 @@ namespace Machine.Runtime
             foreach (var food in _storedFoods)
             {
                 if (food != null)
-                    Destroy(food.gameObject);
+                {
+                    // Libère le slot correspondant 
+                    int slot = Array.IndexOf(_storedFoodsArray, food);
+                    if (slot != -1)
+
+                        _storedFoodsArray[slot] = null;
+                }
+
+
+                Destroy(food.gameObject);
+
             }
             _storedFoods.Clear();
             if (poopPrefab != null)
@@ -259,7 +293,12 @@ namespace Machine.Runtime
                 if (foodToRemove != null)
                 {
                     _storedFoods.Remove(foodToRemove);
-                    Destroy(foodToRemove.gameObject.transform.parent.parent.gameObject);
+                    int slotToFree = Array.IndexOf(_storedFoodsArray, foodToRemove);
+                    if (slotToFree != -1)
+                        _storedFoodsArray[slotToFree] = null;
+
+                    Destroy(foodToRemove.gameObject);
+                    //Destroy(foodToRemove.gameObject.transform.root.gameObject);
                 }
             }
 

@@ -7,9 +7,13 @@ namespace Machine.Runtime
     {
         public FoodType FoodType;
 
-        public Rigidbody rb;
-        public Grabable grabable;
-        public Transform topmost;
+        private Rigidbody rb;
+        private Grabable grabable;
+        private Transform topmost;
+
+        public Rigidbody Rb { get => rb; }
+        public Grabable Grabable { get => grabable; }
+        public Transform Topmost { get => topmost; }
 
         private void Awake()
         {

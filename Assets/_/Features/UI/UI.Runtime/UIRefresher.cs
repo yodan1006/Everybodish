@@ -14,7 +14,7 @@ namespace UI.Runtime
     {
         #region Publics
         public GameObject clock;
-        public GameObject[] playerUis ;
+        public GameObject[] playerUis;
         public GameObject[] playerTexts;
         public Disabler[] upArrows;
         public Disabler[] downArrows;
