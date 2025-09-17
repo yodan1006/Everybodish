@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Score.Runtime;
 using Spawner.Runtime;
 using Timer.Runtime;
@@ -26,7 +27,7 @@ namespace Round.Runtime
         public UnityEvent OnRoundFinished = new();
         public UnityEvent<bool> OnPlayerLifeStatus = new();
         private GameTimer gameTimer;
-        public List<PlayerInput> playerList;
+        private readonly Dictionary<int, PlayerInput> players = new();
 
         public float WarmupTimeDelta { get => warmupTimeDelta; }
 
@@ -49,7 +50,7 @@ namespace Round.Runtime
 
         private void EndRound()
         {
-            foreach (PlayerInput player in playerList)
+            foreach (PlayerInput player in players.Values)
             {
                 if (player != null)
                 {
@@ -57,7 +58,7 @@ namespace Round.Runtime
                     player.actions.FindActionMap("Player").Disable();
                 }
             }
-            playerList.Clear();
+            players.Clear();
             SceneLoader loader = FindAnyObjectByType<SceneLoader>();
             if (loader != null)
             {
@@ -67,7 +68,7 @@ namespace Round.Runtime
 
         private void StartRound()
         {
-            foreach (PlayerInput player in playerList)
+            foreach (PlayerInput player in players.Values)
             {
                 player.GetComponent<SpawnSystem>().enabled = true;
                 player.actions.FindActionMap("Player").Enable();
@@ -101,13 +102,13 @@ namespace Round.Runtime
 
         public void JoinRound(PlayerInput playerInput)
         {
-            playerList.Add(playerInput);
+            players.Add(playerInput.playerIndex, playerInput);
             GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
         }
 
         public void LeaveRound(PlayerInput playerInput)
         {
-            playerList.Remove(playerInput);
+            players.Remove(playerInput.playerIndex);
         }
 
         private void OnEnable()
@@ -122,6 +123,11 @@ namespace Round.Runtime
         {
             gameTimer.StopGameTimer();
             OnRoundFinished.Invoke();
+        }
+
+        public List<PlayerInput> Players()
+        {
+            return players.Values.ToList<PlayerInput>();
         }
     }
 }

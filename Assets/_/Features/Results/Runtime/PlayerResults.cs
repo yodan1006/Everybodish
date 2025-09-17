@@ -31,33 +31,41 @@ namespace Results.Runtime
             DontDestroyOnLoad(this);
             if (RoundSystem.Instance != null)
             {
-                List<PlayerInput> playerList = RoundSystem.Instance.playerList;
-                Dictionary<int, int> playerScores = GlobalScoreEventSystem.PlayerScores;
+                List<PlayerInput> playerList = RoundSystem.Instance.Players();
+                Debug.Log($"Round Player List Size: {playerList.Count}");
+                List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
                 bool passed = GlobalScoreEventSystem.Passed();
                 int maxScore = 0;
                 int minScore = 0;
                 teamResult[0].SetActive(passed);
                 teamResult[1].SetActive(!passed);
-                if (playerScores.Count > 4)
+                if (list.Count > 4)
                 {
                     Debug.LogError("Why are we still here? Just to suffer?", this);
                 }
                 else
                 {
                     int i = 0;
-
-                    foreach (var item in playerScores)
+                    foreach ((int player, int score) item in list)
                     {
-                        if (maxScore < item.Value)
+                        Debug.Log("Setting player " + item.player);
+                        if (maxScore < item.score)
                         {
-                            maxScore = item.Value;
+                            maxScore = item.score;
                         }
-                        if (minScore > item.Value)
+                        if (minScore > item.score)
                         {
-                            minScore = item.Value;
+                            minScore = item.score;
                         }
+                        playerUis[i].SetActive(true);
                         ranks[i].SetRankIcon(i);
-                        sliders[i].value = item.Value;
+                        sliders[i].value = item.score;
+                        PlayerInput player = playerList[item.player];
+                        SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                        AnimalType animalType = selectSkin.CurrentAnimalType();
+                        icons[i].SetPlayerIcon(animalType);
+                        icons[i].SetPlayerLabel(item.player);
+                        playerScore[i].text = item.score.ToString();
                         i++;
                     }
                 }
@@ -69,26 +77,32 @@ namespace Results.Runtime
                     item.minValue = minScore;
                 }
             }
+            else
+            {
+                Debug.LogError("ROUND IS NULL!", this);
+            }
         }
 
 
         public void SetIcons()
         {
             RoundSystem round = RoundSystem.Instance;
-            int playerCount = round.playerList.Count;
+            List<PlayerInput> playerList = round.Players();
+            int playerCount = playerList.Count;
             for (int i = 0; i < playerUis.Length; i++)
             {
                 PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
                 if (i < playerCount)
                 {
                     playerUis[i].SetActive(true);
-                    PlayerInput player = round.playerList[i];
+                    PlayerInput player = playerList[i];
                     SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                     AnimalType animalType = selectSkin.CurrentAnimalType();
 
                     if (playerIcon != null)
                     {
                         playerIcon.SetPlayerIcon(animalType);
+                        playerIcon.SetPlayerLabel(player.playerIndex);
                     }
                 }
                 else
