@@ -32,6 +32,7 @@ namespace Round.Runtime
 
         private void Awake()
         {
+            DontDestroyOnLoad(this);
             gameTimer = GetComponent<GameTimer>();
             if (Instance == null)
             {
@@ -58,7 +59,10 @@ namespace Round.Runtime
             }
             playerList.Clear();
             SceneLoader loader = FindAnyObjectByType<SceneLoader>();
-            loader.LoadSceneWithLoading(3);
+            if (loader != null)
+            {
+                loader.LoadSceneWithLoading(3);
+            }
         }
 
         private void StartRound()
