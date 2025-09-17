@@ -31,20 +31,6 @@ namespace LobbyInstantiate.Runtime
                 playerInput.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                 playerInput.transform.name = deviceName + " Player";
             }
-
-            // if (playerInput.transform.parent != null)
-            // {
-            //     if (playerInput.transform.parent.TryGetComponent<PlayerTeleporter>(out PlayerTeleporter teleporter))
-            //     {
-            //         teleporter.TeleportTo(spawn);
-            //     }
-            //     playerInput.transform.parent.name = deviceName + " Player";
-            // }
-            // else
-            // {
-            //     playerInput.transform.SetPositionAndRotation(spawn.transform.position, spawn.transform.rotation);
-            //     playerInput.transform.name = deviceName + " Player";
-            // }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace UI.Runtime
         private void OnScoresChanged()
         {
             Debug.Log("OnScoresChanged");
-            List<PlayerInput> playerList = round.playerList;
+            List<PlayerInput> playerList = round.Players();
             int playerCount = playerList.Count;
             int playerScoreboardCount = playerScoreboardList.Count;
             for (int i = 0; i < playerScoreboardList.Count; i++)

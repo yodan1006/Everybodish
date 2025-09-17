@@ -5,7 +5,7 @@ namespace Billboard.Runtime
     public class Billboard2d : MonoBehaviour
     {
         [SerializeField] private BillboardType billboardType;
-        public enum BillboardType { LookAtCamera, CameraForward}
+        public enum BillboardType { LookAtCamera, CameraForward }
 
         private void LateUpdate()
         {
@@ -14,7 +14,7 @@ namespace Billboard.Runtime
                 case BillboardType.LookAtCamera:
                     transform.LookAt(Camera.main.transform.position, Vector3.up);
                     break;
-                    case BillboardType.CameraForward:
+                case BillboardType.CameraForward:
                     transform.forward = Camera.main.transform.forward;
                     break;
             }

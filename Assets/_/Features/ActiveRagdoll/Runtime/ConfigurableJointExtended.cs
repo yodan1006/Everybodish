@@ -74,14 +74,9 @@ namespace ActiveRagdoll.Runtime
             joint = GetComponent<ConfigurableJoint>();
         }
 
-        private void OnEnable()
-        {
-            Debug.Log("Resetting joint rotation");
-
-        }
-
         private void OnDisable()
         {
+            //Reset joint rotation to fix Unity's animator bug
             transform.localRotation = initialLocalRotation;
         }
 

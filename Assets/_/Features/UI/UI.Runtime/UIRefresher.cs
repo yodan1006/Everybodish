@@ -20,13 +20,10 @@ namespace UI.Runtime
         public Disabler[] downArrows;
         public GameObject pause;
         public float arrowDuration = 2;
-
         #endregion
 
 
         #region Unity Api
-
-
         // Update is called once per frame
         private void Update()
         {
@@ -53,13 +50,12 @@ namespace UI.Runtime
             scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
         }
 
-
         private void OnScoreEvent(ScoreEvent scoreEvent)
         {
-            List<PlayerInput> playerList = round.playerList;
+            List<PlayerInput> playerList = round.Players();
             for (int i = 0; i < playerList.Count; i++)
             {
-                Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
+                // Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
                 if (scoreEvent.Player == playerList[i].playerIndex)
                 {
                     if (scoreEvent.ScoreDelta > 0)
@@ -75,7 +71,6 @@ namespace UI.Runtime
             }
         }
 
-
         private void OnWarmupStarted()
         {
             //Disable player ui
@@ -90,7 +85,6 @@ namespace UI.Runtime
             }
         }
 
-
         private void OnWarmupFinished()
         {
             //Disable player ui
@@ -104,13 +98,10 @@ namespace UI.Runtime
                 item.SetActive(true);
             }
         }
-
-
-
-
         private void OnRoundStarted()
         {
-            int playerCount = round.playerList.Count;
+            List<PlayerInput> players = round.Players();
+            int playerCount = players.Count;
             for (int i = 0; i < playerUis.Length; i++)
             {
                 PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
@@ -118,7 +109,7 @@ namespace UI.Runtime
                 {
                     playerUis[i].SetActive(true);
                     playerTexts[i].SetActive(true);
-                    PlayerInput player = round.playerList[i];
+                    PlayerInput player = players[i];
                     SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                     AnimalType animalType = selectSkin.CurrentAnimalType();
 
@@ -140,19 +131,7 @@ namespace UI.Runtime
         {
 
         }
-
         #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
 
         #region Private and Protected
         private GameTimer timer;

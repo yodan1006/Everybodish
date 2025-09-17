@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Round.Runtime;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace InteractionPlayerStart.Runtime
 {
-    public class activateScriptOnSwitchScene : MonoBehaviour
+    public class ActivateScriptOnSwitchScene : MonoBehaviour
     {
 
 
@@ -25,10 +26,17 @@ namespace InteractionPlayerStart.Runtime
         {
             if (scene.buildIndex == 1)
             {
-                var allPlayers = FindObjectsOfType<PlayerInput>().ToList();
+                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
 
-                var round = FindFirstObjectByType<RoundSystem>();
-                round.playerList = allPlayers;
+                RoundSystem round = FindFirstObjectByType<RoundSystem>();
+                if (round != null)
+                {
+                    foreach (PlayerInput playerInput in playerInputs)
+                    {
+                        round.JoinRound(playerInput);
+                    }
+                }
+
             }
 
         }
