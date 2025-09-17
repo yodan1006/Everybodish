@@ -38,7 +38,7 @@ namespace UI.Runtime
             needle.transform.rotation = Quaternion.Euler(0, 0, -needleAngle + needleStartRotation);
             cadranMask.fillAmount = needleNormalizedOffset;
         }
-        private void Awake()
+        private void Start()
         {
             scoreSystem = GetComponent<GlobalScoreEventSystem>();
             timer = GetComponent<GameTimer>();
