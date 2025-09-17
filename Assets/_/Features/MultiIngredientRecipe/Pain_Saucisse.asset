@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c91efd6ed6f44b41a391e19c2db0d805, type: 3}
-  m_Name: Riettes
+  m_Name: Pain_Saucisse
   m_EditorClassIdentifier: 
-  IngredientsInput: 0b000000060000000d000000
-  Output: 19
-  OutputPrefab: {fileID: 8907286983694278074, guid: 867ce8c0d10c62045be67e4b303b44ba, type: 3}
+  IngredientsInput: 16000000100000000a000000
+  Output: 26
+  OutputPrefab: {fileID: 0}
