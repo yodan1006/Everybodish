@@ -59,7 +59,10 @@ namespace Round.Runtime
             }
             playerList.Clear();
             SceneLoader loader = FindAnyObjectByType<SceneLoader>();
+            if (loader != null)
+            {
             loader.LoadSceneWithLoading(3);
+            }
         }
 
         private void StartRound()
