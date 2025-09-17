@@ -53,6 +53,9 @@ MonoBehaviour:
   respawnTime: 5
   respawnTimeDelta: 0
   playerPrefab: {fileID: 259693241692249912}
+  onPlayerLifeStatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1917181855189238406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +292,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbyPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 433505672345845218, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    - target: {fileID: 3917244790922581603, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -332,14 +335,6 @@ PrefabInstance:
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7202203583501668783, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9193291211187720016, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

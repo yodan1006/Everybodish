@@ -29,14 +29,16 @@
 
 #if UNITY_EDITOR
 
-namespace Spine.Unity {
+namespace Spine.Unity
+{
 
-	public static class BuildUtilities {
-		public static bool IsInSkeletonAssetBuildPreProcessing = false;
-		public static bool IsInSkeletonAssetBuildPostProcessing = false;
-		public static bool IsInSpriteAtlasBuildPreProcessing = false;
-		public static bool IsInSpriteAtlasBuildPostProcessing = false;
-	}
+    public static class BuildUtilities
+    {
+        public static bool IsInSkeletonAssetBuildPreProcessing = false;
+        public static bool IsInSkeletonAssetBuildPostProcessing = false;
+        public static bool IsInSpriteAtlasBuildPreProcessing = false;
+        public static bool IsInSpriteAtlasBuildPostProcessing = false;
+    }
 }
 
 #endif

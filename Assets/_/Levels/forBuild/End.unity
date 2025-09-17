@@ -460,7 +460,6 @@ GameObject:
   m_Component:
   - component: {fileID: 840131437}
   - component: {fileID: 840131436}
-  - component: {fileID: 840131435}
   - component: {fileID: 840131434}
   m_Layer: 0
   m_Name: PlayerCamera
@@ -513,14 +512,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &840131435
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840131433}
-  m_Enabled: 1
 --- !u!20 &840131436
 Camera:
   m_ObjectHideFlags: 0
@@ -606,6 +597,18 @@ PrefabInstance:
     - target: {fileID: 3714786064358678579, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714786064358678579, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714786064358678579, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
+      value: c4d9a520-fa65-44f7-9385-d635d081d700
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714786064358678579, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/enter
       objectReference: {fileID: 0}
     - target: {fileID: 3714786064358678579, guid: bd1f62f9a48494a47bebdf7b1d78fb3f, type: 3}
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1222,6 +1225,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -132
       objectReference: {fileID: 0}
+    - target: {fileID: 328645587792708629, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1355514982635288042, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1234,6 +1241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_P_END
       objectReference: {fileID: 0}
+    - target: {fileID: 2185942468065061382, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2432486114886560905, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1257,6 +1268,14 @@ PrefabInstance:
     - target: {fileID: 3693187914840507097, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713447558942073980, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816397883062103982, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5946953301782451625, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1379,7 +1398,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3816397883062103982, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}

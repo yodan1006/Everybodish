@@ -1,17 +1,11 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace UI.Runtime
+namespace Results.Runtime
 {
-    public class PlayerResults : MonoBehaviour
+    public class ResultScreenSpawner : MonoBehaviour
     {
         #region Publics
-        public PlayerIcon[] icons;
-        public Slider[] sliders;
-        public TextMeshProUGUI[] playerScore;
-        public PlayerRank[] ranks;
-        public GameObject[] teamResult;
+
         #endregion
 
 
