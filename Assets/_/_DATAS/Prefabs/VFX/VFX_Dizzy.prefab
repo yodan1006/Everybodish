@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &20028101991488154
+--- !u!1 &2273349906620061896
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6062405149249515519}
   m_Layer: 0
   m_Name: VFX_Dizzy
-  m_TagString: Untagged
+  m_TagString: ExtraBone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22,9 +22,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20028101991488154}
+  m_GameObject: {fileID: 2273349906620061896}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f98d47243fc00c04aa09b4e358273f43, type: 2}
     - target: {fileID: 4901747678550625283, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.33
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4901747678550625283, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901747678550625283, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.067
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4901747678550625283, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -287,6 +287,38 @@ PrefabInstance:
     - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286234656346848741, guid: 5ecebb23392d02d44b1765d355d13fa1, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

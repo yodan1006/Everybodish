@@ -38,11 +38,11 @@ namespace UI.Runtime
             needle.transform.rotation = Quaternion.Euler(0, 0, -needleAngle + needleStartRotation);
             cadranMask.fillAmount = needleNormalizedOffset;
         }
-        private void Awake()
+        private void Start()
         {
             scoreSystem = GetComponent<GlobalScoreEventSystem>();
             timer = GetComponent<GameTimer>();
-            round = GetComponent<RoundSystem>();
+            round = RoundSystem.Instance;
             needle = GameObject.Find("NEEDLE");
             cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
@@ -73,9 +73,42 @@ namespace UI.Runtime
                 }
 
             }
+        }    
+        
+        
+        private void OnWarmupStarted()
+        {
+            //Disable player ui
+            foreach (var item in playerTexts)
+            {
+                item.SetActive(false);
+            }
+
+            foreach(var item in playerUis)
+            {
+                item.SetActive(false);
+            }
         }
 
+
         private void OnWarmupFinished()
+        {
+            //Disable player ui
+            foreach (var item in playerTexts)
+            {
+                item.SetActive(true);
+            }
+
+            foreach (var item in playerUis)
+            {
+                item.SetActive(true);
+            }
+        }
+
+
+
+
+        private void OnRoundStarted()
         {
             int playerCount = round.playerList.Count;
             for (int i = 0; i < playerUis.Length; i++)
@@ -101,23 +134,13 @@ namespace UI.Runtime
                 }
 
             }
-        }
-
-        private void OnWarmupStarted()
-        {
-
-        }
-
-
+        } 
+        
         private void OnRoundFinished()
         {
 
         }
 
-        private void OnRoundStarted()
-        {
-
-        }
         #endregion
 
 

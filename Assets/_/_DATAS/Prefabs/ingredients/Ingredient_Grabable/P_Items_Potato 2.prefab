@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: holdDistanceFromPlayer.y
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2861112363294944223, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       propertyPath: holdDistanceFromPlayer.z
@@ -205,6 +205,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2355703839678857151}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eeeb88c214c738d48adb14c411ae2755, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0

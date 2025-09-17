@@ -1,1 +1,22 @@
-{"name":"Results.Runtime","rootNamespace":"Results.Runtime","references":[],"includePlatforms":[]}
+{
+    "name": "Results.Runtime",
+    "rootNamespace": "Results.Runtime",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:c4e1b6b1ffe400e45b1470b98ff44b51",
+        "GUID:b1cb290971a2e6e47baf77c5ac3a92c2",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:c10d74f1664bf6049af44010a5c97c77",
+        "GUID:820c632310378204b8b335f9e71d2469",
+        "GUID:25c500f9f3b2074488297a62a53cad67"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
