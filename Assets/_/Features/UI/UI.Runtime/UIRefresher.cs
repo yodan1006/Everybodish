@@ -73,9 +73,9 @@ namespace UI.Runtime
                 }
 
             }
-        }    
-        
-        
+        }
+
+
         private void OnWarmupStarted()
         {
             //Disable player ui
@@ -84,7 +84,7 @@ namespace UI.Runtime
                 item.SetActive(false);
             }
 
-            foreach(var item in playerUis)
+            foreach (var item in playerUis)
             {
                 item.SetActive(false);
             }
@@ -134,8 +134,8 @@ namespace UI.Runtime
                 }
 
             }
-        } 
-        
+        }
+
         private void OnRoundFinished()
         {
 
