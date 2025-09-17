@@ -32,6 +32,7 @@ namespace Round.Runtime
 
         private void Awake()
         {
+            DontDestroyOnLoad(this);
             gameTimer = GetComponent<GameTimer>();
             if (Instance == null)
             {

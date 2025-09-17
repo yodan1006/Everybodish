@@ -17,6 +17,7 @@ namespace ActiveRagdoll.Runtime
         public GameObject physicsRig;
         public GameObject physicsHip;
         [SerializeField] protected PlayerTeleporter playerTeleporter;
+        public ParticleSystem stunEffect;
         #endregion
 
 
@@ -48,6 +49,7 @@ namespace ActiveRagdoll.Runtime
             }
             _animator.SetBool("Stunned", true);
             _activeRagdoll.DisconnectRoot();
+            stunEffect.Play();
         }
 
         private void OnDisable()
@@ -63,7 +65,7 @@ namespace ActiveRagdoll.Runtime
             }
             _animator.SetBool("Stunned", false);
             playerTeleporter.ReconnectCharacterControllerToRagdoll();
-
+            stunEffect.Stop();
         }
 
         private void Update()
