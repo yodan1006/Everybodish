@@ -292,7 +292,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbyPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 433505672345845218, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    - target: {fileID: 3917244790922581603, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
