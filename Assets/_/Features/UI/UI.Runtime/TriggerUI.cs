@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace UI.Runtime
 {
     public class TriggerUI : MonoBehaviour
     {
-        
+
         [SerializeField] private GameObject beActivated;
         private bool activated;
 

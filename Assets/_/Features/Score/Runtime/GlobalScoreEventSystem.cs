@@ -78,7 +78,12 @@ namespace Score.Runtime
 
         public static void RegisterScoreEvent(int player, ScoreEventType eventType, int? targetPlayer = null)
         {
-            float currentTime = GameTimer.Instance.currentTime;
+            float currentTime = 0;
+            GameTimer gameTimer = GameTimer.Instance;
+            if (gameTimer != null)
+            {
+                currentTime = gameTimer.currentTime;
+            }
             int scoreDelta = GetScoreDelta(eventType);
             ScoreEvent scoreEvent = new(player, currentTime, eventType, scoreDelta, targetPlayer);
             scoreEventLog.Add(scoreEvent);
@@ -96,7 +101,6 @@ namespace Score.Runtime
                 Instance.OnScoreEvent?.Invoke(scoreEvent);
                 Instance.OnScoresChanged?.Invoke();
             }
-
         }
 
         public static int GetScore(int player)
