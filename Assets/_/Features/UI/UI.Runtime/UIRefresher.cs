@@ -43,7 +43,6 @@ namespace UI.Runtime
             cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
             round.OnGameplayStarted.AddListener(OnRoundStarted);
-            round.OnGameplayFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
             scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
@@ -118,12 +117,7 @@ namespace UI.Runtime
                 }
 
             }
-            Debug.LogError("Ui initialization complete");
-        }
-
-        private void OnRoundFinished()
-        {
-
+           // Debug.LogError("Ui initialization complete");
         }
         #endregion
 

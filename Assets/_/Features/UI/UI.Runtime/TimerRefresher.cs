@@ -1,3 +1,4 @@
+using System;
 using Timer.Runtime;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Round.Runtime
         private RoundSystem round;
         [SerializeField] private TextMeshProUGUI roundTimeleft;
         [SerializeField] private TextMeshProUGUI warmupTimeleft;
+        [SerializeField] private GameObject finishText;
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
@@ -23,6 +25,18 @@ namespace Round.Runtime
             round.OnGameplayFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
+            round.OnCooldownStarted.AddListener(OnCooldownStarted);
+            round.OnCooldownFinished.AddListener(OnCooldownFinished);
+        }
+
+        private void OnCooldownFinished()
+        {
+            finishText.SetActive(false);
+        }
+
+        private void OnCooldownStarted()
+        {
+            finishText.SetActive(true);
         }
 
         private void OnTimerStopped()
@@ -32,8 +46,7 @@ namespace Round.Runtime
 
         private void OnTimerPaused()
         {
-            enabled
-                = false;
+            enabled = false;
         }
 
         private void OnTimerStarted()
@@ -45,6 +58,7 @@ namespace Round.Runtime
         {
             warmupTimeleft.enabled = true;
             roundTimeleft.enabled = false;
+            finishText.SetActive(false);
         }
         private void OnWarmupFinished()
         {

@@ -141,9 +141,10 @@ namespace Round.Runtime
                 case RoundState.Cooldown:
                     gameTimer.StopGameTimer();
                     OnGameplayFinished.Invoke();
-                    OnCooldownFinished.Invoke();
+                    OnCooldownStarted.Invoke();
                     break;
                 case RoundState.Ended:
+                    OnCooldownFinished.Invoke();
                     OnRoundEnd.Invoke();
                     enabled = false;
                     break;
