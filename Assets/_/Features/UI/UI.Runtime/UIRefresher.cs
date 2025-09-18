@@ -117,7 +117,7 @@ namespace UI.Runtime
                 }
 
             }
-           // Debug.LogError("Ui initialization complete");
+            // Debug.LogError("Ui initialization complete");
         }
         #endregion
 

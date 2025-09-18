@@ -2,7 +2,7 @@ using ActiveRagdoll.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace LobbyInstantiate.Runtime
+namespace Spawner.Runtime
 {
     public class SpawnPoint : MonoBehaviour
     {

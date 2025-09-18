@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
@@ -23,66 +24,76 @@ namespace Results.Runtime
         #endregion
 
 
-        #region Unity Api
-
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Awake()
         {
-            DontDestroyOnLoad(this);
-            if (RoundSystem.Instance != null)
             {
-                List<PlayerInput> playerList = RoundSystem.Instance.Players();
-                Debug.Log($"Round Player List Size: {playerList.Count}");
-                List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
-                bool passed = GlobalScoreEventSystem.Passed();
-                int maxScore = 0;
-                int minScore = 0;
-                teamResult[0].SetActive(passed);
-                teamResult[1].SetActive(!passed);
-                if (list.Count > 4)
+                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+                Debug.LogError(GlobalScoreEventSystem.PlayerScores);
+                if (RoundSystem.Instance != null)
                 {
-                    Debug.LogError("Why are we still here? Just to suffer?", this);
+                    List<PlayerInput> playerList = RoundSystem.Instance.Players();
+                    Debug.Log($"Round Player List Size: {playerList.Count}");
+                    List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
+                    Debug.Log($"Team score {GlobalScoreEventSystem.TeamScore()}");
+                    bool passed = GlobalScoreEventSystem.Passed();
+                    int maxScore = 0;
+                    int minScore = 0;
+                    teamResult[0].SetActive(passed);
+                    teamResult[1].SetActive(!passed);
+
+                    if (list.Count > 4)
+                    {
+                        Debug.LogError("Why are we still here? Just to suffer?", this);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            int playerIndex = list[i].player;
+                            int score = list[i].score;
+                            Debug.Log($"Setting player {playerIndex} with score {score}");
+
+                            if (maxScore < score)
+                            {
+                                maxScore = score;
+                            }
+                            if (minScore > score)
+                            {
+                                minScore = score;
+                            }
+                            playerUis[i].SetActive(true);
+                            ranks[i].SetRankIcon(i);
+                            sliders[i].value = score;
+                            //Player input dictionary is lost on scene change.
+                            // PlayerInput player = playerList[item.player];
+                            //   SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                            // AnimalType animalType = selectSkin.CurrentAnimalType();
+                            // icons[i].SetPlayerIcon(animalType);
+                            icons[i].SetPlayerLabel(playerIndex);
+                            playerScore[i].text = score.ToString();
+                            i++;
+                        }
+                    }
+
+                    for (int i = 0; i < sliders.Length; i++)
+                    {
+                        if (i < playerInputs.Count)
+                        {
+                            sliders[i].gameObject.SetActive(true);
+                            sliders[i].maxValue = maxScore;
+                            sliders[i].minValue = minScore;
+
+                        }
+
+                    }
                 }
                 else
                 {
-                    int i = 0;
-                    foreach ((int player, int score) item in list)
-                    {
-                        Debug.Log("Setting player " + item.player);
-                        if (maxScore < item.score)
-                        {
-                            maxScore = item.score;
-                        }
-                        if (minScore > item.score)
-                        {
-                            minScore = item.score;
-                        }
-                        playerUis[i].SetActive(true);
-                        ranks[i].SetRankIcon(i);
-                        sliders[i].value = item.score;
-                        PlayerInput player = playerList[item.player];
-                        SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                        AnimalType animalType = selectSkin.CurrentAnimalType();
-                        icons[i].SetPlayerIcon(animalType);
-                        icons[i].SetPlayerLabel(item.player);
-                        playerScore[i].text = item.score.ToString();
-                        i++;
-                    }
+                    Debug.LogError("ROUND IS NULL!", this);
                 }
-
-                foreach (var item in sliders)
-                {
-                    item.gameObject.SetActive(true);
-                    item.maxValue = maxScore;
-                    item.minValue = minScore;
-                }
-            }
-            else
-            {
-                Debug.LogError("ROUND IS NULL!", this);
             }
         }
-
 
         public void SetIcons()
         {
@@ -112,30 +123,6 @@ namespace Results.Runtime
 
             }
         }
-
-        // Update is called once per frame
-        private void Update()
-        {
-
-        }
-
-        #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
-
-        #region Private and Protected
-
-        #endregion
-
 
     }
 }

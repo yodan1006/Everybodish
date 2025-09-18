@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9cf95f430bb0c448bde0c97b726c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 0}
+  spawn: {fileID: 769525023}
 --- !u!4 &464330975
 Transform:
   m_ObjectHideFlags: 0
@@ -1262,6 +1262,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_P_END
       objectReference: {fileID: 0}
+    - target: {fileID: 3807597142021393828, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687385690131538550, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6761286979915854361, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1340,6 +1348,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761286979915854361, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263723472414234854, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185216117405638642, guid: 1f0bf0a525db9944f9c200f70cf6d51e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

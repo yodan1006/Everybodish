@@ -1,45 +1,29 @@
 using System.Collections.Generic;
 using System.Linq;
+using Spawner.Runtime;
 using Round.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace InteractionPlayerStart.Runtime
 {
     public class ActivateScriptOnSwitchScene : MonoBehaviour
     {
+       public  SpawnPoint spawner;
 
-
-        private void OnEnable()
+        private void Awake()
         {
-            //Disabled in favor of letting the playerinputmanager do it's work and let the player join the round this way for the moment
-            //    SceneManager.sceneLoaded += OnSceneLoaded;
-        }
+            List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
 
-        private void OnDisable()
-        {
-            //     SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.buildIndex == 1)
+            RoundSystem round = FindFirstObjectByType<RoundSystem>();
+            if (round != null)
             {
-                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
-
-                RoundSystem round = FindFirstObjectByType<RoundSystem>();
-                if (round != null)
+                foreach (PlayerInput playerInput in playerInputs)
                 {
-                    foreach (PlayerInput playerInput in playerInputs)
-                    {
-                        round.JoinRound(playerInput);
-                    }
+                    round.JoinRound(playerInput);
+                    spawner.OnPlayerSpawned(playerInput);
                 }
-
             }
-
         }
     }
 }
