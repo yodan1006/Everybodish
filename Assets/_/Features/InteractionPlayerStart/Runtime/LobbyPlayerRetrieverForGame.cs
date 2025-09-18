@@ -7,13 +7,15 @@ using UnityEngine.InputSystem;
 
 namespace InteractionPlayerStart.Runtime
 {
-    public class ActivateScriptOnSwitchScene : MonoBehaviour
+    public class LobbyPlayerRetrieverForGame : MonoBehaviour
     {
         public SpawnPoint spawner;
 
-        private void Awake()
+        private void Start()
         {
+            Debug.LogError("Retrieveing players!", this);
             List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+            Debug.LogError($"Found {playerInputs.Count} players");
             if (RoundSystem.Instance != null)
             {
                 foreach (PlayerInput playerInput in playerInputs)
@@ -21,6 +23,9 @@ namespace InteractionPlayerStart.Runtime
                     RoundSystem.Instance.JoinRound(playerInput);
                     spawner.OnPlayerSpawned(playerInput);
                 }
+            } else
+            {
+                Debug.LogError("ROUND IS NOT INITIALIZED YET");
             }
         }
     }

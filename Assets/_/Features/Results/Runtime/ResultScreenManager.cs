@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Round.Runtime;
 using Spawner.Runtime;
+using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,11 +20,28 @@ namespace Results.Runtime
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
+
+            //TODO : SORT PLAYERS BY SCORE
             if (RoundSystem.Instance != null)
             {
-                System.Collections.Generic.List<PlayerInput> playerInputs = RoundSystem.Instance.Players();
-                Debug.Log(playerInputs);
+            //    List<PlayerInput> playerInputs = RoundSystem.Instance.Players();
+             //   Debug.Log(playerInputs);
             }
+            Debug.LogError("Retrieveing players!", this);
+            List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+            Debug.LogError($"Found {playerInputs.Count} players");
+            if (RoundSystem.Instance != null)
+            {
+                foreach (PlayerInput playerInput in playerInputs)
+                {
+                    spawn.OnPlayerSpawned(playerInput);
+                }
+            }
+            else
+            {
+                Debug.LogError("ROUND IS NOT INITIALIZED YET");
+            }
+        
         }
 
         // Update is called once per frame
