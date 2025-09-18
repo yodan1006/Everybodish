@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.18515624, y: 0.18515624, z: 0.18515624}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recettesDisponibles:
-  - {fileID: 11400000, guid: 170ab89c9e8b24842ad1ed357fbc4620, type: 2}
-  - {fileID: 11400000, guid: 170ab89c9e8b24842ad1ed357fbc4620, type: 2}
+  - {fileID: 11400000, guid: 950d7f2526645a1488682f2dc42271b4, type: 2}
+  - {fileID: 11400000, guid: 36936686789873c49847c4ca885f444d, type: 2}
+  - {fileID: 11400000, guid: 97fef16ec95c14547b7304e056a9c9fa, type: 2}
   maxCommandes: 5
   tempsEntreCommandes: 5
-  startY: -450
-  offsetY: 60
+  startY: -300
+  offsetY: 200
   parentUI: {fileID: 0}
