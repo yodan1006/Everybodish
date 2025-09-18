@@ -243,7 +243,7 @@ namespace Machine.Runtime
             _goReturn = false;
             if (crame)
             {
-
+                uiBarProgression.SetActive(false);
                 WrongIngredient(null); // Apparition du caca
                 _isCooking = false;
                 currentCookingRoutine = null;
@@ -284,6 +284,7 @@ namespace Machine.Runtime
             }
             if (crame)
             {
+                uiBarProgression.SetActive(false);
                 animator.SetBool("Frying", false);
                 WrongIngredient(null); // Apparition du caca
                 _isCooking = false;
