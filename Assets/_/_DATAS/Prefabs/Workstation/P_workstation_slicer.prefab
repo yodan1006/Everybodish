@@ -166,6 +166,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 7079444430276549061}
   foodSlot: {fileID: 7793743231122422100}
   _isCooking: 0
+  hideItemDuringPrepare: 0
 --- !u!4 &3284703108624303955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe0a15696964c0a4498cd355510ad843, type: 3}
