@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Score.Runtime;
 using Spawner.Runtime;
 using Timer.Runtime;
@@ -18,17 +19,32 @@ namespace Round.Runtime
         public static RoundSystem Instance;
         public int warmupTime = 10;
         private float warmupTimeDelta = 0;
+        public int cooldownTime = 5;
+        private float cooldownTimeDelta = 0;
         public int roundDuration = 300;
 
+        public UnityEvent OnRoundStart = new();
         public UnityEvent OnWarmupStarted = new();
         public UnityEvent OnWarmupFinished = new();
-        public UnityEvent OnRoundStarted = new();
-        public UnityEvent OnRoundFinished = new();
+        public UnityEvent OnGameplayStarted = new();
+        public UnityEvent OnGameplayFinished = new();
+        public UnityEvent OnCooldownStarted = new();
+        public UnityEvent OnCooldownFinished = new();
+        public UnityEvent OnRoundEnd = new();
         public UnityEvent<bool> OnPlayerLifeStatus = new();
         private GameTimer gameTimer;
-        public List<PlayerInput> playerList;
-
+        private readonly Dictionary<int, PlayerInput> players = new();
         public float WarmupTimeDelta { get => warmupTimeDelta; }
+
+        private RoundState state = RoundState.Warmup;
+
+        private enum RoundState
+        {
+            Warmup,
+            Gameplay,
+            Cooldown,
+            Ended
+        }
 
         private void Awake()
         {
@@ -43,13 +59,13 @@ namespace Round.Runtime
                 Debug.Log("More than one Round instanced! Replacing old round by new one.", this);
                 Instance = this;
             }
-            OnRoundStarted.AddListener(StartRound);
-            OnRoundFinished.AddListener(EndRound);
+            OnGameplayStarted.AddListener(StartRound);
+            OnRoundEnd.AddListener(EndRound);
         }
 
         private void EndRound()
         {
-            foreach (PlayerInput player in playerList)
+            foreach (PlayerInput player in players.Values)
             {
                 if (player != null)
                 {
@@ -57,17 +73,17 @@ namespace Round.Runtime
                     player.actions.FindActionMap("Player").Disable();
                 }
             }
-            playerList.Clear();
+            players.Clear();
             SceneLoader loader = FindAnyObjectByType<SceneLoader>();
             if (loader != null)
             {
-            loader.LoadSceneWithLoading(3);
+                loader.LoadSceneWithLoading(3);
             }
         }
 
         private void StartRound()
         {
-            foreach (PlayerInput player in playerList)
+            foreach (PlayerInput player in players.Values)
             {
                 player.GetComponent<SpawnSystem>().enabled = true;
                 player.actions.FindActionMap("Player").Enable();
@@ -77,43 +93,82 @@ namespace Round.Runtime
         // Update is called once per frame
         private void Update()
         {
-            if (WarmupTimeDelta > 0)
+            switch (state)
             {
-                warmupTimeDelta -= Time.deltaTime;
-                if (WarmupTimeDelta < 0)
-                {
-                    OnWarmupFinished.Invoke();
-                    OnRoundStarted.Invoke();
-                    gameTimer.StartGameTimer();
-                }
-            }
-            else
-            {
-                if (gameTimer.GetTime() > roundDuration)
-                {
+                case RoundState.Warmup:
+                    warmupTimeDelta -= Time.deltaTime;
+                    if (WarmupTimeDelta < 0)
+                    {
+                        ChangeState(RoundState.Gameplay);
+                    }
+                    break;
+                case RoundState.Gameplay:
+                    if (gameTimer.GetTime() > roundDuration)
+                    {
+                        ChangeState(RoundState.Cooldown);
 
+                    }
+                    break;
+                case RoundState.Cooldown:
+                    cooldownTimeDelta -= Time.deltaTime;
+                    if (cooldownTimeDelta < 0)
+                    {
+                        ChangeState(RoundState.Ended);
+                    }
+                    break;
+                case RoundState.Ended:
+                    Debug.LogError("This should not happen!");
+                    break;
+            }
+
+        }
+
+        private void ChangeState(RoundState newState)
+        {
+            state = newState;
+            switch (newState)
+            {
+                case RoundState.Warmup:
+                    enabled = true;
+                    OnRoundStart.Invoke();
+                    OnWarmupStarted.Invoke();
+                    break;
+                case RoundState.Gameplay:
+                    gameTimer.StartGameTimer();
+                    OnWarmupFinished.Invoke();
+                    OnGameplayStarted.Invoke();
+                    break;
+                case RoundState.Cooldown:
                     gameTimer.StopGameTimer();
-                    OnRoundFinished.Invoke();
+                    OnGameplayFinished.Invoke();
+                    OnCooldownStarted.Invoke();
+                    break;
+                case RoundState.Ended:
+                    OnCooldownFinished.Invoke();
+                    OnRoundEnd.Invoke();
                     enabled = false;
-                }
+                    break;
             }
         }
 
         public void JoinRound(PlayerInput playerInput)
         {
-            playerList.Add(playerInput);
-            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
+            int playerIndex = playerInput.playerIndex;
+            players.Add(playerIndex, playerInput);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerIndex, ScoreEventType.JoinedGame);
+            Debug.Log($"Player with index {playerIndex} joined Round. Player count : {players.Count}");
         }
 
         public void LeaveRound(PlayerInput playerInput)
         {
-            playerList.Remove(playerInput);
+            players.Remove(playerInput.playerIndex);
         }
 
         private void OnEnable()
         {
 
             warmupTimeDelta = warmupTime;
+            cooldownTimeDelta = cooldownTime;
             OnWarmupStarted.Invoke();
             GlobalScoreEventSystem.ResetAllScores();
         }
@@ -121,7 +176,12 @@ namespace Round.Runtime
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
-            OnRoundFinished.Invoke();
+            OnGameplayFinished.Invoke();
+        }
+
+        public List<PlayerInput> Players()
+        {
+            return players.Values.ToList<PlayerInput>();
         }
     }
 }

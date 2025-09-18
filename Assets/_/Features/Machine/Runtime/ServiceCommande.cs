@@ -35,19 +35,24 @@ namespace Machine.Runtime
 
         public bool ServicePlat(Food food)
         {
-            bool valide = false;
-            food.transform.position = _transformPlat.position;
-            _onService = true;
-            _timer = timeurDispawn;
-            _foodToDestroy = food.gameObject;
-            food.GetComponent<Grabable>().enabled = false;
-
-            if (commandeManager != null)
+            if (food.FoodType != FoodType.Player)
             {
-                valide = commandeManager.VerifierCommande(food.FoodType);
-                Debug.Log(valide ? "Commande validée !" : "Plat non commandé.");
+
+                bool valide = false;
+                food.transform.position = _transformPlat.position;
+                _onService = true;
+                _timer = timeurDispawn;
+                _foodToDestroy = food.gameObject;
+                food.GetComponent<Grabable>().enabled = false;
+
+                if (commandeManager != null)
+                {
+                    valide = commandeManager.VerifierCommande(food.FoodType);
+                    Debug.Log(valide ? "Commande validée !" : "Plat non commandé.");
+                }
+                return valide;
             }
-            return valide;
+            return false;
         }
     }
 }

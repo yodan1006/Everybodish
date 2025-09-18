@@ -1,36 +1,27 @@
+using System.Collections.Generic;
 using System.Linq;
 using Round.Runtime;
+using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace InteractionPlayerStart.Runtime
 {
-    public class activateScriptOnSwitchScene : MonoBehaviour
+    public class ActivateScriptOnSwitchScene : MonoBehaviour
     {
+        public SpawnPoint spawner;
 
-
-        private void OnEnable()
+        private void Awake()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.buildIndex == 1)
+            List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+            if (RoundSystem.Instance != null)
             {
-                var allPlayers = FindObjectsOfType<PlayerInput>().ToList();
-
-                var round = FindFirstObjectByType<RoundSystem>();
-                round.playerList = allPlayers;
+                foreach (PlayerInput playerInput in playerInputs)
+                {
+                    RoundSystem.Instance.JoinRound(playerInput);
+                    spawner.OnPlayerSpawned(playerInput);
+                }
             }
-
         }
     }
 }

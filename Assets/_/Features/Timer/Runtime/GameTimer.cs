@@ -6,29 +6,31 @@ namespace Timer.Runtime
     [DisallowMultipleComponent]
     public class GameTimer : MonoBehaviour
     {
-        public static GameTimer Instance;
+        public static GameTimer Instance { get; private set; }
+
         private bool hasStarted = false;
         private bool isStopped = false;
         public float currentTime = 0;
+
         public bool IsRunning => hasStarted && !isStopped;
         public bool IsStopped => isStopped;
         public bool IsStarted => hasStarted;
-        public UnityEvent onTimerStarted;
-        public UnityEvent onTimerStopped;
-        public UnityEvent onTimerPaused;
+
+        public UnityEvent onTimerStarted = new();
+        public UnityEvent onTimerStopped = new();
+        public UnityEvent onTimerPaused = new();
 
         private void Awake()
         {
-            DontDestroyOnLoad(this);
-            if (Instance == null)
+            if (Instance != null && Instance != this)
             {
-                Instance = this;
-            }
-            else
-            {
-                Debug.LogError("More than one gameTimer instanced! If you want to access the game timer, use GameTimer.Instance.", this);
+                Debug.LogError("Multiple GameTimer instances detected! Destroying duplicate.", this);
+                Destroy(gameObject);
+                return;
             }
 
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optional: persist across scenes
         }
 
         private void Update()
@@ -39,32 +41,25 @@ namespace Timer.Runtime
             }
         }
 
-        /// <summary>
-        /// Starts or restarts the timer.
-        /// </summary>
         public void StartGameTimer()
         {
             currentTime = 0f;
             hasStarted = true;
             isStopped = false;
             Debug.Log("Game timer started.");
+            onTimerStarted?.Invoke();
         }
 
-        /// <summary>
-        /// Stops the timer and freezes the time.
-        /// </summary>
         public void StopGameTimer()
         {
             if (hasStarted && !isStopped)
             {
                 isStopped = true;
                 Debug.Log($"Game timer stopped at {currentTime:F2} seconds.");
+                onTimerStopped?.Invoke();
             }
         }
 
-        /// <summary>
-        /// Resets the timer to zero and stops it.
-        /// </summary>
         public void ResetGameTimer()
         {
             currentTime = 0f;
@@ -73,23 +68,11 @@ namespace Timer.Runtime
             Debug.Log("Game timer reset.");
         }
 
-        /// <summary>
-        /// Returns current elapsed time.
-        /// </summary>
-        public float GetTime()
-        {
-            return currentTime;
-        }
+        public float GetTime() => currentTime;
 
-        public string GetFormatedTime()
-        {
-            return FormatTime(currentTime);
-        }
+        public string GetFormattedTime() => FormatTime(currentTime);
 
-        public string GetFormatedTimeLeft(float targetTime)
-        {
-            return FormatTime(targetTime - currentTime);
-        }
+        public string GetFormattedTimeLeft(float targetTime) => FormatTime(targetTime - currentTime);
 
         public static string FormatTime(float timeInSeconds)
         {

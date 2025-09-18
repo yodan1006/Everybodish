@@ -12,20 +12,52 @@ namespace Round.Runtime
         private RoundSystem round;
         [SerializeField] private TextMeshProUGUI roundTimeleft;
         [SerializeField] private TextMeshProUGUI warmupTimeleft;
+        [SerializeField] private GameObject finishText;
         private void Awake()
         {
             timer = GetComponent<GameTimer>();
             round = GetComponent<RoundSystem>();
-            round.OnRoundStarted.AddListener(OnRoundStarted);
-            round.OnRoundFinished.AddListener(OnRoundFinished);
+            timer.onTimerStarted.AddListener(OnTimerStarted);
+            timer.onTimerPaused.AddListener(OnTimerPaused);
+            timer.onTimerStopped.AddListener(OnTimerStopped);
+            round.OnGameplayStarted.AddListener(OnRoundStarted);
+            round.OnGameplayFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
+            round.OnCooldownStarted.AddListener(OnCooldownStarted);
+            round.OnCooldownFinished.AddListener(OnCooldownFinished);
+        }
+
+        private void OnCooldownFinished()
+        {
+            finishText.SetActive(false);
+        }
+
+        private void OnCooldownStarted()
+        {
+            finishText.SetActive(true);
+        }
+
+        private void OnTimerStopped()
+        {
+            enabled = false;
+        }
+
+        private void OnTimerPaused()
+        {
+            enabled = false;
+        }
+
+        private void OnTimerStarted()
+        {
+            enabled = true;
         }
 
         private void OnWarmupStarted()
         {
             warmupTimeleft.enabled = true;
             roundTimeleft.enabled = false;
+            finishText.SetActive(false);
         }
         private void OnWarmupFinished()
         {
@@ -60,7 +92,7 @@ namespace Round.Runtime
 
             if (roundTimeleft.enabled)
             {
-                roundTimeleft.SetText(timer.GetFormatedTimeLeft(round.roundDuration));
+                roundTimeleft.SetText(timer.GetFormattedTimeLeft(round.roundDuration));
             }
         }
     }

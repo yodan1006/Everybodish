@@ -14,19 +14,15 @@ namespace UI.Runtime
     {
         #region Publics
         public GameObject clock;
-        public GameObject[] playerUis;
-        public GameObject[] playerTexts;
+        public PlayerIcon[] playerIcons;
         public Disabler[] upArrows;
         public Disabler[] downArrows;
         public GameObject pause;
         public float arrowDuration = 2;
-
         #endregion
 
 
         #region Unity Api
-
-
         // Update is called once per frame
         private void Update()
         {
@@ -46,20 +42,18 @@ namespace UI.Runtime
             needle = GameObject.Find("NEEDLE");
             cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
-            round.OnRoundStarted.AddListener(OnRoundStarted);
-            round.OnRoundFinished.AddListener(OnRoundFinished);
+            round.OnGameplayStarted.AddListener(OnRoundStarted);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
             scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
         }
 
-
         private void OnScoreEvent(ScoreEvent scoreEvent)
         {
-            List<PlayerInput> playerList = round.playerList;
+            List<PlayerInput> playerList = round.Players();
             for (int i = 0; i < playerList.Count; i++)
             {
-                Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
+                // Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
                 if (scoreEvent.Player == playerList[i].playerIndex)
                 {
                     if (scoreEvent.ScoreDelta > 0)
@@ -73,86 +67,59 @@ namespace UI.Runtime
                 }
 
             }
-        }    
-        
-        
+        }
+
         private void OnWarmupStarted()
         {
             //Disable player ui
-            foreach (var item in playerTexts)
+            foreach (var item in playerIcons)
             {
-                item.SetActive(false);
+                item.gameObject.SetActive(false);
             }
 
-            foreach(var item in playerUis)
-            {
-                item.SetActive(false);
-            }
         }
-
 
         private void OnWarmupFinished()
         {
             //Disable player ui
-            foreach (var item in playerTexts)
+            foreach (var item in playerIcons)
             {
-                item.SetActive(true);
+                item.gameObject.SetActive(true);
             }
 
-            foreach (var item in playerUis)
-            {
-                item.SetActive(true);
-            }
         }
-
-
-
-
         private void OnRoundStarted()
         {
-            int playerCount = round.playerList.Count;
-            for (int i = 0; i < playerUis.Length; i++)
+            Debug.Log("Round started, updating ui");
+            List<PlayerInput> players = round.Players();
+            int playerCount = players.Count;
+            Debug.Log($"Players in game : {playerCount}");
+            Debug.Log($"Players icons count : {playerIcons.Length}");
+            for (int i = 0; i < playerIcons.Length; i++)
             {
-                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
+                PlayerIcon playerIcon = playerIcons[i];
                 if (i < playerCount)
                 {
-                    playerUis[i].SetActive(true);
-                    playerTexts[i].SetActive(true);
-                    PlayerInput player = round.playerList[i];
+                    playerIcons[i].gameObject.SetActive(true);
+                    PlayerInput player = players[i];
                     SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                     AnimalType animalType = selectSkin.CurrentAnimalType();
 
                     if (playerIcon != null)
                     {
                         playerIcon.SetPlayerIcon(animalType);
+                        playerIcon.SetPlayerLabel(i);
                     }
                 }
                 else
                 {
-                    playerUis[i].SetActive(false);
-                    playerTexts[i].SetActive(false);
+                    playerIcons[i].gameObject.SetActive(false);
                 }
 
             }
-        } 
-        
-        private void OnRoundFinished()
-        {
-
+            // Debug.LogError("Ui initialization complete");
         }
-
         #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
 
         #region Private and Protected
         private GameTimer timer;
