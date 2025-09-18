@@ -14,8 +14,7 @@ namespace UI.Runtime
     {
         #region Publics
         public GameObject clock;
-        public GameObject[] playerUis;
-        public GameObject[] playerTexts;
+        public PlayerIcon[] playerIcons;
         public Disabler[] upArrows;
         public Disabler[] downArrows;
         public GameObject pause;
@@ -74,41 +73,35 @@ namespace UI.Runtime
         private void OnWarmupStarted()
         {
             //Disable player ui
-            foreach (var item in playerTexts)
+            foreach (var item in playerIcons)
             {
-                item.SetActive(false);
+                item.gameObject.SetActive(false);
             }
 
-            foreach (var item in playerUis)
-            {
-                item.SetActive(false);
-            }
         }
 
         private void OnWarmupFinished()
         {
             //Disable player ui
-            foreach (var item in playerTexts)
+            foreach (var item in playerIcons)
             {
-                item.SetActive(true);
+                item.gameObject.SetActive(true);
             }
 
-            foreach (var item in playerUis)
-            {
-                item.SetActive(true);
-            }
         }
         private void OnRoundStarted()
         {
+            Debug.Log("Round started, updating ui");
             List<PlayerInput> players = round.Players();
-            int playerCount = players.Count;
-            for (int i = 0; i < playerUis.Length; i++)
+            int playerCount = players.Count; 
+            Debug.Log($"Players in game : {playerCount}");
+            Debug.Log($"Players icons count : {playerIcons.Length}");
+            for (int i = 0; i < playerIcons.Length; i++)
             {
-                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
+                PlayerIcon playerIcon = playerIcons[i];
                 if (i < playerCount)
                 {
-                    playerUis[i].SetActive(true);
-                    playerTexts[i].SetActive(true);
+                    playerIcons[i].gameObject.SetActive(true);
                     PlayerInput player = players[i];
                     SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                     AnimalType animalType = selectSkin.CurrentAnimalType();
@@ -116,15 +109,16 @@ namespace UI.Runtime
                     if (playerIcon != null)
                     {
                         playerIcon.SetPlayerIcon(animalType);
+                        playerIcon.SetPlayerLabel(i);
                     }
                 }
                 else
                 {
-                    playerUis[i].SetActive(false);
-                    playerTexts[i].SetActive(false);
+                    playerIcons[i].gameObject.SetActive(false);
                 }
 
             }
+            Debug.LogError("Ui initialization complete");
         }
 
         private void OnRoundFinished()

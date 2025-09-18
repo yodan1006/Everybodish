@@ -4,6 +4,7 @@ using UnityEngine.Events;
 namespace Timer.Runtime
 {
     [DisallowMultipleComponent]
+
     public class GameTimer : MonoBehaviour
     {
         public static GameTimer Instance;

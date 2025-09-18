@@ -19,6 +19,8 @@ namespace Round.Runtime
         public static RoundSystem Instance;
         public int warmupTime = 10;
         private float warmupTimeDelta = 0;
+        public int cooldownTime = 5;
+        private readonly float cooldownTimeDelta = 0;
         public int roundDuration = 300;
 
         public UnityEvent OnWarmupStarted = new();
@@ -103,7 +105,8 @@ namespace Round.Runtime
         public void JoinRound(PlayerInput playerInput)
         {
             players.Add(playerInput.playerIndex, playerInput);
-            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);
+            GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, ScoreEventType.JoinedGame);  
+            Debug.Log($"Player with index {playerInput.playerIndex} joined Round. Player count : {players.Count}");
         }
 
         public void LeaveRound(PlayerInput playerInput)

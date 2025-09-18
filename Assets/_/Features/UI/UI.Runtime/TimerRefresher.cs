@@ -1,3 +1,4 @@
+using System;
 using Timer.Runtime;
 using TMPro;
 using UnityEngine;
@@ -16,10 +17,29 @@ namespace Round.Runtime
         {
             timer = GetComponent<GameTimer>();
             round = GetComponent<RoundSystem>();
+            timer.onTimerStarted.AddListener(OnTimerStarted);
+            timer.onTimerPaused.AddListener(OnTimerPaused);
+            timer.onTimerStopped.AddListener(OnTimerStopped);
             round.OnRoundStarted.AddListener(OnRoundStarted);
             round.OnRoundFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
+        }
+
+        private void OnTimerStopped()
+        {
+         enabled = false;
+        }
+
+        private void OnTimerPaused()
+        {
+            enabled
+                = false;
+        }
+
+        private void OnTimerStarted()
+        {
+            enabled = true;
         }
 
         private void OnWarmupStarted()
