@@ -1,4 +1,3 @@
-using System;
 using Timer.Runtime;
 using TMPro;
 using UnityEngine;
@@ -93,7 +92,7 @@ namespace Round.Runtime
 
             if (roundTimeleft.enabled)
             {
-                roundTimeleft.SetText(timer.GetFormatedTimeLeft(round.roundDuration));
+                roundTimeleft.SetText(timer.GetFormattedTimeLeft(round.roundDuration));
             }
         }
     }
