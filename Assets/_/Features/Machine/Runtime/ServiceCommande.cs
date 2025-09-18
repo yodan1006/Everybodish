@@ -37,7 +37,7 @@ namespace Machine.Runtime
         {
             if (food.FoodType != FoodType.Player)
             {
-                
+
                 bool valide = false;
                 food.transform.position = _transformPlat.position;
                 _onService = true;

@@ -14,12 +14,12 @@ namespace InteractionPlayerStart.Runtime
         private void OnEnable()
         {
             //Disabled in favor of letting the playerinputmanager do it's work and let the player join the round this way for the moment
-        //    SceneManager.sceneLoaded += OnSceneLoaded;
+            //    SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-       //     SceneManager.sceneLoaded -= OnSceneLoaded;
+            //     SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
 

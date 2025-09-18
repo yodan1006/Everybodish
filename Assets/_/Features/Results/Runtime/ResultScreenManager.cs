@@ -1,11 +1,14 @@
+using LobbyInstantiate.Runtime;
+using Round.Runtime;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Results.Runtime
 {
     public class ResultScreenManager : MonoBehaviour
     {
         #region Publics
-
+        public SpawnPoint spawn;
         #endregion
 
 
@@ -14,7 +17,8 @@ namespace Results.Runtime
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-
+            System.Collections.Generic.List<PlayerInput> playerInputs = RoundSystem.Instance.Players();
+            Debug.Log(playerInputs);
         }
 
         // Update is called once per frame
@@ -27,7 +31,10 @@ namespace Results.Runtime
 
 
         #region Main Methods
+        public void OnPlayerJoined(PlayerInput input)
+        {
 
+        }
         #endregion
 
 

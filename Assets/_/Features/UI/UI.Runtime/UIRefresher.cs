@@ -42,8 +42,8 @@ namespace UI.Runtime
             needle = GameObject.Find("NEEDLE");
             cadranMask = GameObject.Find("FILL").GetComponent<Image>();
             needleStartRotation = needle.transform.rotation.eulerAngles.z;
-            round.OnRoundStarted.AddListener(OnRoundStarted);
-            round.OnRoundFinished.AddListener(OnRoundFinished);
+            round.OnGameplayStarted.AddListener(OnRoundStarted);
+            round.OnGameplayFinished.AddListener(OnRoundFinished);
             round.OnWarmupStarted.AddListener(OnWarmupStarted);
             round.OnWarmupFinished.AddListener(OnWarmupFinished);
             scoreSystem.OnScoreEvent.AddListener(OnScoreEvent);
@@ -93,7 +93,7 @@ namespace UI.Runtime
         {
             Debug.Log("Round started, updating ui");
             List<PlayerInput> players = round.Players();
-            int playerCount = players.Count; 
+            int playerCount = players.Count;
             Debug.Log($"Players in game : {playerCount}");
             Debug.Log($"Players icons count : {playerIcons.Length}");
             for (int i = 0; i < playerIcons.Length; i++)
