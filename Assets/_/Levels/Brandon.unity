@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 1356263023}
   - component: {fileID: 1356263022}
   m_Layer: 0
-  m_Name: wall_collider (6)
+  m_Name: colliderCommande
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,6 +1073,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2343491274161969472, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017066737561869462, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
