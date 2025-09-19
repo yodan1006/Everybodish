@@ -29,11 +29,9 @@ namespace Results.Runtime
         {
             {
                 List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
-                Debug.LogError(GlobalScoreEventSystem.PlayerScores);
                 if (RoundSystem.Instance != null)
                 {
-                    List<PlayerInput> playerList = RoundSystem.Instance.Players();
-                    Debug.Log($"Round Player List Size: {playerList.Count}");
+                    Debug.Log($"Round Player List Size: {playerInputs.Count}");
                     List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
                     Debug.Log($"Team score {GlobalScoreEventSystem.TeamScore()}");
                     bool passed = GlobalScoreEventSystem.Passed();
