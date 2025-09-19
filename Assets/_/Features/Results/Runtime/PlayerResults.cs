@@ -27,9 +27,9 @@ namespace Results.Runtime
         {
             if (RoundSystem.Instance != null)
             {
-                // Get all PlayerInput objects and sort them by playerIndex
+                // Get all PlayerInput objects and sort them by lobby slot index
                 List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
-                    .OrderBy(p => p.playerIndex)
+                    .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
                     .ToList();
 
                 Debug.Log($"Sorted Player List by Index: {string.Join(", ", playerInputs.Select(p => p.playerIndex))}");
@@ -76,9 +76,10 @@ namespace Results.Runtime
 
                         SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                         AnimalType animalType = selectSkin.CurrentAnimalType();
+                        int slotIndex = selectSkin.GetSlotIndex();
 
                         icons[i].SetPlayerIcon(animalType);
-                        icons[i].SetPlayerLabel(playerIndex);
+                        icons[i].SetPlayerLabel(slotIndex);
                         playerScore[i].text = score.ToString();
                     }
                 }

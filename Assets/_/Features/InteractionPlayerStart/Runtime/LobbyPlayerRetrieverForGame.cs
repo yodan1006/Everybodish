@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Round.Runtime;
+using Skins.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,8 +14,10 @@ namespace InteractionPlayerStart.Runtime
 
         private void Start()
         {
-            Debug.LogError("Retrieveing players!", this);
-            List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+            // Get all PlayerInput objects and sort them by lobby slot index
+            List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
+                .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
+                .ToList();
             Debug.LogError($"Found {playerInputs.Count} players");
             if (RoundSystem.Instance != null)
             {
