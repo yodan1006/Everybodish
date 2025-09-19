@@ -15,7 +15,7 @@ namespace Spawner.Runtime
         }
 
         [SerializeField] private SpawnStrategy strategy = SpawnStrategy.SpawnByJoinOrder;
-        private  int spawnCount = 0;
+        private int spawnCount = 0;
         public void OnPlayerSpawned(PlayerInput playerInput)
         {
             if (spawnPoints.Length > 0)
@@ -58,7 +58,8 @@ namespace Spawner.Runtime
                     playerInput.transform.name = deviceName + " Player";
                 }
                 Debug.LogError("Player Teleported");
-            }else
+            }
+            else
             {
                 Debug.Log("No assigned spawn points!");
             }

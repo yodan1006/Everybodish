@@ -8,6 +8,7 @@ using TMPro;
 using UI.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace Results.Runtime
@@ -28,30 +29,43 @@ namespace Results.Runtime
         private void Awake()
         {
             {
-                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+               
+
                 if (RoundSystem.Instance != null)
                 {
+                    //get unsorted player inputs
+                    List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
                     Debug.Log($"Round Player List Size: {playerInputs.Count}");
+                    //Get sorted player scores
                     List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
+                    //Get Team score and whether or not they had their quota fullfilled
                     Debug.Log($"Team score {GlobalScoreEventSystem.TeamScore()}");
                     bool passed = GlobalScoreEventSystem.Passed();
+                    //We will need to find the min score and max score
                     int maxScore = 0;
                     int minScore = 0;
+
+                    //Activate correct win/lose label
                     teamResult[0].SetActive(passed);
                     teamResult[1].SetActive(!passed);
 
-                    if (list.Count > 4)
+                    //Sanity check
+                    if (playerInputs.Count > 4)
                     {
                         Debug.LogError("Why are we still here? Just to suffer?", this);
                     }
                     else
                     {
-                        for (int i = 0; i < list.Count; i++)
+                        //playerInputs are unsorted => issue
+                        for (int i = 0; i < playerInputs.Count; i++)
                         {
-                            int playerIndex = list[i].player;
+                            //get necessary info
+                            int playerIndex = playerInputs[i].playerIndex;
+                            PlayerInput player = playerInputs[i];
                             int score = list[i].score;
-                            Debug.Log($"Setting player {playerIndex} with score {score}");
 
+                            Debug.Log($"Setting player {playerIndex} with score {score}");
+                            //update max/min score
                             if (maxScore < score)
                             {
                                 maxScore = score;
@@ -59,21 +73,31 @@ namespace Results.Runtime
                             if (minScore > score)
                             {
                                 minScore = score;
-                            }
+                           }
+                            //Update the ui
                             playerUis[i].SetActive(true);
                             ranks[i].SetRankIcon(i);
-                            sliders[i].value = score;
-                            //Player input dictionary is lost on scene change.
-                            // PlayerInput player = playerList[item.player];
-                            //   SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                            // AnimalType animalType = selectSkin.CurrentAnimalType();
-                            // icons[i].SetPlayerIcon(animalType);
+                           sliders[i].value = score;
+                           
+                            //Set player icon based on selected skin in player
+                            SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                            AnimalType animalType = selectSkin.CurrentAnimalType();
+                            //set correct player icon
+                            icons[i].SetPlayerIcon(animalType);
+                            //set player 1/2/3/a
                             icons[i].SetPlayerLabel(playerIndex);
+                            //Set score label
                             playerScore[i].text = score.ToString();
-                            i++;
                         }
                     }
 
+                    //push the score slider back a little
+                    if(minScore< 10)
+                    {
+                        minScore = -10;
+                    }
+
+                    //update sliders
                     for (int i = 0; i < sliders.Length; i++)
                     {
                         if (i < playerInputs.Count)
@@ -81,9 +105,7 @@ namespace Results.Runtime
                             sliders[i].gameObject.SetActive(true);
                             sliders[i].maxValue = maxScore;
                             sliders[i].minValue = minScore;
-
                         }
-
                     }
                 }
                 else
@@ -92,35 +114,5 @@ namespace Results.Runtime
                 }
             }
         }
-
-        public void SetIcons()
-        {
-            RoundSystem round = RoundSystem.Instance;
-            List<PlayerInput> playerList = round.Players();
-            int playerCount = playerList.Count;
-            for (int i = 0; i < playerUis.Length; i++)
-            {
-                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
-                if (i < playerCount)
-                {
-                    playerUis[i].SetActive(true);
-                    PlayerInput player = playerList[i];
-                    SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                    AnimalType animalType = selectSkin.CurrentAnimalType();
-
-                    if (playerIcon != null)
-                    {
-                        playerIcon.SetPlayerIcon(animalType);
-                        playerIcon.SetPlayerLabel(player.playerIndex);
-                    }
-                }
-                else
-                {
-                    playerUis[i].SetActive(false);
-                }
-
-            }
-        }
-
     }
 }
