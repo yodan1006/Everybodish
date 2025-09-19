@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Animals.Data;
 using Round.Runtime;
@@ -23,106 +23,111 @@ namespace Results.Runtime
         public GameObject[] teamResult;
         #endregion
 
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Awake()
         {
+            if (RoundSystem.Instance != null)
             {
-                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
-                Debug.LogError(GlobalScoreEventSystem.PlayerScores);
-                if (RoundSystem.Instance != null)
-                {
-                    List<PlayerInput> playerList = RoundSystem.Instance.Players();
-                    Debug.Log($"Round Player List Size: {playerList.Count}");
-                    List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
-                    Debug.Log($"Team score {GlobalScoreEventSystem.TeamScore()}");
-                    bool passed = GlobalScoreEventSystem.Passed();
-                    int maxScore = 0;
-                    int minScore = 0;
-                    teamResult[0].SetActive(passed);
-                    teamResult[1].SetActive(!passed);
+                // Get all PlayerInput objects and sort them by lobby slot index
+                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
+                    .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
+                    .ToList();
 
-                    if (list.Count > 4)
+                Debug.Log($"Sorted Player List by Index: {string.Join(", ", playerInputs.Select(p => p.playerIndex))}");
+
+                // Get sorted player scores from the leaderboard (already sorted by rank/score)
+                List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
+
+                Debug.Log($"Team score {GlobalScoreEventSystem.TeamScore()}");
+                bool passed = GlobalScoreEventSystem.Passed();
+
+                int maxScore = 0;
+                int minScore = 0;
+
+                // Activate win/lose labels
+                teamResult[0].SetActive(passed);
+                teamResult[1].SetActive(!passed);
+
+                // Build dictionary: playerIndex → rank (accounting for ties)
+                Dictionary<int, int> playerRanks = new();
+                int currentRank = 0;
+                int previousScore = int.MinValue;
+                int playersWithSameScore = 0;
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var (playerIndex, score) = list[i];
+
+                    if (score != previousScore)
                     {
-                        Debug.LogError("Why are we still here? Just to suffer?", this);
+                        currentRank += playersWithSameScore;
+                        playersWithSameScore = 1;
+                        previousScore = score;
                     }
                     else
                     {
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            int playerIndex = list[i].player;
-                            int score = list[i].score;
-                            Debug.Log($"Setting player {playerIndex} with score {score}");
-
-                            if (maxScore < score)
-                            {
-                                maxScore = score;
-                            }
-                            if (minScore > score)
-                            {
-                                minScore = score;
-                            }
-                            playerUis[i].SetActive(true);
-                            ranks[i].SetRankIcon(i);
-                            sliders[i].value = score;
-                            //Player input dictionary is lost on scene change.
-                            // PlayerInput player = playerList[item.player];
-                            //   SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                            // AnimalType animalType = selectSkin.CurrentAnimalType();
-                            // icons[i].SetPlayerIcon(animalType);
-                            icons[i].SetPlayerLabel(playerIndex);
-                            playerScore[i].text = score.ToString();
-                            i++;
-                        }
+                        playersWithSameScore++;
                     }
 
-                    for (int i = 0; i < sliders.Length; i++)
-                    {
-                        if (i < playerInputs.Count)
-                        {
-                            sliders[i].gameObject.SetActive(true);
-                            sliders[i].maxValue = maxScore;
-                            sliders[i].minValue = minScore;
+                    playerRanks[playerIndex] = currentRank;
+                }
 
-                        }
-
-                    }
+                if (playerInputs.Count > 4)
+                {
+                    Debug.LogError("Why are we still here? Just to suffer?", this);
                 }
                 else
                 {
-                    Debug.LogError("ROUND IS NULL!", this);
+                    for (int i = 0; i < playerInputs.Count; i++)
+                    {
+                        PlayerInput player = playerInputs[i];
+                        int playerIndex = player.playerIndex;
+
+                        // Match score from leaderboard
+                        int score = list.FirstOrDefault(s => s.player == playerIndex).score;
+
+                        Debug.Log($"Setting player {playerIndex} with score {score}");
+
+                        if (score > maxScore) maxScore = score;
+                        if (score < minScore) minScore = score;
+
+                        playerUis[i].SetActive(true);
+
+                        // Get tie-aware rank from dictionary
+                        int leaderboardRank = playerRanks[playerIndex];
+                        ranks[i].SetRankIcon(leaderboardRank);
+
+                        sliders[i].value = score;
+
+                        SelectSkin selectSkin = player.GetComponent<SelectSkin>();
+                        AnimalType animalType = selectSkin.CurrentAnimalType();
+                        int slotIndex = selectSkin.GetSlotIndex();
+
+                        icons[i].SetPlayerIcon(animalType);
+                        icons[i].SetPlayerLabel(slotIndex);
+                        playerScore[i].text = score.ToString();
+                    }
+                }
+
+                if (minScore < 10)
+                {
+                    minScore = -2;
+                }
+
+                // Update slider min/max values
+                for (int i = 0; i < sliders.Length; i++)
+                {
+                    if (i < playerInputs.Count)
+                    {
+                        sliders[i].gameObject.SetActive(true);
+                        sliders[i].maxValue = maxScore;
+                        sliders[i].minValue = minScore;
+                    }
                 }
             }
-        }
-
-        public void SetIcons()
-        {
-            RoundSystem round = RoundSystem.Instance;
-            List<PlayerInput> playerList = round.Players();
-            int playerCount = playerList.Count;
-            for (int i = 0; i < playerUis.Length; i++)
+            else
             {
-                PlayerIcon playerIcon = playerUis[i].GetComponentInChildren<PlayerIcon>();
-                if (i < playerCount)
-                {
-                    playerUis[i].SetActive(true);
-                    PlayerInput player = playerList[i];
-                    SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                    AnimalType animalType = selectSkin.CurrentAnimalType();
-
-                    if (playerIcon != null)
-                    {
-                        playerIcon.SetPlayerIcon(animalType);
-                        playerIcon.SetPlayerLabel(player.playerIndex);
-                    }
-                }
-                else
-                {
-                    playerUis[i].SetActive(false);
-                }
-
+                Debug.LogError("ROUND IS NULL!", this);
             }
         }
-
     }
 }

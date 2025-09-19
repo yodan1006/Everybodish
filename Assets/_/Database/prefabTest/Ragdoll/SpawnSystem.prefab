@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1917181855189238406}
   - component: {fileID: 2877955335872950180}
   - component: {fileID: -4855144887064598340}
-  - component: {fileID: 4458774732992080430}
   - component: {fileID: 5194391658945213380}
   m_Layer: 0
   m_Name: SpawnSystem
@@ -256,18 +255,6 @@ MonoBehaviour:
   nameMenuCredit: UI_P_CREDITS
   quitterPressedTime: 0.5
   longPressDuration: 1
---- !u!114 &4458774732992080430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433505672345845218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb806b1dd4c94343a4ead1b93af5e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5194391658945213380
 MonoBehaviour:
   m_ObjectHideFlags: 0
