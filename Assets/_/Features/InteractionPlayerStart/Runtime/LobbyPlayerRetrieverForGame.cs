@@ -23,7 +23,8 @@ namespace InteractionPlayerStart.Runtime
                     RoundSystem.Instance.JoinRound(playerInput);
                     spawner.OnPlayerSpawned(playerInput);
                 }
-            } else
+            }
+            else
             {
                 Debug.LogError("ROUND IS NOT INITIALIZED YET");
             }
