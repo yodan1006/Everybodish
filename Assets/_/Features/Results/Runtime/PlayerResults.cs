@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Animals.Data;
 using Round.Runtime;
@@ -47,6 +47,30 @@ namespace Results.Runtime
                 teamResult[0].SetActive(passed);
                 teamResult[1].SetActive(!passed);
 
+                // Build dictionary: playerIndex → rank (accounting for ties)
+                Dictionary<int, int> playerRanks = new();
+                int currentRank = 0;
+                int previousScore = int.MinValue;
+                int playersWithSameScore = 0;
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var (playerIndex, score) = list[i];
+
+                    if (score != previousScore)
+                    {
+                        currentRank += playersWithSameScore;
+                        playersWithSameScore = 1;
+                        previousScore = score;
+                    }
+                    else
+                    {
+                        playersWithSameScore++;
+                    }
+
+                    playerRanks[playerIndex] = currentRank;
+                }
+
                 if (playerInputs.Count > 4)
                 {
                     Debug.LogError("Why are we still here? Just to suffer?", this);
@@ -68,8 +92,8 @@ namespace Results.Runtime
 
                         playerUis[i].SetActive(true);
 
-                        
-                        int leaderboardRank = list.FindIndex(entry => entry.player == playerIndex);
+                        // Get tie-aware rank from dictionary
+                        int leaderboardRank = playerRanks[playerIndex];
                         ranks[i].SetRankIcon(leaderboardRank);
 
                         sliders[i].value = score;
