@@ -1065,6 +1065,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1384407950765192642, guid: dfef8bb530da34c459810d82c0423097, type: 3}
+      propertyPath: strategy
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1800896960710498679, guid: dfef8bb530da34c459810d82c0423097, type: 3}
       propertyPath: m_Name
       value: zone spawn
