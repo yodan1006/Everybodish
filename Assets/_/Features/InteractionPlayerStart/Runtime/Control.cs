@@ -6,22 +6,36 @@ namespace InteractionPlayerStart.Runtime
 {
     public class Control : MonoBehaviour
     {
+        #region public
         [SerializeField] private string nameMenuControl;
         [SerializeField] private string nameMenuCredit;
         [SerializeField] private float quitterPressedTime = 0.5f;
+        [SerializeField] private float longPressDuration = 1.0f;
+        #endregion
 
-        [SerializeField] private float longPressDuration = 1.0f; // Durée pour considérer comme un appui long (en secondes)
-
+        #region privé
         private PlayerInput playerInput;
         private LobbyManager lobbyManager;
+        #endregion
 
+        #region unity api
 
+        /// <summary>
+        /// Appelé au lancement du script, initialise les références à PlayerInput et LobbyManager.
+        /// </summary>
         private void Awake()
         {
             playerInput = GetComponent<PlayerInput>();
             lobbyManager = FindFirstObjectByType<LobbyManager>();
         }
+        #endregion
 
+        #region main methode
+
+        /// <summary>
+        /// Affiche le menu de contrôle lorsque l'utilisateur effectue l'action liée.
+        /// </summary>
+        /// <param name="context">Contexte d'action d'entrée utilisateur.</param>
         public void ControleMenu(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -42,6 +56,10 @@ namespace InteractionPlayerStart.Runtime
             }
         }
 
+        /// <summary>
+        /// Affiche le menu des crédits au déclenchement de l'entrée utilisateur spécifique.
+        /// </summary>
+        /// <param name="context">Contexte d'action d'entrée utilisateur.</param>
         public void CreditMenu(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -62,6 +80,11 @@ namespace InteractionPlayerStart.Runtime
             }
         }
 
+        /// <summary>
+        /// Gère la fermeture des menus ou la sortie du joueur selon la durée d'appui sur l'entrée quitter.
+        /// Pression longue : quitte l'application, pression courte : ferme les menus actifs ou retire le joueur.
+        /// </summary>
+        /// <param name="context">Contexte d'action d'entrée utilisateur.</param>
         public void Quitter(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -107,6 +130,10 @@ namespace InteractionPlayerStart.Runtime
                 }
             }
         }
+        #endregion
 
+        #region utils
+        // Ajoutez ici toutes vos méthodes utilitaires privées
+        #endregion
     }
 }
