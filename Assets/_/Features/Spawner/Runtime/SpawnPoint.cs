@@ -62,7 +62,7 @@ namespace Spawner.Runtime
                     playerInput.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                     playerInput.transform.name = deviceName + " Player";
                 }
-                Debug.LogError("Player Teleported");
+             //   Debug.LogError("Player Teleported");
             }
             else
             {

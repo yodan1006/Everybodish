@@ -637,6 +637,45 @@ namespace ActionMap
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Results"",
+            ""id"": ""08ee6a0a-7325-4b98-a70d-183bd1420a6d"",
+            ""actions"": [
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""39d8eccb-a7a0-4810-b910-9d72637bc86e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""49a6eeb5-82f7-427f-a53b-9fce309c3212"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6faa82dd-031e-42f7-b7d5-748c54083a68"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -659,12 +698,16 @@ namespace ActionMap
             m_Lobby_Control = m_Lobby.FindAction("Control", throwIfNotFound: true);
             m_Lobby_Quit = m_Lobby.FindAction("Quit", throwIfNotFound: true);
             m_Lobby_Join = m_Lobby.FindAction("Join", throwIfNotFound: true);
+            // Results
+            m_Results = asset.FindActionMap("Results", throwIfNotFound: true);
+            m_Results_Restart = m_Results.FindAction("Restart", throwIfNotFound: true);
         }
 
         ~@PlayerInputMap()
         {
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputMap.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Lobby.enabled, "This will cause a leak and performance issues, PlayerInputMap.Lobby.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Results.enabled, "This will cause a leak and performance issues, PlayerInputMap.Results.Disable() has not been called.");
         }
 
         /// <summary>
@@ -1060,6 +1103,102 @@ namespace ActionMap
         /// Provides a new <see cref="LobbyActions" /> instance referencing this action map.
         /// </summary>
         public LobbyActions @Lobby => new LobbyActions(this);
+
+        // Results
+        private readonly InputActionMap m_Results;
+        private List<IResultsActions> m_ResultsActionsCallbackInterfaces = new List<IResultsActions>();
+        private readonly InputAction m_Results_Restart;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "Results".
+        /// </summary>
+        public struct ResultsActions
+        {
+            private @PlayerInputMap m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public ResultsActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "Results/Restart".
+            /// </summary>
+            public InputAction @Restart => m_Wrapper.m_Results_Restart;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_Results; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="ResultsActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(ResultsActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="ResultsActions" />
+            public void AddCallbacks(IResultsActions instance)
+            {
+                if (instance == null || m_Wrapper.m_ResultsActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ResultsActionsCallbackInterfaces.Add(instance);
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="ResultsActions" />
+            private void UnregisterCallbacks(IResultsActions instance)
+            {
+                @Restart.started -= instance.OnRestart;
+                @Restart.performed -= instance.OnRestart;
+                @Restart.canceled -= instance.OnRestart;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ResultsActions.UnregisterCallbacks(IResultsActions)" />.
+            /// </summary>
+            /// <seealso cref="ResultsActions.UnregisterCallbacks(IResultsActions)" />
+            public void RemoveCallbacks(IResultsActions instance)
+            {
+                if (m_Wrapper.m_ResultsActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="ResultsActions.AddCallbacks(IResultsActions)" />
+            /// <seealso cref="ResultsActions.RemoveCallbacks(IResultsActions)" />
+            /// <seealso cref="ResultsActions.UnregisterCallbacks(IResultsActions)" />
+            public void SetCallbacks(IResultsActions instance)
+            {
+                foreach (var item in m_Wrapper.m_ResultsActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_ResultsActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="ResultsActions" /> instance referencing this action map.
+        /// </summary>
+        public ResultsActions @Results => new ResultsActions(this);
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
         /// </summary>
@@ -1173,6 +1312,21 @@ namespace ActionMap
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnJoin(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Results" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="ResultsActions.AddCallbacks(IResultsActions)" />
+        /// <seealso cref="ResultsActions.RemoveCallbacks(IResultsActions)" />
+        public interface IResultsActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "Restart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnRestart(InputAction.CallbackContext context);
         }
     }
 }
