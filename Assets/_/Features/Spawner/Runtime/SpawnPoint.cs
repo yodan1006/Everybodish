@@ -1,4 +1,5 @@
 using ActiveRagdoll.Runtime;
+using Skins.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,10 +12,11 @@ namespace Spawner.Runtime
         public enum SpawnStrategy
         {
             SpawnByPlayerIndex,
-            SpawnByJoinOrder
+            SpawnByJoinOrder,
+            SpawnBySelectSkin
         }
 
-        [SerializeField] private SpawnStrategy strategy = SpawnStrategy.SpawnByJoinOrder;
+        [SerializeField] private SpawnStrategy strategy = SpawnStrategy.SpawnBySelectSkin;
         private int spawnCount = 0;
         public void OnPlayerSpawned(PlayerInput playerInput)
         {
@@ -30,6 +32,9 @@ namespace Spawner.Runtime
                     case SpawnStrategy.SpawnByJoinOrder:
                         spawn = spawnPoints[spawnCount % spawnPoints.Length];
                         spawnCount++;
+                        break;
+                    case SpawnStrategy.SpawnBySelectSkin:
+                        spawn = spawnPoints[playerInput.GetComponentInChildren<SelectSkin>().GetSlotIndex() % spawnPoints.Length];
                         break;
                     default:
                         Debug.LogError("Unknown spawn strategy");
@@ -57,7 +62,7 @@ namespace Spawner.Runtime
                     playerInput.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                     playerInput.transform.name = deviceName + " Player";
                 }
-                Debug.LogError("Player Teleported");
+             //   Debug.LogError("Player Teleported");
             }
             else
             {

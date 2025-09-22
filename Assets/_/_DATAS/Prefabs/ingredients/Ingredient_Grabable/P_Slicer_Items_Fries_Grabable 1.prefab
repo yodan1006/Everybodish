@@ -26,8 +26,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7207272873881747394}
   m_Father: {fileID: 0}
@@ -251,9 +251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 6
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
 --- !u!4 &7207272873881747394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2112020139632693603, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}

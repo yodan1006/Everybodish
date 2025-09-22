@@ -14,10 +14,10 @@ namespace Skins.Runtime
         private SelectSkin[] playerSlots;
 
 
-        [SerializeField] private GameObject[] UIjoin;
-        public GameObject[] UIreeady;
-        public GameObject[] UIValidate;
-        public GameObject[] UIA;
+        [SerializeField] private GameObject[] UiJoin;
+        public GameObject[] UiReady;
+        public GameObject[] UiValidate;
+        public GameObject[] UiAButton;
 
         private void Awake()
         {
@@ -27,8 +27,8 @@ namespace Skins.Runtime
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            playerSlots = new SelectSkin[UIjoin.Length];
+          //  DontDestroyOnLoad(gameObject);
+            playerSlots = new SelectSkin[UiJoin.Length];
         }
 
         public void RegisterPlayer(SelectSkin player)
@@ -39,8 +39,8 @@ namespace Skins.Runtime
                 {
                     playerSlots[i] = player;
                     player.AssignSlotIndex(i);
-                    UIjoin[i].SetActive(false);
-                    UIreeady[i].SetActive(true);
+                    UiJoin[i].SetActive(false);
+                    UiReady[i].SetActive(true);
                     break;
                 }
             }
@@ -53,10 +53,10 @@ namespace Skins.Runtime
             if (index >= 0 && index < playerSlots.Length && playerSlots[index] == player)
             {
                 playerSlots[index] = null;
-                UIjoin[index].SetActive(true);
-                UIreeady[index].SetActive(false);
-                UIValidate[index].SetActive(false);
-                UIA[index].SetActive(true);
+                UiJoin[index].SetActive(true);
+                UiReady[index].SetActive(false);
+                UiValidate[index].SetActive(false);
+                UiAButton[index].SetActive(true);
             }
         }
 

@@ -549,6 +549,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Results",
+            "id": "08ee6a0a-7325-4b98-a70d-183bd1420a6d",
+            "actions": [
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "39d8eccb-a7a0-4810-b910-9d72637bc86e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "49a6eeb5-82f7-427f-a53b-9fce309c3212",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6faa82dd-031e-42f7-b7d5-748c54083a68",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
