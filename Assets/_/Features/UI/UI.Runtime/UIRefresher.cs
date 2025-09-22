@@ -107,7 +107,7 @@ namespace UI.Runtime
 
                     if (playerIcon != null)
                     {
-                        playerIcon.SetPlayerIcon(animalType);
+                        playerIcon.SetPlayerIcon(animalType,false);
                         playerIcon.SetPlayerLabel(i);
                     }
                 }

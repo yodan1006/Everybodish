@@ -12,6 +12,11 @@ namespace UI.Runtime
         public GameObject pigIcon;
         public GameObject cowIcon;
 
+        public GameObject duckGoldIcon;
+        public GameObject rabbitGoldIcon;
+        public GameObject pigGoldIcon;
+        public GameObject cowGoldIcon;
+
         public GameObject player1;
         public GameObject player2;
         public GameObject player3;
@@ -21,12 +26,23 @@ namespace UI.Runtime
 
 
         #region Main Methods
-        public void SetPlayerIcon(AnimalType animalType)
+        public void SetPlayerIcon(AnimalType animalType, bool gold)
         {
-            duckIcon.SetActive(animalType == AnimalType.DUCK);
-            rabbitIcon.SetActive(animalType == AnimalType.RABBIT);
-            pigIcon.SetActive(animalType == AnimalType.PIG);
-            cowIcon.SetActive(animalType == AnimalType.COW);
+            if (!gold)
+            {
+                duckIcon.SetActive(animalType == AnimalType.DUCK);
+                rabbitIcon.SetActive(animalType == AnimalType.RABBIT);
+                pigIcon.SetActive(animalType == AnimalType.PIG);
+                cowIcon.SetActive(animalType == AnimalType.COW);
+            }
+            else
+            {
+                duckGoldIcon.SetActive(animalType == AnimalType.DUCK);
+                rabbitGoldIcon.SetActive(animalType == AnimalType.RABBIT);
+                pigGoldIcon.SetActive(animalType == AnimalType.PIG);
+                cowGoldIcon.SetActive(animalType == AnimalType.COW);
+            }
+
         }
 
         public void SetPlayerLabel(int label)
