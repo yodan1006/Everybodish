@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Animals.Data;
 using Round.Runtime;
@@ -27,9 +27,9 @@ namespace Results.Runtime
         {
             if (RoundSystem.Instance != null)
             {
-                // Get all PlayerInput objects and sort them by playerIndex
+                // Get all PlayerInput objects and sort them by lobby slot index
                 List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
-                    .OrderBy(p => p.playerIndex)
+                    .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
                     .ToList();
 
                 Debug.Log($"Sorted Player List by Index: {string.Join(", ", playerInputs.Select(p => p.playerIndex))}");
@@ -46,6 +46,30 @@ namespace Results.Runtime
                 // Activate win/lose labels
                 teamResult[0].SetActive(passed);
                 teamResult[1].SetActive(!passed);
+
+                // Build dictionary: playerIndex → rank (accounting for ties)
+                Dictionary<int, int> playerRanks = new();
+                int currentRank = 0;
+                int previousScore = int.MinValue;
+                int playersWithSameScore = 0;
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var (playerIndex, score) = list[i];
+
+                    if (score != previousScore)
+                    {
+                        currentRank += playersWithSameScore;
+                        playersWithSameScore = 1;
+                        previousScore = score;
+                    }
+                    else
+                    {
+                        playersWithSameScore++;
+                    }
+
+                    playerRanks[playerIndex] = currentRank;
+                }
 
                 if (playerInputs.Count > 4)
                 {
@@ -68,17 +92,18 @@ namespace Results.Runtime
 
                         playerUis[i].SetActive(true);
 
-                        
-                        int leaderboardRank = list.FindIndex(entry => entry.player == playerIndex);
+                        // Get tie-aware rank from dictionary
+                        int leaderboardRank = playerRanks[playerIndex];
                         ranks[i].SetRankIcon(leaderboardRank);
 
                         sliders[i].value = score;
 
                         SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                         AnimalType animalType = selectSkin.CurrentAnimalType();
+                        int slotIndex = selectSkin.GetSlotIndex();
 
                         icons[i].SetPlayerIcon(animalType);
-                        icons[i].SetPlayerLabel(playerIndex);
+                        icons[i].SetPlayerLabel(slotIndex);
                         playerScore[i].text = score.ToString();
                     }
                 }

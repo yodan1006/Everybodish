@@ -28,13 +28,13 @@ namespace Results.Runtime
                 Debug.LogError($"Found {playerInputs.Count} players");
                 List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
 
-                foreach ((int player, int score) value in list)
+                foreach ((int player, int score) in list)
                 {
-                    Debug.LogError($"Player {value.player} with {value.score} points");
+                    Debug.LogError($"Player {player} with {score} points");
                     //spawn players in leaderboard order
                     foreach (PlayerInput playerInput in playerInputs)
                     {
-                        if (playerInput.playerIndex == value.player)
+                        if (playerInput.playerIndex == player)
                         {
                             spawn.OnPlayerSpawned(playerInput);
                         }
