@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using ActionMap;
 using Round.Runtime;
 using Score.Runtime;
 using Spawner.Runtime;
+using TransitionScene.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +13,10 @@ namespace Results.Runtime
 {
     public class ResultScreenManager : MonoBehaviour
     {
-        #region Publics
         public SpawnPoint spawn;
         public PlayerResults playerResults;
-        #endregion
 
+        private List<PlayerInputMap> inputMaps  =new();
 
         #region Unity Api
 
@@ -23,9 +25,9 @@ namespace Results.Runtime
         {
             if (RoundSystem.Instance != null)
             {
-                Debug.LogError("Retrieveing players!", this);
+              //  Debug.LogError("Retrieveing players!", this);
                 List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
-                Debug.LogError($"Found {playerInputs.Count} players");
+              //  Debug.LogError($"Found {playerInputs.Count} players");
                 List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
 
                 foreach ((int player, int score) in list)
@@ -40,12 +42,34 @@ namespace Results.Runtime
                         }
                     }
                 }
+                foreach (PlayerInput playerInput in playerInputs)
+                {
+                    SpawnSystem spawnSystem = playerInput.GetComponent<SpawnSystem>();
+                 //   spawnSystem.onPlayerQuit.AddListener(QuitScene);
+                    PlayerInputMap inputMap = new()
+                    {
+                        devices = playerInput.devices
+                    };
+                    //For result screen
+                    inputMap.Results.Restart.started += ctx => QuitScene(ctx);
+                    inputMap.Results.Enable();
+                    inputMaps.Add(inputMap);
+                }
             }
             else
             {
                 Debug.LogError("ROUND IS NOT INITIALIZED YET");
             }
 
+        }
+
+        private void QuitScene(InputAction.CallbackContext ctx)
+        {
+            FindFirstObjectByType<SceneLoader>().LoadSceneWithLoading(0);
+            foreach (var item in inputMaps)
+            {
+                item.Results.Disable();
+            }
         }
         #endregion
 

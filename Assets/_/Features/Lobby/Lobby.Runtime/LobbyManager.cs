@@ -27,7 +27,7 @@ namespace Skins.Runtime
                 return;
             }
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+          //  DontDestroyOnLoad(gameObject);
             playerSlots = new SelectSkin[UIjoin.Length];
         }
 
