@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2755893239021821771}
+    - target: {fileID: 2120247416953810898, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 2371229667304198537, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 
@@ -314,6 +318,14 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 2842690537545933597}
+    - target: {fileID: 2487107271704755313, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948555846439698690, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 3971960848111165293, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_Name
       value: Physics Rig
@@ -382,6 +394,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 122666006556309599}
+    - target: {fileID: 8076574390458640991, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 129
+      objectReference: {fileID: 0}
     - target: {fileID: 8328088488782249350, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 

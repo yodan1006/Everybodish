@@ -206,10 +206,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2201923586936365366, guid: 05378ad6e895aa8478da97695424f958, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5757514836757624277, guid: 05378ad6e895aa8478da97695424f958, type: 3}
       propertyPath: m_Name
       value: _____LVL00_START_____
@@ -430,7 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545844669443648085, guid: c9268a6a0f1b8c145a1f2a52942c1404, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.59
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4545844669443648085, guid: c9268a6a0f1b8c145a1f2a52942c1404, type: 3}
       propertyPath: m_AnchoredPosition.y
