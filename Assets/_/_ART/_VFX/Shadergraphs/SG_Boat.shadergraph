@@ -11,6 +11,9 @@
         },
         {
             "m_Id": "1670694f5a3f46d88d9d0d172f510769"
+        },
+        {
+            "m_Id": "ba56831ac1ee414f9e1f6286bb9b7a9b"
         }
     ],
     "m_Keywords": [],
@@ -83,6 +86,9 @@
         },
         {
             "m_Id": "5cb5bb57ce1e4c5b981beac47d2ad6ff"
+        },
+        {
+            "m_Id": "9745bf1bf0e4474ca66978afc52a4285"
         }
     ],
     "m_GroupDatas": [
@@ -174,6 +180,20 @@
                     "m_Id": "5904f96ec67f4b049f801289f357dc32"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "9745bf1bf0e4474ca66978afc52a4285"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "8323585118d74a30a5a78ae09017e772"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -1180,6 +1200,19 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
+    "m_ObjectId": "52c6500292944177bd89ba50e491f7ab",
+    "m_Id": 0,
+    "m_DisplayName": "Texture2D",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SineNode",
     "m_ObjectId": "56439ec377a648d58c4cb18248990e2b",
     "m_Group": {
@@ -1619,6 +1652,9 @@
         },
         {
             "m_Id": "1670694f5a3f46d88d9d0d172f510769"
+        },
+        {
+            "m_Id": "ba56831ac1ee414f9e1f6286bb9b7a9b"
         }
     ]
 }
@@ -1636,6 +1672,42 @@
     "m_Value": 0.5,
     "m_DefaultValue": 0.5,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "9745bf1bf0e4474ca66978afc52a4285",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -748.0,
+            "y": 479.0,
+            "width": 138.0,
+            "height": 34.00006103515625
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "52c6500292944177bd89ba50e491f7ab"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "ba56831ac1ee414f9e1f6286bb9b7a9b"
+    }
 }
 
 {
@@ -1951,6 +2023,36 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "ba56831ac1ee414f9e1f6286bb9b7a9b",
+    "m_Guid": {
+        "m_GuidSerialized": "72dc7ed3-6932-4b88-abaf-44b519d3a646"
+    },
+    "m_Name": "Texture2D",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Texture2D",
+    "m_DefaultReferenceName": "_Texture2D",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "ba9150f20ff74ed285018505a3dbd923",
     "m_Id": 0,
@@ -2201,7 +2303,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"97c9b39f87a242b4fbac44df9079a4bb\",\"type\":3}}",
+        "m_SerializedTexture": "",
         "m_Guid": ""
     },
     "m_DefaultType": 0
