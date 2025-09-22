@@ -18,7 +18,7 @@ namespace InteractionPlayerStart.Runtime
             List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
                 .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
                 .ToList();
-            Debug.LogError($"Found {playerInputs.Count} players");
+           // Debug.LogError($"Found {playerInputs.Count} players");
             if (RoundSystem.Instance != null)
             {
                 foreach (PlayerInput playerInput in playerInputs)
