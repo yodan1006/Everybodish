@@ -102,7 +102,7 @@ namespace Results.Runtime
                         AnimalType animalType = selectSkin.CurrentAnimalType();
                         int slotIndex = selectSkin.GetSlotIndex();
 
-                        icons[i].SetPlayerIcon(animalType);
+                        icons[i].SetPlayerIcon(animalType, false);
                         icons[i].SetPlayerLabel(slotIndex);
                         playerScore[i].text = score.ToString();
                     }

@@ -123,7 +123,7 @@ namespace Skins.Runtime
         [SerializeField] private GameObject[] UiJoin;
         private readonly List<SelectSkin> players = new();
         private SelectSkin[] playerSlots;
-        
+
 
         #endregion
     }
