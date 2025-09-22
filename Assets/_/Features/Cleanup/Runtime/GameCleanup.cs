@@ -13,7 +13,7 @@ namespace TransitionScene.Runtime
         {
             List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None).ToList();
             List<RoundSystem> roundSystems = FindObjectsByType<RoundSystem>(FindObjectsSortMode.None).ToList();
-            List<LobbyManager> lobbyManagers = FindObjectsByType< LobbyManager>(FindObjectsSortMode.None).ToList();
+            List<LobbyManager> lobbyManagers = FindObjectsByType<LobbyManager>(FindObjectsSortMode.None).ToList();
 
             //Hasta la vista baby
 
@@ -29,7 +29,7 @@ namespace TransitionScene.Runtime
 
             for (int i = 0; i < lobbyManagers.Count; i++)
             {
-             Destroy(lobbyManagers[i].gameObject);   
+                Destroy(lobbyManagers[i].gameObject);
             }
         }
     }
