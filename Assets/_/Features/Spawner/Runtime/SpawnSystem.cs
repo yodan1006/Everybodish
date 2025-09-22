@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ActionMap;
 using Grab.Runtime;
@@ -27,6 +28,7 @@ namespace Spawner.Runtime
 
         public static List<SpawnSystem> AllPlayers = new();
         public UnityEvent<bool> onPlayerLifeStatusChanged = new();
+        public UnityEvent onPlayerQuit = new();
 
         private void Awake()
         {
@@ -34,8 +36,6 @@ namespace Spawner.Runtime
             // ajout d'un systeme dont destroy pour le passage de scene
 
             DontDestroyOnLoad(this);
-
-            //
 
             playerInput = GetComponent<PlayerInput>();
 
@@ -45,8 +45,6 @@ namespace Spawner.Runtime
                 devices = playerInput.devices
             };
             inputMap.Player.Selfdestruct.started += ctx => KillPlayer(ctx);
-            inputMap.Player.Selfdestruct.canceled += ctx => KillPlayer(ctx);
-            inputMap.Player.Selfdestruct.performed += ctx => KillPlayer(ctx);
         }
 
         private void OnDestroy()
@@ -138,9 +136,7 @@ namespace Spawner.Runtime
             BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
             BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
-            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeColor);
-            // BindPlayerInput(inputMap.Lobby.selectSkin, GetComponentInChildren<SelectSkin>().OnChangeModel);
-            // BindPlayerInput(inputMap.Lobby.validateSkin, GetComponentInChildren<SelectSkin>().OnValidateSkin);
+
         }
 
         public void UnBindPlayerControls()
