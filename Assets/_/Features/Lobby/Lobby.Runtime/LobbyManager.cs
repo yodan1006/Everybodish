@@ -28,7 +28,7 @@ namespace Skins.Runtime
             }
             Instance = this;
           //  DontDestroyOnLoad(gameObject);
-            playerSlots = new SelectSkin[UIjoin.Length];
+            playerSlots = new SelectSkin[UiJoin.Length];
         }
 
         public void RegisterPlayer(SelectSkin player)
