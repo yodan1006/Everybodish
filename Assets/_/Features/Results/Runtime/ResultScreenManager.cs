@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using Round.Runtime;
+using Score.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +12,7 @@ namespace Results.Runtime
     {
         #region Publics
         public SpawnPoint spawn;
+        public PlayerResults playerResults;
         #endregion
 
 
@@ -19,37 +23,31 @@ namespace Results.Runtime
         {
             if (RoundSystem.Instance != null)
             {
-                System.Collections.Generic.List<PlayerInput> playerInputs = RoundSystem.Instance.Players();
-                Debug.Log(playerInputs);
+                Debug.LogError("Retrieveing players!", this);
+                List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
+                Debug.LogError($"Found {playerInputs.Count} players");
+                List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
+
+                foreach ((int player, int score) value in list)
+                {
+                    Debug.LogError($"Player {value.player} with {value.score} points");
+                    //spawn players in leaderboard order
+                    foreach (PlayerInput playerInput in playerInputs)
+                    {
+                        if (playerInput.playerIndex == value.player)
+                        {
+                            spawn.OnPlayerSpawned(playerInput);
+                        }
+                    }
+                }
             }
-        }
+            else
+            {
+                Debug.LogError("ROUND IS NOT INITIALIZED YET");
+            }
 
-        // Update is called once per frame
-        private void Update()
-        {
-
-        }
-
-        #endregion
-
-
-        #region Main Methods
-        public void OnPlayerJoined(PlayerInput input)
-        {
-            spawn.OnPlayerSpawned(input);
         }
         #endregion
-
-
-        #region Utils
-
-        #endregion
-
-
-        #region Private and Protected
-
-        #endregion
-
 
     }
 }
