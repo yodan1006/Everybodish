@@ -46,8 +46,10 @@ namespace Score.Runtime
             }
             else
             {
-                Debug.LogError("More than one GlobalScoreEventSystem instanced! Use GlobalScoreEventSystem.Instance.", this);
-                Destroy(gameObject);
+                Debug.LogError("Replacing old score system", this);
+                Destroy(Instance);
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
         }
 
