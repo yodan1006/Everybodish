@@ -109,10 +109,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7116125886713809303}
+      addedObject: {fileID: 4347916177454221645}
     - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4347916177454221645}
+      addedObject: {fileID: 7346554786189666177}
   m_SourcePrefab: {fileID: 100100000, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
 --- !u!4 &323691521389347889 stripped
 Transform:
@@ -129,8 +129,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
   m_PrefabInstance: {fileID: 1109059196543978356}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7116125886713809303
-BoxCollider:
+--- !u!114 &4347916177454221645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842723589110867603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodType: 0
+--- !u!135 &7346554786189666177
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,24 +161,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43339157, y: 0.12299001, z: 0.44978}
-  m_Center: {x: -0.0046949387, y: 0.15601236, z: 0.0069696903}
---- !u!114 &4347916177454221645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842723589110867603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodType: 0
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
+  m_Radius: 0.1805618
+  m_Center: {x: 0, y: 0.14177223, z: 0}
 --- !u!1001 &2514050398267549488
 PrefabInstance:
   m_ObjectHideFlags: 0
