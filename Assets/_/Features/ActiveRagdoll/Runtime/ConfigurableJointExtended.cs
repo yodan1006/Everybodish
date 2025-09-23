@@ -77,7 +77,19 @@ namespace ActiveRagdoll.Runtime
         private void OnDisable()
         {
             //Reset joint rotation to fix Unity's animator bug
+            ResetJointRotation();
+        }
+
+        public void ResetJointRotation() {
             transform.localRotation = initialLocalRotation;
+        }
+
+        public void SetJointRotation(Quaternion newRotation)
+        {
+            // Apply the inverse of the initial rest pose rotation to remove baked-in tilt
+            Quaternion correctedRotation = newRotation * Quaternion.Inverse(initialLocalRotation);
+
+            transform.rotation = correctedRotation;
         }
 
         private void FixedUpdate()
