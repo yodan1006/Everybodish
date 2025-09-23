@@ -20,6 +20,7 @@ namespace Machine.Runtime
             rb = GetComponent<Rigidbody>();
             grabable = GetComponent<Grabable>();
             topmost = transform.root;
+            rb.constraints = Grabable.ReleaseAreaConstraints;
         }
     }
 }
