@@ -160,9 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 12
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
 --- !u!135 &3752033417937866619
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -196,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2191770557a3ba4bb0f62f9f5b686de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroy: 5
+  timeToDestroy: 15
 --- !u!1001 &7849899376544733708
 PrefabInstance:
   m_ObjectHideFlags: 0
