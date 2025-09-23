@@ -93,12 +93,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUis:
   - {fileID: 641766903420749482}
-  - {fileID: 0}
+  - {fileID: 8489473856928623016}
   - {fileID: 5661563781747807208}
   - {fileID: 8273932556201322872}
   icons:
   - {fileID: 824451380644889907}
-  - {fileID: 0}
+  - {fileID: 8523522778830629425}
   - {fileID: 5550937176962748529}
   - {fileID: 8163865461939710689}
   sliders:
@@ -762,6 +762,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6876535321356812042, guid: 5072b2acb47c6f14ab94362e6f16ca64, type: 3}
   m_PrefabInstance: {fileID: 3472261149142356534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8489473856928623016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5043847277793721246, guid: 5072b2acb47c6f14ab94362e6f16ca64, type: 3}
+  m_PrefabInstance: {fileID: 3472261149142356534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8523522778830629425 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5072831986241075207, guid: 5072b2acb47c6f14ab94362e6f16ca64, type: 3}
+  m_PrefabInstance: {fileID: 3472261149142356534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489473856928623016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8663ab87ef7472a48bc3e2fb813dc3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3853125167525993869
 PrefabInstance:
   m_ObjectHideFlags: 0

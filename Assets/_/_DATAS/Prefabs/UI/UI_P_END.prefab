@@ -565,10 +565,6 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4604061335280423185, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
-      propertyPath: 'icons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8998606382797397099}
-    - target: {fileID: 4604061335280423185, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
       propertyPath: 'icons.Array.data[2]'
       value: 
       objectReference: {fileID: 8158179498271611775}
@@ -612,10 +608,6 @@ PrefabInstance:
       propertyPath: teamResult.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4604061335280423185, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
-      propertyPath: 'playerUis.Array.data[1]'
-      value: 
-      objectReference: {fileID: 9185216117405638642}
     - target: {fileID: 4604061335280423185, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
       propertyPath: 'playerUis.Array.data[2]'
       value: 
@@ -1119,22 +1111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8998606382797397099 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4674232976256980837, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
-  m_PrefabInstance: {fileID: 4341275377482943246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185216117405638642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8663ab87ef7472a48bc3e2fb813dc3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &9185216117405638642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4847913415288722684, guid: 3ccbe9c9393f2f0458f8b5a76043ea2b, type: 3}
-  m_PrefabInstance: {fileID: 4341275377482943246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5551010991730426688
 PrefabInstance:
   m_ObjectHideFlags: 0
