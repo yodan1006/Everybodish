@@ -48,7 +48,7 @@ namespace Round.Runtime
 
         private void Awake()
         {
-            DontDestroyOnLoad(this);
+           DontDestroyManager.Instance.RegisterToDestroy(this.gameObject);
             gameTimer = GetComponent<GameTimer>();
             if (Instance == null)
             {

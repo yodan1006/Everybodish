@@ -34,7 +34,7 @@ namespace Spawner.Runtime
 
             // ajout d'un systeme dont destroy pour le passage de scene
 
-            DontDestroyOnLoad(this);
+            DontDestroyManager.Instance.RegisterToDestroy(this.gameObject);
 
             playerInput = GetComponent<PlayerInput>();
 

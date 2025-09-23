@@ -3,6 +3,7 @@ using System.Linq;
 using ActionMap;
 using Round.Runtime;
 using Score.Runtime;
+using Skins.Runtime;
 using Spawner.Runtime;
 using TransitionScene.Runtime;
 using UnityEngine;
@@ -69,6 +70,8 @@ namespace Results.Runtime
             {
                 item.Results.Disable();
             }
+
+            LobbyManager.Instance.gameObject.SetActive(true);
         }
         #endregion
 
