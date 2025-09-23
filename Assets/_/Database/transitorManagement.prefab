@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 4706574533566728011}
   - component: {fileID: 9110219988126599351}
   - component: {fileID: 6921862064557668554}
-  - component: {fileID: 9142075154544579712}
   m_Layer: 0
   m_Name: transitorManagement
   m_TagString: Untagged
@@ -252,35 +251,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebea7acd9dc4c44a8ce79a2ecedaefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9142075154544579712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9063758983323033667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fcfc9d78cd24d1d96606566898a8a16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIjoin:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  UIreeady:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  UIValidate:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  UIA:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

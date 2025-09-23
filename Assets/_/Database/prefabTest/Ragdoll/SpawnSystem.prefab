@@ -55,6 +55,9 @@ MonoBehaviour:
   onPlayerLifeStatusChanged:
     m_PersistentCalls:
       m_Calls: []
+  onPlayerQuit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1917181855189238406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +211,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5fd3ebeb-7e29-4f18-956c-bffb25570e9d
     m_ActionName: 'Lobby/Join[/XInputControllerWindows/buttonSouth,/DualShock4GamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 39d8eccb-a7a0-4810-b910-9d72637bc86e
+    m_ActionName: 'Results/Restart[/XInputControllerWindows/buttonSouth,/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Lobby
@@ -225,6 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ea72892f8e0a94289ca7023e03bb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSkinValidated:
+    m_PersistentCalls:
+      m_Calls: []
   appearances:
   - colorAppaerences:
     - {fileID: 2346025740297478112}
@@ -236,9 +246,6 @@ MonoBehaviour:
     - {fileID: 3860219729600001391}
   animalTypes: 00000000020000000300000001000000
   changeCooldown: 0.2
-  onSkinValidated:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-4855144887064598340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +330,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5516917930905865657, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827348041837292400, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802301707436799611, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3307613635069798083, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+    - {fileID: 1441789662254240134, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -20,7 +20,7 @@ namespace UI.Runtime
         public List<SelectSkin> selectSkins = new();
         public GameObject pause;
         public float arrowDuration = 2;
-        List<PlayerInput> playerList;
+        private List<PlayerInput> playerList;
         #endregion
 
 
@@ -54,7 +54,7 @@ namespace UI.Runtime
         {
             List<(int player, int score)> leaderboard = GlobalScoreEventSystem.GetLeaderboard();
             int firstPlayerIndex = leaderboard[0].player;
-           
+
             Debug.Log(playerList.Count);
             Debug.Log(selectSkins.Count);
             for (int i = 0; i < playerList.Count; i++)
@@ -100,7 +100,7 @@ namespace UI.Runtime
             foreach (var item in playerIcons)
             {
                 item.gameObject.SetActive(true);
-            }    
+            }
             playerList = round.Players();
             foreach (var item in playerList)
             {
@@ -111,7 +111,7 @@ namespace UI.Runtime
         private void OnRoundStarted()
         {
             Debug.Log("Round started, updating ui");
-       
+
             int playerCount = playerList.Count;
             Debug.Log($"Players in game : {playerCount}");
             Debug.Log($"Players icons count : {selectSkins.Count}");
