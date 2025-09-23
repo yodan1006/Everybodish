@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bf632fe91a44b5bb1b175ce37990e09, type: 3}
-  m_Name: Steak
+  m_Name: Steak_Slicer
   m_EditorClassIdentifier: 
-  input: 14
+  input: 21
   output: 11
-  outputPrefab: {fileID: 5634855341952793591, guid: 7f5aec779a065ab4d9e667d898756c62, type: 3}
+  outputPrefab: {fileID: 3034750045873254210, guid: 8f1c534ec77d92e438583efc52686d1e, type: 3}

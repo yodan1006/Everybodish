@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IngredientsInput: 1600000002000000
   Output: 25
-  OutputPrefab: {fileID: 0}
+  OutputPrefab: {fileID: 7760381352046608580, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
