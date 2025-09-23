@@ -1077,10 +1077,10 @@ MonoBehaviour:
   rabbitIcon: {fileID: 2009752412070247816}
   pigIcon: {fileID: 2552634759907234038}
   cowIcon: {fileID: 4298378406844990680}
-  duckGoldIcon: {fileID: 6925457974138853526}
-  rabbitGoldIcon: {fileID: 2009752412070247816}
-  pigGoldIcon: {fileID: 2552634759907234038}
-  cowGoldIcon: {fileID: 4298378406844990680}
+  duckGoldIcon: {fileID: 4893285542543624038}
+  rabbitGoldIcon: {fileID: 4088734648954552291}
+  pigGoldIcon: {fileID: 4490032754128454265}
+  cowGoldIcon: {fileID: 3668065348200338084}
   player1: {fileID: 1892487056861347208}
   player2: {fileID: 587879161640612955}
   player3: {fileID: 5742118148607526385}
