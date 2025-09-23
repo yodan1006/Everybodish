@@ -19,6 +19,7 @@ namespace TransitionScene.Runtime
 
             for (int i = 0; i < playerInputs.Count; i++)
             {
+                playerInputs[i].DeactivateInput();
                 Destroy(playerInputs[i].gameObject);
             }
 

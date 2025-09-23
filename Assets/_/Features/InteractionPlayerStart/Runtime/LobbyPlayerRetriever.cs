@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Round.Runtime;
 using Skins.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
@@ -8,30 +7,29 @@ using UnityEngine.InputSystem;
 
 namespace InteractionPlayerStart.Runtime
 {
-    public class LobbyPlayerRetrieverForGame : MonoBehaviour
+    public class LobbyPlayerRetriever : MonoBehaviour
     {
         public SpawnPoint spawner;
 
-        private void Start()
+        private void OnEnable()
         {
             // Get all PlayerInput objects and sort them by lobby slot index
             List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None)
                 .OrderBy(p => p.GetComponentInChildren<SelectSkin>().GetSlotIndex())
                 .ToList();
             // Debug.LogError($"Found {playerInputs.Count} players");
-            if (RoundSystem.Instance != null)
+            if (LobbyManager.Instance != null)
             {
                 foreach (PlayerInput playerInput in playerInputs)
                 {
-                    RoundSystem.Instance.JoinRound(playerInput);
-                    spawner.OnPlayerSpawned(playerInput);
+                    Debug.Log("Readding old player to lobby");
+                    LobbyManager.Instance.RegisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
                 }
             }
             else
             {
-                Debug.LogError("ROUND IS NOT INITIALIZED YET");
+                Debug.LogError("LOBBY IS NOT INITIALIZED YET");
             }
         }
     }
 }
-

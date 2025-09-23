@@ -10,12 +10,12 @@ namespace UI.Runtime
 
         private Vector3 startPosition;
 
-        void Start()
+        private void Start()
         {
             startPosition = transform.position;
         }
 
-        void Update()
+        private void Update()
         {
             float offsetY = Mathf.Sin(Time.time * frequency) * amplitude;
             Vector3 targetPosition = new Vector3(startPosition.x, startPosition.y + offsetY, startPosition.z);
