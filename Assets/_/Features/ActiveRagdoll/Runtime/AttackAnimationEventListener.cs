@@ -31,7 +31,7 @@ namespace ActiveRagdoll.Runtime
             if (!proximityGrabber.IsGrabbing())
             {
                 attackTrigger.enabled = true;
-                Debug.Log("AnimEventActiveHeadButt");
+              //  Debug.Log("AnimEventActiveHeadButt");
             }
             else
             {
@@ -48,7 +48,7 @@ namespace ActiveRagdoll.Runtime
 
         public void AnimEventDisableHeadButt()
         {
-            Debug.Log("AnimEventDisableHeadButt");
+          //  Debug.Log("AnimEventDisableHeadButt");
             attackTrigger.enabled = false;
         }
 
