@@ -70,6 +70,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 189879655193393038, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: holdDistanceFromPlayer.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.175
@@ -112,11 +116,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7446442398799400412, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: FoodType
-      value: 28
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7760381352046608580, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_Name
       value: P_Chopper_Items_Floor Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971547230622990630, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Height
+      value: 0.95576954
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971547230622990630, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Center.y
+      value: 0.4330287
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971547230622990630, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971547230622990630, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
