@@ -1,7 +1,7 @@
 using ActiveRagdoll.Runtime;
 using UnityEngine;
 
-namespace Stunsystem.Runtime
+namespace MovePlayer.Runtime
 {
     [RequireComponent(typeof(PlayerStat))]
     public class DamageReceiver : MonoBehaviour

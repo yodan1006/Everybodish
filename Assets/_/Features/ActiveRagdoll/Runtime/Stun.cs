@@ -1,10 +1,8 @@
-using ActiveRagdoll.Runtime;
 using Grab.Runtime;
-using Machine.Runtime;
 using PlayerLocomotion.Runtime;
 using UnityEngine;
 
-namespace StunSystem.Runtime
+namespace ActiveRagdoll.Runtime
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Attack))]
@@ -33,7 +31,6 @@ namespace StunSystem.Runtime
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
             _activeRagdoll = GetComponent<ActiveRagdoll>();
-            _animatedProximityGrabber = GetComponent<AnimatedProximityGrabber>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
 
@@ -45,7 +42,6 @@ namespace StunSystem.Runtime
             _rotation.enabled = false;
             _characterController.enabled = false;
             _gravity.enabled = false;
-            _animatedProximityGrabber.enabled = false;
             foreach (Grabable grabable in grabables)
             {
                 grabable.enabled = true;
@@ -62,7 +58,6 @@ namespace StunSystem.Runtime
             _rotation.enabled = true;
             _characterController.enabled = true;
             _gravity.enabled = true;
-            _animatedProximityGrabber.enabled = true;
             foreach (var grabable in grabables)
             {
                 grabable.enabled = false;
@@ -107,8 +102,6 @@ namespace StunSystem.Runtime
         private CharacterController _characterController;
         private GravityAndJump _gravity;
         private ActiveRagdoll _activeRagdoll;
-        private AnimatedProximityGrabber _animatedProximityGrabber;
-        private PlayerInteract _playerInteract;
         private float stunDuration;
         #endregion
 
