@@ -2,7 +2,7 @@
 
 namespace Machine.Runtime
 {
-    [CreateAssetMenu(menuName = "Features/Recipe")]
+    [CreateAssetMenu(menuName = "Features/Recipes")]
     public class Recipe : ScriptableObject
     {
         public FoodType input;

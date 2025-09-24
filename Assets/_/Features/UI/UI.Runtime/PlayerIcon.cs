@@ -28,21 +28,14 @@ namespace UI.Runtime
         #region Main Methods
         public void SetPlayerIcon(AnimalType animalType, bool gold)
         {
-            if (!gold)
-            {
-                duckIcon.SetActive(animalType == AnimalType.DUCK);
-                rabbitIcon.SetActive(animalType == AnimalType.RABBIT);
-                pigIcon.SetActive(animalType == AnimalType.PIG);
-                cowIcon.SetActive(animalType == AnimalType.COW);
-            }
-            else
-            {
-                duckGoldIcon.SetActive(animalType == AnimalType.DUCK);
-                rabbitGoldIcon.SetActive(animalType == AnimalType.RABBIT);
-                pigGoldIcon.SetActive(animalType == AnimalType.PIG);
-                cowGoldIcon.SetActive(animalType == AnimalType.COW);
-            }
-
+            duckIcon.SetActive(animalType == AnimalType.DUCK && !gold);
+            rabbitIcon.SetActive(animalType == AnimalType.RABBIT && !gold);
+            pigIcon.SetActive(animalType == AnimalType.PIG && !gold);
+            cowIcon.SetActive(animalType == AnimalType.COW && !gold);
+            duckGoldIcon.SetActive(animalType == AnimalType.DUCK && gold);
+            rabbitGoldIcon.SetActive(animalType == AnimalType.RABBIT && gold);
+            pigGoldIcon.SetActive(animalType == AnimalType.PIG && gold);
+            cowGoldIcon.SetActive(animalType == AnimalType.COW && gold);
         }
 
         public void SetPlayerLabel(int label)

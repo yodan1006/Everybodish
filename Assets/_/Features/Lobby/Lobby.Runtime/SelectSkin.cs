@@ -167,7 +167,7 @@ namespace Skins.Runtime
         #endregion
 
         #region private
-        
+
         [SerializeField] private ApparenceSet[] appearances;
         [SerializeField] private AnimalType[] animalTypes;
         [SerializeField] private float changeCooldown = 0.2f;

@@ -8,7 +8,6 @@ namespace Skins.Runtime
     {
         #region public
 
-        public static LobbyManager Instance { get; private set; }
         public GameObject[] UiReady;
         public GameObject[] UiValidate;
         public GameObject[] UiAButton;
@@ -17,16 +16,40 @@ namespace Skins.Runtime
 
         #region unity api
 
+        private static LobbyManager _instance;
+        public static LobbyManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    // Try to find an existing instance in the scene
+                    _instance = FindAnyObjectByType<LobbyManager>();
+
+                    if (_instance == null)
+                    {
+                        // If none exists, create a new GameObject and attach this component
+                        GameObject singletonGO = new("DontDestroyManager");
+                        _instance = singletonGO.AddComponent<LobbyManager>();
+                    }
+                    DontDestroyManager.Instance.RegisterToEnableOnDestroy(_instance.gameObject);
+                }
+
+                return _instance;
+            }
+        }
+
+
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            // Enforce singleton pattern
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
-                return;
             }
-            Instance = this;
-            //  DontDestroyOnLoad(gameObject);
             playerSlots = new SelectSkin[UiJoin.Length];
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
@@ -114,6 +137,7 @@ namespace Skins.Runtime
                 return;
             }
             loader.LoadSceneWithLoading(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+          gameObject.SetActive(false);
         }
 
         #endregion
@@ -123,7 +147,7 @@ namespace Skins.Runtime
         [SerializeField] private GameObject[] UiJoin;
         private readonly List<SelectSkin> players = new();
         private SelectSkin[] playerSlots;
-        
+
 
         #endregion
     }

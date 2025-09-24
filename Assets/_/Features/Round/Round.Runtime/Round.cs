@@ -48,7 +48,7 @@ namespace Round.Runtime
 
         private void Awake()
         {
-            DontDestroyOnLoad(this);
+           DontDestroyManager.Instance.RegisterToDestroy(this.gameObject);
             gameTimer = GetComponent<GameTimer>();
             if (Instance == null)
             {
@@ -60,7 +60,18 @@ namespace Round.Runtime
                 Instance = this;
             }
             OnGameplayStarted.AddListener(StartRound);
+            OnWarmupStarted.AddListener(Warmup);
             OnRoundEnd.AddListener(EndRound);
+            ChangeState(RoundState.Warmup);
+        }
+
+        private void Warmup()
+        {
+
+            foreach (var item in players.Values)
+            {
+                GlobalScoreEventSystem.RegisterScoreEvent(item.playerIndex, ScoreEventType.JoinedGame);
+            }
         }
 
         private void EndRound()
@@ -93,6 +104,7 @@ namespace Round.Runtime
         // Update is called once per frame
         private void Update()
         {
+
             switch (state)
             {
                 case RoundState.Warmup:
@@ -125,6 +137,7 @@ namespace Round.Runtime
 
         private void ChangeState(RoundState newState)
         {
+            Debug.Log("Round state is now " + newState.ToString());
             state = newState;
             switch (newState)
             {
@@ -134,9 +147,9 @@ namespace Round.Runtime
                     OnWarmupStarted.Invoke();
                     break;
                 case RoundState.Gameplay:
-                    gameTimer.StartGameTimer();
                     OnWarmupFinished.Invoke();
                     OnGameplayStarted.Invoke();
+                    gameTimer.StartGameTimer();
                     break;
                 case RoundState.Cooldown:
                     gameTimer.StopGameTimer();
@@ -155,7 +168,6 @@ namespace Round.Runtime
         {
             int playerIndex = playerInput.playerIndex;
             players.Add(playerIndex, playerInput);
-            GlobalScoreEventSystem.RegisterScoreEvent(playerIndex, ScoreEventType.JoinedGame);
             Debug.Log($"Player with index {playerIndex} joined Round. Player count : {players.Count}");
         }
 

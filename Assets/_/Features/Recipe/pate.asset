@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: 23
   output: 22
-  outputPrefab: {fileID: 1126969650165887189, guid: f9d3a5ec4140da4438c3943a36885729, type: 3}
+  outputPrefab: {fileID: 1551400446108099562, guid: d58d655f79262ef46967b8964f8912e9, type: 3}
