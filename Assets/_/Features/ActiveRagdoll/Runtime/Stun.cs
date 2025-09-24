@@ -7,7 +7,6 @@ namespace ActiveRagdoll.Runtime
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Attack))]
     [RequireComponent(typeof(CameraRelativeMovement))]
-    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GravityAndJump))]
     [RequireComponent(typeof(ActiveRagdoll))]
     public class Stun : MonoBehaviour
