@@ -10,7 +10,8 @@ namespace Machine.Runtime
         /// Retourne le point de spawn où la nourriture doit apparaître.
         /// </summary>
         public Transform SpawnPoint => _foodSpawnPoint;
-
+        private float cooldownDelta = 0;
+        public float cooldownTime = 1f;
         #endregion
 
         #region Main Methods
@@ -23,11 +24,25 @@ namespace Machine.Runtime
         /// <returns>Vrai si nourriture dispo, sinon faux.</returns>
         public bool TryProvideFood(out GameObject prefab)
         {
+            bool success  = false;
             prefab = null;
-            if (_foodPrefab == null)
-                return false;
-            prefab = _foodPrefab;
-            return true;
+
+            if (_foodPrefab != null && cooldownDelta <=0)
+            {   
+                prefab = _foodPrefab;
+                success = true;
+                cooldownDelta = cooldownTime;
+            }
+     
+            return success;
+        }
+
+        private void Update()
+        {
+            if (cooldownDelta > 0)
+            {
+                cooldownDelta -= Time.deltaTime;
+            }
         }
 
         #endregion
