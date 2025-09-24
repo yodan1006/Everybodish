@@ -113,8 +113,7 @@ PrefabInstance:
       value: -0.03988403
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 7851605606475840202, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
-    - {fileID: 5262590258132329934, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
+    - {fileID: 0}
     - {fileID: 8336300325008270987, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4358472033176171831, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
@@ -196,7 +195,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1001 &6549018947487823752
 PrefabInstance:
   m_ObjectHideFlags: 0
