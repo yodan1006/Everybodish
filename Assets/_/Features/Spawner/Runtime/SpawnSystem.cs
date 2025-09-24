@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ActionMap;
 using Grab.Runtime;
@@ -5,6 +6,7 @@ using Machine.Runtime;
 using MovePlayer.Runtime;
 using PlayerLocomotion.Runtime;
 using Score.Runtime;
+using Skins.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,6 +14,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 namespace Spawner.Runtime
 {
+    [RequireComponent(typeof(SelectSkin))]
     [RequireComponent(typeof(PlayerInput))]
     public class SpawnSystem : MonoBehaviour
     {
@@ -44,6 +47,12 @@ namespace Spawner.Runtime
                 devices = playerInput.devices
             };
             inputMap.Player.Selfdestruct.started += ctx => KillPlayer(ctx);
+            GetComponent<SelectSkin>().onSkinchanged.AddListener(RefreshPlayer);
+        }
+
+        private void RefreshPlayer()
+        {
+            RespawnPlayer();
         }
 
         private void OnDestroy()
@@ -53,8 +62,7 @@ namespace Spawner.Runtime
 
         private void OnEnable()
         {
-            playerPrefab.SetActive(false);
-            playerPrefab.transform.localPosition = Vector3.zero;
+     
             inputMap.Enable();
             SpawnPlayer();
         }
@@ -63,7 +71,6 @@ namespace Spawner.Runtime
         {
             inputMap.Disable();
             DestroyPlayer();
-            playerPrefab.SetActive(true);
         }
 
         // Update is called once per frame
@@ -95,17 +102,36 @@ namespace Spawner.Runtime
             KillPlayer();
         }
 
+        public void RespawnPlayer()
+        {
+            DestroyPlayer();
+            SpawnPlayer();
+        }
+
+        public void RespawnPlayerAtLocation(Transform newTransform)
+        {
+            DestroyPlayer();
+            transform.rotation = newTransform.rotation;
+            transform.position = newTransform.position;
+            SpawnPlayer();
+        }
+
         public void KillPlayerNoRespawn()
         {
             DestroyPlayer();
         }
 
-        public void SpawnPlayer()
+        public void CreatePlayer()
         {
             InstantiatePlayer();
             playerInstance.SetActive(true);
             BindPlayerControls();
             BindPlayerEvents();
+        }
+
+        public void SpawnPlayer()
+        {
+            CreatePlayer();
             onPlayerLifeStatusChanged.Invoke(true);
         }
 
@@ -138,7 +164,7 @@ namespace Spawner.Runtime
 
         }
 
-        public void UnBindPlayerControls()
+        public void UnbindPlayerControls()
         {
             foreach (var kvp in boundActions)
             {
@@ -189,7 +215,7 @@ namespace Spawner.Runtime
         {
             if (playerInstance != null)
             {
-                UnBindPlayerControls();
+                UnbindPlayerControls();
                 Destroy(playerInstance);
                 playerInstance = null;
             }
