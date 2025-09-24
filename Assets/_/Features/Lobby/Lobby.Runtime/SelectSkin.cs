@@ -10,6 +10,7 @@ namespace Skins.Runtime
         #region public
 
         public UnityEvent<bool> onSkinValidated = new();
+        public UnityEvent onSkinchanged = new();
 
         /// <summary>
         /// Retourne le type d'animal actuellement sélectionné par le joueur.
@@ -162,6 +163,7 @@ namespace Skins.Runtime
             }
             // Active la variante sélectionnée
             appearances[currentModelIndex].colorAppaerences[currentColorIndex].SetActive(true);
+            onSkinchanged.Invoke();
         }
 
         #endregion
