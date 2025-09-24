@@ -3,6 +3,7 @@ using ActionMap;
 using Grab.Runtime;
 using Machine.Runtime;
 using PlayerLocomotion.Runtime;
+using Skins.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,7 +24,7 @@ namespace InputMapManager.Runtime
         private void Start()
         {
             playerInput = gameObject.GetComponent<PlayerInput>();
-        spawnSystem = gameObject.GetComponent<SpawnSystem>();
+            spawnSystem = gameObject.GetComponent<SpawnSystem>();
 
             // Create wrapper from PlayerInput's actions
             inputMap = new PlayerInputMap
@@ -34,6 +35,24 @@ namespace InputMapManager.Runtime
             inputMap.Player.Selfdestruct.started += ctx => spawnSystem.KillPlayer(ctx);
             spawnSystem.onNewClone.AddListener(RebindPlayerControls);
             spawnSystem.onCloneDestroy.AddListener(UnbindPlayerControls);
+            LobbyManager.Instance.onLobbyActive.AddListener(LobbyActive);
+        }
+
+        private void RoundActive()
+        {
+            SetGameplayMap();
+        }
+
+        private void LobbyActive(bool isActive)
+        {
+            if (isActive)
+            {
+                SetLobbyMap();
+            }
+            else
+            {
+                DisableAllInputs();
+            }
         }
 
         private void UnbindPlayerControls(GameObject arg0)
@@ -49,7 +68,7 @@ namespace InputMapManager.Runtime
         public void BindPlayerControls(GameObject ctx)
         {
             //Get components
-            Debug.Log("Binding inputs");
+            //  Debug.Log("Binding inputs");
             BindPlayerInput(inputMap.Player.Grab, ctx.GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
             BindPlayerInput(inputMap.Player.HeadButt, ctx.GetComponentInChildren<Attack>().PlayAttack);
             BindPlayerInput(inputMap.Player.Interact, ctx.GetComponentInChildren<PlayerInteract>().OnUse);
@@ -109,6 +128,7 @@ namespace InputMapManager.Runtime
 
         public void SetLobbyMap()
         {
+            Debug.Log("Enabled Lobby inputs");
             inputMap.Lobby.Enable();
             inputMap.Player.Disable();
         }
@@ -116,18 +136,21 @@ namespace InputMapManager.Runtime
 
         public void SetGameplayMap()
         {
+            Debug.Log("Enabled Game inputs");
             inputMap.Lobby.Disable();
             inputMap.Player.Enable();
         }
 
         public void SetResultMap()
         {
+            Debug.Log("Enabled Result inputs");
             inputMap.Lobby.Enable();
             inputMap.Player.Disable();
         }
 
         public void DisableAllInputs()
         {
+            Debug.Log("Disabled all inputs");
             inputMap.Lobby.Disable();
             inputMap.Player.Disable();
         }

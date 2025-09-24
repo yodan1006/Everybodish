@@ -14,7 +14,7 @@ namespace ActiveRagdoll.Runtime
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Awake()
         {
-            Debug.Log("Running MeshBinder", this);
+            // Debug.Log("Running MeshBinder", this);
             var allBones = root.GetComponentsInChildren<Transform>();
             var filteredBones = new List<Transform>();
 

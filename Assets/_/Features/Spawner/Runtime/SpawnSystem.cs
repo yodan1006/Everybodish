@@ -41,14 +41,6 @@ namespace Spawner.Runtime
             AllPlayers.Remove(this);
         }
 
-        private void OnEnable()
-        {
-        }
-
-        private void OnDisable()
-        {
-        }
-
         private void Update()
         {
             if (respawnTimeDelta > 0)

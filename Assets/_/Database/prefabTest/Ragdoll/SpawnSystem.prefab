@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 5
-  respawnTimeDelta: 0
   playerPrefab: {fileID: 259693241692249912}
   onPlayerLifeStatusChanged:
     m_PersistentCalls:
@@ -202,19 +201,7 @@ MonoBehaviour:
     m_ActionId: 3b9237ff-99a8-4fca-ae7a-0edb1a19c703
     m_ActionName: 'Lobby/Quit[/Keyboard/escape,/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -4855144887064598340}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5fd3ebeb-7e29-4f18-956c-bffb25570e9d
     m_ActionName: 'Lobby/Join[/XInputControllerWindows/buttonSouth]'
   - m_PersistentCalls:
@@ -223,7 +210,7 @@ MonoBehaviour:
     m_ActionName: 'Results/Restart[/XInputControllerWindows/buttonSouth,/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2877955335872950180

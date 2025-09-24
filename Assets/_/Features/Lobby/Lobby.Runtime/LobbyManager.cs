@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TransitionScene.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Skins.Runtime
 {
@@ -11,10 +12,21 @@ namespace Skins.Runtime
         public GameObject[] UiReady;
         public GameObject[] UiValidate;
         public GameObject[] UiAButton;
+        public UnityEvent<bool> onLobbyActive = new();
 
         #endregion
 
         #region unity api
+
+        private void OnEnable()
+        {
+            onLobbyActive.Invoke(true);
+        }
+
+        private void OnDisable()
+        {
+            onLobbyActive.Invoke(false);
+        }
 
         private static LobbyManager _instance;
         public static LobbyManager Instance
@@ -137,8 +149,10 @@ namespace Skins.Runtime
                 return;
             }
             loader.LoadSceneWithLoading(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+
             gameObject.SetActive(false);
         }
+
 
         #endregion
 

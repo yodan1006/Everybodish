@@ -182,12 +182,21 @@ namespace Round.Runtime
             cooldownTimeDelta = cooldownTime;
             OnWarmupStarted.Invoke();
             GlobalScoreEventSystem.ResetAllScores();
+            foreach (var item in players)
+            {
+                item.Value.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
+            }
+            ;
         }
 
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
             OnGameplayFinished.Invoke();
+            foreach (var item in players)
+            {
+                item.Value.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().DisableAllInputs();
+            }
         }
 
         public List<PlayerInput> Players()
