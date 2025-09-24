@@ -28,6 +28,7 @@ namespace Machine.Runtime
         [SerializeField] private GameObject uiBarProgression;
         [SerializeField] private GameObject uiIcone;
         [SerializeField] private GameObject uiDone;
+        [SerializeField] private GameObject failedUI;
         [Header("Points d'apparition des ingrédients (ordre important !)")]
         [SerializeField] private Transform[] ingredientPoints;
         [Header("Scales designers par ingrédient (ordre identique aux points)")]
@@ -244,6 +245,7 @@ namespace Machine.Runtime
             
             if (crame)
             {
+                failedUI.SetActive(true);
                 animator.SetBool("Echec", true);
                 animator.SetBool("Frying", false);
                 particleBurn.Play();
@@ -255,6 +257,7 @@ namespace Machine.Runtime
 
                 ResetMachineState();
                 animator.SetBool("Echec", false);
+                failedUI.SetActive(false);
                 yield break;
             }
 
@@ -293,6 +296,7 @@ namespace Machine.Runtime
             if (crame)
             {
                 // Animation d'échec pour le cramage en phase 2
+                failedUI.SetActive(true);
                 animator.SetBool("Frying", false);
                 animator.SetBool("Done", false);
                 animator.SetBool("Echec", true);
@@ -300,11 +304,14 @@ namespace Machine.Runtime
                 
                 uiBarProgression.SetActive(false);
                 WrongIngredient(null);
+                
+                yield return new WaitForSeconds(1f); // le temps que l'anim "Echec" joue
 
                 ResetMachineState();
                 
                 // Remettre Echec à false avant de sortir
                 animator.SetBool("Echec", false);
+                failedUI.SetActive(true);
                 yield break;
             }
 

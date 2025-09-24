@@ -696,6 +696,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1000213482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 569153893312385891, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+  m_PrefabInstance: {fileID: 2052963296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000213483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6771527075876147016, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+  m_PrefabInstance: {fileID: 2052963296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185154367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1155,10 @@ PrefabInstance:
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 2052963305}
+    - target: {fileID: 1687168829262546276, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: failedUI
+      value: 
+      objectReference: {fileID: 1000213482}
     - target: {fileID: 1939195156276429865, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Name
       value: _____LVL01_____ (1)
@@ -1269,10 +1283,22 @@ PrefabInstance:
       propertyPath: commandeManager
       value: 
       objectReference: {fileID: 2011998406}
+    - target: {fileID: 7242517495431808325, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242517495431808325, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7731044431373166645, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8795877576136326864, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: failedUI
+      value: 
+      objectReference: {fileID: 1000213483}
     - target: {fileID: 9178218399244897673, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 135
