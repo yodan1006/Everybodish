@@ -3812,10 +3812,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 177017713430948623, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 313337477854573589, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_Name
       value: Weat_spawn
@@ -3911,10 +3907,6 @@ PrefabInstance:
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 1812732268}
-    - target: {fileID: 1687168829262546276, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-      propertyPath: particleFrying
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1687168829262546276, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: recipes.Array.size
       value: 4
@@ -4652,7 +4644,6 @@ PrefabInstance:
     - {fileID: 1461251856984046351, guid: bbc52680146729c428ec71ea5150079d, type: 3}
     - {fileID: 8252440154071197253, guid: bbc52680146729c428ec71ea5150079d, type: 3}
     - {fileID: 874778085187461591, guid: bbc52680146729c428ec71ea5150079d, type: 3}
-    - {fileID: 4540367588812314416, guid: bbc52680146729c428ec71ea5150079d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1816719312993383199, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       insertIndex: -1
