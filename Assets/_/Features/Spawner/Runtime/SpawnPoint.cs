@@ -51,12 +51,10 @@ namespace Spawner.Runtime
                 }
 
 
-                PlayerTeleporter teleporter = playerInput.GetComponentInChildren<PlayerTeleporter>();
-                if (teleporter != null)
+                SpawnSystem spawnSystem = playerInput.GetComponentInChildren<SpawnSystem>();
+                if (spawnSystem != null)
                 {
-                    playerInput.transform.root.position = spawn.position;
-                    playerInput.transform.root.rotation = spawn.rotation;
-                    teleporter.TeleportTo(spawn);
+                    spawnSystem.RespawnPlayerAtLocation(spawn);
                     playerInput.transform.root.name = deviceName + " Player";
                 }
                  else
