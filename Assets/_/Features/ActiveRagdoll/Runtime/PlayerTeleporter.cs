@@ -15,7 +15,16 @@ namespace ActiveRagdoll.Runtime
         }
         public void TeleportTo(Transform transform)
         {
+            m_playerRoot.SetActive(false);
+            m_ragdollRoot.SetActive(false); 
             m_playerRoot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            Vector3 ragdollPosition = transform.position;
+
+            m_ragdollRoot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            ConfigurableJointExtended[] configurableJointExtendeds = m_ragdollRoot.GetComponentsInChildren<ConfigurableJointExtended>();
+           m_playerRoot.SetActive(true);
+            m_ragdollRoot.SetActive(true) ;
+            Debug.LogError("Test");
         }
 
 
