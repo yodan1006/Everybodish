@@ -79,8 +79,7 @@ namespace Round.Runtime
             {
                 if (player != null)
                 {
-                    //    player.GetComponent<SpawnSystem>().enabled = false;
-                    player.actions.FindActionMap("Player").Disable();
+                    player.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().DisableAllInputs();
                 }
             }
             players.Clear();
@@ -97,6 +96,10 @@ namespace Round.Runtime
             {
                 // player.GetComponent<SpawnSystem>().enabled = true;
                 player.actions.FindActionMap("Player").Enable();
+                GlobalScoreEventSystem.ResetAllScores();
+                    player.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
+                
+            ;
             }
         }
 
@@ -181,22 +184,14 @@ namespace Round.Runtime
             warmupTimeDelta = warmupTime;
             cooldownTimeDelta = cooldownTime;
             OnWarmupStarted.Invoke();
-            GlobalScoreEventSystem.ResetAllScores();
-            foreach (var item in players)
-            {
-                item.Value.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
-            }
-            ;
+
         }
 
         private void OnDisable()
         {
             gameTimer.StopGameTimer();
             OnGameplayFinished.Invoke();
-            foreach (var item in players)
-            {
-                item.Value.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().DisableAllInputs();
-            }
+
         }
 
         public List<PlayerInput> Players()
