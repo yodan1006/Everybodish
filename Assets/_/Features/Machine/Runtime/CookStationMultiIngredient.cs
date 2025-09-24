@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Grab.Runtime;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ namespace Machine.Runtime
     {
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem particleBurn;
-        [SerializeField] private ParticleSystem particleFrying;
+        [SerializeField] [CanBeNull] private ParticleSystem particleFrying;
         [SerializeField] private ParticleSystem? particleCrame;
         [SerializeField] private ParticleSystem? particleFlash1;
         [SerializeField] private ParticleSystem? particleFlash2;
@@ -211,7 +212,8 @@ namespace Machine.Runtime
 
             // ----------- PHASE 1 : cuisson avant retour ---------
             animator.SetBool("Frying", true);
-            particleFrying.Play();
+            if (particleFrying != null)
+                particleFrying.Play();
             bool crame = false;
             elapsed = 0f;
             
@@ -338,7 +340,7 @@ namespace Machine.Runtime
             animator.SetBool("Flip", false);
             
             // Arrêt des particules
-            if (particleFrying.isPlaying)
+            if (particleFrying.isPlaying && particleFrying != null)
                 particleFrying.Stop();
             if (particleBurn.isPlaying)
                 particleBurn.Stop();
