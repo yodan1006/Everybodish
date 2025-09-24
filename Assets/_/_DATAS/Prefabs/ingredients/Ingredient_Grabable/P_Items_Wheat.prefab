@@ -105,7 +105,7 @@ MonoBehaviour:
   releaseAreaConstraints: 0
   grabbedBehaviour: 1
   movementStrategy: 1
-  holdDistanceFromPlayer: {x: 0, y: 0.7, z: 0.7}
+  holdDistanceFromPlayer: {x: 0, y: 0.5, z: 0.7}
 --- !u!114 &549477004697256069
 MonoBehaviour:
   m_ObjectHideFlags: 0

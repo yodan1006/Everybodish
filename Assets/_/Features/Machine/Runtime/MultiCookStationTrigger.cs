@@ -9,16 +9,31 @@ namespace Machine.Runtime
 
         private bool isPlayerInTrigger = false;
 
+        // Références éventuelles (une seule des deux sera non nulle)
+        private CookStationMultiIngredient multiIngredient;
+        private CookStation cookStation;
+
+        private void Awake()
+        {
+            // On récupère les composants si présents
+            multiIngredient = GetComponent<CookStationMultiIngredient>();
+            cookStation = GetComponent<CookStation>();
+        }
+
         private void Update()
         {
-            // Ne fait le test que quand un joueur est dans le trigger
-            if (isPlayerInTrigger)
-            {
-                if (gameObject.GetComponent<CookStationMultiIngredient>().IsCooking)
-                    ToucheImage.SetActive(false);
-                else
-                    ToucheImage.SetActive(true);
-            }
+            if (!isPlayerInTrigger) return;
+
+            bool isCooking = false;
+
+            if (multiIngredient != null && multiIngredient.IsCooking)
+                isCooking = true;
+
+            if (cookStation != null && cookStation._isCooking)
+                isCooking = true;
+
+            // Si une des deux machines est en train de cuire, on cache l’image
+            ToucheImage.SetActive(!isCooking);
         }
 
         private void OnTriggerEnter(Collider other)

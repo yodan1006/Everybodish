@@ -6,7 +6,7 @@ namespace Machine.Runtime
 {
     public class UIMultiCook : MonoBehaviour
     {
-        [SerializeField] private Canvas uiCanvas;
+        [SerializeField] private GameObject uiCanvas;
         [SerializeField] public Image uiImage;
 
         [SerializeField] private float holdTime = 1f;
@@ -19,7 +19,7 @@ namespace Machine.Runtime
 
         private void Awake()
         {
-            if (uiCanvas != null) uiCanvas.enabled = false;
+            if (uiCanvas != null) uiCanvas.SetActive(false);
             if (uiImage != null) uiImage.fillAmount = 0;
         }
 
@@ -62,14 +62,14 @@ namespace Machine.Runtime
 
         public void ShowUI()
         {
-            if (uiCanvas != null) uiCanvas.enabled = true;
+            if (uiCanvas != null) uiCanvas.SetActive(true);
             if (uiImage != null) uiImage.fillAmount = 0;
             _isVisible = true;
         }
 
         public void HideUI()
         {
-            if (uiCanvas != null) uiCanvas.enabled = false;
+            if (uiCanvas != null) uiCanvas.SetActive(false);
             ResetHold();
             _isVisible = false;
         }

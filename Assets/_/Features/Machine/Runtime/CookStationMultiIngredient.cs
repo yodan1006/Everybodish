@@ -137,17 +137,21 @@ namespace Machine.Runtime
                     // Libère le slot correspondant 
                     int slot = Array.IndexOf(_storedFoodsArray, food);
                     if (slot != -1)
-
                         _storedFoodsArray[slot] = null;
+                    
+                    Destroy(food.gameObject);
                 }
-
-
-                Destroy(food.gameObject);
-
             }
+            
             _storedFoods.Clear();
+            
+            // Spawn du caca
             if (poopPrefab != null)
                 Instantiate(poopPrefab, output.position, Quaternion.identity);
+            
+            // Jouer les particules de cramé si elles existent
+            if (particleCrame != null)
+                particleCrame.Play();
         }
 
         private void SpawnCookedFood(GameObject prefab)
@@ -200,29 +204,26 @@ namespace Machine.Runtime
                 particleFlash2.Play();
             if (particleFlash3 != null)
                 particleFlash3.Play();
+            
             float timerRetourner = timerAvantRetourner;
-            float timerCrame = timerAvantCramé; // marge max d'attente
+            float timerCrame = timerAvantCramé;
             float timerPlatFini = timerAvantPlatFini;
-
-            // Suppression des ingrédients (si tu veux les garder visuellement, fais-le plus tard)
-
 
             // ----------- PHASE 1 : cuisson avant retour ---------
             animator.SetBool("Frying", true);
             particleFrying.Play();
             bool crame = false;
             elapsed = 0f;
+            
             while (elapsed < timerRetourner + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerRetourner;
                 uiProgression.fillAmount = _progress;
+                
                 if (elapsed >= timerRetourner && !_goReturn)
                 {
-                    // Ici, le joueur devrait retourner la poêle (lancer animation),
-                    // mais s'il ne fait rien pendant timerCrame -> caca
-                    // On suppose ici : pas d'action joueur pour simplification
                     _goReturn = true;
                     particleBurn.Play();
                 }
@@ -234,37 +235,42 @@ namespace Machine.Runtime
 
                 if (elapsed >= timerRetourner + timerCrame)
                 {
-                    animator.SetBool("Frying", false);
-                    particleBurn.Play();
                     crame = true;
                     break;
                 }
             }
-            _goReturn = false;
+            
             if (crame)
             {
+                animator.SetBool("Echec", true);
+                animator.SetBool("Frying", false);
+                particleBurn.Play();
+
                 uiBarProgression.SetActive(false);
-                WrongIngredient(null); // Apparition du caca
-                _isCooking = false;
-                currentCookingRoutine = null;
+                WrongIngredient(null);
+
+                yield return new WaitForSeconds(1f); // le temps que l'anim "Echec" joue
+
+                ResetMachineState();
+                animator.SetBool("Echec", false);
                 yield break;
             }
 
-            // ---------- PHASE 2 : après avoir retourné ----------
-            //PlayRetournerAnimation();
+            _goReturn = false;
 
+            // ---------- PHASE 2 : après avoir retourné ----------
             elapsed = 0f;
-            _progress = elapsed;
             crame = false;
+            
             while (elapsed < timerPlatFini + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerPlatFini;
                 uiProgression.fillAmount = _progress;
-                if (elapsed >= timerPlatFini)
+                
+                if (elapsed >= timerPlatFini && !_goFinish)
                 {
-                    // Phase attente plat fini...
                     uiDone.SetActive(true);
                     _goFinish = true;
                     animator.SetBool("Done", true);
@@ -277,20 +283,33 @@ namespace Machine.Runtime
 
                 if (elapsed >= timerPlatFini + timerCrame)
                 {
-                    particleBurn.Play();
                     crame = true;
                     break;
                 }
             }
+            
             if (crame)
             {
-                uiBarProgression.SetActive(false);
+                // Animation d'échec pour le cramage en phase 2
                 animator.SetBool("Frying", false);
-                WrongIngredient(null); // Apparition du caca
-                _isCooking = false;
-                currentCookingRoutine = null;
+                animator.SetBool("Done", false);
+                animator.SetBool("Echec", true);
+                particleBurn.Play();
+                
+                uiBarProgression.SetActive(false);
+                WrongIngredient(null);
+
+                ResetMachineState();
+                
+                // Remettre Echec à false avant de sortir
+                animator.SetBool("Echec", false);
                 yield break;
             }
+
+            // ----------- FINI ----------
+            SpawnCookedFood(recipe.OutputPrefab);
+
+            // Suppression des ingrédients après cuisson réussie
             foreach (var ingredient in recipe.IngredientsInput)
             {
                 var foodToRemove = _storedFoods.FirstOrDefault(f => f.FoodType == ingredient);
@@ -302,23 +321,52 @@ namespace Machine.Runtime
                         _storedFoodsArray[slotToFree] = null;
 
                     Destroy(foodToRemove.gameObject);
-                    //Destroy(foodToRemove.gameObject.transform.root.gameObject);
                 }
             }
 
-            // ----------- FINI ----------
-            SpawnCookedFood(recipe.OutputPrefab);
+            // Utiliser la méthode de réinitialisation complète
+            ResetMachineState();
+            _storedFoods.Clear(); // Garder ce clear car il n'est pas dans ResetMachineState
+        }
+
+        // Nouvelle méthode pour réinitialiser complètement l'état de la machine
+        private void ResetMachineState()
+        {
+            // Arrêt des animations
             animator.SetBool("Frying", false);
-            _goFinish = false;
+            animator.SetBool("Done", false);
+            animator.SetBool("Flip", false);
+            
+            // Arrêt des particules
+            if (particleFrying.isPlaying)
+                particleFrying.Stop();
+            if (particleBurn.isPlaying)
+                particleBurn.Stop();
+            if (particleCrame != null && particleCrame.isPlaying)
+                particleCrame.Stop();
+            
+            // Réinitialisation des états
             _isCooking = false;
             isFinished = false;
             isRetourned = false;
-            currentCookingRoutine = null;
-            _storedFoods.Clear();
-            _progress = 0;
+            _goFinish = false;
+            _goReturn = false;
+            _progress = 0f;
+            elapsed = 0f;
+            
+            // Réinitialisation de l'UI
             uiBarProgression.SetActive(false);
             uiIcone.SetActive(true);
             uiDone.SetActive(false);
+            uiReturn.SetActive(false);
+            uiProgression.fillAmount = 0f;
+            
+            // Arrêt de la coroutine
+            if (currentCookingRoutine != null)
+            {
+                StopCoroutine(currentCookingRoutine);
+                currentCookingRoutine = null;
+            }
         }
 
         public void PlayRetournerAnimation()

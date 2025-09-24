@@ -72,7 +72,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 189879655193393038, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: holdDistanceFromPlayer.y
-      value: 0.7
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,6 +121,18 @@ PrefabInstance:
     - target: {fileID: 7760381352046608580, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_Name
       value: P_Chopper_Items_Floor Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937210581238515739, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Height
+      value: 1.1507251
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937210581238515739, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Center.y
+      value: 0.23506224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937210581238515739, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8971547230622990630, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_Height
