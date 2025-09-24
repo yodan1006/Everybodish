@@ -2,7 +2,7 @@ using Skins.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace InteractionPlayerStart.Runtime
+namespace InputMapManager.Runtime
 {
     public class Control : MonoBehaviour
     {

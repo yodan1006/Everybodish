@@ -43,12 +43,10 @@ namespace Spawner.Runtime
 
         private void OnEnable()
         {
-         //   SpawnPlayer();
         }
 
         private void OnDisable()
         {
-          //  DestroyPlayer();
         }
 
         private void Update()

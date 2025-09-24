@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace InteractionPlayerStart.Runtime
+namespace InputMapManager.Runtime
 {
     public class InputMapSwitcher : MonoBehaviour
     {
@@ -123,6 +123,12 @@ namespace InteractionPlayerStart.Runtime
         public void SetResultMap()
         {
             inputMap.Lobby.Enable();
+            inputMap.Player.Disable();
+        }
+
+        public void DisableAllInputs()
+        {
+            inputMap.Lobby.Disable();
             inputMap.Player.Disable();
         }
     }

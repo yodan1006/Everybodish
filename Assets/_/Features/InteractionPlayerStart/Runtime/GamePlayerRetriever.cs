@@ -6,7 +6,7 @@ using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace InteractionPlayerStart.Runtime
+namespace InputMapManager.Runtime
 {
     public class GamePlayerRetriever : MonoBehaviour
     {
