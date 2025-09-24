@@ -1,3 +1,4 @@
+using ActiveRagdoll.Runtime;
 using Grab.Runtime;
 using Machine.Runtime._.Features.Machine.Runtime;
 using Score.Runtime;
@@ -13,6 +14,7 @@ namespace Machine.Runtime
         [SerializeField] private float holdToCookDuration = 1f;
         [SerializeField] private float radiusDetector;
 
+        private Stun stun;
         private AnimatedProximityGrabber grabber;
         private bool isHoldCooking = false;
         private float holdingTime = 0f;
@@ -27,6 +29,10 @@ namespace Machine.Runtime
             if (!TryGetComponent<AnimatedProximityGrabber>(out grabber))
             {
                 Debug.LogError("Grabber not found!");
+            }
+            if (!TryGetComponent<Stun>(out stun))
+            {
+                Debug.LogError("Stun not found!");
             }
         }
 
@@ -46,7 +52,7 @@ namespace Machine.Runtime
 
         private void TryUseCookStation()
         {
-            if (!grabber.IsGrabbing()) return;
+            if (!grabber.IsGrabbing() || stun.enabled == true) return;
 
             if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
                 return;
