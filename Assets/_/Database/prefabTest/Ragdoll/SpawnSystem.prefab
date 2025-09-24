@@ -58,6 +58,12 @@ MonoBehaviour:
   onPlayerQuit:
     m_PersistentCalls:
       m_Calls: []
+  onNewClone:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloneDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1917181855189238406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: ad0c056edc831344588e062d93789510, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -86,19 +92,19 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 65e22a34-e7a3-4649-a2b4-fcc37d3d7dab
-    m_ActionName: 'Player/Move[/XInputControllerWindows1/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+    m_ActionName: 'Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 13f37de8-7b6c-4631-aea4-d92ccdea0488
-    m_ActionName: 'Player/Interact[/XInputControllerWindows1/buttonSouth,/Keyboard/space]'
+    m_ActionName: 'Player/Interact[/XInputControllerWindows/buttonSouth,/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: da2cdfc2-3e97-4ed0-8088-2fb3cd6d913c
-    m_ActionName: 'Player/Grab[/Keyboard/e,/XInputControllerWindows1/rightShoulder]'
+    m_ActionName: 'Player/Grab[/Keyboard/e,/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ea5da2ab-e055-4e47-99e4-54c8791296e4
-    m_ActionName: 'Player/HeadButt[/XInputControllerWindows1/buttonWest]'
+    m_ActionName: 'Player/HeadButt[/XInputControllerWindows/buttonWest,/Keyboard/q]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 210140c3-2b0a-4d2c-9567-5c7de326dbe1
@@ -110,27 +116,15 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 62665559-3008-4a86-b5d0-e3dff4600598
-    m_ActionName: 'Player/Selfdestruct[/XInputControllerWindows1/select,/Keyboard/delete]'
+    m_ActionName: 'Player/Selfdestruct[/XInputControllerWindows/select,/Keyboard/delete]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 1b9641d4-31fa-45c2-b69f-856358ca111c
-    m_ActionName: 'Player/Pause[/XInputControllerWindows1/start,/Keyboard/enter]'
+    m_ActionName: 'Player/Pause[/XInputControllerWindows/start,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2877955335872950180}
-        m_TargetAssemblyTypeName: MovePlayer.Runtime.SelectSkin, MovePlayer.Runtime
-        m_MethodName: OnChangeColor
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2877955335872950180}
-        m_TargetAssemblyTypeName: MovePlayer.Runtime.SelectSkin, MovePlayer.Runtime
+        m_TargetAssemblyTypeName: Skins.Runtime.SelectSkin, Lobby.Runtime
         m_MethodName: OnChangeModel
         m_Mode: 0
         m_Arguments:
@@ -142,11 +136,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: eea4fabd-f486-4716-a5a7-6e77bd174684
-    m_ActionName: 'Lobby/selectSkin[/XInputControllerWindows1/leftStick]'
+    m_ActionName: 'Lobby/selectSkin[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2877955335872950180}
-        m_TargetAssemblyTypeName: MovePlayer.Runtime.SelectSkin, MovePlayer.Runtime
+        m_TargetAssemblyTypeName: Skins.Runtime.SelectSkin, Lobby.Runtime
         m_MethodName: OnValidateSkin
         m_Mode: 0
         m_Arguments:
@@ -158,7 +152,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 7e681e6f-d132-4455-a098-68fe51570488
-    m_ActionName: 'Lobby/validateSkin[/XInputControllerWindows/buttonSouth]'
+    m_ActionName: 'Lobby/validateSkin[/XInputControllerWindows/buttonSouth,/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4855144887064598340}
@@ -174,7 +168,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 18e9fb64-45ed-4f71-8721-9290b6f540fb
-    m_ActionName: 'Lobby/creditMenu[/Keyboard/c,/DualShock4GamepadHID/buttonNorth]'
+    m_ActionName: 'Lobby/creditMenu[/Keyboard/c,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4855144887064598340}
@@ -190,7 +184,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: c98aec94-ab8d-4169-8cba-83a80417f792
-    m_ActionName: 'Lobby/Control[/Keyboard/x,/DualShock4GamepadHID/buttonWest]'
+    m_ActionName: 'Lobby/Control[/Keyboard/x,/XInputControllerWindows/buttonWest]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4855144887064598340}
@@ -206,18 +200,30 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 3b9237ff-99a8-4fca-ae7a-0edb1a19c703
-    m_ActionName: 'Lobby/Quit[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]'
+    m_ActionName: 'Lobby/Quit[/Keyboard/escape,/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4855144887064598340}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5fd3ebeb-7e29-4f18-956c-bffb25570e9d
-    m_ActionName: 'Lobby/Join[/XInputControllerWindows/buttonSouth,/DualShock4GamepadHID/buttonSouth]'
+    m_ActionName: 'Lobby/Join[/XInputControllerWindows/buttonSouth]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 39d8eccb-a7a0-4810-b910-9d72637bc86e
     m_ActionName: 'Results/Restart[/XInputControllerWindows/buttonSouth,/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Lobby
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2877955335872950180
@@ -290,6 +296,10 @@ PrefabInstance:
       value: LobbyPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 433505672345845218, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489855435941447559, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

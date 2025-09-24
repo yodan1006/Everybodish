@@ -32,7 +32,7 @@ namespace Results.Runtime
 
                 foreach ((int player, int score) in list)
                 {
-                 //   Debug.LogError($"Player {player} with {score} points");
+                    //   Debug.LogError($"Player {player} with {score} points");
                     //spawn players in leaderboard order
                     foreach (PlayerInput playerInput in playerInputs)
                     {

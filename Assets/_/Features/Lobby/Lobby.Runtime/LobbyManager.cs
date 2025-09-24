@@ -137,7 +137,7 @@ namespace Skins.Runtime
                 return;
             }
             loader.LoadSceneWithLoading(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
-          gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         #endregion

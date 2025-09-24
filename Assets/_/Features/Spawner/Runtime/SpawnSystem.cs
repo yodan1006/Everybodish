@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using ActionMap;
-using Grab.Runtime;
 using Machine.Runtime;
 using MovePlayer.Runtime;
-using PlayerLocomotion.Runtime;
 using Score.Runtime;
 using Skins.Runtime;
 using UnityEngine;
@@ -18,41 +14,26 @@ namespace Spawner.Runtime
     [RequireComponent(typeof(PlayerInput))]
     public class SpawnSystem : MonoBehaviour
     {
-
         public float respawnTime = 5;
-        public float respawnTimeDelta;
+        private float respawnTimeDelta;
 
         [SerializeField] private GameObject playerPrefab;
         private GameObject playerInstance;
         private PlayerInput playerInput;
-        private PlayerInputMap inputMap;
-        private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
 
         public static List<SpawnSystem> AllPlayers = new();
+
         public UnityEvent<bool> onPlayerLifeStatusChanged = new();
         public UnityEvent onPlayerQuit = new();
+        public UnityEvent<GameObject> onNewClone = new();
+        public UnityEvent<GameObject> onCloneDestroy = new();
 
         private void Awake()
         {
-
-            // ajout d'un systeme dont destroy pour le passage de scene
-
-            DontDestroyManager.Instance.RegisterToDestroy(this.gameObject);
+            DontDestroyManager.Instance.RegisterToDestroy(gameObject);
 
             playerInput = GetComponent<PlayerInput>();
-
-            // Create wrapper from PlayerInput's actions
-            inputMap = new PlayerInputMap
-            {
-                devices = playerInput.devices
-            };
-            inputMap.Player.Selfdestruct.started += ctx => KillPlayer(ctx);
-            GetComponent<SelectSkin>().onSkinchanged.AddListener(RefreshPlayer);
-        }
-
-        private void RefreshPlayer()
-        {
-            RespawnPlayer();
+            GetComponent<SelectSkin>().onSkinchanged.AddListener(() => RespawnPlayer());
         }
 
         private void OnDestroy()
@@ -62,19 +43,15 @@ namespace Spawner.Runtime
 
         private void OnEnable()
         {
-     
-            inputMap.Enable();
-            SpawnPlayer();
+         //   SpawnPlayer();
         }
 
         private void OnDisable()
         {
-            inputMap.Disable();
-            DestroyPlayer();
+          //  DestroyPlayer();
         }
 
-        // Update is called once per frame
-        protected void Update()
+        private void Update()
         {
             if (respawnTimeDelta > 0)
             {
@@ -97,22 +74,21 @@ namespace Spawner.Runtime
             }
         }
 
-        public void KillPlayer(CallbackContext callbackContext)
+        public void KillPlayer(CallbackContext context)
         {
             KillPlayer();
         }
 
-        public void RespawnPlayer()
+        public void RespawnPlayer(Transform newTransform = null)
         {
             DestroyPlayer();
-            SpawnPlayer();
-        }
 
-        public void RespawnPlayerAtLocation(Transform newTransform)
-        {
-            DestroyPlayer();
-            transform.rotation = newTransform.rotation;
-            transform.position = newTransform.position;
+            if (newTransform != null)
+            {
+                transform.position = newTransform.position;
+                transform.rotation = newTransform.rotation;
+            }
+
             SpawnPlayer();
         }
 
@@ -121,24 +97,31 @@ namespace Spawner.Runtime
             DestroyPlayer();
         }
 
-        public void CreatePlayer()
+        private void SpawnPlayer()
         {
-            InstantiatePlayer();
-            playerInstance.SetActive(true);
-            BindPlayerControls();
-            BindPlayerEvents();
-        }
-
-        public void SpawnPlayer()
-        {
-            CreatePlayer();
-            onPlayerLifeStatusChanged.Invoke(true);
+            if (playerInstance == null)
+            {
+                playerInstance = Instantiate(playerPrefab, transform);
+                playerInstance.SetActive(true);
+                BindPlayerEvents();
+                onNewClone.Invoke(playerInstance);
+                onPlayerLifeStatusChanged.Invoke(true);
+            }
+            else
+            {
+                Debug.LogError("Attempted to spawn player when one already exists.");
+            }
         }
 
         private void BindPlayerEvents()
         {
-            GetComponentInChildren<PlayerStat>().onPlayerDied.AddListener(KillPlayer);
-            GetComponentInChildren<PlayerInteract>().onScoreEvent.AddListener(ScoreEvent);
+            var stat = playerInstance.GetComponentInChildren<PlayerStat>();
+            var interact = playerInstance.GetComponentInChildren<PlayerInteract>();
+
+            if (stat != null)
+                stat.onPlayerDied.AddListener(KillPlayer);
+            if (interact != null)
+                interact.onScoreEvent.AddListener(ScoreEvent);
         }
 
         private void ScoreEvent(ScoreEventType eventType)
@@ -146,80 +129,14 @@ namespace Spawner.Runtime
             GlobalScoreEventSystem.RegisterScoreEvent(playerInput.playerIndex, eventType);
         }
 
-        public void InstantiatePlayer()
-        {
-            playerInstance = Instantiate(playerPrefab, transform);
-        }
-
-        public void BindPlayerControls()
-        {
-            //Get components
-            Debug.Log("Binding inputs");
-            BindPlayerInput(inputMap.Player.Grab, GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
-            BindPlayerInput(inputMap.Player.HeadButt, GetComponentInChildren<Attack>().PlayAttack);
-            BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnUse);
-            BindPlayerInput(inputMap.Player.Interact, GetComponentInChildren<PlayerInteract>().OnManualCook);
-            BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeMovement>().OnMovement);
-            BindPlayerInput(inputMap.Player.Move, GetComponentInChildren<CameraRelativeRotation>().OnMovement);
-
-        }
-
-        public void UnbindPlayerControls()
-        {
-            foreach (var kvp in boundActions)
-            {
-                InputAction inputAction = kvp.Key;
-                foreach (var cachedAction in kvp.Value)
-                {
-                    inputAction.started -= cachedAction;
-                    inputAction.canceled -= cachedAction;
-                    inputAction.performed -= cachedAction;
-                }
-            }
-
-            boundActions.Clear();
-        }
-
-        public void BindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
-        {
-            System.Action<CallbackContext> cachedAction = ctx => action(ctx);
-
-            if (!boundActions.ContainsKey(inputAction))
-            {
-                boundActions[inputAction] = new List<System.Action<CallbackContext>>();
-            }
-
-            boundActions[inputAction].Add(cachedAction);
-
-            inputAction.started += cachedAction;
-            inputAction.canceled += cachedAction;
-            inputAction.performed += cachedAction;
-        }
-
-        public void UnbindPlayerInput(InputAction inputAction)
-        {
-            if (boundActions.TryGetValue(inputAction, out var callbacks))
-            {
-                foreach (var callback in callbacks)
-                {
-                    inputAction.started -= callback;
-                    inputAction.canceled -= callback;
-                    inputAction.performed -= callback;
-                }
-
-                boundActions.Remove(inputAction);
-            }
-        }
-
-        public void DestroyPlayer()
+        private void DestroyPlayer()
         {
             if (playerInstance != null)
             {
-                UnbindPlayerControls();
+                onCloneDestroy.Invoke(playerInstance);
                 Destroy(playerInstance);
                 playerInstance = null;
             }
         }
-
     }
 }

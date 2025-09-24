@@ -1,4 +1,3 @@
-using ActiveRagdoll.Runtime;
 using Skins.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,14 +53,14 @@ namespace Spawner.Runtime
                 SpawnSystem spawnSystem = playerInput.GetComponentInChildren<SpawnSystem>();
                 if (spawnSystem != null)
                 {
-                    spawnSystem.RespawnPlayerAtLocation(spawn);
+                    spawnSystem.RespawnPlayer(spawn);
                     playerInput.transform.root.name = deviceName + " Player";
                 }
-                 else
-                
-                 {
+                else
+
+                {
                     Debug.Log("NO TELEPORTED FOUND");
-                 }
+                }
             }
             else
             {

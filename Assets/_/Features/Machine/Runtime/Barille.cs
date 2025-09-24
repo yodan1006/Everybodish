@@ -24,16 +24,16 @@ namespace Machine.Runtime
         /// <returns>Vrai si nourriture dispo, sinon faux.</returns>
         public bool TryProvideFood(out GameObject prefab)
         {
-            bool success  = false;
+            bool success = false;
             prefab = null;
 
-            if (_foodPrefab != null && cooldownDelta <=0)
-            {   
+            if (_foodPrefab != null && cooldownDelta <= 0)
+            {
                 prefab = _foodPrefab;
                 success = true;
                 cooldownDelta = cooldownTime;
             }
-     
+
             return success;
         }
 

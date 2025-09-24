@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Score.Runtime;
-using Spawner.Runtime;
 using Timer.Runtime;
 using TransitionScene.Runtime;
 using UnityEngine;
@@ -48,7 +47,7 @@ namespace Round.Runtime
 
         private void Awake()
         {
-           DontDestroyManager.Instance.RegisterToDestroy(this.gameObject);
+            DontDestroyManager.Instance.RegisterToDestroy(gameObject);
             gameTimer = GetComponent<GameTimer>();
             if (Instance == null)
             {
@@ -80,7 +79,7 @@ namespace Round.Runtime
             {
                 if (player != null)
                 {
-                //    player.GetComponent<SpawnSystem>().enabled = false;
+                    //    player.GetComponent<SpawnSystem>().enabled = false;
                     player.actions.FindActionMap("Player").Disable();
                 }
             }
@@ -96,7 +95,7 @@ namespace Round.Runtime
         {
             foreach (PlayerInput player in players.Values)
             {
-               // player.GetComponent<SpawnSystem>().enabled = true;
+                // player.GetComponent<SpawnSystem>().enabled = true;
                 player.actions.FindActionMap("Player").Enable();
             }
         }
