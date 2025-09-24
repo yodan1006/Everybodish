@@ -702,6 +702,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_P_CREDITS
       objectReference: {fileID: 0}
+    - target: {fileID: 1121991787963064207, guid: f0cb7fbbb10338c458e00cc0ae8f30f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493711123100484626, guid: f0cb7fbbb10338c458e00cc0ae8f30f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1547035529109597278, guid: f0cb7fbbb10338c458e00cc0ae8f30f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
