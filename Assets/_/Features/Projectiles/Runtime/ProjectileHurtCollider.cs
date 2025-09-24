@@ -46,6 +46,5 @@ namespace ActiveRagdoll.Runtime
                 _collider.GetComponent<Collider>();
             }
         }
-
     }
 }

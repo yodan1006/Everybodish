@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ActionMap;
 using Grab.Runtime;
 using Machine.Runtime;
 using PlayerLocomotion.Runtime;
@@ -13,77 +12,69 @@ namespace InputMapManager.Runtime
 {
     public class InputMapSwitcher : MonoBehaviour
     {
-        #region privé
+        #region private
         private PlayerInput playerInput;
-        private PlayerInputMap inputMap;
         private SpawnSystem spawnSystem;
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
         #endregion
 
-
         private void Start()
         {
-            playerInput = gameObject.GetComponent<PlayerInput>();
-            spawnSystem = gameObject.GetComponent<SpawnSystem>();
+            playerInput = GetComponent<PlayerInput>();
+            spawnSystem = GetComponent<SpawnSystem>();
 
-            // Create wrapper from PlayerInput's actions
-            inputMap = new PlayerInputMap
+            // Clone actions so we don't overwrite the shared asset
+            var clonedAsset = ScriptableObject.Instantiate(playerInput.actions);
+
+            // Re-assign the clone back to the player
+            playerInput.actions = clonedAsset;
+
+            // Grab Selfdestruct and wire it
+            var selfDestruct = playerInput.actions.FindAction("Selfdestruct");
+            if (selfDestruct != null)
             {
-                devices = playerInput.devices
-            };
+                selfDestruct.started += ctx => spawnSystem.KillPlayer(ctx);
+            }
+            else
+            {
+                Debug.LogError("Could not find 'Selfdestruct' action in Player map!");
+            }
 
-            inputMap.Player.Selfdestruct.started += ctx => spawnSystem.KillPlayer(ctx);
+            // Subscribe to external events
             spawnSystem.onNewClone.AddListener(RebindPlayerControls);
             spawnSystem.onCloneDestroy.AddListener(UnbindPlayerControls);
             LobbyManager.Instance.onLobbyActive.AddListener(LobbyActive);
         }
 
-        private void RoundActive()
-        {
-            SetGameplayMap();
-        }
+        private void RoundActive() => SetGameplayMap();
 
         private void LobbyActive(bool isActive)
         {
             if (isActive)
-            {
                 SetLobbyMap();
-            }
             else
-            {
                 DisableAllInputs();
-            }
         }
 
-        private void UnbindPlayerControls(GameObject arg0)
-        {
-            UnbindPlayerControls();
-        }
+        private void UnbindPlayerControls(GameObject go) => UnbindPlayerControls();
 
-        private void RebindPlayerControls(GameObject ctx)
-        {
-            BindPlayerControls(ctx);
-        }
+        private void RebindPlayerControls(GameObject go) => BindPlayerControls(go);
 
         public void BindPlayerControls(GameObject ctx)
         {
-            //Get components
-            //  Debug.Log("Binding inputs");
-            BindPlayerInput(inputMap.Player.Grab, ctx.GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
-            BindPlayerInput(inputMap.Player.HeadButt, ctx.GetComponentInChildren<Attack>().PlayAttack);
-            BindPlayerInput(inputMap.Player.Interact, ctx.GetComponentInChildren<PlayerInteract>().OnUse);
-            BindPlayerInput(inputMap.Player.Interact, ctx.GetComponentInChildren<PlayerInteract>().OnManualCook);
-            BindPlayerInput(inputMap.Player.Move, ctx.GetComponentInChildren<PlayerLocomotion.Runtime.CameraRelativeMovement>().OnMovement);
-            BindPlayerInput(inputMap.Player.Move, ctx.GetComponentInChildren<CameraRelativeRotation>().OnMovement);
-
+            BindPlayerInput(playerInput.actions.FindAction("Grab"), ctx.GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
+            BindPlayerInput(playerInput.actions.FindAction("HeadButt"), ctx.GetComponentInChildren<Attack>().PlayAttack);
+            BindPlayerInput(playerInput.actions.FindAction("Interact"), ctx.GetComponentInChildren<PlayerInteract>().OnUse);
+            BindPlayerInput(playerInput.actions.FindAction("Interact"), ctx.GetComponentInChildren<PlayerInteract>().OnManualCook);
+            BindPlayerInput(playerInput.actions.FindAction("Move"), ctx.GetComponentInChildren<CameraRelativeMovement>().OnMovement);
+            BindPlayerInput(playerInput.actions.FindAction("Move"), ctx.GetComponentInChildren<CameraRelativeRotation>().OnMovement);
         }
-
 
         public void UnbindPlayerControls()
         {
             foreach (var kvp in boundActions)
             {
-                InputAction inputAction = kvp.Key;
+                var inputAction = kvp.Key;
                 foreach (var cachedAction in kvp.Value)
                 {
                     inputAction.started -= cachedAction;
@@ -91,18 +82,21 @@ namespace InputMapManager.Runtime
                     inputAction.performed -= cachedAction;
                 }
             }
-
             boundActions.Clear();
         }
 
         public void BindPlayerInput(InputAction inputAction, System.Action<CallbackContext> action)
         {
-            System.Action<CallbackContext> cachedAction = ctx => action(ctx);
+            if (inputAction == null)
+            {
+                Debug.LogWarning("Tried to bind to a null InputAction!");
+                return;
+            }
+
+            var cachedAction = new System.Action<CallbackContext>(ctx => action(ctx));
 
             if (!boundActions.ContainsKey(inputAction))
-            {
                 boundActions[inputAction] = new List<System.Action<CallbackContext>>();
-            }
 
             boundActions[inputAction].Add(cachedAction);
 
@@ -121,7 +115,6 @@ namespace InputMapManager.Runtime
                     inputAction.canceled -= callback;
                     inputAction.performed -= callback;
                 }
-
                 boundActions.Remove(inputAction);
             }
         }
@@ -129,30 +122,29 @@ namespace InputMapManager.Runtime
         public void SetLobbyMap()
         {
             Debug.Log("Enabled Lobby inputs");
-            inputMap.Lobby.Enable();
-            inputMap.Player.Disable();
+            playerInput.actions.FindActionMap("Lobby")?.Enable();
+            playerInput.actions.FindActionMap("Player")?.Disable();
         }
-
 
         public void SetGameplayMap()
         {
             Debug.Log("Enabled Game inputs");
-            inputMap.Lobby.Disable();
-            inputMap.Player.Enable();
+            playerInput.actions.FindActionMap("Lobby")?.Disable();
+            playerInput.actions.FindActionMap("Player")?.Enable();
         }
 
         public void SetResultMap()
         {
             Debug.Log("Enabled Result inputs");
-            inputMap.Lobby.Enable();
-            inputMap.Player.Disable();
+            playerInput.actions.FindActionMap("Lobby")?.Enable();
+            playerInput.actions.FindActionMap("Player")?.Disable();
         }
 
         public void DisableAllInputs()
         {
             Debug.Log("Disabled all inputs");
-            inputMap.Lobby.Disable();
-            inputMap.Player.Disable();
+            playerInput.actions.FindActionMap("Lobby")?.Disable();
+            playerInput.actions.FindActionMap("Player")?.Disable();
         }
     }
 }
