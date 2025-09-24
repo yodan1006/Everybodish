@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 8708858065997745089}
   - component: {fileID: 2861112363294944223}
   - component: {fileID: 8336300325008270987}
-  - component: {fileID: 5262590258132329934}
   m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
@@ -180,30 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 15
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
---- !u!65 &5262590258132329934
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7184042931721203175}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.87379897, y: 0.3335233, z: 0.8037591}
-  m_Center: {x: -0.009623706, y: -0.03322418, z: -0.007332623}
 --- !u!1001 &3511979679130945638
 PrefabInstance:
   m_ObjectHideFlags: 0
