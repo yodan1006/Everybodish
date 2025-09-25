@@ -13,7 +13,7 @@ namespace Machine.Runtime
     {
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem particleBurn;
-        [SerializeField] [CanBeNull] private ParticleSystem particleFrying;
+        [SerializeField][CanBeNull] private ParticleSystem particleFrying;
         [SerializeField] private ParticleSystem? particleCrame;
         [SerializeField] private ParticleSystem? particleFlash1;
         [SerializeField] private ParticleSystem? particleFlash2;
@@ -140,17 +140,17 @@ namespace Machine.Runtime
                     int slot = Array.IndexOf(_storedFoodsArray, food);
                     if (slot != -1)
                         _storedFoodsArray[slot] = null;
-                    
+
                     Destroy(food.gameObject);
                 }
             }
-            
+
             _storedFoods.Clear();
-            
+
             // Spawn du caca
             if (poopPrefab != null)
                 Instantiate(poopPrefab, output.position, Quaternion.identity);
-            
+
             // Jouer les particules de cramé si elles existent
             if (particleCrame != null)
                 particleCrame.Play();
@@ -206,7 +206,7 @@ namespace Machine.Runtime
                 particleFlash2.Play();
             if (particleFlash3 != null)
                 particleFlash3.Play();
-            
+
             float timerRetourner = timerAvantRetourner;
             float timerCrame = timerAvantCramé;
             float timerPlatFini = timerAvantPlatFini;
@@ -217,14 +217,14 @@ namespace Machine.Runtime
                 particleFrying.Play();
             bool crame = false;
             elapsed = 0f;
-            
+
             while (elapsed < timerRetourner + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerRetourner;
                 uiProgression.fillAmount = _progress;
-                
+
                 if (elapsed >= timerRetourner && !_goReturn)
                 {
                     _goReturn = true;
@@ -242,7 +242,7 @@ namespace Machine.Runtime
                     break;
                 }
             }
-            
+
             if (crame)
             {
                 failedUI.SetActive(true);
@@ -266,14 +266,14 @@ namespace Machine.Runtime
             // ---------- PHASE 2 : après avoir retourné ----------
             elapsed = 0f;
             crame = false;
-            
+
             while (elapsed < timerPlatFini + timerCrame)
             {
                 yield return null;
                 elapsed += Time.deltaTime;
                 _progress = elapsed / timerPlatFini;
                 uiProgression.fillAmount = _progress;
-                
+
                 if (elapsed >= timerPlatFini && !_goFinish)
                 {
                     uiDone.SetActive(true);
@@ -292,7 +292,7 @@ namespace Machine.Runtime
                     break;
                 }
             }
-            
+
             if (crame)
             {
                 // Animation d'échec pour le cramage en phase 2
@@ -301,14 +301,14 @@ namespace Machine.Runtime
                 animator.SetBool("Done", false);
                 animator.SetBool("Echec", true);
                 particleBurn.Play();
-                
+
                 uiBarProgression.SetActive(false);
                 WrongIngredient(null);
-                
+
                 yield return new WaitForSeconds(1f); // le temps que l'anim "Echec" joue
 
                 ResetMachineState();
-                
+
                 // Remettre Echec à false avant de sortir
                 animator.SetBool("Echec", false);
                 failedUI.SetActive(true);
@@ -345,7 +345,7 @@ namespace Machine.Runtime
             animator.SetBool("Frying", false);
             animator.SetBool("Done", false);
             animator.SetBool("Flip", false);
-            
+
             // Arrêt des particules
             if (particleFrying.isPlaying && particleFrying != null)
                 particleFrying.Stop();
@@ -353,7 +353,7 @@ namespace Machine.Runtime
                 particleBurn.Stop();
             if (particleCrame != null && particleCrame.isPlaying)
                 particleCrame.Stop();
-            
+
             // Réinitialisation des états
             _isCooking = false;
             isFinished = false;
@@ -362,14 +362,14 @@ namespace Machine.Runtime
             _goReturn = false;
             _progress = 0f;
             elapsed = 0f;
-            
+
             // Réinitialisation de l'UI
             uiBarProgression.SetActive(false);
             uiIcone.SetActive(true);
             uiDone.SetActive(false);
             uiReturn.SetActive(false);
             uiProgression.fillAmount = 0f;
-            
+
             // Arrêt de la coroutine
             if (currentCookingRoutine != null)
             {

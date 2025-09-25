@@ -96,7 +96,7 @@ namespace UI.Runtime
         private void OnWarmupFinished()
         {
             Debug.Log("Warmup finished");
-            //Disable player ui
+            //Enable player ui
             foreach (var item in playerIcons)
             {
                 item.gameObject.SetActive(true);
