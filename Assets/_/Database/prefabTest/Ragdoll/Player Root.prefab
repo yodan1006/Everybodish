@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2244064473958196516}
   - component: {fileID: 5935553076457211906}
   - component: {fileID: 3415649936529396107}
-  - component: {fileID: 1178614281197420199}
-  - component: {fileID: 8125637211423671342}
   - component: {fileID: 1927156081245487433}
   - component: {fileID: 3180001735782049741}
   - component: {fileID: 3800820062692047883}
@@ -136,65 +134,45 @@ MonoBehaviour:
   physicsHip: {fileID: 0}
   playerTeleporter: {fileID: 0}
   stunEffect: {fileID: 0}
---- !u!114 &1178614281197420199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909807124258996847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991d5458e9071e14588cae268584272d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVerbose: 1
-  onInteractionSuccess:
+  onDisableActionsForStun:
     m_PersistentCalls:
-      m_Calls: []
-  onInteractionFail:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &8125637211423671342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909807124258996847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b308582e9335347966e2f97c02c1a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVerbose: 1
-  onInteractionAvailable:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteractionUnavailable:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteractionSuccess:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteractionFail:
-    m_PersistentCalls:
-      m_Calls: []
-  interactionDuration: 3
-  onInteractionStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteractionEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteractionCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  InteractAreaCenter: {fileID: 8424457019357283609}
-  InteractAreaRadius: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
+      m_Calls:
+      - m_Target: {fileID: 1688661189710610977}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3870090278773716437}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7151880423467956198}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1927156081245487433
 MonoBehaviour:
   m_ObjectHideFlags: 0

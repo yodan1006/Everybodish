@@ -38,7 +38,7 @@ public class Attack : MonoBehaviour
 
     public void PlayAttack(CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && enabled)
         {
             _animator.SetTrigger("Attack");
         }

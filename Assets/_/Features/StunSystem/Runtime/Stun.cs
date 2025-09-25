@@ -1,14 +1,17 @@
+using ActiveRagdoll.Runtime;
 using Grab.Runtime;
+using Machine.Runtime;
 using PlayerLocomotion.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace ActiveRagdoll.Runtime
+namespace StunSystem.Runtime
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Attack))]
     [RequireComponent(typeof(CameraRelativeMovement))]
     [RequireComponent(typeof(GravityAndJump))]
-    [RequireComponent(typeof(ActiveRagdoll))]
+
     public class Stun : MonoBehaviour
     {
         #region Publics
@@ -17,6 +20,7 @@ namespace ActiveRagdoll.Runtime
         public GameObject physicsHip;
         [SerializeField] protected PlayerTeleporter playerTeleporter;
         public ParticleSystem stunEffect;
+        public UnityEvent<bool> onDisableActionsForStun = new();
         #endregion
 
 
@@ -30,7 +34,8 @@ namespace ActiveRagdoll.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
-            _activeRagdoll = GetComponent<ActiveRagdoll>();
+            _activeRagdoll = GetComponent<ActiveRagdollManager>();
+            _animatedProximityGrabber = GetComponent<AnimatedProximityGrabber>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
 
@@ -42,6 +47,7 @@ namespace ActiveRagdoll.Runtime
             _rotation.enabled = false;
             _characterController.enabled = false;
             _gravity.enabled = false;
+            _animatedProximityGrabber.enabled = false;
             foreach (Grabable grabable in grabables)
             {
                 grabable.enabled = true;
@@ -49,6 +55,7 @@ namespace ActiveRagdoll.Runtime
             _animator.SetBool("Stunned", true);
             _activeRagdoll.DisconnectRoot();
             stunEffect.Play();
+            onDisableActionsForStun.Invoke(true);
         }
 
         private void OnDisable()
@@ -58,6 +65,7 @@ namespace ActiveRagdoll.Runtime
             _rotation.enabled = true;
             _characterController.enabled = true;
             _gravity.enabled = true;
+            _animatedProximityGrabber.enabled = true;
             foreach (var grabable in grabables)
             {
                 grabable.enabled = false;
@@ -65,6 +73,7 @@ namespace ActiveRagdoll.Runtime
             _animator.SetBool("Stunned", false);
             playerTeleporter.ReconnectCharacterControllerToRagdoll();
             stunEffect.Stop();
+            onDisableActionsForStun.Invoke(false);
         }
 
         private void Update()
@@ -101,7 +110,9 @@ namespace ActiveRagdoll.Runtime
         private CameraRelativeRotation _rotation;
         private CharacterController _characterController;
         private GravityAndJump _gravity;
-        private ActiveRagdoll _activeRagdoll;
+        private ActiveRagdollManager _activeRagdoll;
+        private AnimatedProximityGrabber _animatedProximityGrabber;
+        private readonly PlayerInteract _playerInteract;
         private float stunDuration;
         #endregion
 
