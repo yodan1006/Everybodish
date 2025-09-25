@@ -12,6 +12,7 @@ namespace MovePlayer.Runtime
         {
             Debug.Log("Took damage!");
             stat.HurtPlayer(damage);
+            animator.SetTrigger("Hit");
             if (stat.CurrentLife() < 0)
             {
                 stun.StunForDuration(stunDuration);
@@ -42,6 +43,7 @@ namespace MovePlayer.Runtime
 
 
         #region Private and Protected
+        [SerializeField] private Animator animator;
         private PlayerStat stat;
         private Stun stun;
         #endregion

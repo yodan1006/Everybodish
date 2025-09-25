@@ -290,10 +290,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1700003924638526194, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3917244790922581603, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3955544047821425982, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2617747750302802206}
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -342,6 +350,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7425460227140611265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7802301707436799611, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.03
@@ -361,6 +373,11 @@ GameObject:
 --- !u!1 &2346025740297478112 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2670708551280901434, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+  m_PrefabInstance: {fileID: 404904761111388890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2617747750302802206 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2434926814721262532, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
   m_PrefabInstance: {fileID: 404904761111388890}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3860219729600001391 stripped

@@ -57,9 +57,11 @@ namespace Machine.Runtime
                         }
                         else
                         {
+                            food.gameObject.SetActive(false);
                             // Place l’objet visuellement sur le slot
                             food.transform.SetPositionAndRotation(foodSlot.position, foodSlot.rotation);
-
+                            food.gameObject.SetActive(true);
+                            Debug.LogError("Test");
                             if (food.Grabable != null)
                             {
                                 food.Grabable.enabled = false;
