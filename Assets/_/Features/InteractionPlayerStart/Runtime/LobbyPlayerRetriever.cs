@@ -22,7 +22,7 @@ namespace InputMapManager.Runtime
             {
                 foreach (PlayerInput playerInput in playerInputs)
                 {
-                    Debug.Log("Readding old player to lobby");
+                    Debug.LogError("Readding old player to lobby");
                     //TODO: Fix this
                     LobbyManager.Instance.RegisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
                     LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
