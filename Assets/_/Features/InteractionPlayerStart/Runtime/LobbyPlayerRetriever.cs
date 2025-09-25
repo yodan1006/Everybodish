@@ -4,7 +4,6 @@ using Skins.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace InputMapManager.Runtime
 {
@@ -23,8 +22,8 @@ namespace InputMapManager.Runtime
             {
                 foreach (PlayerInput playerInput in playerInputs)
                 {
-                        LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
-                        Destroy(playerInput.gameObject);
+                    LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
+                    Destroy(playerInput.gameObject);
                 }
             }
             else

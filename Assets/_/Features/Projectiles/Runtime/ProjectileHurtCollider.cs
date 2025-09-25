@@ -1,4 +1,5 @@
 using Grab.Runtime;
+using StunSystem.Runtime;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime

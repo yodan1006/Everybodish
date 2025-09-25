@@ -3,6 +3,7 @@ using Grab.Runtime;
 using Machine.Runtime;
 using PlayerLocomotion.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace StunSystem.Runtime
 {
@@ -10,7 +11,7 @@ namespace StunSystem.Runtime
     [RequireComponent(typeof(Attack))]
     [RequireComponent(typeof(CameraRelativeMovement))]
     [RequireComponent(typeof(GravityAndJump))]
-    [RequireComponent(typeof(ActiveRagdoll))]
+
     public class Stun : MonoBehaviour
     {
         #region Publics
@@ -19,6 +20,7 @@ namespace StunSystem.Runtime
         public GameObject physicsHip;
         [SerializeField] protected PlayerTeleporter playerTeleporter;
         public ParticleSystem stunEffect;
+        public UnityEvent<bool> onDisableActionsForStun = new();
         #endregion
 
 
@@ -32,7 +34,7 @@ namespace StunSystem.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
-            _activeRagdoll = GetComponent<ActiveRagdoll>();
+            _activeRagdoll = GetComponent<ActiveRagdollManager>();
             _animatedProximityGrabber = GetComponent<AnimatedProximityGrabber>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
@@ -53,6 +55,7 @@ namespace StunSystem.Runtime
             _animator.SetBool("Stunned", true);
             _activeRagdoll.DisconnectRoot();
             stunEffect.Play();
+            onDisableActionsForStun.Invoke(true);
         }
 
         private void OnDisable()
@@ -70,6 +73,7 @@ namespace StunSystem.Runtime
             _animator.SetBool("Stunned", false);
             playerTeleporter.ReconnectCharacterControllerToRagdoll();
             stunEffect.Stop();
+            onDisableActionsForStun.Invoke(false);
         }
 
         private void Update()
@@ -106,9 +110,9 @@ namespace StunSystem.Runtime
         private CameraRelativeRotation _rotation;
         private CharacterController _characterController;
         private GravityAndJump _gravity;
-        private ActiveRagdoll _activeRagdoll;
+        private ActiveRagdollManager _activeRagdoll;
         private AnimatedProximityGrabber _animatedProximityGrabber;
-        private PlayerInteract _playerInteract;
+        private readonly PlayerInteract _playerInteract;
         private float stunDuration;
         #endregion
 

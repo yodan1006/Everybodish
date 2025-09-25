@@ -1,4 +1,5 @@
-using ActiveRagdoll.Runtime;
+using MovePlayer.Runtime;
+using StunSystem.Runtime;
 using UnityEngine;
 
 namespace Stunsystem.Runtime

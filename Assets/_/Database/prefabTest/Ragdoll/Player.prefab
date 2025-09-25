@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4975634278693844309
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2273349906620061896, guid: f4f89acd0308c7646a02bc4e500676a5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4412423871427649935, guid: f4f89acd0308c7646a02bc4e500676a5, type: 3}
       propertyPath: m_IsActive
@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4283899680536174718, guid: cbcc8502d34cc044ba49ec2d485df196, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787710686864096571, guid: cbcc8502d34cc044ba49ec2d485df196, type: 3}
       propertyPath: m_IsActive
@@ -242,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 7819092589680285598, guid: cbcc8502d34cc044ba49ec2d485df196, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170061273121590409, guid: cbcc8502d34cc044ba49ec2d485df196, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8315144121163049691, guid: cbcc8502d34cc044ba49ec2d485df196, type: 3}
       propertyPath: m_Name
@@ -340,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4347361173887026647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -378,6 +382,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8994340029208803606}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StunForDuration
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StunSystem.Runtime.Stun, StunSystem.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555300099361765380, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: onFoodCooked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5680326549072584722, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 
@@ -406,7 +442,9 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 708807047130346558}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9076078123442754927, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+    - {fileID: 4904967464469897770, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6551842554908663647, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
@@ -500,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 163794711124943256, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244064473958196516, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3415649936529396107, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
       propertyPath: physicsHip
@@ -608,3 +650,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 163794711124943256, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
   m_PrefabInstance: {fileID: 6031589970290583709}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8994340029208803606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3415649936529396107, guid: 81762a32f52c8094c9a76cd3b77f0cc9, type: 3}
+  m_PrefabInstance: {fileID: 6031589970290583709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700003924638526194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18baa7adfd88934496e341d4440d6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
