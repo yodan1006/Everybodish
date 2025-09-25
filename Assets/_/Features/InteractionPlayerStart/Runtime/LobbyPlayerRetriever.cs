@@ -33,7 +33,7 @@ namespace InputMapManager.Runtime
                     foreach (var device in user.pairedDevices)
                     {
                         LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
-                       // user.UnpairDevice(device);
+                        // user.UnpairDevice(device);
                         Destroy(playerInput.gameObject);
                     }
                 }

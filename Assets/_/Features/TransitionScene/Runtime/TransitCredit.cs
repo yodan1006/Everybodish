@@ -4,6 +4,6 @@ namespace TransitionScene.Runtime
 {
     public class TransitCredit : MonoBehaviour
     {
-       // public void Credit(CallBackcontext context)
+        // public void Credit(CallBackcontext context)
     }
 }

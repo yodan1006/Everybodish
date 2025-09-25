@@ -92,14 +92,11 @@ namespace Round.Runtime
 
         private void StartRound()
         {
+            GlobalScoreEventSystem.ResetAllScores(players.Values);
             foreach (PlayerInput player in players.Values)
             {
-                // player.GetComponent<SpawnSystem>().enabled = true;
                 player.actions.FindActionMap("Player").Enable();
-                GlobalScoreEventSystem.ResetAllScores();
-                    player.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
-                
-            ;
+                player.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
             }
         }
 

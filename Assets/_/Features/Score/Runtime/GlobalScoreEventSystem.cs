@@ -91,9 +91,21 @@ namespace Score.Runtime
             scoreEventLog.Add(scoreEvent);
 
             if (playerScores.ContainsKey(player))
+            {
                 playerScores[player] += scoreDelta;
+            }
+
             else
+            {
+
                 playerScores[player] = scoreDelta;
+            }
+
+
+            if (playerScores[player] < 0)
+            {
+                playerScores[player] = 0;
+            }
 
             Debug.Log($"[ScoreEvent] player {player} - {eventType} - Score: {scoreDelta}" +
                       (targetPlayer.HasValue ? $" (Target: {targetPlayer.Value})" : "") +
@@ -133,11 +145,15 @@ namespace Score.Runtime
             return TeamScore() > passingTeamScore;
         }
 
-        public static void ResetAllScores()
+        public static void ResetAllScores(Dictionary<int, UnityEngine.InputSystem.PlayerInput>.ValueCollection values)
         {
             scoreEventLog.Clear();
-            foreach (var key in playerScores.Keys.ToList())
-                playerScores[key] = 0;
+            playerScores.Clear();
+            foreach (var item in values)
+            {
+                RegisterScoreEvent(item.playerIndex, ScoreEventType.JoinedGame);
+            }
+
             if (Instance != null)
             {
                 Instance.OnScoresChanged?.Invoke();
