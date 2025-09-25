@@ -18,17 +18,19 @@ namespace InputMapManager.Runtime
         private readonly Dictionary<InputAction, List<System.Action<CallbackContext>>> boundActions = new();
         #endregion
 
-        private void Start()
+        private void Awake()
         {
             playerInput = GetComponent<PlayerInput>();
             spawnSystem = GetComponent<SpawnSystem>();
 
-            // Clone actions so we don't overwrite the shared asset
+            // Clone the InputActionAsset BEFORE anything uses it
             var clonedAsset = ScriptableObject.Instantiate(playerInput.actions);
-
-            // Re-assign the clone back to the player
+            clonedAsset.devices = playerInput.devices;
             playerInput.actions = clonedAsset;
+        }
 
+        private void Start()
+        {
             // Grab Selfdestruct and wire it
             var selfDestruct = playerInput.actions.FindAction("Selfdestruct");
             if (selfDestruct != null)
