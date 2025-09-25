@@ -23,13 +23,8 @@ namespace InputMapManager.Runtime
             {
                 foreach (PlayerInput playerInput in playerInputs)
                 {
-                    InputUser user = playerInput.user;
-
-                    foreach (var device in user.pairedDevices)
-                    {
                         LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
                         Destroy(playerInput.gameObject);
-                    }
                 }
             }
             else
