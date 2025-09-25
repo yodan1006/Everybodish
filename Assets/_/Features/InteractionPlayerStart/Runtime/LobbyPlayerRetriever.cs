@@ -4,6 +4,7 @@ using Skins.Runtime;
 using Spawner.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace InputMapManager.Runtime
 {
@@ -22,11 +23,19 @@ namespace InputMapManager.Runtime
             {
                 foreach (PlayerInput playerInput in playerInputs)
                 {
-                    Debug.Log("Readding old player to lobby");
-                    //TODO: Fix this
-                    LobbyManager.Instance.RegisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
-                    LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
-                    spawner.OnPlayerSpawned(playerInput);
+                    //  Debug.Log("Readding old player to lobby");
+                    //  
+                    //  LobbyManager.Instance.RegisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
+                    //  spawner.OnPlayerSpawned(playerInput);
+                    //  playerInput.GetComponent<InputMapSwitcher>().SetLobbyMap();
+                    InputUser user = playerInput.user;
+
+                    foreach (var device in user.pairedDevices)
+                    {
+                        LobbyManager.Instance.UnregisterPlayer(playerInput.GetComponentInChildren<SelectSkin>());
+                       // user.UnpairDevice(device);
+                        Destroy(playerInput.gameObject);
+                    }
                 }
             }
             else
