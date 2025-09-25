@@ -12887,7 +12887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6933256687368990403, guid: b6fa9ca386af09140bb88c0c48a311c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.72
+      value: -6.17
       objectReference: {fileID: 0}
     - target: {fileID: 7385336669354125172, guid: b6fa9ca386af09140bb88c0c48a311c6, type: 3}
       propertyPath: m_Icon
@@ -14692,6 +14692,7 @@ MonoBehaviour:
   uiBarProgression: {fileID: 8648653598068815041}
   uiIcone: {fileID: 4431584773908920764}
   uiDone: {fileID: 2110677963625848921}
+  failedUI: {fileID: 0}
   ingredientPoints:
   - {fileID: 7836475848100094632}
   - {fileID: 9056096686638261190}
@@ -14919,6 +14920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d75254642949419ef0a2e0a8703fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 1
   _foodPrefab: {fileID: 3059587863991007631, guid: 234a27dde12a86043b0078c24143c015, type: 3}
   _foodSpawnPoint: {fileID: 6356885406873588331}
 --- !u!1001 &7619199013156445530
