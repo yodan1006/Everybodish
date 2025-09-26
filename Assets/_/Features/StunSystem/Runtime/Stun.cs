@@ -20,7 +20,7 @@ namespace StunSystem.Runtime
         public GameObject physicsHip;
         [SerializeField] protected PlayerTeleporter playerTeleporter;
         public ParticleSystem stunEffect;
-        public UnityEvent<bool> onDisableActionsForStun = new();
+        public UnityEvent<bool> onEnableActions = new();
         #endregion
 
 
@@ -55,7 +55,7 @@ namespace StunSystem.Runtime
             _animator.SetBool("Stunned", true);
             _activeRagdoll.DisconnectRoot();
             stunEffect.Play();
-            onDisableActionsForStun.Invoke(true);
+            onEnableActions.Invoke(false);
         }
 
         private void OnDisable()
@@ -73,7 +73,7 @@ namespace StunSystem.Runtime
             _animator.SetBool("Stunned", false);
             playerTeleporter.ReconnectCharacterControllerToRagdoll();
             stunEffect.Stop();
-            onDisableActionsForStun.Invoke(false);
+            onEnableActions.Invoke(true);
         }
 
         private void Update()

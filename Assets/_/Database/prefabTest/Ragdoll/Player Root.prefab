@@ -134,7 +134,7 @@ MonoBehaviour:
   physicsHip: {fileID: 0}
   playerTeleporter: {fileID: 0}
   stunEffect: {fileID: 0}
-  onDisableActionsForStun:
+  onEnableActions:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1688661189710610977}
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunDuration: 5
+  animator: {fileID: 0}
 --- !u!114 &5416788759587927982
 MonoBehaviour:
   m_ObjectHideFlags: 0
