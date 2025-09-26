@@ -46,7 +46,9 @@ namespace Machine.Runtime
 
         private void TryUseCookStation()
         {
-            if (!grabber.IsGrabbing() || enabled == true) return;
+            if (grabber.IsGrabbing() && enabled == true){
+
+       
 
             if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
                 return;
@@ -99,6 +101,7 @@ namespace Machine.Runtime
                         //onScoreEvent.Invoke(ScoreEventType.Trash); // si tu veux un score spécifique
                     }
                 }
+            } 
             }
         }
 
