@@ -13,6 +13,7 @@ namespace Grab.Runtime
         [SerializeField] private GrabableBehaviourEnum grabbedBehaviour = GrabableBehaviourEnum.None;
         [SerializeField] private MovementStrategyEnum movementStrategy = MovementStrategyEnum.Hold;
         [SerializeField] private Vector3 holdDistanceFromPlayer = new(0, 1, 1);
+        private IGrabber lastGrabber;
 
         public IGrabber Grabber { get => grabber; }
         public Vector3 HoldDistanceFromPlayerCenter { get => holdDistanceFromPlayer; }
@@ -21,6 +22,7 @@ namespace Grab.Runtime
         public RigidbodyConstraints HoldAreaConstraints { get => holdAreaConstraints; }
         public GrabableBehaviourEnum GrabbedBehaviour { get => grabbedBehaviour; }
         bool IGrabable.IsGrabable { get => IsGrabable(); }
+        public IGrabber LastGrabber { get => lastGrabber; set => lastGrabber = value; }
 
         public bool IsGrabable()
         {
@@ -65,6 +67,7 @@ namespace Grab.Runtime
                 if (grabber == null)
                 {
                     grabber = newGrabber;
+                    lastGrabber = grabber;
                     success = true;
                 }
                 else if (newGrabber.gameObject == transform.gameObject)

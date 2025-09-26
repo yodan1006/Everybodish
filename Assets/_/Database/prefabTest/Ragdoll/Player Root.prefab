@@ -495,6 +495,7 @@ MonoBehaviour:
   _collider: {fileID: 2552863704497171152}
   _stun: {fileID: 3415649936529396107}
   _grab: {fileID: 7151880423467956198}
+  _characterController: {fileID: 2244064473958196516}
   minmimumStunVelocity: 5
 --- !u!1001 &7713837657788537772
 PrefabInstance:
