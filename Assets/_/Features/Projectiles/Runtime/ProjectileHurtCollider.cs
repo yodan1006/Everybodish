@@ -17,7 +17,7 @@ namespace ActiveRagdoll.Runtime
             {
                 //Check for collision while grabbing
                 if (!_grab.IsGrabbing() || _grab.Grabable.gameObject != collision.gameObject)
-                   
+                {
                     //Check for speed and not being grabbed
                     if ((rb.linearVelocity - _characterController.velocity).magnitude > minmimumStunVelocity)
                     {
@@ -37,7 +37,16 @@ namespace ActiveRagdoll.Runtime
                             Debug.Log("Player stunned by kinetic object!", this);
                             _stun.StunForDuration(5);
                         }
+                    }else
+                    {
+                        Debug.Log("Projectile was too slow to hurt");
                     }
+                } else
+                {
+                    Debug.Log("Item was throw by the same player, aborting");
+                }
+                   
+
             }
             else
             {
