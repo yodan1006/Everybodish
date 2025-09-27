@@ -74,6 +74,22 @@ PrefabInstance:
       propertyPath: holdDistanceFromPlayer.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 189879655193393038, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: holdDistanceFromPlayer.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.175
@@ -113,6 +129,10 @@ PrefabInstance:
     - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728928168632641746, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7446442398799400412, guid: ad4ee46bf671e474d95398c57a53c878, type: 3}
       propertyPath: FoodType

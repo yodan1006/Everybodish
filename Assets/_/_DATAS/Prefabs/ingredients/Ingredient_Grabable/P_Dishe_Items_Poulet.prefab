@@ -221,7 +221,7 @@ MonoBehaviour:
   releaseAreaConstraints: 112
   grabbedBehaviour: 0
   movementStrategy: 1
-  holdDistanceFromPlayer: {x: 0, y: 0.5, z: 0.5}
+  holdDistanceFromPlayer: {x: 0, y: 0.65, z: 0.7}
 --- !u!114 &4055602562637355711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +235,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodType: 24
+  onFoodCooked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5110372888207784259
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,8 +264,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.414, y: 10.182, z: 4.297}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1959313297236586901}
   m_Father: {fileID: 0}
