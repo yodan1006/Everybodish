@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3060997219108604692, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3299304938780807926, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 135
@@ -1217,6 +1221,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3299304938780807926, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443086197791036044, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744291848492499359, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053320054939869402, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296003652881585327, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4425950298346446653, guid: bbc52680146729c428ec71ea5150079d, type: 3}
@@ -1235,6 +1255,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4c19f7f37df9a6b4b851941106f2d76b, type: 3}
+    - target: {fileID: 5176195395290431753, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749465073431750985, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768658017931504339, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5888464701136385637, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: holdTime
       value: 0
@@ -1247,6 +1279,10 @@ PrefabInstance:
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 191205316}
+    - target: {fileID: 6714488752593418746, guid: bbc52680146729c428ec71ea5150079d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7192854056168863627, guid: bbc52680146729c428ec71ea5150079d, type: 3}
       propertyPath: commandeManager
       value: 
