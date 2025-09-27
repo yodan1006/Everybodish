@@ -18,6 +18,7 @@ namespace Machine.Runtime
         private float holdingTime = 0f;
         private bool cookTriggered = false;
         public UnityEvent<ScoreEventType> onScoreEvent = new();
+        [SerializeField] private AudioSource songIngredientTonneau;
 
 
         public UIMultiCook CurrentMultiCookUI { get; set; }
@@ -119,6 +120,7 @@ namespace Machine.Runtime
                         var grabable = newFood.GetComponentInChildren<Grabable>();
                         if (grabable != null)
                             grabber.TryGrab(grabable);
+                        songIngredientTonneau.Play();
                     }
 
                 }
