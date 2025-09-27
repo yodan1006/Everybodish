@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
-    public class ActiveRagdoll : MonoBehaviour
+    public class ActiveRagdollManager : MonoBehaviour
     {
         public int solverIterations = 8;
         public int solverVelocityIterations = 8;

@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 8131560411203895885, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_Radius
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3307613635069798083, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     - {fileID: 1441789662254240134, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}

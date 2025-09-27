@@ -1,4 +1,3 @@
-using ActiveRagdoll.Runtime;
 using MovePlayer.Runtime;
 using UnityEngine;
 
@@ -84,16 +83,8 @@ namespace Machine.Runtime
 
                         animator.SetBool("OnSlice", true);
                         resultPrefab = recipe.outputPrefab;
+                        food.onFoodCooked.Invoke();
 
-                        if (food.FoodType == FoodType.Player)
-                        {
-                            Stun stun = food.Topmost.GetComponentInChildren<Stun>();
-                            if (stun != null)
-                            {
-                                //Stun player FOREVER
-                                stun.StunForDuration(float.PositiveInfinity);
-                            }
-                        }
                         return true;
                     }
                 }

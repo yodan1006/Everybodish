@@ -1,3 +1,4 @@
+using Stunsystem.Runtime;
 using UnityEngine;
 
 namespace MovePlayer.Runtime

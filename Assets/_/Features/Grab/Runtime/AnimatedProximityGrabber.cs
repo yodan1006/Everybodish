@@ -66,7 +66,7 @@ namespace Grab.Runtime
 
         public void TryGrab()
         {
-            if (!IsGrabbing())
+            if (!IsGrabbing() && enabled)
             {
                 Log("Grab");
                 Collider[] colliders = GetCollidersInArea();
@@ -117,12 +117,17 @@ namespace Grab.Runtime
         public override bool TryGrab(IGrabable newGrabable)
         {
             bool success = false;
-            if (base.TryGrab(newGrabable))
+            if (enabled)
             {
-                animator.SetLayerWeight(grabLayerIndex, 1);
-                success = true;
+
+                if (base.TryGrab(newGrabable))
+                {
+                    animator.SetLayerWeight(grabLayerIndex, 1);
+                    success = true;
+                }
+
             }
-            return success; ;
+            return success;
         }
     }
 }
