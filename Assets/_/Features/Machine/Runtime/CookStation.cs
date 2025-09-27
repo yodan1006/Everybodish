@@ -12,6 +12,8 @@ namespace Machine.Runtime
         [SerializeField] private Transform spawnPoint; // pour le plat final
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
+        [SerializeField] private AudioSource CoupeCoupeSong;
+        
         public bool _isCooking = false;
         public bool hideItemDuringPrepare = false;
         private Food _currentFood;
@@ -60,6 +62,7 @@ namespace Machine.Runtime
                             // Place l’objet visuellement sur le slot
                             food.transform.SetPositionAndRotation(foodSlot.position, foodSlot.rotation);
                             food.gameObject.SetActive(true);
+                            CoupeCoupeSong.Play();
                             Debug.LogError("Test");
                             if (food.Grabable != null)
                             {

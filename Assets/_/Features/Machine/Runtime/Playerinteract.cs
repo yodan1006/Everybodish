@@ -19,6 +19,7 @@ namespace Machine.Runtime
         private bool cookTriggered = false;
         public UnityEvent<ScoreEventType> onScoreEvent = new();
         [SerializeField] private AudioSource songIngredientTonneau;
+        [SerializeField] private AudioSource audioServicePlat;
 
 
         public UIMultiCook CurrentMultiCookUI { get; set; }
@@ -90,6 +91,7 @@ namespace Machine.Runtime
                     if (serviceCommande.ServicePlat(food))
                     {
                         onScoreEvent.Invoke(ScoreEventType.ServedDish);
+                        audioServicePlat.Play();
                     }
                 }
                 else if (hit.TryGetComponent<Trash>(out var trashBin))

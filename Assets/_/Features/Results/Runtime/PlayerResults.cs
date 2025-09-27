@@ -25,6 +25,8 @@ namespace Results.Runtime
 
         private void Awake()
         {
+            
+            
             if (RoundSystem.Instance != null)
             {
                 // Get all PlayerInput objects and sort them by lobby slot index
@@ -100,7 +102,7 @@ namespace Results.Runtime
 
                         ranks[i].SetRankIcon(leaderboardRank);
 
-                        sliders[i].value = score;
+                        //sliders[i].value = score;
 
                         SelectSkin selectSkin = player.GetComponent<SelectSkin>();
                         AnimalType animalType = selectSkin.CurrentAnimalType();
@@ -125,6 +127,12 @@ namespace Results.Runtime
                         sliders[i].gameObject.SetActive(true);
                         sliders[i].maxValue = maxScore;
                         sliders[i].minValue = minScore;
+                        
+                        PlayerInput player = playerInputs[i];
+                        int playerIndex = player.playerIndex;
+                        int score = list.FirstOrDefault(s => s.player == playerIndex).score;
+                        sliders[i].value = score;
+
                     }
                 }
             }
