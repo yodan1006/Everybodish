@@ -314,7 +314,7 @@ namespace ActionMap
                     ""name"": """",
                     ""id"": ""16d1c959-e0d7-4f5c-873f-e47820c43346"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grab"",
