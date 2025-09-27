@@ -64,7 +64,8 @@ namespace InputMapManager.Runtime
 
         public void BindPlayerControls(GameObject ctx)
         {
-            BindPlayerInput(playerInput.actions.FindAction("Grab"), ctx.GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
+            //BindPlayerInput(playerInput.actions.FindAction("Grab"), ctx.GetComponentInChildren<AnimatedProximityGrabber>().TryGrabReleaseAction);
+            BindPlayerInput(playerInput.actions.FindAction("Grab"), ctx.GetComponentInChildren<AnimatedProximityGrabber>().OnHoldGrabAction);
             BindPlayerInput(playerInput.actions.FindAction("HeadButt"), ctx.GetComponentInChildren<Attack>().PlayAttack);
             BindPlayerInput(playerInput.actions.FindAction("Interact"), ctx.GetComponentInChildren<PlayerInteract>().OnUse);
             BindPlayerInput(playerInput.actions.FindAction("Interact"), ctx.GetComponentInChildren<PlayerInteract>().OnManualCook);
