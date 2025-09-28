@@ -66,8 +66,6 @@ namespace ActiveRagdoll.Runtime
                 configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
             }
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
-            //TODO: why does it disable itself?
-            configurableJointExtended.enabled = true;
 
             // 6. Reactivate objects
             m_playerRoot.SetActive(true);

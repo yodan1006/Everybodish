@@ -56,8 +56,8 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
-        public Quaternion InitialLocalRotation { get => initialLocalRotation;  }
-        public Vector3 InitialLocalPosition { get => initialLocalPosition;}
+        public Quaternion InitialLocalRotation { get => initialLocalRotation; }
+        public Vector3 InitialLocalPosition { get => initialLocalPosition; }
 
         // private readonly bool isColliderDisabled = false;
 
@@ -73,14 +73,15 @@ namespace ActiveRagdoll.Runtime
             ApplyAdaptiveConfig();
         }
 
-        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint,GameObject targetObject)
+        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint, GameObject targetObject)
         {
             ConfigurableJointUtility.SetupAsCharacterJoint(configurableJoint);
             target = targetObject;
             joint = configurableJoint;
             joint.connectedBody = rootRigidBody;
-            boneLength = GetBoneLength(); 
+            boneLength = GetBoneLength();
             ApplyAdaptiveConfig();
+            enabled = true;
         }
 
         private void Awake()
