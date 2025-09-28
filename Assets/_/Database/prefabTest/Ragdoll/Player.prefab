@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerRoot: {fileID: 1700003924638526194}
+  m_playerHip: {fileID: 5191535644500875305}
   m_ragdollRoot: {fileID: 6008338345124722668}
 --- !u!1001 &3013003602188897963
 PrefabInstance:
@@ -147,6 +148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4975634278693844309}
     m_Modifications:
+    - target: {fileID: 248351093277934656, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
+      propertyPath: m_Name
+      value: DEF_HIPS
+      objectReference: {fileID: 0}
     - target: {fileID: 329516752566205581, guid: e873afcc85cd503428211b845e8ac9f9, type: 3}
       propertyPath: target
       value: 

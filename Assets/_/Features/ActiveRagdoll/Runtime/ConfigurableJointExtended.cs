@@ -8,7 +8,8 @@ namespace ActiveRagdoll.Runtime
     public class ConfigurableJointExtended : VerboseMonoBehaviour
     {
         public ConfigurableJoint joint;
-        public Quaternion initialLocalRotation;
+        private Vector3 initialLocalPosition;
+        private Quaternion initialLocalRotation;
         public GameObject target;
         public float boneLength = 0.5f;
 
@@ -55,6 +56,9 @@ namespace ActiveRagdoll.Runtime
         public Color boneColor = Color.green;
         public Color jointAxisColor = Color.cyan;
 
+        public Quaternion InitialLocalRotation { get => initialLocalRotation;  }
+        public Vector3 InitialLocalPosition { get => initialLocalPosition;}
+
         // private readonly bool isColliderDisabled = false;
 
         public void Initialize(GameObject targetObject, Rigidbody connectedBody)
@@ -64,13 +68,25 @@ namespace ActiveRagdoll.Runtime
             ConfigurableJointUtility.SetupAsCharacterJoint(joint);
             joint.connectedBody = connectedBody;
             initialLocalRotation = transform.localRotation;
+            initialLocalPosition = transform.localPosition;
             boneLength = GetBoneLength();
+            ApplyAdaptiveConfig();
+        }
+
+        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint,GameObject targetObject)
+        {
+            ConfigurableJointUtility.SetupAsCharacterJoint(configurableJoint);
+            target = targetObject;
+            joint = configurableJoint;
+            joint.connectedBody = rootRigidBody;
+            boneLength = GetBoneLength(); 
             ApplyAdaptiveConfig();
         }
 
         private void Awake()
         {
             initialLocalRotation = transform.localRotation;
+            initialLocalPosition = transform.localPosition;
             joint = GetComponent<ConfigurableJoint>();
         }
 
@@ -234,12 +250,6 @@ namespace ActiveRagdoll.Runtime
             Gizmos.DrawRay(transform.position, transform.forward * 0.2f);
         }
 
-        internal void Reconnect(Rigidbody rootRigidBody, ConfigurableJoint configurableJoint)
-        {
-            ConfigurableJointUtility.SetupAsCharacterJoint(configurableJoint);
-            joint = configurableJoint;
-            joint.connectedBody = rootRigidBody;
-        }
 
         public static class ConfigurableJointUtility
         {
