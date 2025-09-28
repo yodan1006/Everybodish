@@ -74,6 +74,12 @@ namespace ActiveRagdoll.Runtime
             m_playerRoot.SetActive(true);
             m_ragdollRoot.SetActive(true);
             _animator.enabled = true;
+
+            ConfigurableJointExtended[] joints = configurableJointExtended.GetComponentsInChildren<ConfigurableJointExtended>();
+            foreach (var item in joints)
+            {
+                item.SyncToTargetRotation();
+            }
         }
     }
 }

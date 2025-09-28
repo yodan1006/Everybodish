@@ -102,6 +102,11 @@ namespace ActiveRagdoll.Runtime
             transform.localRotation = initialLocalRotation;
         }
 
+        public void SyncToTargetRotation()
+        {
+            SetJointRotation(target.transform.rotation);
+        }
+
         public void SetJointRotation(Quaternion newRotation)
         {
             // Apply the inverse of the initial rest pose rotation to remove baked-in tilt
