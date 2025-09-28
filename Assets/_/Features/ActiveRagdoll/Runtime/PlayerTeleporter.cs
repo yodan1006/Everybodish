@@ -49,7 +49,7 @@ namespace ActiveRagdoll.Runtime
             _characterController.enabled = true;
 
             // 3. Reset ragdoll relative to player
-            m_ragdollRoot.transform.localPosition = configurableJointExtended.InitialLocalPosition;
+            m_ragdollRoot.transform.position = m_playerHip.transform.position;
             m_ragdollRoot.transform.localRotation = configurableJointExtended.InitialLocalRotation;
 
             // 4. Reconnect rigidbody + joints
