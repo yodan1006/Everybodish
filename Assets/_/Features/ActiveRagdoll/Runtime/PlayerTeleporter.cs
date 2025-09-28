@@ -4,38 +4,39 @@ namespace ActiveRagdoll.Runtime
 {
     public class PlayerTeleporter : MonoBehaviour
     {
-        //player character root
         [SerializeField] private GameObject m_playerRoot;
-        //player hip bone the configurable joint should copy the rotation of
         [SerializeField] private GameObject m_playerHip;
-        //Ragdoll root located on the hip
         [SerializeField] private GameObject m_ragdollRoot;
-        //Rigidbody placed on the player character root
+
         private Rigidbody _rootRigidBody;
         private Animator _animator;
+
         private void Awake()
         {
             _rootRigidBody = m_playerRoot.GetComponent<Rigidbody>();
             _animator = m_playerRoot.GetComponentInChildren<Animator>();
         }
+
         public void TeleportTo(Transform target)
         {
-            // 1. Cache target position and rotation
             Vector3 targetPos = target.position;
             Quaternion targetRot = target.rotation;
 
-            // 2. Deactivate player and ragdoll to avoid physics issues
+            // Deactivate objects to prevent physics issues
             _animator.enabled = false;
             m_playerRoot.SetActive(false);
             m_ragdollRoot.SetActive(false);
 
-            // 3. Move player root
+            // Move player root
             m_playerRoot.transform.SetPositionAndRotation(targetPos, targetRot);
 
-            // 4. Move ragdoll root to match player root in world space
-            m_ragdollRoot.transform.SetPositionAndRotation(m_playerHip.transform.position, targetRot);
+            // Compute hip offset in ragdoll
+            Vector3 hipOffset = m_ragdollRoot.transform.position - m_ragdollRoot.transform.position; // usually zero if ragdoll root is at hip
+            // Move ragdoll so its hip matches player hip
+            m_ragdollRoot.transform.position = m_playerHip.transform.position;
+            m_ragdollRoot.transform.rotation = targetRot;
 
-            // 6. Reactivate objects
+            // Reactivate
             m_playerRoot.SetActive(true);
             m_ragdollRoot.SetActive(true);
             _animator.enabled = true;
@@ -43,35 +44,36 @@ namespace ActiveRagdoll.Runtime
 
         public void ReconnectCharacterControllerToRagdoll()
         {
-            // 1. Cache the ragdoll's current world position and rotation
-            Vector3 ragdollPos = m_ragdollRoot.transform.position;
-            Quaternion ragdollRot = m_ragdollRoot.transform.rotation;
+            // Get ragdoll hip transform
+            Transform ragdollHip = m_ragdollRoot.transform; // Replace with actual ragdoll hip if different
 
-            // 2. Deactivate objects to prevent physics interference
+            // Deactivate to prevent physics interference
             _animator.enabled = false;
             m_playerRoot.SetActive(false);
             m_ragdollRoot.SetActive(false);
 
-            // 3. Teleport player root to ragdoll's current position
-            m_playerRoot.transform.SetPositionAndRotation(ragdollPos, ragdollRot);
+            // Compute the offset between ragdoll root and hip
+            Vector3 hipOffset = ragdollHip.position - m_ragdollRoot.transform.position;
 
-            // 4. Reset ragdoll to initial pose at the same position
+            // Move player root so that its hip matches the ragdoll hip
+            m_playerRoot.transform.position = ragdollHip.position - hipOffset;
+            m_playerRoot.transform.rotation = m_ragdollRoot.transform.rotation;
+
+            // Move ragdoll root so hip aligns with player hip
+            m_ragdollRoot.transform.position = m_playerHip.transform.position;
+            m_ragdollRoot.transform.rotation = m_playerRoot.transform.rotation;
+
+            // Reconnect the configurable joint
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
-            m_ragdollRoot.transform.SetPositionAndRotation(ragdollPos, ragdollRot);
-
-            // 5. Reconnect the configurable joint
             ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponent<ConfigurableJoint>();
             if (configurableJoint == null)
-            {
                 configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
-            }
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
 
-            // 6. Reactivate objects
+            // Reactivate
             m_playerRoot.SetActive(true);
             m_ragdollRoot.SetActive(true);
             _animator.enabled = true;
         }
-
     }
 }
