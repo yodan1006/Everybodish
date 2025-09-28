@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
 using Skins.Runtime;
+using System.Collections.Generic;
 using Timer.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;

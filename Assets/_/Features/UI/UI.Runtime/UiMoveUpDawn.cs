@@ -18,7 +18,7 @@ namespace UI.Runtime
         private void Update()
         {
             float offsetY = Mathf.Sin(Time.time * frequency) * amplitude;
-            Vector3 targetPosition = new Vector3(startPosition.x, startPosition.y + offsetY, startPosition.z);
+            Vector3 targetPosition = new(startPosition.x, startPosition.y + offsetY, startPosition.z);
             transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed);
         }
     }

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Animals.Data;
+﻿using Animals.Data;
 using Round.Runtime;
 using Score.Runtime;
 using Skins.Runtime;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UI.Runtime;
 using UnityEngine;
@@ -25,8 +25,8 @@ namespace Results.Runtime
 
         private void Awake()
         {
-            
-            
+
+
             if (RoundSystem.Instance != null)
             {
                 // Get all PlayerInput objects and sort them by lobby slot index
@@ -127,7 +127,7 @@ namespace Results.Runtime
                         sliders[i].gameObject.SetActive(true);
                         sliders[i].maxValue = maxScore;
                         sliders[i].minValue = minScore;
-                        
+
                         PlayerInput player = playerInputs[i];
                         int playerIndex = player.playerIndex;
                         int score = list.FirstOrDefault(s => s.player == playerIndex).score;

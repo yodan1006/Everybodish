@@ -16,7 +16,7 @@ namespace Machine.Runtime
         [Header("UI")]
         [SerializeField] private Transform parentUI;
 
-        private readonly List<CommandeUI> commandesActives = new List<CommandeUI>();
+        private readonly List<CommandeUI> commandesActives = new();
 
         private void Start()
         {
@@ -77,7 +77,7 @@ namespace Machine.Runtime
 
             for (int i = 0; i < commandesActives.Count; i++)
             {
-                Vector3 targetPos = new Vector3(0, startY + (i * offsetY), 0);
+                Vector3 targetPos = new(0, startY + (i * offsetY), 0);
                 commandesActives[i].SetTargetPosition(targetPos);
             }
         }

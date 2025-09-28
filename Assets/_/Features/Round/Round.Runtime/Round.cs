@@ -1,6 +1,6 @@
+using Score.Runtime;
 using System.Collections.Generic;
 using System.Linq;
-using Score.Runtime;
 using Timer.Runtime;
 using TransitionScene.Runtime;
 using UnityEngine;

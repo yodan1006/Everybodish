@@ -13,7 +13,7 @@ namespace Machine.Runtime
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
         [SerializeField] private AudioSource CoupeCoupeSong;
-        
+
         public bool _isCooking = false;
         public bool hideItemDuringPrepare = false;
         private Food _currentFood;

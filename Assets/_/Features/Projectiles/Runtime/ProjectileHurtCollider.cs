@@ -25,10 +25,10 @@ namespace ActiveRagdoll.Runtime
                         {
                             if (!grabable.IsGrabbed())
                             {
-                                if(grabable.LastGrabber.gameObject != _grab.gameObject)
+                                if (grabable.LastGrabber.gameObject != _grab.gameObject)
                                 {
-                                Debug.Log("Player stunned by grabable object!", this);
-                                _stun.StunForDuration(5);
+                                    Debug.Log("Player stunned by grabable object!", this);
+                                    _stun.StunForDuration(5);
                                 }
                             }
                         }
@@ -37,15 +37,17 @@ namespace ActiveRagdoll.Runtime
                             Debug.Log("Player stunned by kinetic object!", this);
                             _stun.StunForDuration(5);
                         }
-                    }else
+                    }
+                    else
                     {
                         Debug.Log("Projectile was too slow to hurt");
                     }
-                } else
+                }
+                else
                 {
                     Debug.Log("Item was throw by the same player, aborting");
                 }
-                   
+
 
             }
             else

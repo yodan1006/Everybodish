@@ -14,7 +14,7 @@ namespace Machine.Runtime
         public Rigidbody Rb { get => rb; }
         public Grabable Grabable { get => grabable; }
         public Transform Topmost { get => topmost; }
-        public UnityEvent onFoodCooked = new UnityEvent();
+        public UnityEvent onFoodCooked = new();
 
         private void Awake()
         {

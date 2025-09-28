@@ -48,63 +48,64 @@ namespace Machine.Runtime
 
         private void TryUseCookStation()
         {
-            if (grabber.IsGrabbing() && enabled == true){
-
-       
-
-            if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
-                return;
-
-            Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
-
-            foreach (var hit in hits)
+            if (grabber.IsGrabbing() && enabled == true)
             {
-                // Cas 1 : CookStation simple
-                if (hit.TryGetComponent<CookStation>(out var simpleStation) && hit.GetComponent<CookStation>()._isCooking == false)
+
+
+
+                if (!grabber.Grabable.gameObject.TryGetComponent<Food>(out Food food))
+                    return;
+
+                Collider[] hits = Physics.OverlapSphere(transform.position, radiusDetector);
+
+                foreach (var hit in hits)
                 {
-                    if (simpleStation.TryCook(food, out var _))
+                    // Cas 1 : CookStation simple
+                    if (hit.TryGetComponent<CookStation>(out var simpleStation) && hit.GetComponent<CookStation>()._isCooking == false)
+                    {
+                        if (simpleStation.TryCook(food, out var _))
+                        {
+                            grabber.Release();
+                            if (food.FoodType == FoodType.Player)
+                            {
+                                onScoreEvent.Invoke(ScoreEventType.PlayerKilled);
+                            }
+                            else
+                            {
+                                onScoreEvent.Invoke(ScoreEventType.PreparedIngredient);
+                            }
+
+                            //food = null;
+                            //simpleStation.SpawnCookedFood(resultPrefab);
+                        }
+
+                    } // Cas 2 : CookStation multi
+                    else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
                     {
                         grabber.Release();
-                        if (food.FoodType == FoodType.Player)
-                        {
-                            onScoreEvent.Invoke(ScoreEventType.PlayerKilled);
-                        }
-                        else
-                        {
-                            onScoreEvent.Invoke(ScoreEventType.PreparedIngredient);
-                        }
+                        multiStation.AddFood(food);
 
-                        //food = null;
-                        //simpleStation.SpawnCookedFood(resultPrefab);
                     }
-
-                } // Cas 2 : CookStation multi
-                else if (hit.TryGetComponent<CookStationMultiIngredient>(out var multiStation))
-                {
-                    grabber.Release();
-                    multiStation.AddFood(food);
-
-                }
-                else if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
-                {
-                    grabber.Release();
-                    if (serviceCommande.ServicePlat(food))
+                    else if (hit.TryGetComponent<ServiceCommande>(out var serviceCommande))
                     {
-                        onScoreEvent.Invoke(ScoreEventType.ServedDish);
-                        audioServicePlat.Play();
-                    }
-                }
-                else if (hit.TryGetComponent<Trash>(out var trashBin))
-                {
-                    // grabber.Release();
-                    if (trashBin.ThrowFood(food))
-                    {
-                        Destroy(food.gameObject);
                         grabber.Release();
-                        //onScoreEvent.Invoke(ScoreEventType.Trash); // si tu veux un score spécifique
+                        if (serviceCommande.ServicePlat(food))
+                        {
+                            onScoreEvent.Invoke(ScoreEventType.ServedDish);
+                            audioServicePlat.Play();
+                        }
+                    }
+                    else if (hit.TryGetComponent<Trash>(out var trashBin))
+                    {
+                        // grabber.Release();
+                        if (trashBin.ThrowFood(food))
+                        {
+                            Destroy(food.gameObject);
+                            grabber.Release();
+                            //onScoreEvent.Invoke(ScoreEventType.Trash); // si tu veux un score spécifique
+                        }
                     }
                 }
-            } 
             }
         }
 

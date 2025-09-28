@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Score.Runtime;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +15,7 @@ namespace InteractionPlayerStart.Runtime
             {
                 player.actions.FindActionMap("Player").Enable();
                 player.GetComponent<InputMapManager.Runtime.InputMapSwitcher>().SetGameplayMap();
-            }   
+            }
         }
     }
 }
