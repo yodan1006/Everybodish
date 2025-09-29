@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animated Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 4535248820117810973, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535248820117810973, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535248820117810973, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       propertyPath: m_Controller
       value: 
@@ -70,6 +82,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
       propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901590153715328466, guid: 6bae164e917cb2640b824fa48f5e59e1, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

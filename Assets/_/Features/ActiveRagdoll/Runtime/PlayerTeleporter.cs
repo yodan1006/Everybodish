@@ -30,8 +30,6 @@ namespace ActiveRagdoll.Runtime
             // Move player root
             m_playerRoot.transform.SetPositionAndRotation(targetPos, targetRot);
 
-            // Compute hip offset in ragdoll
-            Vector3 hipOffset = m_ragdollRoot.transform.position - m_ragdollRoot.transform.position; // usually zero if ragdoll root is at hip
             // Move ragdoll so its hip matches player hip
             m_ragdollRoot.transform.position = m_playerHip.transform.position;
             m_ragdollRoot.transform.rotation = targetRot;
@@ -67,7 +65,10 @@ namespace ActiveRagdoll.Runtime
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
             ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponent<ConfigurableJoint>();
             if (configurableJoint == null)
-                configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            {
+               configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            }
+ 
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
 
             // Reactivate
@@ -76,6 +77,7 @@ namespace ActiveRagdoll.Runtime
             _animator.enabled = true;
 
             ConfigurableJointExtended[] joints = configurableJointExtended.GetComponentsInChildren<ConfigurableJointExtended>();
+            configurableJointExtended.SyncToTargetRotation();
             foreach (var item in joints)
             {
                 item.SyncToTargetRotation();
