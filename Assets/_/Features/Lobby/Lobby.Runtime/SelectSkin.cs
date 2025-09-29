@@ -70,7 +70,7 @@ namespace Skins.Runtime
 
             if (Time.time - lastModelChangeTime < changeCooldown) return;
 
-            float value = context.ReadValue<Vector2>().x;
+            float value = context.ReadValue<Vector2>().y;
             if (value > 0.5f) currentModelIndex++;
             else if (value < -0.5f) currentModelIndex--;
             else return;
@@ -101,7 +101,7 @@ namespace Skins.Runtime
             var currentSet = appearances[currentModelIndex];
             if (currentSet == null || currentSet.colorAppaerences == null || currentSet.colorAppaerences.Length == 0) return;
 
-            float value = context.ReadValue<Vector2>().y;
+            float value = context.ReadValue<Vector2>().x;
             if (value > 0.5f) currentColorIndex++;
             else if (value < -0.5f) currentColorIndex--;
             else return; // pas assez de mouvement
