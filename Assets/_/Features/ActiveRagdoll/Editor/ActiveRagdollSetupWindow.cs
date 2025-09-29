@@ -22,7 +22,10 @@ namespace ActiveRagdoll.Editor
         private float maxDriveForceMultiplier = 3f;
 
         private float rootMass = 10f;
-        private float massFalloff = 0.5f;
+        private AnimationCurve massFalloffCurve = AnimationCurve.Linear(0, 1f, 10, 0.1f);
+
+        private AnimationCurve linearDampingCurve = AnimationCurve.Linear(0, 0.05f, 10, 0.01f);
+        private AnimationCurve angularDampingCurve = AnimationCurve.Linear(0, 15f, 10, 5f);
 
         private Dictionary<Transform, Transform> matchedBones = new();
         private readonly Dictionary<Transform, Rigidbody> parentRbMap = new();
@@ -50,7 +53,11 @@ namespace ActiveRagdoll.Editor
             GUILayout.Space(5);
             GUILayout.Label("Mass Distribution Settings", EditorStyles.boldLabel);
             rootMass = EditorGUILayout.FloatField("Root Mass", rootMass);
-            massFalloff = EditorGUILayout.Slider("Mass Falloff per Level", massFalloff, 0.1f, 1f);
+            massFalloffCurve = EditorGUILayout.CurveField("Mass (by Depth)", massFalloffCurve);
+            GUILayout.Space(5);
+            GUILayout.Label("Damping Curves", EditorStyles.boldLabel);
+            linearDampingCurve = EditorGUILayout.CurveField("Linear Damping (by Depth)", linearDampingCurve);
+            angularDampingCurve = EditorGUILayout.CurveField("Angular Damping (by Depth)", angularDampingCurve);
 
             GUILayout.Space(5);
             GUILayout.Label("Joint Drive Multipliers", EditorStyles.boldLabel);
@@ -152,7 +159,7 @@ namespace ActiveRagdoll.Editor
                     Undo.RecordObject(rb, "Configure Rigidbody");
 
                     // Mass distribution based on depth
-                    float calculatedMass = rootMass * Mathf.Pow(1 - massFalloff, depth);
+                    float calculatedMass = rootMass * massFalloffCurve.Evaluate(depth);
                     rb.mass = calculatedMass;
                     rb.useGravity = true;
                     rb.solverIterations = solverIterations;
@@ -160,6 +167,10 @@ namespace ActiveRagdoll.Editor
                     rb.maxAngularVelocity = maxAngularVelocity;
                     rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
                     rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+                    // Damping from curves
+                    rb.linearDamping = linearDampingCurve.Evaluate(depth);
+                    rb.angularDamping = angularDampingCurve.Evaluate(depth);
 
                     if (matchedBones.TryGetValue(child, out Transform animatedBone))
                     {
@@ -175,19 +186,15 @@ namespace ActiveRagdoll.Editor
                         }
 
                         jointExt.Initialize(animatedBone.gameObject, lastRb);
-                        jointExt.Initialize(animatedBone.gameObject, lastRb);
-
-                        // Apply custom drive multipliers
                         jointExt.driveStrengthMultiplier = driveStrengthMultiplier;
                         jointExt.driveDampingMultiplier = driveDampingMultiplier;
                         jointExt.maxDriveForceMultiplier = maxDriveForceMultiplier;
-
-                        // Force the config update after setting multipliers
                         jointExt.ApplyAdaptiveConfigInEditor();
+
                         jointsAdded++;
                     }
-                    depth++;
-                    RecursiveJointSetup(child.gameObject, rb, depth);
+
+                    RecursiveJointSetup(child.gameObject, rb, depth + 1);
                 }
                 else
                 {
