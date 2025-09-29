@@ -122,7 +122,7 @@ namespace ActiveRagdoll.Editor
             }
 
             jointsAdded = 0;
-            RecursiveJointSetup(physicsRig, playerRootRb, 1);
+            RecursiveJointSetup(physicsRig, playerRootRb, 0);
 
             Debug.Log($"Setup complete. {jointsAdded} joints configured.");
             EditorUtility.DisplayDialog("Ragdoll Setup Complete", $"Configured {jointsAdded} joints with correct connections.", "OK");
