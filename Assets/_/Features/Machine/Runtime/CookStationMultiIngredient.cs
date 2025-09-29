@@ -29,6 +29,9 @@ namespace Machine.Runtime
         [SerializeField] private GameObject uiIcone;
         [SerializeField] private GameObject uiDone;
         [SerializeField] private GameObject failedUI;
+        [Header("Sons")]
+        [SerializeField] private AudioSource songLoop;
+        [SerializeField] private AudioSource songStart;
         [Header("Points d'apparition des ingrédients (ordre important !)")]
         [SerializeField] private Transform[] ingredientPoints;
         [Header("Scales designers par ingrédient (ordre identique aux points)")]
@@ -197,6 +200,7 @@ namespace Machine.Runtime
 
         private IEnumerator CookSequence(MultiIngredientRecipe recipe)
         {
+            PlaySong();
             uiIcone.SetActive(false);
             uiBarProgression.SetActive(true);
             _isCooking = true;
@@ -305,13 +309,13 @@ namespace Machine.Runtime
                 uiBarProgression.SetActive(false);
                 WrongIngredient(null);
 
-                yield return new WaitForSeconds(1f); // le temps que l'anim "Echec" joue
+                yield return new WaitForSeconds(1.5f); // le temps que l'anim "Echec" joue
 
                 ResetMachineState();
 
                 // Remettre Echec à false avant de sortir
                 animator.SetBool("Echec", false);
-                failedUI.SetActive(true);
+                failedUI.SetActive(false);
                 yield break;
             }
 
@@ -362,8 +366,10 @@ namespace Machine.Runtime
             _goReturn = false;
             _progress = 0f;
             elapsed = 0f;
+            songLoop.Stop();
 
             // Réinitialisation de l'UI
+            failedUI.SetActive(false);
             uiBarProgression.SetActive(false);
             uiIcone.SetActive(true);
             uiDone.SetActive(false);
@@ -415,5 +421,12 @@ namespace Machine.Runtime
             animator.SetBool("Done", false);
         }
 
+        public void PlaySong()
+        {
+            if (songLoop != null)
+                songLoop.Play();
+            if (songStart != null)
+                songStart.Play();
+        }
     }
 }
