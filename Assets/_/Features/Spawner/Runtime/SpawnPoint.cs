@@ -50,19 +50,20 @@ namespace Spawner.Runtime
                     deviceName = device.displayName ?? device.name;
                 }
 
+
                 PlayerTeleporter teleporter = playerInput.GetComponentInChildren<PlayerTeleporter>();
                 if (teleporter != null)
                 {
+                    playerInput.transform.root.position = spawn.position;
+                    playerInput.transform.root.rotation = spawn.rotation;
                     teleporter.TeleportTo(spawn);
                     playerInput.transform.root.name = deviceName + " Player";
                 }
-                else
-                {
-                    // fallback si jamais pas de teleporter
-                    playerInput.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-                    playerInput.transform.name = deviceName + " Player";
-                }
-             //   Debug.LogError("Player Teleported");
+                 else
+                
+                 {
+                    Debug.Log("NO TELEPORTED FOUND");
+                 }
             }
             else
             {

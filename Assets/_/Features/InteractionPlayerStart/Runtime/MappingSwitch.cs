@@ -17,12 +17,12 @@ namespace InteractionPlayerStart.Runtime
         #endregion
 
         #region unity api
-        
+
         private void Start()
         {
             input = gameObject.GetComponent<PlayerInput>();
         }
-        
+
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;

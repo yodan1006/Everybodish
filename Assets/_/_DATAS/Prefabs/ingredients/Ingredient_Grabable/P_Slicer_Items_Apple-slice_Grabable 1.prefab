@@ -207,18 +207,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7481860946302504153}
+      addedObject: {fileID: 64897254393322346}
     - targetCorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 64897254393322346}
+      addedObject: {fileID: 3978024438470135346}
   m_SourcePrefab: {fileID: 100100000, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
 --- !u!1 &122488236954917317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7184042931721203175, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}
   m_PrefabInstance: {fileID: 7062192446158500898}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7481860946302504153
-BoxCollider:
+--- !u!114 &64897254393322346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122488236954917317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodType: 2
+--- !u!136 &3978024438470135346
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -235,25 +248,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9255487, y: 0.32833093, z: 0.98286414}
-  m_Center: {x: -0.19679624, y: 0.12023521, z: -0.026269853}
---- !u!114 &64897254393322346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122488236954917317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417d16d0a1b846b3846dcdb93ee01ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodType: 2
-  rb: {fileID: 0}
-  grabable: {fileID: 0}
-  topmost: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 0.21213017
+  m_Height: 0.7146432
+  m_Direction: 2
+  m_Center: {x: -0.13334994, y: 0.06, z: -0.04539123}
 --- !u!4 &7572840513459256167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 799899999832215365, guid: 4480845a70bf184488ac951aa42f1ac8, type: 3}

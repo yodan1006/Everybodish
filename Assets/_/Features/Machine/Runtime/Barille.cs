@@ -31,7 +31,7 @@ namespace Machine.Runtime
         }
 
         #endregion
-        
+
         #region private
 
         [SerializeField] private GameObject _foodPrefab;

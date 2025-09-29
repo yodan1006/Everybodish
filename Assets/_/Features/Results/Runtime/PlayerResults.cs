@@ -91,9 +91,13 @@ namespace Results.Runtime
                         if (score < minScore) minScore = score;
 
                         playerUis[i].SetActive(true);
-
+                        int leaderboardRank = 0;
                         // Get tie-aware rank from dictionary
-                        int leaderboardRank = playerRanks[playerIndex];
+                        if (playerIndex < playerRanks.Count)
+                        {
+                            leaderboardRank = playerRanks[playerIndex];
+                        }
+
                         ranks[i].SetRankIcon(leaderboardRank);
 
                         sliders[i].value = score;
@@ -102,7 +106,7 @@ namespace Results.Runtime
                         AnimalType animalType = selectSkin.CurrentAnimalType();
                         int slotIndex = selectSkin.GetSlotIndex();
 
-                        icons[i].SetPlayerIcon(animalType);
+                        icons[i].SetPlayerIcon(animalType, false);
                         icons[i].SetPlayerLabel(slotIndex);
                         playerScore[i].text = score.ToString();
                     }
@@ -126,7 +130,7 @@ namespace Results.Runtime
             }
             else
             {
-                Debug.LogError("ROUND IS NULL!", this);
+              //  Debug.LogError("ROUND IS NULL!", this);
             }
         }
     }

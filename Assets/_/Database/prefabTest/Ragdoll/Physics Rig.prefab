@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017907457910161301}
-  - component: {fileID: 5178904022249818086}
+  - component: {fileID: 9076078123442754927}
   m_Layer: 7
   m_Name: FeetCollider.L
   m_TagString: ExtraBone
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7616562642324814292}
   m_LocalEulerAnglesHint: {x: -1.63, y: -6.34, z: 10.67}
---- !u!65 &5178904022249818086
-BoxCollider:
+--- !u!136 &9076078123442754927
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50,9 +50,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.03, y: 0.15, z: 0.09}
-  m_Center: {x: 0.02, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.06
+  m_Height: 0.39
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3345413945728355093
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4716022819215734779}
-  - component: {fileID: 8591842269926061354}
+  - component: {fileID: 4904967464469897770}
   m_Layer: 7
   m_Name: FeetCollider.R
   m_TagString: ExtraBone
@@ -461,8 +463,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1202658366045988234}
   m_LocalEulerAnglesHint: {x: 1.63, y: 6.34, z: -10.67}
---- !u!65 &8591842269926061354
-BoxCollider:
+--- !u!136 &4904967464469897770
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -479,9 +481,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.03, y: 0.15, z: 0.09}
-  m_Center: {x: -0.02, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.06
+  m_Height: 0.39
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4313978441283265084
 PrefabInstance:
   m_ObjectHideFlags: 0

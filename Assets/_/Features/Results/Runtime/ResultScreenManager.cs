@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ActionMap;
 using Round.Runtime;
 using Score.Runtime;
+using Skins.Runtime;
 using Spawner.Runtime;
 using TransitionScene.Runtime;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace Results.Runtime
         public SpawnPoint spawn;
         public PlayerResults playerResults;
 
-        private List<PlayerInputMap> inputMaps  =new();
+        private readonly List<PlayerInputMap> inputMaps = new();
 
         #region Unity Api
 
@@ -25,14 +25,14 @@ namespace Results.Runtime
         {
             if (RoundSystem.Instance != null)
             {
-              //  Debug.LogError("Retrieveing players!", this);
+                //  Debug.LogError("Retrieveing players!", this);
                 List<PlayerInput> playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.InstanceID).ToList();
-              //  Debug.LogError($"Found {playerInputs.Count} players");
+                //  Debug.LogError($"Found {playerInputs.Count} players");
                 List<(int player, int score)> list = GlobalScoreEventSystem.GetLeaderboard();
 
                 foreach ((int player, int score) in list)
                 {
-                    Debug.LogError($"Player {player} with {score} points");
+                 //   Debug.LogError($"Player {player} with {score} points");
                     //spawn players in leaderboard order
                     foreach (PlayerInput playerInput in playerInputs)
                     {
@@ -45,7 +45,7 @@ namespace Results.Runtime
                 foreach (PlayerInput playerInput in playerInputs)
                 {
                     SpawnSystem spawnSystem = playerInput.GetComponent<SpawnSystem>();
-                 //   spawnSystem.onPlayerQuit.AddListener(QuitScene);
+                    //   spawnSystem.onPlayerQuit.AddListener(QuitScene);
                     PlayerInputMap inputMap = new()
                     {
                         devices = playerInput.devices
@@ -70,6 +70,8 @@ namespace Results.Runtime
             {
                 item.Results.Disable();
             }
+
+            LobbyManager.Instance.gameObject.SetActive(true);
         }
         #endregion
 

@@ -17,8 +17,10 @@ namespace UI.Runtime
         public PlayerIcon[] playerIcons;
         public Disabler[] upArrows;
         public Disabler[] downArrows;
+        public List<SelectSkin> selectSkins = new();
         public GameObject pause;
         public float arrowDuration = 2;
+        private List<PlayerInput> playerList;
         #endregion
 
 
@@ -50,9 +52,18 @@ namespace UI.Runtime
 
         private void OnScoreEvent(ScoreEvent scoreEvent)
         {
-            List<PlayerInput> playerList = round.Players();
+            List<(int player, int score)> leaderboard = GlobalScoreEventSystem.GetLeaderboard();
+            int firstPlayerIndex = leaderboard[0].player;
+
+            Debug.Log(playerList.Count);
+            Debug.Log(selectSkins.Count);
             for (int i = 0; i < playerList.Count; i++)
             {
+                AnimalType animalType = selectSkins[i].CurrentAnimalType();
+                int playerIndex = playerList[i].playerIndex;
+                bool isWinning = playerIndex == firstPlayerIndex;
+                //update all icons
+                playerIcons[i].SetPlayerIcon(animalType, isWinning);
                 // Debug.Log($"i = {i},  player = {scoreEvent.Player}, playerList = {playerList.Count}, upArrows = {upArrows.Length},  downArrows = {downArrows.Length}");
                 if (scoreEvent.Player == playerList[i].playerIndex)
                 {
@@ -71,43 +82,51 @@ namespace UI.Runtime
 
         private void OnWarmupStarted()
         {
+            Debug.Log("Warmup started");
             //Disable player ui
             foreach (var item in playerIcons)
             {
                 item.gameObject.SetActive(false);
             }
+            // Fill select skin component list
+
 
         }
 
         private void OnWarmupFinished()
         {
+            Debug.Log("Warmup finished");
             //Disable player ui
             foreach (var item in playerIcons)
             {
                 item.gameObject.SetActive(true);
             }
-
+            playerList = round.Players();
+            foreach (var item in playerList)
+            {
+                SelectSkin selectSkin = item.GetComponent<SelectSkin>();
+                selectSkins.Add(selectSkin);
+            }
         }
         private void OnRoundStarted()
         {
             Debug.Log("Round started, updating ui");
-            List<PlayerInput> players = round.Players();
-            int playerCount = players.Count;
+
+            int playerCount = playerList.Count;
             Debug.Log($"Players in game : {playerCount}");
-            Debug.Log($"Players icons count : {playerIcons.Length}");
+            Debug.Log($"Players icons count : {selectSkins.Count}");
             for (int i = 0; i < playerIcons.Length; i++)
             {
                 PlayerIcon playerIcon = playerIcons[i];
                 if (i < playerCount)
                 {
                     playerIcons[i].gameObject.SetActive(true);
-                    PlayerInput player = players[i];
-                    SelectSkin selectSkin = player.GetComponent<SelectSkin>();
-                    AnimalType animalType = selectSkin.CurrentAnimalType();
+
+                    AnimalType animalType = selectSkins[i].CurrentAnimalType();
 
                     if (playerIcon != null)
                     {
-                        playerIcon.SetPlayerIcon(animalType);
+                        playerIcon.SetPlayerIcon(animalType, false);
                         playerIcon.SetPlayerLabel(i);
                     }
                 }

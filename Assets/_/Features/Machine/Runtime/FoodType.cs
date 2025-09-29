@@ -29,6 +29,8 @@
         Roti_preparé,
         Tarte_Au_Pomme,
         Pain_Saucisse,
+        Steak_Fries,
+        Floor,
     }
 
 }

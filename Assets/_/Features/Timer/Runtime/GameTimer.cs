@@ -22,15 +22,18 @@ namespace Timer.Runtime
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (Instance == null)
             {
-                Debug.LogError("Multiple GameTimer instances detected! Destroying duplicate.", this);
-                Destroy(gameObject);
-                return;
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: persist across scenes
+            else
+            {
+                Debug.LogError("Replacing old Timer", this);
+                Destroy(Instance);
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         private void Update()
