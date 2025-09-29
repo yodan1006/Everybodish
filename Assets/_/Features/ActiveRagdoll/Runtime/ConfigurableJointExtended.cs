@@ -14,9 +14,9 @@ namespace ActiveRagdoll.Runtime
         public float boneLength = 0.5f;
 
         [Header("Joint Drive Settings")]
-        public float positionSpring = 15000f;   // Was 8000f
-        public float positionDamper = 400f;     // Was 200f
-        public float maximumForce = 20000f;     // Was 8000f
+        public float positionSpring = 15000f;
+        public float positionDamper = 400f;
+        public float maximumForce = 20000f;
 
         [Header("Joint Motion Settings")]
         public ConfigurableJointMotion xMotion = ConfigurableJointMotion.Locked;
@@ -27,34 +27,34 @@ namespace ActiveRagdoll.Runtime
         public ConfigurableJointMotion angularZMotion = ConfigurableJointMotion.Limited;
 
         [Header("Limit Spring Settings")]
-        public float linearLimitSpring = 4000f;       // Was 2000
-        public float linearLimitDamper = 300f;        // Was 150
-        public float angularXLimitSpring = 5000f;     // Was 3000
-        public float angularXLimitDamper = 300f;      // Was 200
-        public float angularYZLimitSpring = 5000f;    // Was 3000
-        public float angularYZLimitDamper = 300f;     // Was 200
+        public float linearLimitSpring = 4000f;
+        public float linearLimitDamper = 300f;
+        public float angularXLimitSpring = 5000f;
+        public float angularXLimitDamper = 300f;
+        public float angularYZLimitSpring = 5000f;
+        public float angularYZLimitDamper = 300f;
 
         [Header("Linear Limit Settings")]
         public float linearBounciness = 0f;
-        public float contactDistance = 0.01f;   // Slightly higher than 0.005
+        public float contactDistance = 0.01f;
 
         [Header("Drive Settings")]
         public RotationDriveMode rotationDriveMode = RotationDriveMode.Slerp;
 
         [Header("Projection Settings")]
         public JointProjectionMode projectionMode = JointProjectionMode.PositionAndRotation;
-        public float projectionDistance = 0.1f;    // Was 0.2f
-        public float projectionAngle = 3f;         // Was 5f
+        public float projectionDistance = 0.1f;
+        public float projectionAngle = 3f;
 
         [Header("Joint Limits Settings")]
         public float jointBounciness = 0f;
-        public float baseLimitRange = 15f;         // Was 20
-        public float maxExtraLimitRange = 25f;     // Was 30
+        public float baseLimitRange = 15f;
+        public float maxExtraLimitRange = 25f;
 
         [Header("Global Drive Multipliers")]
-        public float driveStrengthMultiplier = 1.0f;     // Neutral (no boost)
-        public float driveDampingMultiplier = 1.0f;      // Neutral
-        public float maxDriveForceMultiplier = 1.0f;        // Neutral
+        public float driveStrengthMultiplier = 1.0f;
+        public float driveDampingMultiplier = 1.0f;
+        public float maxDriveForceMultiplier = 1.0f;
 
         [Header("Debug")]
         public bool drawDebug = true;

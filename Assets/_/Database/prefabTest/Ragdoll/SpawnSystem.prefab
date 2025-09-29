@@ -278,9 +278,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4975634278693844309}
     m_Modifications:
+    - target: {fileID: 115371855353181517, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 115371855353181517, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 115371855353181517, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 309323900066848359, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 433505672345845218, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Name
@@ -292,55 +304,111 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LinearLimit.limit
-      value: 0.045771807
+      value: 0.045771804
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularYLimit.limit
-      value: 38.5882
+      value: 38.588196
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularZLimit.limit
-      value: 38.5882
+      value: 38.588196
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LowAngularXLimit.limit
-      value: -38.5882
+      value: -38.588196
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_HighAngularXLimit.limit
-      value: 38.5882
+      value: 38.588196
       objectReference: {fileID: 0}
     - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlerpDrive.maximumForce
-      value: 282.85794
+      value: 848.5737
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimitSpring.damper
+      value: 157.88591
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimitSpring.spring
+      value: 2105.1455
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 25.257267
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 7182.8857
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularXLimitSpring.damper
+      value: 210.51454
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularXLimitSpring.spring
+      value: 3157.7183
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularYZLimitSpring.damper
+      value: 210.51454
+      objectReference: {fileID: 0}
+    - target: {fileID: 498354800453834646, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularYZLimitSpring.spring
+      value: 3157.7183
+      objectReference: {fileID: 0}
+    - target: {fileID: 500143764423398720, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 869.74005
+      objectReference: {fileID: 0}
+    - target: {fileID: 500143764423398720, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 26.386135
+      objectReference: {fileID: 0}
+    - target: {fileID: 500143764423398720, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 7436.88
       objectReference: {fileID: 0}
     - target: {fileID: 597996042945176222, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 1.25
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011438017655534414, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011438017655534414, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011438017655534414, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LinearLimit.limit
-      value: 0.0457718
+      value: 0.045771796
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularYLimit.limit
-      value: 38.588192
+      value: 38.58819
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularZLimit.limit
-      value: 38.588192
+      value: 38.58819
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LowAngularXLimit.limit
-      value: -38.588192
+      value: -38.58819
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_HighAngularXLimit.limit
-      value: 38.588192
+      value: 38.58819
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlerpDrive.maximumForce
-      value: 282.8579
+      value: 848.5737
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LinearLimitSpring.damper
@@ -352,11 +420,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlerpDrive.positionDamper
-      value: 12.6286335
+      value: 25.257265
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlerpDrive.positionSpring
-      value: 2394.295
+      value: 7182.885
       objectReference: {fileID: 0}
     - target: {fileID: 1462033726057102398, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularXLimitSpring.damper
@@ -384,11 +452,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1895334885336494469, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.625
+      value: 0.27000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217784232596214718, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217784232596214718, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217784232596214718, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2244375071657125625, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 1.25
+      value: 0.90000004
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LinearLimit.limit
@@ -396,19 +476,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularYLimit.limit
-      value: 61.064777
+      value: 61.064774
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularZLimit.limit
-      value: 61.064777
+      value: 61.064774
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LowAngularXLimit.limit
-      value: -61.064777
+      value: -61.064774
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_HighAngularXLimit.limit
-      value: 61.064777
+      value: 61.064774
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 967.76776
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LinearLimitSpring.damper
@@ -420,7 +504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_SlerpDrive.positionDamper
-      value: 15.80714
+      value: 31.61428
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 8613.213
       objectReference: {fileID: 0}
     - target: {fileID: 2484260791147075035, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_AngularXLimitSpring.damper
@@ -440,15 +528,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2558297200976170538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: boneLength
-      value: 0.1401174
+      value: 0.14011738
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558297200976170538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558297200976170538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558297200976170538, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2915885305838505907, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.15625
+      value: 0.024300005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985821629654498534, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 961.25134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985821629654498534, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 31.266737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985821629654498534, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 8535.016
       objectReference: {fileID: 0}
     - target: {fileID: 3249584951628222411, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: boneLength
-      value: 0.14011735
+      value: 0.14011732
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584951628222411, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584951628222411, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249584951628222411, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3917244790922581603, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
@@ -460,11 +584,23 @@ PrefabInstance:
       objectReference: {fileID: 2617747750302802206}
     - target: {fileID: 4190782159661580262, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.3125
+      value: 0.081000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546453982948633104, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 963.59283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546453982948633104, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 31.391619
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546453982948633104, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 8563.114
       objectReference: {fileID: 0}
     - target: {fileID: 4922968121014545245, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.15625
+      value: 0.024300005
       objectReference: {fileID: 0}
     - target: {fileID: 4975634278693844309, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -508,11 +644,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303011848688139799, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: boneLength
-      value: 0.29745346
+      value: 0.29745343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303011848688139799, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303011848688139799, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303011848688139799, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5472442647926471087, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.625
+      value: 0.27000004
       objectReference: {fileID: 0}
     - target: {fileID: 5516917930905865657, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Radius
@@ -520,7 +668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592305101707530100, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5592305101707530100, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Interpolate
@@ -538,9 +686,61 @@ PrefabInstance:
       propertyPath: boneLength
       value: 0.29194263
       objectReference: {fileID: 0}
+    - target: {fileID: 6089174943085530913, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089174943085530913, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089174943085530913, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414277901507076987, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 833.8014
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414277901507076987, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 24.469404
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414277901507076987, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 7005.6157
+      objectReference: {fileID: 0}
     - target: {fileID: 6610118698310779787, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: boneLength
       value: 0.120617755
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610118698310779787, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610118698310779787, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610118698310779787, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619126757744324585, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: boneLength
+      value: 0.19605678
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619126757744324585, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619126757744324585, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619126757744324585, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6827348041837292400, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -548,7 +748,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6926615147452352450, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.625
+      value: 0.27000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimit.limit
+      value: 0.03363636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularYLimit.limit
+      value: 21.836735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularZLimit.limit
+      value: 21.836735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LowAngularXLimit.limit
+      value: -21.836735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_HighAngularXLimit.limit
+      value: 21.836735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 123636.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimitSpring.damper
+      value: 151.81818
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimitSpring.spring
+      value: 2024.2424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 424.2424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 50181.816
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularXLimitSpring.damper
+      value: 202.42424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularXLimitSpring.spring
+      value: 3036.3635
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularYZLimitSpring.damper
+      value: 202.42424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029427186474358865, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_AngularYZLimitSpring.spring
+      value: 3036.3635
       objectReference: {fileID: 0}
     - target: {fileID: 7350386438472817992, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: audioServicePlat
@@ -578,6 +834,18 @@ PrefabInstance:
       propertyPath: m_HighAngularXLimit.limit
       value: 60.27752
       objectReference: {fileID: 0}
+    - target: {fileID: 7408771875055386173, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 963.5929
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408771875055386173, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 31.39162
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408771875055386173, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 8563.114
+      objectReference: {fileID: 0}
     - target: {fileID: 7425460227140611265, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -586,9 +854,45 @@ PrefabInstance:
       propertyPath: boneLength
       value: Infinity
       objectReference: {fileID: 0}
+    - target: {fileID: 7445797926891045717, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445797926891045717, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445797926891045717, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748534433117435766, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 869.74005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748534433117435766, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 26.386135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748534433117435766, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 7436.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771196650338374445, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771196650338374445, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771196650338374445, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7782892751000883411, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.3125
+      value: 0.081000015
       objectReference: {fileID: 0}
     - target: {fileID: 7802301707436799611, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -596,7 +900,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901890198977571286, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Mass
-      value: 0.3125
+      value: 0.081000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053909626865640948, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 133408.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053909626865640948, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 489.3881
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053909626865640948, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 56044.926
       objectReference: {fileID: 0}
     - target: {fileID: 8131560411203895885, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_Radius
@@ -606,10 +922,38 @@ PrefabInstance:
       propertyPath: boneLength
       value: 0.12061773
       objectReference: {fileID: 0}
+    - target: {fileID: 8141374759467606565, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveDampingMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141374759467606565, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: driveStrengthMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141374759467606565, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: maxDriveForceMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8233076753506074283, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 5189652416396094894}
+    - target: {fileID: 8233076753506074283, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_LinearLimit.limit
+      value: 0.05255234
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233076753506074283, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.maximumForce
+      value: 890.9521
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233076753506074283, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionDamper
+      value: 27.517445
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233076753506074283, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
+      propertyPath: m_SlerpDrive.positionSpring
+      value: 7691.4253
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3307613635069798083, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
     - {fileID: 1441789662254240134, guid: 5736acb9dbbc11d4888538fe213b3ebe, type: 3}
