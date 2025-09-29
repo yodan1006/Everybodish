@@ -85,7 +85,7 @@ namespace ActiveRagdoll.Editor
                 GUILayout.Label("Bone Matching Preview:", EditorStyles.boldLabel);
                 foreach (var pair in matchedBones)
                 {
-                    GUILayout.Label($"{pair.Key.name} ? {pair.Value.name}");
+                    GUILayout.Label($"{pair.Key.name} => {pair.Value.name}");
                 }
             }
         }
