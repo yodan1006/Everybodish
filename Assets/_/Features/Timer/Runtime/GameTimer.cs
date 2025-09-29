@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +13,8 @@ namespace Timer.Runtime
         private bool hasStarted = false;
         private bool isStopped = false;
         public float currentTime = 0;
+        public float urgency;
+        [SerializeField]private AudioSource UrgencySound;
 
         public bool IsRunning => hasStarted && !isStopped;
         public bool IsStopped => isStopped;
@@ -19,6 +23,7 @@ namespace Timer.Runtime
         public UnityEvent onTimerStarted = new();
         public UnityEvent onTimerStopped = new();
         public UnityEvent onTimerPaused = new();
+        private bool hasPlayedUrgencySound;
 
         private void Awake()
         {
@@ -41,7 +46,13 @@ namespace Timer.Runtime
             if (hasStarted && !isStopped)
             {
                 currentTime += Time.deltaTime;
+                if (!hasPlayedUrgencySound && currentTime >= urgency)
+                {
+                    UrgencySound.Play();
+                    hasPlayedUrgencySound = true; // On ne joue le son qu'une fois
+                }
             }
+
         }
 
         public void StartGameTimer()
@@ -49,6 +60,7 @@ namespace Timer.Runtime
             currentTime = 0f;
             hasStarted = true;
             isStopped = false;
+            hasPlayedUrgencySound = false;
             Debug.Log("Game timer started.");
             onTimerStarted?.Invoke();
         }
@@ -68,6 +80,7 @@ namespace Timer.Runtime
             currentTime = 0f;
             hasStarted = false;
             isStopped = false;
+            hasPlayedUrgencySound = false;
             Debug.Log("Game timer reset.");
         }
 
