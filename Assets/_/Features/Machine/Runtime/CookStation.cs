@@ -62,7 +62,6 @@ namespace Machine.Runtime
                             // Place l’objet visuellement sur le slot
                             food.transform.SetPositionAndRotation(foodSlot.position, foodSlot.rotation);
                             food.gameObject.SetActive(true);
-                            CoupeCoupeSong.Play();
                             Debug.LogError("Test");
                             if (food.Grabable != null)
                             {
@@ -190,6 +189,13 @@ namespace Machine.Runtime
         private void EndingRecipe()
         {
             _isCooking = false;
+        }
+        
+        //-----------------------------------------Animation Event------------------------------------------//
+
+        public void PlayCoupeCoupeSong()
+        {
+            CoupeCoupeSong.Play();
         }
     }
 }
