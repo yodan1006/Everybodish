@@ -14,9 +14,9 @@ namespace ActiveRagdoll.Runtime
         public float boneLength = 0.5f;
 
         [Header("Joint Drive Settings")]
-        public float positionSpring = 8000f;
-        public float positionDamper = 200f;
-        public float maximumForce = 8000f;
+        public float positionSpring = 15000f;
+        public float positionDamper = 400f;
+        public float maximumForce = 20000f;
 
         [Header("Joint Motion Settings")]
         public ConfigurableJointMotion xMotion = ConfigurableJointMotion.Locked;
@@ -27,29 +27,34 @@ namespace ActiveRagdoll.Runtime
         public ConfigurableJointMotion angularZMotion = ConfigurableJointMotion.Limited;
 
         [Header("Limit Spring Settings")]
-        public float linearLimitSpring = 2000f;
-        public float linearLimitDamper = 150f;
-        public float angularXLimitSpring = 3000f;
-        public float angularXLimitDamper = 200f;
-        public float angularYZLimitSpring = 3000f;
-        public float angularYZLimitDamper = 200f;
+        public float linearLimitSpring = 4000f;
+        public float linearLimitDamper = 300f;
+        public float angularXLimitSpring = 5000f;
+        public float angularXLimitDamper = 300f;
+        public float angularYZLimitSpring = 5000f;
+        public float angularYZLimitDamper = 300f;
 
         [Header("Linear Limit Settings")]
         public float linearBounciness = 0f;
-        public float contactDistance = 0.005f;
+        public float contactDistance = 0.01f;
 
         [Header("Drive Settings")]
         public RotationDriveMode rotationDriveMode = RotationDriveMode.Slerp;
 
         [Header("Projection Settings")]
         public JointProjectionMode projectionMode = JointProjectionMode.PositionAndRotation;
-        public float projectionDistance = 0.2f;
-        public float projectionAngle = 5f;
+        public float projectionDistance = 0.1f;
+        public float projectionAngle = 3f;
 
         [Header("Joint Limits Settings")]
         public float jointBounciness = 0f;
-        public float baseLimitRange = 20f;
-        public float maxExtraLimitRange = 30f;
+        public float baseLimitRange = 15f;
+        public float maxExtraLimitRange = 25f;
+
+        [Header("Global Drive Multipliers")]
+        public float driveStrengthMultiplier = 1.0f;
+        public float driveDampingMultiplier = 1.0f;
+        public float maxDriveForceMultiplier = 1.0f;
 
         [Header("Debug")]
         public bool drawDebug = true;
@@ -201,9 +206,9 @@ namespace ActiveRagdoll.Runtime
             // Stronger drive forces
             JointDrive drive = new()
             {
-                positionSpring = positionSpring * Mathf.Lerp(2f, 5f, normalized),
-                positionDamper = positionDamper * Mathf.Lerp(1f, 3f, normalized),
-                maximumForce = maximumForce * Mathf.Lerp(5f, 10f, normalized)
+                positionSpring = positionSpring * Mathf.Lerp(2f, 5f, normalized) * driveStrengthMultiplier,
+                positionDamper = positionDamper * Mathf.Lerp(1f, 3f, normalized) * driveDampingMultiplier,
+                maximumForce = maximumForce * Mathf.Lerp(5f, 10f, normalized) * maxDriveForceMultiplier
             };
 
             joint.rotationDriveMode = rotationDriveMode;

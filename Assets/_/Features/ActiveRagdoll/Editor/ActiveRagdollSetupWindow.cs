@@ -17,6 +17,10 @@ namespace ActiveRagdoll.Editor
         private int solverVelocityIterations = 8;
         private float maxAngularVelocity = 20f;
 
+        private float driveStrengthMultiplier = 3f;
+        private float driveDampingMultiplier = 2f;
+        private float maxDriveForceMultiplier = 3f;
+
         private float rootMass = 10f;
         private float massFalloff = 0.5f;
 
@@ -47,6 +51,12 @@ namespace ActiveRagdoll.Editor
             GUILayout.Label("Mass Distribution Settings", EditorStyles.boldLabel);
             rootMass = EditorGUILayout.FloatField("Root Mass", rootMass);
             massFalloff = EditorGUILayout.Slider("Mass Falloff per Level", massFalloff, 0.1f, 1f);
+
+            GUILayout.Space(5);
+            GUILayout.Label("Joint Drive Multipliers", EditorStyles.boldLabel);
+            driveStrengthMultiplier = EditorGUILayout.FloatField("Strength Multiplier", driveStrengthMultiplier);
+            driveDampingMultiplier = EditorGUILayout.FloatField("Damping Multiplier", driveDampingMultiplier);
+            maxDriveForceMultiplier = EditorGUILayout.FloatField("Max Force Multiplier", maxDriveForceMultiplier);
 
             GUILayout.Space(5);
             showBonePreview = EditorGUILayout.Toggle("Show Bone Preview", showBonePreview);
@@ -122,7 +132,7 @@ namespace ActiveRagdoll.Editor
             }
 
             jointsAdded = 0;
-            RecursiveJointSetup(physicsRig, playerRootRb, 1);
+            RecursiveJointSetup(physicsRig, playerRootRb, 0);
 
             Debug.Log($"Setup complete. {jointsAdded} joints configured.");
             EditorUtility.DisplayDialog("Ragdoll Setup Complete", $"Configured {jointsAdded} joints with correct connections.", "OK");
@@ -165,6 +175,15 @@ namespace ActiveRagdoll.Editor
                         }
 
                         jointExt.Initialize(animatedBone.gameObject, lastRb);
+                        jointExt.Initialize(animatedBone.gameObject, lastRb);
+
+                        // Apply custom drive multipliers
+                        jointExt.driveStrengthMultiplier = driveStrengthMultiplier;
+                        jointExt.driveDampingMultiplier = driveDampingMultiplier;
+                        jointExt.maxDriveForceMultiplier = maxDriveForceMultiplier;
+
+                        // Force the config update after setting multipliers
+                        jointExt.ApplyAdaptiveConfigInEditor();
                         jointsAdded++;
                     }
                     depth++;
