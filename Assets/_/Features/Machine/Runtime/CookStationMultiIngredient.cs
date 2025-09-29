@@ -32,6 +32,8 @@ namespace Machine.Runtime
         [Header("Sons")]
         [SerializeField] private AudioSource songLoop;
         [SerializeField] private AudioSource songStart;
+        [SerializeField] private AudioSource songPoop;
+        [SerializeField] private AudioSource songFinish;
         [Header("Points d'apparition des ingrédients (ordre important !)")]
         [SerializeField] private Transform[] ingredientPoints;
         [Header("Scales designers par ingrédient (ordre identique aux points)")]
@@ -249,6 +251,7 @@ namespace Machine.Runtime
 
             if (crame)
             {
+                songPoop.Play();
                 failedUI.SetActive(true);
                 animator.SetBool("Echec", true);
                 animator.SetBool("Frying", false);
@@ -280,6 +283,7 @@ namespace Machine.Runtime
 
                 if (elapsed >= timerPlatFini && !_goFinish)
                 {
+                    songFinish.Play();
                     uiDone.SetActive(true);
                     _goFinish = true;
                     animator.SetBool("Done", true);
@@ -300,6 +304,7 @@ namespace Machine.Runtime
             if (crame)
             {
                 // Animation d'échec pour le cramage en phase 2
+                songPoop.Play();
                 failedUI.SetActive(true);
                 animator.SetBool("Frying", false);
                 animator.SetBool("Done", false);
