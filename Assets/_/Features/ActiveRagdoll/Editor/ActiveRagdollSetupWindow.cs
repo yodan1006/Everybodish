@@ -376,6 +376,7 @@ namespace ActiveRagdoll.Editor
                         }
 
                         jointExt.Initialize(animatedBone.gameObject, lastRb);
+
                         jointExt.driveStrengthMultiplier = driveStrengthMultiplier;
                         jointExt.driveDampingMultiplier = driveDampingMultiplier;
                         jointExt.maxDriveForceMultiplier = maxDriveForceMultiplier;
@@ -394,8 +395,11 @@ namespace ActiveRagdoll.Editor
 
                         jointExt.projectionDistance = projectionDistance;
                         jointExt.projectionAngle = projectionAngle;
-                        // jointExt.ApplyAdaptiveConfigInEditor();
-
+                        jointExt.ApplyAdaptiveConfigInEditor();
+                        if(depth == 0)
+                        {
+                            jointExt.boneLength = Mathf.Infinity;
+                        }
                         jointsAdded++;
                     }
 
