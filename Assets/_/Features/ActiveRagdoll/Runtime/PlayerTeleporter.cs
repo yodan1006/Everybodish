@@ -83,5 +83,12 @@ namespace ActiveRagdoll.Runtime
                 item.SyncToTargetRotation();
             }
         }
+
+        public void DisconnectRoot()
+        {
+            ConfigurableJoint ragdollRootJoint = _ragdollRootJointExtended.GetComponentInChildren<ConfigurableJoint>();
+            m_ragdollRoot.GetComponent<ConfigurableJointExtended>().enabled = false;
+            Destroy(ragdollRootJoint);
+        }
     }
 }

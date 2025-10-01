@@ -53,7 +53,7 @@ namespace StunSystem.Runtime
                 grabable.enabled = true;
             }
             _animator.SetBool("Stunned", true);
-            _activeRagdoll.DisconnectRoot();
+            playerTeleporter.DisconnectRoot();
             stunEffect.Play();
             onEnableActions.Invoke(false);
         }
