@@ -65,7 +65,7 @@ namespace ActiveRagdoll.Runtime
             m_playerRoot.transform.position = ragdollPos;
             Debug.LogError("Test1");
             //Re-add offset from original prefab to ragdoll root
-            m_ragdollRoot.transform.position += rootOffset;
+            m_ragdollRoot.transform.position = m_playerRoot.transform.position + rootOffset;
             Debug.LogError("Test1");
             //Set ragdoll root rotation to player rotation before reconnect
             _ragdollRootJointExtended.SetJointRotation(m_playerRoot.transform.rotation);
@@ -80,7 +80,7 @@ namespace ActiveRagdoll.Runtime
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerRoot);
             Debug.LogError("Test1");
             _jointSettings.ApplyTo(configurableJoint, configurableJointExtended);
-            //Set ragdoll rotation back to it's previour rotation
+            //Set ragdoll rotation back to it's previous rotation
             _ragdollRootJointExtended.SetJointRotation( ragdollRot);
             // Reactivate
             m_playerRoot.SetActive(true);
