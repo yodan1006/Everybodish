@@ -64,11 +64,11 @@ namespace ActiveRagdoll.Runtime
             m_ragdollRoot.transform.rotation = m_playerRoot.transform.rotation;
 
             // Reconnect the configurable joint
-            ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
-            ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponent<ConfigurableJoint>();
-            if (configurableJoint == null)
+            ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponentInChildren<ConfigurableJointExtended>();
+            ConfigurableJoint configurableJoint;
+            if (!m_ragdollRoot.TryGetComponent<ConfigurableJoint>(out configurableJoint))
             {
-               configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+                configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
             }
  
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
