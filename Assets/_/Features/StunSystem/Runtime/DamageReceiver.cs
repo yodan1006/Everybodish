@@ -41,34 +41,39 @@ namespace Stunsystem.Runtime
         #region Main Methods
         private void TriggerControllerVibration()
         {
-            // Obtenir la manette spécifique à ce joueur
-            if (Gamepad.all.Count > playerIndex)
+            var playerInput = GetComponentInParent<PlayerInput>();
+            if (playerInput != null && playerInput.devices.Count > 0)
             {
-                var playerInput = GetComponentInParent<PlayerInput>();
-                if (playerInput != null && playerInput.devices.Count > 0)
+                // Trouver la première manette associée à ce joueur
+                foreach (var device in playerInput.devices)
                 {
-                    var gamepad = playerInput.devices[0] as Gamepad;
-                    if (gamepad != null)
+                    if (device is Gamepad gamepad)
                     {
+                        // Arrêter toute vibration précédente sur ce gamepad
+                        gamepad.SetMotorSpeeds(0f, 0f);
+                        // Sauvegarder la référence pour l'arrêt
+                        currentGamepad = gamepad;
+                        // Éviter plusieurs Invoke superposés
+                        CancelInvoke(nameof(StopVibration));
+                        // Lancer la vibration
                         gamepad.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
                         Invoke(nameof(StopVibration), vibrationDuration);
+                        return;
                     }
                 }
-
             }
         }
+
 
         private void StopVibration()
         {
-            if (Gamepad.all.Count > playerIndex)
+            if (currentGamepad != null)
             {
-                var gamepad = Gamepad.all[playerIndex];
-                if (gamepad != null)
-                {
-                    gamepad.SetMotorSpeeds(0f, 0f);
-                }
+                currentGamepad.SetMotorSpeeds(0f, 0f);
+                currentGamepad = null;
             }
         }
+
 
         #endregion
 
@@ -79,9 +84,10 @@ namespace Stunsystem.Runtime
         [SerializeField] private Animator animator;
         [SerializeField] private ParticleSystem hitEffect;
         [SerializeField] private float vibrationDuration = 0.1f; // Durée de la vibration
-        [SerializeField] private float vibrationIntensity = 0.8f; // Intensité de la vibration (0-1)
+        [SerializeField] private float vibrationIntensity = 0.9f; // Intensité de la vibration (0-1)
         private PlayerStat stat;
         private Stun stun;
+        private Gamepad currentGamepad;
         private int playerIndex = 0;
 
         #endregion
