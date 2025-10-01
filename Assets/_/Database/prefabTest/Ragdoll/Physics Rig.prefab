@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017907457910161301}
-  - component: {fileID: 9076078123442754927}
   m_Layer: 7
   m_Name: FeetCollider.L
   m_TagString: ExtraBone
@@ -32,29 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7616562642324814292}
   m_LocalEulerAnglesHint: {x: -1.63, y: -6.34, z: 10.67}
---- !u!136 &9076078123442754927
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504813631118544961}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.06
-  m_Height: 0.39
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3051967393866291082
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +505,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4716022819215734779}
-  - component: {fileID: 4904967464469897770}
   m_Layer: 7
   m_Name: FeetCollider.R
   m_TagString: ExtraBone
@@ -552,29 +527,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1202658366045988234}
   m_LocalEulerAnglesHint: {x: 1.63, y: 6.34, z: -10.67}
---- !u!136 &4904967464469897770
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8682542537239247586}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.06
-  m_Height: 0.39
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4313978441283265084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1014,6 +966,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1228,6 +1183,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1436,6 +1394,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1636,6 +1597,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1836,6 +1800,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2036,6 +2003,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2256,6 +2226,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2454,6 +2427,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2779,6 +2755,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 30
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2854,6 +2833,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}
@@ -3054,6 +3036,9 @@ MonoBehaviour:
   jointBounciness: 0
   baseLimitRange: 20
   maxExtraLimitRange: 70
+  driveStrengthMultiplier: 1
+  driveDampingMultiplier: 1
+  maxDriveForceMultiplier: 1
   drawDebug: 1
   boneColor: {r: 0, g: 1, b: 0, a: 1}
   jointAxisColor: {r: 0, g: 1, b: 1, a: 1}

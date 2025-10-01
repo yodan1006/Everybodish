@@ -14,9 +14,9 @@ namespace ActiveRagdoll.Runtime
         public float boneLength = 0.5f;
 
         [Header("Joint Drive Settings")]
-        public float positionSpring = 15000f;
-        public float positionDamper = 400f;
-        public float maximumForce = 20000f;
+        public float positionSpring = 400f;
+        public float positionDamper = 40f;
+        public float maximumForce = 2000f;
 
         [Header("Joint Motion Settings")]
         public ConfigurableJointMotion xMotion = ConfigurableJointMotion.Locked;
@@ -27,12 +27,12 @@ namespace ActiveRagdoll.Runtime
         public ConfigurableJointMotion angularZMotion = ConfigurableJointMotion.Limited;
 
         [Header("Limit Spring Settings")]
-        public float linearLimitSpring = 4000f;
-        public float linearLimitDamper = 300f;
-        public float angularXLimitSpring = 5000f;
-        public float angularXLimitDamper = 300f;
-        public float angularYZLimitSpring = 5000f;
-        public float angularYZLimitDamper = 300f;
+        public float linearLimitSpring = 200f;
+        public float linearLimitDamper = 50f;
+        public float angularXLimitSpring = 400f;
+        public float angularXLimitDamper = 50f;
+        public float angularYZLimitSpring = 400f;
+        public float angularYZLimitDamper = 50f;
 
         [Header("Linear Limit Settings")]
         public float linearBounciness = 0f;
@@ -43,13 +43,13 @@ namespace ActiveRagdoll.Runtime
 
         [Header("Projection Settings")]
         public JointProjectionMode projectionMode = JointProjectionMode.PositionAndRotation;
-        public float projectionDistance = 0.1f;
-        public float projectionAngle = 3f;
+        public float projectionDistance = 0.02f;
+        public float projectionAngle = 2f;
 
         [Header("Joint Limits Settings")]
         public float jointBounciness = 0f;
-        public float baseLimitRange = 15f;
-        public float maxExtraLimitRange = 25f;
+        public float baseLimitRange = 10f;
+        public float maxExtraLimitRange = 20f;
 
         [Header("Global Drive Multipliers")]
         public float driveStrengthMultiplier = 1.0f;
@@ -169,7 +169,7 @@ namespace ActiveRagdoll.Runtime
         {
             float normalized = Mathf.InverseLerp(0.01f, 1f, boneLength);
 
-            // Fixed: Always use Locked or Limited motion for better stability
+            // Use tighter motion settings
             joint.xMotion = xMotion;
             joint.yMotion = yMotion;
             joint.zMotion = zMotion;
@@ -177,18 +177,20 @@ namespace ActiveRagdoll.Runtime
             joint.angularYMotion = angularYMotion;
             joint.angularZMotion = angularZMotion;
 
-            // Spring settings
-            float springScale = Mathf.Lerp(1.0f, 1.4f, normalized);
+            // Spring settings — reduced and de-rubberized
+            float springScale = Mathf.Lerp(0.8f, 1.2f, normalized);
             joint.linearLimitSpring = new SoftJointLimitSpring
             {
                 spring = linearLimitSpring * springScale,
                 damper = linearLimitDamper * springScale
             };
+
             joint.angularXLimitSpring = new SoftJointLimitSpring
             {
                 spring = angularXLimitSpring * springScale,
                 damper = angularXLimitDamper * springScale
             };
+
             joint.angularYZLimitSpring = new SoftJointLimitSpring
             {
                 spring = angularYZLimitSpring * springScale,
@@ -198,18 +200,23 @@ namespace ActiveRagdoll.Runtime
             // Linear limit
             joint.linearLimit = new SoftJointLimit
             {
-                limit = Mathf.Lerp(0.03f, 0.15f, normalized),
-                bounciness = linearBounciness,
-                contactDistance = contactDistance
+                limit = Mathf.Lerp(0.01f, 0.07f, normalized), // tighter range
+                bounciness = 0f,
+                contactDistance = 0.01f
             };
 
-            // Stronger drive forces
+            // ?? KEY CHANGE: Softer but more responsive drive
             JointDrive drive = new()
             {
-                positionSpring = positionSpring * Mathf.Lerp(2f, 5f, normalized) * driveStrengthMultiplier,
-                positionDamper = positionDamper * Mathf.Lerp(1f, 3f, normalized) * driveDampingMultiplier,
-                maximumForce = maximumForce * Mathf.Lerp(5f, 10f, normalized) * maxDriveForceMultiplier
+                positionSpring = positionSpring * driveStrengthMultiplier,  // Use raw values
+                positionDamper = positionDamper * driveDampingMultiplier,
+                maximumForce = maximumForce * maxDriveForceMultiplier
             };
+
+            // Cap the drive to prevent overshoot/rubber banding
+            drive.positionSpring = Mathf.Clamp(drive.positionSpring, 100f, 1000f);
+            drive.positionDamper = Mathf.Clamp(drive.positionDamper, 10f, 200f);
+            drive.maximumForce = Mathf.Clamp(drive.maximumForce, 500f, 3000f);
 
             joint.rotationDriveMode = rotationDriveMode;
             if (rotationDriveMode == RotationDriveMode.Slerp)
@@ -222,16 +229,15 @@ namespace ActiveRagdoll.Runtime
                 joint.angularYZDrive = drive;
             }
 
-            // Adaptive Joint Limits
+            // Adaptive Joint Limits — keep this if it's working for you
             Vector3 angleDiff = ConfigurableJointUtility.GetRotationDifference(joint, joint.connectedBody, transform);
             ConfigurableJointUtility.ApplyAdaptiveLimits(joint, angleDiff, boneLength, jointBounciness, baseLimitRange, maxExtraLimitRange);
 
-            // Projection
+            // Tighter projection to prevent stretching
             joint.projectionMode = projectionMode;
-            joint.projectionDistance = projectionDistance;
-            joint.projectionAngle = projectionAngle;
+            joint.projectionDistance = Mathf.Clamp(projectionDistance, 0.01f, 0.05f);
+            joint.projectionAngle = Mathf.Clamp(projectionAngle, 1f, 3f);
         }
-
         private float GetBoneLength()
         {
             if (joint.connectedBody == null)
