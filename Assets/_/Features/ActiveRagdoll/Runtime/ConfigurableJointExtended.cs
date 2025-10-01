@@ -8,8 +8,8 @@ namespace ActiveRagdoll.Runtime
     public class ConfigurableJointExtended : VerboseMonoBehaviour
     {
         public ConfigurableJoint joint;
-        private Vector3 initialLocalPosition;
-        private Quaternion initialLocalRotation;
+        public Vector3 initialLocalPosition;
+        public Quaternion initialLocalRotation;
         public GameObject target;
         public float boneLength = 0.5f;
 

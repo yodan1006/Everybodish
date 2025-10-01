@@ -38,7 +38,6 @@ namespace ActiveRagdoll.Data
             joint.connectedAnchor = connectedAnchor;
             joint.targetRotation = targetRotation;
             joint.connectedBody = connectedBody;
-            //extendedJoint.Initialize
         }
 
         public static JointSettings FromJoint(ConfigurableJoint joint, ConfigurableJointExtended extendedJoint)
