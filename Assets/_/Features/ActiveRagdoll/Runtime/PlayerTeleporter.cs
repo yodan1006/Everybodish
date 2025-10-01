@@ -16,6 +16,7 @@ namespace ActiveRagdoll.Runtime
         {
             _rootRigidBody = m_playerRoot.GetComponent<Rigidbody>();
             _animator = m_playerRoot.GetComponentInChildren<Animator>();
+            _ragdollRootJointExtended = m_ragdollRoot.GetComponentInChildren<ConfigurableJointExtended>();
         }
 
         public void TeleportTo(Transform target)
