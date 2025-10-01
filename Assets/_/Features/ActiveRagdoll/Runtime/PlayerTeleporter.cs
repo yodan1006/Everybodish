@@ -21,8 +21,7 @@ namespace ActiveRagdoll.Runtime
 
         public void TeleportTo(Transform target)
         {
-            Vector3 targetPos = target.position;
-            Quaternion targetRot = target.rotation;
+            target.GetPositionAndRotation(out Vector3 targetPos, out Quaternion targetRot);
 
             // Deactivate objects to prevent physics issues
             _animator.enabled = false;
