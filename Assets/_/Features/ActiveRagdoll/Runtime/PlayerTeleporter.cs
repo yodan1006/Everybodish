@@ -10,6 +10,7 @@ namespace ActiveRagdoll.Runtime
 
         private Rigidbody _rootRigidBody;
         private Animator _animator;
+        private ConfigurableJointExtended _ragdollRootJointExtended;
 
         private void Awake()
         {
