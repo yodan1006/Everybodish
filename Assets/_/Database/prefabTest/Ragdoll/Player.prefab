@@ -1952,7 +1952,7 @@ MonoBehaviour:
   isVerbose: 0
   joint: {fileID: 7029427186474358865}
   target: {fileID: 1773519919472920275}
-  boneLength: 0.010000001
+  boneLength: Infinity
   positionSpring: 15000
   positionDamper: 2500
   maximumForce: 100000
