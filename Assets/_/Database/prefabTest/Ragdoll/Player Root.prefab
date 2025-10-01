@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverted: 0
-  rotationSpeed: 2.5
+  rotationSpeed: 6
   cameraTransform: {fileID: 0}
 --- !u!114 &3180001735782049741
 MonoBehaviour:
