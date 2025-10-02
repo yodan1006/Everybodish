@@ -64,8 +64,6 @@ namespace ActiveRagdoll.Runtime
         public Quaternion InitialLocalRotation { get => initialLocalRotation; }
         public Vector3 InitialLocalPosition { get => initialLocalPosition; }
 
-        // private readonly bool isColliderDisabled = false;
-
         public void Initialize(GameObject targetObject, Rigidbody connectedBody)
         {
             target = targetObject;
@@ -122,7 +120,7 @@ namespace ActiveRagdoll.Runtime
 
         private void FixedUpdate()
         {
-            if (target != null)
+            if (target != null && joint != null)
             {
                 ConfigurableJointExtensions.SetTargetRotationLocal(joint, target.transform.localRotation, initialLocalRotation);
             }
@@ -240,7 +238,7 @@ namespace ActiveRagdoll.Runtime
         }
         private float GetBoneLength()
         {
-            if (joint.connectedBody == null)
+            if (joint == null || joint.connectedBody == null)
             {
                 Debug.LogWarning("No connected body found for bone length calculation.", this);
                 return 0.5f;
