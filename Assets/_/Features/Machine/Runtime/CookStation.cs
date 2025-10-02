@@ -12,7 +12,8 @@ namespace Machine.Runtime
         [SerializeField] private Transform spawnPoint; // pour le plat final
         [SerializeField] private Transform foodSlot;   // pour poser l’ingrédient
 
-        [SerializeField] private AudioSource CoupeCoupeSong;
+        [SerializeField] private AudioSource coupeCoupeSong;
+        [SerializeField] private AudioSource chopSong;
 
         public bool _isCooking = false;
         public bool hideItemDuringPrepare = false;
@@ -195,7 +196,12 @@ namespace Machine.Runtime
 
         public void PlayCoupeCoupeSong()
         {
-            CoupeCoupeSong.Play();
+            coupeCoupeSong.Play();
+        }
+        
+        public void PlayChopSong()
+        {
+            chopSong.Play();
         }
     }
 }
