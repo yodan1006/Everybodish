@@ -55,7 +55,7 @@ namespace ActiveRagdoll.Runtime
 
             // Move player root so that its hip matches the ragdoll hip
             m_playerRoot.transform.position = ragdollHip.position - hipOffset;
-            m_playerRoot.transform.rotation = m_ragdollRoot.transform.rotation;
+           // m_playerRoot.transform.rotation = m_ragdollRoot.transform.rotation;
 
             // Move ragdoll root so hip aligns with player hip
             m_ragdollRoot.transform.position = m_playerHip.transform.position;
@@ -63,11 +63,8 @@ namespace ActiveRagdoll.Runtime
 
             // Reconnect the configurable joint
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
-            ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponent<ConfigurableJoint>();
-            if (configurableJoint == null)
-            {
-               configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
-            }
+            ConfigurableJoint configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            
  
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
 
