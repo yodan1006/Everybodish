@@ -1,3 +1,4 @@
+using ActiveRagdoll.Data;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
@@ -10,11 +11,15 @@ namespace ActiveRagdoll.Runtime
 
         private Rigidbody _rootRigidBody;
         private Animator _animator;
+        private JointSettings _jointSettings;
 
         private void Awake()
         {
             _rootRigidBody = m_playerRoot.GetComponent<Rigidbody>();
             _animator = m_playerRoot.GetComponentInChildren<Animator>();
+            ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
+            ConfigurableJoint configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            _jointSettings = JointSettings.FromJoint(configurableJoint, configurableJointExtended);
         }
 
         public void TeleportTo(Transform target)
@@ -55,7 +60,6 @@ namespace ActiveRagdoll.Runtime
 
             // Move player root so that its hip matches the ragdoll hip
             m_playerRoot.transform.position = ragdollHip.position - hipOffset;
-           // m_playerRoot.transform.rotation = m_ragdollRoot.transform.rotation;
 
             // Move ragdoll root so hip aligns with player hip
             m_ragdollRoot.transform.position = m_playerHip.transform.position;
@@ -64,7 +68,7 @@ namespace ActiveRagdoll.Runtime
             // Reconnect the configurable joint
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
             ConfigurableJoint configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
-            
+            _jointSettings.ApplyTo(configurableJoint, configurableJointExtended);
  
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
 
