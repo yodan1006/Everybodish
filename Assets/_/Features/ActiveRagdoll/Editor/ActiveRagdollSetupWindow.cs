@@ -22,9 +22,9 @@ namespace ActiveRagdoll.Editor
         private bool showBonePreview = false;
         private bool drawJointAxes = false;
 
-        private int solverIterations = 6;
-        private int solverVelocityIterations = 6;
-        private float maxAngularVelocity = 8f;
+        private int solverIterations = 8;
+        private int solverVelocityIterations = 8;
+        private float maxAngularVelocity = 20f;
 
         private float driveStrengthMultiplier = 1f;
         private float driveDampingMultiplier = 1f;
@@ -227,7 +227,6 @@ namespace ActiveRagdoll.Editor
                     break;
 
                 case RagdollPreset.Stiff:
-                    maxAngularVelocity = 6f;
                     positionSpring = 15000f;
                     positionDamper = 2500f;
                     maximumForce = 100000f;
@@ -395,8 +394,8 @@ namespace ActiveRagdoll.Editor
 
                         jointExt.projectionDistance = projectionDistance;
                         jointExt.projectionAngle = projectionAngle;
-                        jointExt.ApplyAdaptiveConfigInEditor();
-                        if(depth == 0)
+                        //jointExt.ApplyAdaptiveConfigInEditor();
+                        if (depth == 0)
                         {
                             jointExt.boneLength = Mathf.Infinity;
                         }
