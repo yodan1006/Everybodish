@@ -1,14 +1,25 @@
+using System;
+using ActiveRagdoll.Data;
 using UnityEngine;
 
 namespace ActiveRagdoll.Runtime
 {
     public class PlayerTeleporter : MonoBehaviour
     {
+
         [SerializeField] private GameObject m_playerRoot;
+        [SerializeField] private GameObject m_animatedRig;
         [SerializeField] private GameObject m_playerHip;
+
         [SerializeField] private GameObject m_ragdollRoot;
+        [SerializeField] private GameObject m_physicsRig;
         [SerializeField] private GameObject m_ragdollHip;
 
+        [SerializeField] private ConfigurableJoint _ragdollRootJoint; 
+        [SerializeField] private ConfigurableJointExtended _ragdollRootJointExtended;
+
+        private JointSettings m_jointSettings;
+        private Vector3 rootOffset;
         private Rigidbody _rootRigidBody;
         private Animator _animator;
 
@@ -16,6 +27,9 @@ namespace ActiveRagdoll.Runtime
         {
             _rootRigidBody = m_playerRoot.GetComponent<Rigidbody>();
             _animator = m_playerRoot.GetComponentInChildren<Animator>();
+            
+            rootOffset = m_physicsRig.transform.position - m_animatedRig.transform.position;
+            m_jointSettings= JointSettings.FromJoint(_ragdollRootJoint,_ragdollRootJointExtended);
         }
 
         public void TeleportTo(Transform target)
@@ -48,11 +62,10 @@ namespace ActiveRagdoll.Runtime
 
             // Deactivate to prevent physics interference
             _animator.enabled = false;
-            m_playerRoot.SetActive(false);
-           // m_playerRoot.transform.rotation = m_ragdollRoot.transform.rotation;
              m_playerRoot.SetActive(false);
              m_ragdollRoot.SetActive(false);
             // Move player root so that its root position matches the ragdoll root
+            m_playerRoot.transform.position = m_ragdollHip.transform.position;
             //Re-add offset from original prefab to ragdoll root
             m_ragdollRoot.transform.position = m_playerRoot.transform.position + rootOffset;
             //Set ragdoll root rotation to player rotation before reconnect
@@ -75,6 +88,17 @@ namespace ActiveRagdoll.Runtime
             {
                 item.SyncToTargetRotation();
             }
+            m_jointSettings.ApplyTo(configurableJoint, configurableJointExtended);
+        }
+
+        public void DisconnectRoot()
+        {
+            if (m_ragdollHip.TryGetComponent<ConfigurableJoint>(out ConfigurableJoint joint))
+            {
+                Destroy(joint); 
+            }
+            _ragdollRootJointExtended.joint = null;
+            _ragdollRootJointExtended.enabled = false;
         }
     }
 }
