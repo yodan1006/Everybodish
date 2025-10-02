@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerRoot: {fileID: 1700003924638526194}
-  m_playerHip: {fileID: 5191535644500875305}
   m_ragdollRoot: {fileID: 6008338345124722668}
 --- !u!1001 &5770155541836673964
 PrefabInstance:
@@ -1951,6 +1950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVerbose: 0
   joint: {fileID: 7029427186474358865}
+  initialLocalPosition: {x: 0, y: 0, z: 0}
+  initialLocalRotation: {x: 0, y: 0, z: 0, w: 0}
   target: {fileID: 1773519919472920275}
   boneLength: Infinity
   positionSpring: 15000
