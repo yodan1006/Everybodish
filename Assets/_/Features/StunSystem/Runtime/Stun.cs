@@ -34,7 +34,6 @@ namespace StunSystem.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
-            _activeRagdoll = GetComponent<ActiveRagdollManager>();
             _animatedProximityGrabber = GetComponent<AnimatedProximityGrabber>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
@@ -110,9 +109,7 @@ namespace StunSystem.Runtime
         private CameraRelativeRotation _rotation;
         private CharacterController _characterController;
         private GravityAndJump _gravity;
-        private ActiveRagdollManager _activeRagdoll;
         private AnimatedProximityGrabber _animatedProximityGrabber;
-        private readonly PlayerInteract _playerInteract;
         private float stunDuration;
         #endregion
 
