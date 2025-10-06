@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 3434073638983070850}
   - component: {fileID: 3870090278773716437}
   - component: {fileID: 7300450743963887011}
-  - component: {fileID: 5416788759587927982}
   m_Layer: 6
   m_Name: Player Root
   m_TagString: Untagged
@@ -311,25 +310,6 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   vibrationDuration: 0.1
   vibrationIntensity: 0.8
---- !u!114 &5416788759587927982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909807124258996847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc55186e6cb9ad948bda7eb57589ce58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  solverIterations: 8
-  solverVelocityIterations: 8
-  maxAngularVelocity: 20
-  animatedBody: {fileID: 4909807124258996847}
-  physicsBody: {fileID: 0}
-  playerRootRb: {fileID: 8414906516820233088}
-  automaticSetup: 0
 --- !u!1 &6204423215245026383
 GameObject:
   m_ObjectHideFlags: 0
