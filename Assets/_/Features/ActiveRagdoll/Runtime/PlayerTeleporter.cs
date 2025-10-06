@@ -67,7 +67,11 @@ namespace ActiveRagdoll.Runtime
 
             // Reconnect the configurable joint
             ConfigurableJointExtended configurableJointExtended = m_ragdollRoot.GetComponent<ConfigurableJointExtended>();
-            ConfigurableJoint configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponent<ConfigurableJoint>();
+            if(configurableJoint == null)
+            {
+ configurableJoint = m_ragdollRoot.AddComponent<ConfigurableJoint>();
+            }
             _jointSettings.ApplyTo(configurableJoint, configurableJointExtended);
  
             configurableJointExtended.Reconnect(_rootRigidBody, configurableJoint, m_playerHip);
