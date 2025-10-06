@@ -18,6 +18,7 @@ namespace Machine.Runtime
         [SerializeField] private ParticleSystem? particleFlash1;
         [SerializeField] private ParticleSystem? particleFlash2;
         [SerializeField] private ParticleSystem? particleFlash3;
+        [SerializeField] private ParticleSystem? particleFumer;
         [Header("Recettes")]
         [SerializeField] private MultiIngredientRecipe[] recipes;
         [Header("Apparence et feedback")]
@@ -212,6 +213,7 @@ namespace Machine.Runtime
                 particleFlash2.Play();
             if (particleFlash3 != null)
                 particleFlash3.Play();
+            
 
             float timerRetourner = timerAvantRetourner;
             float timerCrame = timerAvantCramé;
@@ -432,6 +434,12 @@ namespace Machine.Runtime
                 songLoop.Play();
             if (songStart != null)
                 songStart.Play();
+        }
+
+        public void PlayFumer()
+        {
+            if (particleFumer != null)
+                particleFumer.Play();
         }
     }
 }
