@@ -21,6 +21,11 @@ namespace Machine.Runtime
 
         public bool TryCook(Food food, out GameObject resultPrefab)
         {
+            if (_isCooking)
+            {
+                resultPrefab = null;
+                return false;
+            }
             if (food == null)
             {
                 Debug.LogWarning("TryCook called with null food!");
