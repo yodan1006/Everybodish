@@ -88,6 +88,7 @@ namespace ActiveRagdoll.Runtime
         {
             ConfigurableJoint configurableJoint = m_ragdollRoot.GetComponentInChildren<ConfigurableJoint>();
             m_ragdollRoot.GetComponentInChildren<ConfigurableJointExtended>().enabled = false;
+            Debug.Log($"Destroying joint in {configurableJoint.gameObject.name} bone");
             Destroy(configurableJoint);
         }
     }
