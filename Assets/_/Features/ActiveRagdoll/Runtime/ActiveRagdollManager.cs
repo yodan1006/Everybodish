@@ -45,12 +45,7 @@ namespace ActiveRagdoll.Runtime
                 animatedTransformsDictionary[t.name] = t;
             }
         }
-        public void DisconnectRoot()
-        {
-            ConfigurableJoint configurableJoint = physicsBody.GetComponent<ConfigurableJoint>();
-            physicsBody.GetComponent<ConfigurableJointExtended>().enabled = false;
-            Destroy(configurableJoint);
-        }
+
 
 
 

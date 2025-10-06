@@ -34,7 +34,6 @@ namespace StunSystem.Runtime
             _rotation = GetComponent<CameraRelativeRotation>();
             _characterController = GetComponent<CharacterController>();
             _gravity = GetComponent<GravityAndJump>();
-            _activeRagdoll = GetComponent<ActiveRagdollManager>();
             _animatedProximityGrabber = GetComponent<AnimatedProximityGrabber>();
             grabables = physicsRig.GetComponentsInChildren<Grabable>();
         }
@@ -53,7 +52,7 @@ namespace StunSystem.Runtime
                 grabable.enabled = true;
             }
             _animator.SetBool("Stunned", true);
-            _activeRagdoll.DisconnectRoot();
+            playerTeleporter.DisconnectRoot();
             stunEffect.Play();
             onEnableActions.Invoke(false);
         }
